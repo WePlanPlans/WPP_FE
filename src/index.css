@@ -39,6 +39,56 @@ code {
 
 @layer components {
   .btn-base {
-    @apply w-full rounded-lg py-3.5;
+    @apply w-full rounded-lg py-3.5 transition;
   }
+
+  .title1,
+  .title2,
+  .title3,
+  .headline1,
+  .headline2,
+  .body2,
+  .body4 {
+    @apply font-bold;
+  }
+}
+
+.body5,
+.caption1 {
+  @apply font-medium;
+}
+
+.title1 {
+  font-size: 24px;
+}
+
+.title2 {
+  font-size: 20px;
+}
+
+.title3 {
+  font-size: 18px;
+}
+
+.headline1 {
+  font-size: 16px;
+}
+.headline2,
+.body1 {
+  font-size: 15px;
+}
+
+.body2,
+.body3 {
+  font-size: 14px;
+}
+.body4,
+.body5,
+.body6 {
+  font-size: 12px;
+}
+
+.caption1,
+.caption2 {
+  font-size: 11px;
 }
