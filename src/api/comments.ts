@@ -25,9 +25,10 @@ export const deleteComments = async (commentId: string) => {
 };
 
 // 댓글작성
-export const postComments = async (content: string) => {
+export const postComments = async (content: string, reviewId: number) => {
   const res = await client.post(`comments/`, {
-    content,
+    content: content,
+    reviewId: reviewId,
   });
   return res;
 };
