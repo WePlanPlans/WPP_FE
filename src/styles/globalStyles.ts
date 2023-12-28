@@ -54,7 +54,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    font-family: 'GmarketSans', sans-serif;
+    font-family: 'Pretendard Variable', sans-serif;
     background-color: ${({ theme }) => theme.colors.bg_page};
     color: ${({ theme }) => theme.colors.text1};
   }
