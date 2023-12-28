@@ -1,13 +1,12 @@
-import { A, B } from '@components/abc';
 import { ButtonPrimary, ButtonWhite } from '@components/common/button/Button';
-import { C } from '@components/def';
 
 const Main = () => {
   return (
-    <div className="p-5">
+    <>
+      <h1 className="text-xl font-bold">지금 인기여행지</h1>
       <ButtonWhite onClick={() => {}}>더보기</ButtonWhite>
       <ButtonPrimary onClick={() => {}}>완료</ButtonPrimary>
-    </div>
+    </>
   );
 };
 

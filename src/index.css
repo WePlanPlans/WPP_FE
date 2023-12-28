@@ -27,9 +27,7 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  background-color: #eee;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -41,6 +39,6 @@ code {
 
 @layer components {
   .btn-base {
-    @apply w-full py-3.5 rounded-lg;
+    @apply w-full rounded-lg py-3.5;
   }
 }

@@ -5,15 +5,15 @@ import { Footer } from '@components/common/footer';
 import ABC from '@pages/abc/abc.page';
 import Main from '@pages/main/main.page';
 
-function Dashboard() {
+export function MainLayout() {
   return (
-    <>
+    <StyledMainContainer>
       <Header />
-      <StyledMainContainer>
+      <StyledContentContainer>
         <Outlet />
-      </StyledMainContainer>
+      </StyledContentContainer>
       <Footer />
-    </>
+    </StyledMainContainer>
   );
 }
 
@@ -21,9 +21,10 @@ const MainRouter = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route index element={<Main />} />
-        <Route path="/abc" element={<ABC />} />
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Main />} />
+          <Route path="/abc" element={<ABC />} />
+        </Route>
       </Routes>
     </>
   );
@@ -32,6 +33,15 @@ const MainRouter = () => {
 export default MainRouter;
 
 const StyledMainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 412px;
+  min-height: 100vh;
+`;
+
+const StyledContentContainer = styled.div`
+  padding: 0 20px;
+  margin-bottom: auto;
 `;
