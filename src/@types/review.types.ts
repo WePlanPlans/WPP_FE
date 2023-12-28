@@ -1,4 +1,5 @@
 interface ReviewRequest {
+  tourItemId: number;
   rating: number;
   keywords: Keyword[];
   content: string;

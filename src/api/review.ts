@@ -15,7 +15,8 @@ export const putReview = async (
   reviewData: ReviewRequest,
   reviewId: number,
 ) => {
-  const res = await client.put(`reviews/${reviewId}`, reviewData);
+  const { tourItemId, ...rest } = reviewData;
+  const res = await client.put(`reviews/${reviewId}`, rest);
   return res;
 };
 
