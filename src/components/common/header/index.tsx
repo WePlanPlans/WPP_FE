@@ -1,2 +1,4 @@
 import Header from './Header';
-export { Header };
+import DetailHeader from './DetailHeader';
+
+export { Header, DetailHeader };
