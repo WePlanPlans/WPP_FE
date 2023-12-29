@@ -1,8 +1,7 @@
-import { ButtonPrimary, ButtonWhite } from '@components/common/button/Button';
-
 import { getPopularTours } from '@api/region';
-import { getMember } from '@api/member';
+// import { getMember } from '@api/member';
 import { useEffect } from 'react';
+import { StartSearchButton } from '@components/search/StartSearchBtn';
 
 const Main = () => {
   useEffect(() => {
@@ -20,9 +19,7 @@ const Main = () => {
 
   return (
     <>
-      <h1 className="title2">지금 인기여행지</h1>
-      <ButtonWhite onClick={() => {}}>더보기</ButtonWhite>
-      <ButtonPrimary onClick={() => {}}>완료</ButtonPrimary>
+      <StartSearchButton />
     </>
   );
 };
