@@ -1,12 +1,4 @@
-import axios from 'axios';
-
-export const client = axios.create({
-  baseURL: import.meta.env.VITE_SERVER_URL,
-  headers: {
-    'content-type': 'application/json',
-    withCredentials: true,
-  },
-});
+import client from './client';
 
 // 리뷰 관련 API
 
@@ -15,7 +7,8 @@ export const putReview = async (
   reviewData: ReviewRequest,
   reviewId: number,
 ) => {
-  const res = await client.put(`reviews/${reviewId}`, reviewData);
+  const { tourItemId, ...rest } = reviewData;
+  const res = await client.put(`reviews/${reviewId}`, rest);
   return res;
 };
 
