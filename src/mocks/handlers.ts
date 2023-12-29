@@ -210,8 +210,8 @@ export const handlers = [
         totalPages: 0,
         totalElements: 0,
         pageable: {
-          pageNumber: 0,
-          pageSize: 0,
+          pageNumber: page,
+          pageSize: size,
           offset: 0,
           sort: {
             sorted: true,
@@ -321,8 +321,8 @@ export const handlers = [
         totalPages: 0,
         totalElements: 0,
         pageable: {
-          pageNumber: 0,
-          pageSize: 0,
+          pageNumber: page,
+          pageSize: size,
           offset: 0,
           sort: {
             sorted: true,
