@@ -1,12 +1,4 @@
-import axios from 'axios';
-
-export const client = axios.create({
-  baseURL: import.meta.env.VITE_SERVER_URL,
-  headers: {
-    'content-type': 'application/json',
-    withCredentials: true,
-  },
-});
+import client from './client';
 
 // 카테고리 관련 API
 
