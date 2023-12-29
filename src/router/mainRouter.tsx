@@ -4,6 +4,7 @@ import { Header } from '@components/common/header';
 import { Footer } from '@components/common/footer';
 import ABC from '@pages/abc/abc.page';
 import Main from '@pages/main/main.page';
+import Detail from '@pages/detail/detail.page';
 
 export function MainLayout() {
   return (
@@ -23,6 +24,7 @@ const MainRouter = () => {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Main />} />
+          <Route path="/detail/:id" element={<Detail />} />
           <Route path="/abc" element={<ABC />} />
         </Route>
       </Routes>
@@ -37,7 +39,7 @@ const StyledMainContainer = styled.div`
   flex-direction: column;
   background-color: #fff;
   margin: 0 auto;
-  max-width: 412px;
+  max-width: 375px;
   min-height: 100vh;
 `;
 
