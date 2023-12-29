@@ -448,3 +448,268 @@ export const PlusIcon: React.FC<IconProps> = ({
     </svg>
   );
 };
+
+export const ChatIcon: React.FC<IconProps> = ({
+  size = 25,
+  color = 'black',
+  fill = 'none',
+}) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 15 15"
+      fill={fill}
+      xmlns="http://www.w3.org/2000/svg">
+      <g
+        id="mail-chat-bubble-typing-oval--messages-message-bubble-typing-chat"
+        clip-path="url(#clip0_447_1104)">
+        <g id="Group">
+          <path
+            id="Vector"
+            d="M10.9155 7.5918C10.6394 7.5918 10.4155 7.36794 10.4155 7.0918C10.4155 6.81565 10.6394 6.5918 10.9155 6.5918C11.1917 6.5918 11.4155 6.81565 11.4155 7.0918C11.4155 7.36794 11.1917 7.5918 10.9155 7.5918Z"
+            stroke={color}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            id="Vector_2"
+            d="M7.66553 7.5918C7.38938 7.5918 7.16553 7.36794 7.16553 7.0918C7.16553 6.81565 7.38938 6.5918 7.66553 6.5918C7.94167 6.5918 8.16553 6.81565 8.16553 7.0918C8.16553 7.36794 7.94167 7.5918 7.66553 7.5918Z"
+            stroke={color}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            id="Vector_3"
+            d="M4.41553 7.5918C4.13938 7.5918 3.91553 7.36794 3.91553 7.0918C3.91553 6.81565 4.13938 6.5918 4.41553 6.5918C4.69167 6.5918 4.91553 6.81565 4.91553 7.0918C4.91553 7.36794 4.69167 7.5918 4.41553 7.5918Z"
+            stroke={color}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            id="Vector_4"
+            d="M7.41553 0.591798C8.59129 0.592164 9.74493 0.911437 10.7536 1.51561C11.7622 2.11979 12.5881 2.98623 13.1433 4.02267C13.6985 5.05911 13.9621 6.22673 13.9061 7.40115C13.8502 8.57558 13.4767 9.71284 12.8255 10.6918L13.9155 13.5918L10.2655 12.9318C9.38662 13.3613 8.4221 13.5869 7.44388 13.5917C6.46566 13.5966 5.49895 13.3805 4.61584 12.9598C3.73272 12.539 2.95596 11.9243 2.34347 11.1616C1.73097 10.3988 1.29854 9.50765 1.07841 8.55451C0.858272 7.60136 0.856112 6.61082 1.07209 5.65673C1.28806 4.70263 1.7166 3.80958 2.32576 3.04416C2.93492 2.27874 3.70899 1.66069 4.59027 1.23607C5.47154 0.811449 6.43729 0.591221 7.41553 0.591798V0.591798Z"
+            stroke={color}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </g>
+      </g>
+      <defs>
+        <clipPath id="clip0_447_1104">
+          <rect
+            width="14"
+            height="14"
+            fill={color}
+            transform="matrix(-1 0 0 1 14.4155 0.0917969)"
+          />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+};
+
+export const CloseIcon: React.FC<IconProps> = ({
+  size = 25,
+  color = 'black',
+  fill = 'none',
+}) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 16 17"
+      fill={fill}
+      xmlns="http://www.w3.org/2000/svg">
+      <g id="Group 36673">
+        <circle id="Ellipse" cx="8.00671" cy="8.59326" r="8" fill="#888888" />
+        <path
+          id="Line"
+          d="M5.04033 5.62725L10.9731 11.5601"
+          stroke={color}
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          id="Line_2"
+          d="M10.9731 5.62725L5.04028 11.5601"
+          stroke={color}
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+    </svg>
+  );
+};
+
+export const DeleteIcon: React.FC<IconProps> = ({
+  size = 25,
+  color = 'black',
+  fill = 'none',
+}) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 17 17"
+      fill={fill}
+      xmlns="http://www.w3.org/2000/svg">
+      <g id="Group 36693">
+        <g id="Trash can">
+          <path
+            id="Rectangle 74"
+            d="M3.77651 5.58206C3.21324 4.83103 3.74912 3.75928 4.68791 3.75928H12.1309C13.0697 3.75928 13.6056 4.83103 13.0423 5.58206V5.58206C12.6315 6.12984 12.4094 6.79608 12.4094 7.4808V11.7593C12.4094 13.232 11.2155 14.4259 9.74276 14.4259H7.07609C5.60333 14.4259 4.40942 13.232 4.40942 11.7593V7.4808C4.40942 6.79608 4.18734 6.12984 3.77651 5.58206V5.58206Z"
+            stroke={color}
+          />
+          <path
+            id="Line"
+            d="M9.74268 11.0928L9.74268 7.09277"
+            stroke={color}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            id="Line_2"
+            d="M7.07617 11.0928L7.07617 7.09277"
+            stroke={color}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            id="Rectangle 4"
+            d="M11.076 3.75928L10.7132 2.67097C10.5318 2.12652 10.0222 1.75928 9.44833 1.75928H7.37035C6.79645 1.75928 6.28693 2.12652 6.10544 2.67097L5.74268 3.75928"
+            stroke={color}
+            stroke-linecap="round"
+          />
+        </g>
+      </g>
+    </svg>
+  );
+};
+
+export const MoreIcon: React.FC<IconProps> = ({
+  size = 25,
+  color = 'black',
+  fill = 'none',
+}) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 25 25"
+      fill={fill}
+      xmlns="http://www.w3.org/2000/svg">
+      <g id="Group 36692">
+        <g id="Group 36691">
+          <circle
+            id="Ellipse 533"
+            cx="12.4155"
+            cy="5.81689"
+            r="1.69482"
+            stroke={color}
+          />
+          <circle
+            id="Ellipse 534"
+            cx="12.4155"
+            cy="12.1226"
+            r="1.69482"
+            stroke={color}
+          />
+          <circle
+            id="Ellipse 535"
+            cx="12.4155"
+            cy="18.4272"
+            r="1.69482"
+            stroke={color}
+          />
+        </g>
+      </g>
+    </svg>
+  );
+};
+
+export const DownIcon: React.FC<IconProps> = ({
+  size = 25,
+  color = 'black',
+  fill = 'none',
+}) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 17 17"
+      fill={fill}
+      xmlns="http://www.w3.org/2000/svg">
+      <g id="Group 36659">
+        <path
+          id="Vector 734"
+          d="M3.12079 5.40039L8.41553 10.6951L13.7103 5.40039"
+          stroke={color}
+          stroke-linecap="round"
+        />
+      </g>
+    </svg>
+  );
+};
+
+export const SearchIcon: React.FC<IconProps> = ({
+  size = 25,
+  color = 'black',
+  fill = 'none',
+}) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 15 15"
+      fill={fill}
+      xmlns="http://www.w3.org/2000/svg">
+      <g id="Search">
+        <ellipse
+          id="Ellipse"
+          cx="6.74886"
+          cy="6.60726"
+          rx="5.33333"
+          ry="5.33333"
+          stroke={color}
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          id="Line"
+          d="M10.4155 10.5793L13.7489 13.9127"
+          stroke={color}
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+    </svg>
+  );
+};
+
+export const CameraIcon: React.FC<IconProps> = ({
+  size = 25,
+  color = 'black',
+  fill = 'none',
+}) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 13 11"
+      fill={fill}
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        id="Vector"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M3.14101 1.46934C3.49974 0.877766 4.14214 0.460938 4.87796 0.460938H7.5831C8.31891 0.460938 8.96132 0.877766 9.32005 1.46934C9.42939 1.64966 9.55178 1.839 9.67791 2.01208C9.73825 2.0949 9.85609 2.16106 10.0196 2.16106H10.0871C11.3044 2.16106 12.2911 3.14781 12.2911 4.36491V8.7254C12.2911 9.94256 11.3044 10.9293 10.0873 10.9293H2.37378C1.15662 10.9293 0.169922 9.94256 0.169922 8.7254V4.36491C0.169922 3.14781 1.15643 2.16106 2.37365 2.16106H2.44121C2.6047 2.16106 2.7228 2.0949 2.78315 2.01208C2.90928 1.839 3.03167 1.64966 3.14101 1.46934ZM4.87796 1.56287C4.57032 1.56287 4.26555 1.74005 4.08324 2.0407C3.9634 2.23833 3.82358 2.45537 3.67372 2.66103C3.37133 3.076 2.89391 3.26298 2.44147 3.26298H2.37391C1.76539 3.26298 1.27185 3.75628 1.27185 4.36491V8.7254C1.27185 9.33398 1.7652 9.82733 2.37378 9.82733H10.0873C10.6959 9.82733 11.1892 9.33398 11.1892 8.7254V4.36491C11.1892 3.75628 10.6959 3.26298 10.0874 3.26298H10.0199C9.56741 3.26298 9.08973 3.076 8.78734 2.66103C8.63747 2.45537 8.49766 2.23833 8.37782 2.0407C8.19551 1.74005 7.89073 1.56287 7.5831 1.56287H4.87796ZM6.23053 4.31769C5.31766 4.31769 4.57764 5.05771 4.57764 5.97058C4.57764 6.88345 5.31766 7.62347 6.23053 7.62347C7.1434 7.62347 7.88342 6.88345 7.88342 5.97058C7.88342 5.05771 7.1434 4.31769 6.23053 4.31769ZM3.47571 5.97058C3.47571 4.44913 4.70908 3.21576 6.23053 3.21576C7.75197 3.21576 8.98535 4.44913 8.98535 5.97058C8.98535 7.49203 7.75197 8.7254 6.23053 8.7254C4.70908 8.7254 3.47571 7.49202 3.47571 5.97058Z"
+        stroke={color}
+      />
+    </svg>
+  );
+};
