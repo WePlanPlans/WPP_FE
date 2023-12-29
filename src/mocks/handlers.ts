@@ -90,9 +90,9 @@ export const handlers = [
         reviewId: reviewId,
         authorNickname: '은별',
         authorProfileImageUrl: 'https://~~~.png',
-        rating: 4,
+        rating: reviewData.rating,
         createdTime: '2023-12-28T16:24:09.639Z',
-        content: '~~~여서 ~~~ 해서 ~~로 좋았습니다.',
+        content: reviewData.content,
         keywords: [
           {
             keywordId: 1,
@@ -108,19 +108,48 @@ export const handlers = [
 
   // 리뷰 댓글 조회
   rest.get(`${SERVER_URL}/reviews/:reviewId/comments`, (req, res, ctx) => {
+    const { page, size } = req.params;
+
     const responseData = {
       status: 0,
       message: 'string',
       data: {
-        comments: [
-          {
-            commentId: 1,
-            authorNickname: '은별',
-            authorProfileImageUrl: 'https://~~~.png',
-            content: '잘보고 갑니다~',
-            createdTime: '2023-12-28T16:29:34.105Z',
+        comments: {
+          totalElements: 0,
+          totalPages: 0,
+          pageable: {
+            pageNumber: page,
+            pageSize: size,
+            offset: 0,
+            sort: {
+              sorted: true,
+              empty: true,
+              unsorted: true,
+            },
+            unpaged: true,
+            paged: true,
           },
-        ],
+          size: size,
+          content: [
+            {
+              commentId: 1,
+              authorNickname: '은별',
+              authorProfileImageUrl: 'https://~~~.png',
+              content: '잘보고 갑니다~',
+              createdTime: '2023-12-29T05:43:43.184Z',
+            },
+          ],
+          number: page,
+          sort: {
+            sorted: true,
+            empty: true,
+            unsorted: true,
+          },
+          numberOfElements: 0,
+          first: true,
+          last: true,
+          empty: true,
+        },
       },
     };
 
@@ -149,21 +178,49 @@ export const handlers = [
 
   // 나의 여정 목록 조회
   rest.get(`${SERVER_URL}/trips`, (req, res, ctx) => {
+    const { page, size } = req.params;
     const responseData = {
       status: 0,
       message: 'string',
       data: {
-        trips: [
-          {
-            tripId: 1,
-            tripName: '나의 ~번째 여정',
-            startDate: '2023-12-28',
-            endDate: '2023-12-28',
-            numberOfTripMembers: 2,
-            tripStatus: '여행 전',
-            tripThumbnailUrl: 'https://~~~~.png',
+        trips: {
+          totalElements: 0,
+          totalPages: 0,
+          pageable: {
+            pageNumber: page,
+            pageSize: size,
+            offset: 0,
+            sort: {
+              sorted: true,
+              empty: true,
+              unsorted: true,
+            },
+            unpaged: true,
+            paged: true,
           },
-        ],
+          size: size,
+          content: [
+            {
+              tripId: 1,
+              tripName: '나의 ~번째 여정',
+              startDate: '2023-12-29',
+              endDate: '2023-12-29',
+              numberOfTripMembers: 2,
+              tripStatus: '여행 전',
+              tripThumbnailUrl: 'https://~~~~.png',
+            },
+          ],
+          number: page,
+          sort: {
+            sorted: true,
+            empty: true,
+            unsorted: true,
+          },
+          numberOfElements: 0,
+          first: true,
+          last: true,
+          empty: true,
+        },
       },
     };
     return res(ctx.status(200), ctx.json(responseData));
@@ -273,6 +330,8 @@ export const handlers = [
 
   // 여행 상품 리뷰 조회
   rest.get(`${SERVER_URL}/tours/:tourItemId/reviews`, (req, res, ctx) => {
+    const { page, size } = req.params;
+
     const responseData = {
       status: 0,
       message: 'string',
@@ -280,23 +339,51 @@ export const handlers = [
         ratingAverage: 4.5,
         reviewTotalCount: 10,
         keywordTotalCount: 10,
-        reviewInfos: [
-          {
-            reviewId: 1,
-            authorNickname: '은별',
-            authorProfileImageUrl: 'https://~~~.png',
-            rating: 4,
-            createdTime: '2023-12-28T16:01:42.494Z',
-            content: '~~~여서 ~~~ 해서 ~~로 좋았습니다.',
-            keywords: [
-              {
-                keywordId: 1,
-                content: '깨끗해요',
-                type: 'ACCOMMODATION_KEYWORD',
-              },
-            ],
+        reviewInfos: {
+          totalElements: 0,
+          totalPages: 0,
+          pageable: {
+            pageNumber: page,
+            pageSize: size,
+            offset: 0,
+            sort: {
+              sorted: true,
+              empty: true,
+              unsorted: true,
+            },
+            unpaged: true,
+            paged: true,
           },
-        ],
+          size: size,
+          content: [
+            {
+              reviewId: 1,
+              authorNickname: '은별',
+              authorProfileImageUrl: 'https://~~~.png',
+              rating: 4,
+              createdTime: '2023-12-29T02:57:56.751Z',
+              content: '~~~여서 ~~~ 해서 ~~로 좋았습니다.',
+              keywords: [
+                {
+                  keywordId: 1,
+                  content: '깨끗해요',
+                  type: 'ACCOMMODATION_KEYWORD',
+                },
+              ],
+              commentCount: 0,
+            },
+          ],
+          number: page,
+          sort: {
+            sorted: true,
+            empty: true,
+            unsorted: true,
+          },
+          numberOfElements: 0,
+          first: true,
+          last: true,
+          empty: true,
+        },
         tourKeywordInfos: [
           {
             keywordId: 1,
@@ -515,8 +602,8 @@ export const handlers = [
       status: 0,
       message: 'string',
       data: {
-        totalPages: 0,
         totalElements: 0,
+        totalPages: 0,
         pageable: {
           pageNumber: 0,
           pageSize: 0,
@@ -526,8 +613,8 @@ export const handlers = [
             empty: true,
             unsorted: true,
           },
-          paged: true,
           unpaged: true,
+          paged: true,
         },
         size: 0,
         content: [
@@ -536,7 +623,7 @@ export const handlers = [
             authorNickname: '은별',
             authorProfileImageUrl: 'https://~~~.png',
             rating: 4,
-            createdTime: '2023-12-28T16:15:43.756Z',
+            createdTime: '2023-12-29T05:56:05.511Z',
             content: '~~~여서 ~~~ 해서 ~~로 좋았습니다.',
             keywords: [
               {
@@ -545,6 +632,7 @@ export const handlers = [
                 type: 'ACCOMMODATION_KEYWORD',
               },
             ],
+            commentCount: 0,
           },
         ],
         number: 0,
