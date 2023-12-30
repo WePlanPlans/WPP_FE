@@ -19,6 +19,7 @@ export const getDetailTours = async (tourItemId: number) => {
 // 여행 상품 리뷰 조회
 export const getToursReviews = async (tourItemId: number) => {
   const res = await client.get(`tours/${tourItemId}/reviews`);
+  console.log('res', res.data.data.reviewInfos);
   return res;
 };
 

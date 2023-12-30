@@ -1,5 +1,4 @@
 import A from './A';
-import B from './B';
-import C from './C';
+import DetailReview from './DetailReview';
 
-export { A, B, C };
+export { A, DetailReview };
