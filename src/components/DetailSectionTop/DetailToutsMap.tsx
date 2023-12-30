@@ -1,6 +1,6 @@
-import { ReactComponent as MapIcon } from '../../assets/images/Map.svg';
-import { ReactComponent as CheckIcon } from '../../assets/images/Check.svg';
-import { ReactComponent as PhoneIcon } from '../../assets/images/Phone.svg';
+import { ReactComponent as MapIcon } from '@assets/images/Map.svg';
+import { ReactComponent as CheckIcon } from '@assets/images/Check.svg';
+import { ReactComponent as PhoneIcon } from '@assets/images/Phone.svg';
 
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 

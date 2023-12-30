@@ -1,4 +1,4 @@
-import { ReactComponent as HeartIcon } from '../../assets/images/Heart.svg';
+import { ReactComponent as HeartIcon } from '@assets/images/Heart.svg';
 
 interface InfoProps {
   infoData: tourDetail;
