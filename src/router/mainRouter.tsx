@@ -2,7 +2,6 @@ import { Outlet, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import { Header } from '@components/common/header';
 import { Footer } from '@components/common/footer';
-import ABC from '@pages/abc/abc.page';
 import Main from '@pages/main/main.page';
 import Detail from '@pages/detail/detail.page';
 
@@ -25,7 +24,6 @@ const MainRouter = () => {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Main />} />
           <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/abc" element={<ABC />} />
         </Route>
       </Routes>
     </>
