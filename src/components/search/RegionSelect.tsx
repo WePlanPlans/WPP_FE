@@ -13,7 +13,7 @@ export const RegionSelect: React.FC<RegionSelectProps> = ({
       items={AREA_CODE}
       ariaLabel="지역선택"
       onSelectionChange={onRegionChange}
-      gridCols={3}
+      // gridCols={3}
     />
   );
 };
