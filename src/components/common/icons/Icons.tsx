@@ -2,6 +2,8 @@ interface IconProps {
   size?: number;
   color?: string;
   fill?: string;
+  onClick?: () => void;
+  className?: string;
 }
 
 export const HomeIcon: React.FC<IconProps> = ({
@@ -359,9 +361,13 @@ export const StarIcon: React.FC<IconProps> = ({
   size = 25,
   color = 'black',
   fill = 'none',
+  onClick,
+  className,
 }) => {
   return (
     <svg
+      onClick={onClick}
+      className={className}
       width={size}
       height={size}
       viewBox="0 0 16 15"
