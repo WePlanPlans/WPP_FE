@@ -43,7 +43,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
   }, []);
   return (
     <div className="mb-4">
-      <div className=" mb-2 flex items-center">
+      <div className=" mb-5 flex items-center">
         {/* {authorProfileImageUrl} */}
         <div className="mr-2">
           <img
@@ -71,7 +71,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
           {formatCreatedTime(createdTime)}
         </div>
       </div>
-      <div className=" mb-2 text-gray7">{content}</div>
+      <div className=" mb-4 text-gray7">{content}</div>
       <div className="flex">
         <div className="flex">
           {keywords.map((keyword, idx) => {
