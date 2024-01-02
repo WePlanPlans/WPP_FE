@@ -3,12 +3,12 @@ import { useGetToursReviews } from '@hooks/useReviewStats';
 import { v4 as uuidv4 } from 'uuid';
 import { DownIcon } from '@components/common/icons/Icons';
 import useReviewStatsCalculator from '@hooks/useReviewStatsCalculator';
+import { getEmoji } from '@utils/utils';
 
 const DetailReviewStats = () => {
   const { reviewStats } = useGetToursReviews();
-  const [showAll, setShowAll] = useState(false);
-
   const { calculateWidth, getColor } = useReviewStatsCalculator(reviewStats);
+  const [showAll, setShowAll] = useState(false);
 
   return (
     <>
@@ -26,7 +26,7 @@ const DetailReviewStats = () => {
               />
               <div className="absolute left-[14.5px] top-[12.23px] flex items-center justify-start gap-[108px]">
                 <div className="flex items-start justify-start gap-1.5">
-                  <p className=" w-4 ">😋</p>
+                  <p className="w-4">{getEmoji(data.content)}</p>
                   <p className="h-[15.55px] w-[166px] font-bold text-gray6">
                     {data.content}
                   </p>
@@ -45,7 +45,12 @@ const DetailReviewStats = () => {
       )}
       {reviewStats && reviewStats.length > 3 && (
         <div className="flex items-center justify-center">
-          <div onClick={() => setShowAll(!showAll)} className="cursor-pointer">
+          <div
+            onClick={() => setShowAll(!showAll)}
+            className="cursor-pointer transition-transform duration-300"
+            style={{
+              transform: showAll ? 'rotate(180deg)' : 'rotate(0deg)',
+            }}>
             <DownIcon />
           </div>
         </div>
