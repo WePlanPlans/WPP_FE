@@ -1,17 +1,7 @@
+import { RegionTypes, ToursCategoryProps } from '@/@types/tours.types';
 import ToursCategoryItem from './ToursCategoryItem';
 import { getPopularRegion } from '@api/region';
 import { useQuery } from '@tanstack/react-query';
-
-interface RegionTypes {
-  areaCode: number;
-  subAreaCode: number;
-  name: string;
-}
-
-interface ToursCategoryProps {
-  selectedRegion: string;
-  setSelectedRegion: (region: string) => void;
-}
 
 const ToursCategory = ({
   selectedRegion,

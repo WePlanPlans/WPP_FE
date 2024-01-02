@@ -1,13 +1,4 @@
-interface RegionTypes {
-  areaCode?: number;
-  subAreaCode?: number;
-  name: string;
-}
-
-interface ToursCategoryItemProps extends RegionTypes {
-  isSelected: boolean;
-  onSelect: (name: string) => void;
-}
+import { ToursCategoryItemProps } from '@/@types/tours.types';
 
 const ToursCategoryItem = ({
   name,

@@ -1,15 +1,7 @@
+import { TourType } from '@/@types/tours.types';
 import { HeartIcon, StarIcon } from '@components/common/icons/Icons';
 import { useNavigate } from 'react-router-dom';
 
-interface TourType {
-  id: number;
-  title: string;
-  liked: boolean;
-  likedCount: number;
-  ratingAverage: number;
-  reviewCount: number;
-  smallThumbnailUrl: string;
-}
 const ToursItem = ({ tour }: { tour: TourType }) => {
   const {
     id,
@@ -54,7 +46,7 @@ const ToursItem = ({ tour }: { tour: TourType }) => {
         </div>
         <div className="flex items-center">
           <HeartIcon size={16} color="#FF2167" fill="#FF2167" />
-          <span className="ml-1 pt-[1.5px]">{likedCount}</span>
+          <span className="ml-0.5 pt-[1.5px]">{likedCount}</span>
         </div>
       </div>
     </div>

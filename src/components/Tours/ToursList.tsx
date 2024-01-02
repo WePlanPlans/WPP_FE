@@ -1,20 +1,7 @@
+import { TourType, ToursListProps } from '@/@types/tours.types';
 import ToursItem from './ToursItem';
 import { getTours } from '@api/tours';
 import { useQuery } from '@tanstack/react-query';
-
-interface TourType {
-  id: number;
-  title: string;
-  liked: boolean;
-  likedCount: number;
-  ratingAverage: number;
-  reviewCount: number;
-  smallThumbnailUrl: string;
-}
-
-interface ToursListProps {
-  selectedRegion: string;
-}
 
 const ToursList = ({ selectedRegion }: ToursListProps) => {
   const toursQuery = useQuery({
