@@ -8,14 +8,15 @@ export const getTours = async (
   page?: number,
   size?: number,
 ) => {
-  if (region === '전체') {
-    const res = await client.get(`tours?page=${page}&size=${size}`);
-    return res;
-  } else {
+  try {
     const res = await client.get(
-      `tours?region=${region}&page=${page}&size=${size}`,
+      `tours?${
+        region !== '전체' && `region=${region}`
+      }&page=${page}&size=${size}`,
     );
     return res;
+  } catch (e) {
+    console.error(e);
   }
 };
 

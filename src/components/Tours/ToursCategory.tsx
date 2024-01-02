@@ -1,6 +1,6 @@
 import ToursCategoryItem from './ToursCategoryItem';
-import { useEffect, useState } from 'react';
 import { getPopularRegion } from '@api/region';
+import { useQuery } from '@tanstack/react-query';
 
 interface RegionTypes {
   areaCode: number;
@@ -17,33 +17,34 @@ const ToursCategory = ({
   selectedRegion,
   setSelectedRegion,
 }: ToursCategoryProps) => {
-  const [regions, setRegions] = useState<RegionTypes[]>([]);
+  const regionsQuery = useQuery({
+    queryKey: ['regions'],
+    queryFn: () => getPopularRegion(),
+  });
 
-  useEffect(() => {
-    const fetchTours = async () => {
-      try {
-        const res = await getPopularRegion();
-        const allRegions = [
-          { name: '전체', areaCode: 0, subAreaCode: 0 },
-          ...res.data.data.regions,
-        ];
-
-        setRegions(allRegions);
-      } catch (error) {
-        console.error('지역 카테고리 조회 실패:', error);
-      }
-    };
-
-    fetchTours();
-  }, []);
+  if (regionsQuery.error) {
+    console.log('error - 예외 처리');
+  }
 
   const handleSelectRegion = (name: string) => {
     setSelectedRegion(name);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   };
+
+  // '전체' 항목 추가
+  const regionsData = regionsQuery.data?.data.data.regions ?? [];
+  const regions = [
+    { name: '전체', areaCode: 0, subAreaCode: 0 },
+    ...regionsData,
+  ];
 
   return (
     <div className="no-scrollbar my-3 flex w-[100%] overflow-scroll overflow-y-hidden bg-white">
-      {regions.map((region, index) => {
+      {regions.map((region: RegionTypes, index: number) => {
         return (
           <ToursCategoryItem
             key={index}

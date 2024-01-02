@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
 import ToursItem from './ToursItem';
 import { getTours } from '@api/tours';
+import { useQuery } from '@tanstack/react-query';
 
 interface TourType {
   id: number;
@@ -17,24 +17,18 @@ interface ToursListProps {
 }
 
 const ToursList = ({ selectedRegion }: ToursListProps) => {
-  const [tours, setTours] = useState<TourType[]>([]);
+  const toursQuery = useQuery({
+    queryKey: ['tours', selectedRegion],
+    queryFn: () => getTours(selectedRegion, 0, 30),
+  });
 
-  useEffect(() => {
-    const fetchTours = async () => {
-      try {
-        const res = await getTours(selectedRegion, 0, 10);
-        setTours(res.data.data.content);
-      } catch (error) {
-        console.error('인기여행지 조회 실패:', error);
-      }
-    };
-
-    fetchTours();
-  }, [selectedRegion]);
+  if (toursQuery.error) {
+    console.log('error - 예외 처리');
+  }
 
   return (
     <div className="no-scrollbar grid grid-cols-2 gap-[15px] overflow-y-scroll">
-      {tours.map((tour) => {
+      {toursQuery.data?.data.data.content.map((tour: TourType) => {
         return <ToursItem key={tour.id} tour={tour} />;
       })}
     </div>

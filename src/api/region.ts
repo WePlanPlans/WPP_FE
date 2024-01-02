@@ -8,8 +8,12 @@ export const getRegion = async (areaCode: number) => {
   return res;
 };
 
-// 인기 지역 조회
+// 인기 지역 카테고리 조회
 export const getPopularRegion = async () => {
-  const res = await client.get(`region/popular`);
-  return res;
+  try {
+    const res = await client.get(`region/popular`);
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
 };

@@ -9,10 +9,10 @@ const Nav = () => {
 
   return (
     <nav className="sticky bottom-0 z-50 flex h-16 items-center justify-center bg-white">
-      <div className="flex w-[100%] items-center justify-between space-x-4 bg-inherit px-[30px]">
+      <div className="flex w-[100%] items-center justify-evenly space-x-4 bg-inherit">
         <div
           onClick={() => navigate('/')}
-          className="cursor-pointer flex-col items-center justify-center">
+          className="cursor-pointer flex-col items-center justify-center px-2">
           <div className="flex justify-center">
             <HomeIcon fill={isActive('/') ? 'currentColor' : 'none'} />
           </div>
@@ -20,13 +20,13 @@ const Nav = () => {
         </div>
         <div
           onClick={() => navigate('/')}
-          className="flex-col items-center justify-center hover:cursor-pointer">
+          className="cursor-pointer flex-col items-center justify-center px-2">
           <CalendarIcon />
           <p className="caption2 mt-[3px] text-center text-xs/[11px]">일정</p>
         </div>
         <div
           onClick={() => navigate('/')}
-          className="flex-col items-center justify-center hover:cursor-pointer">
+          className="cursor-pointer flex-col items-center justify-center px-2">
           <div className="flex justify-center">
             <HeartIcon />
           </div>
@@ -34,7 +34,7 @@ const Nav = () => {
         </div>
         <div
           onClick={() => navigate('/')}
-          className="flex-col items-center justify-center hover:cursor-pointer">
+          className="cursor-pointer flex-col items-center justify-center px-1">
           <div className="flex justify-center">
             <UserIcon />
           </div>

@@ -1,5 +1,4 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
-import styled from 'styled-components';
 import { Header } from '@components/common/header';
 import { Nav } from '@components/common/nav';
 import Main from '@pages/main/main.page';
@@ -8,13 +7,13 @@ import PostingReview from '@pages/postingReview/postingReview.page';
 
 export function MainLayout() {
   return (
-    <StyledMainContainer>
+    <div className="mx-auto my-0 flex min-h-[100vh] max-w-[375px] flex-col bg-white ">
       <Header />
-      <StyledContentContainer>
+      <div className="mb-auto px-[20px] py-0">
         <Outlet />
-      </StyledContentContainer>
+      </div>
       <Nav />
-    </StyledMainContainer>
+    </div>
   );
 }
 
@@ -33,17 +32,3 @@ const MainRouter = () => {
 };
 
 export default MainRouter;
-
-const StyledMainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  margin: 0 auto;
-  max-width: 375px;
-  min-height: 100vh;
-`;
-
-const StyledContentContainer = styled.div`
-  padding: 0 20px;
-  margin-bottom: auto;
-`;
