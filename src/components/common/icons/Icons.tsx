@@ -2,6 +2,9 @@ interface IconProps {
   size?: number;
   color?: string;
   fill?: string;
+  onClick?: () => void;
+  className?: string;
+  isHalf?: boolean;
 }
 
 export const HomeIcon: React.FC<IconProps> = ({
@@ -359,19 +362,43 @@ export const StarIcon: React.FC<IconProps> = ({
   size = 25,
   color = 'black',
   fill = 'none',
+  onClick,
+  className,
+  isHalf,
 }) => {
+  const renderLinearGradient = () => {
+    if (isHalf) {
+      return (
+        <defs>
+          <linearGradient id="grad">
+            <stop offset="50%" stopColor="#FFEC3E" />
+            <stop offset="50%" stopColor="#EDEDED" />
+          </linearGradient>
+        </defs>
+      );
+    }
+    return null;
+  };
+
+  const renderStarPath = () => (
+    <path
+      id="Star 5"
+      d="M7.46447 0.974901C7.76382 0.0535908 9.06723 0.0535913 9.36658 0.974902L10.4362 4.2667C10.57 4.67872 10.954 4.95768 11.3872 4.95768H14.8484C15.8171 4.95768 16.2199 6.1973 15.4362 6.7667L12.636 8.80114C12.2855 9.05578 12.1389 9.50715 12.2728 9.91917L13.3423 13.211C13.6417 14.1323 12.5872 14.8984 11.8035 14.329L9.00331 12.2946C8.65283 12.0399 8.17823 12.0399 7.82774 12.2946L5.02757 14.329C4.24386 14.8984 3.18938 14.1323 3.48873 13.211L4.5583 9.91917C4.69217 9.50715 4.54552 9.05578 4.19503 8.80114L1.39486 6.7667C0.611146 6.1973 1.01392 4.95768 1.98265 4.95768H5.44385C5.87707 4.95768 6.26103 4.67872 6.3949 4.2667L7.46447 0.974901Z"
+      stroke={color}
+      fill={isHalf ? 'url(#grad)' : fill}
+    />
+  );
+
   return (
     <svg
+      onClick={onClick}
+      className={className}
       width={size}
       height={size}
       viewBox="0 0 16 15"
-      fill={fill}
       xmlns="http://www.w3.org/2000/svg">
-      <path
-        id="Star 5"
-        d="M7.46447 0.974901C7.76382 0.0535908 9.06723 0.0535913 9.36658 0.974902L10.4362 4.2667C10.57 4.67872 10.954 4.95768 11.3872 4.95768H14.8484C15.8171 4.95768 16.2199 6.1973 15.4362 6.7667L12.636 8.80114C12.2855 9.05578 12.1389 9.50715 12.2728 9.91917L13.3423 13.211C13.6417 14.1323 12.5872 14.8984 11.8035 14.329L9.00331 12.2946C8.65283 12.0399 8.17823 12.0399 7.82774 12.2946L5.02757 14.329C4.24386 14.8984 3.18938 14.1323 3.48873 13.211L4.5583 9.91917C4.69217 9.50715 4.54552 9.05578 4.19503 8.80114L1.39486 6.7667C0.611146 6.1973 1.01392 4.95768 1.98265 4.95768H5.44385C5.87707 4.95768 6.26103 4.67872 6.3949 4.2667L7.46447 0.974901Z"
-        stroke={color}
-      />
+      {renderLinearGradient()}
+      {renderStarPath()}
     </svg>
   );
 };
