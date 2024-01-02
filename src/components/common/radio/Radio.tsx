@@ -4,7 +4,7 @@ import { useState } from 'react';
 interface RadioSelectProps {
   items: (string | number)[] | Record<string, string | number>;
   ariaLabel: string;
-  onSelectionChange: (selectedValue: string | number) => void;
+  onSelectionChange: (selectedValue: string) => void;
   gridCols?: number;
 }
 
@@ -24,13 +24,11 @@ export const RadioSelect: React.FC<RadioSelectProps> = ({
   onSelectionChange,
   gridCols = 2,
 }) => {
-  const [selectedValue, setSelectedValue] = useState<string | number | null>(
-    null,
-  );
+  const [selectedValue, setSelectedValue] = useState<string | null>(null);
 
   console.log('selected Radio value:', selectedValue);
 
-  const handleRadioChange = (value: string | number) => {
+  const handleRadioChange = (value: string) => {
     setSelectedValue(value);
     onSelectionChange(value);
   };

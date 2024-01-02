@@ -24,11 +24,11 @@ export const getToursReviews = async (tourItemId: number) => {
 
 // 여행지 검색
 export const getToursSearch = async (
-  region: number,
-  category: number,
+  region: string,
   searchWord: string,
-  page: number,
+  page: number = 0,
   size: number,
+  category?: string,
 ) => {
   const res = await client.get(
     `tours/search?region=${region}&category=${category}&searchWord=${searchWord}&page=${page}&size=${size}}`,

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 interface SearchInputProps {
   onInputChange: (value: string) => void;
-  selectedRegion: string | number;
+  selectedRegion: string;
 }
 
 export const SearchInput: React.FC<SearchInputProps> = ({
@@ -26,7 +26,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   };
 
   useEffect(() => {
-    setInputValue(selectedRegion.toString());
+    setInputValue(selectedRegion);
   }, [selectedRegion]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +34,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
     setInputValue(value);
     onInputChange(value);
   };
-  console.log(inputValue);
+
   return (
     <>
       <div className="relative mb-3 flex items-center">

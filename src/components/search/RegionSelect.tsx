@@ -2,7 +2,7 @@ import { AREA_CODE } from '@/constants';
 import { RadioSelect } from '@components/common/radio/Radio';
 
 interface RegionSelectProps {
-  onRegionChange: (selectedRegion: string | number) => void;
+  onRegionChange: (selectedRegion: string) => void;
 }
 
 export const RegionSelect: React.FC<RegionSelectProps> = ({
