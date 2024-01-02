@@ -16,8 +16,14 @@ export const getTours = async (
 
 // 여행지 상세 조회
 export const getDetailTours = async (tourItemId: number) => {
-  const res = await client.get(`tours/${tourItemId}`);
-  return res;
+  try {
+    const {
+      data: { data },
+    } = await client.get(`tours/${tourItemId}`);
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 // 여행 상품 리뷰 조회

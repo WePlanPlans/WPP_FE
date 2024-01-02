@@ -1,4 +1,4 @@
-import { ReactComponent as StarIcon } from '../../assets/images/Star.svg';
+import { ReactComponent as StarIcon } from '@assets/images/Star.svg';
 
 export default function DetailToursRating() {
   return (
