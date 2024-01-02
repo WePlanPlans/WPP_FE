@@ -3,7 +3,11 @@ import client from './client';
 // 여행지 관련 API
 
 // 인기 여행지 조회
-export const getTours = async (region: number, page: number, size: number) => {
+export const getTours = async (
+  region?: string,
+  page?: number,
+  size?: number,
+) => {
   const res = await client.get(
     `tours?region=${region}&page=${page}&size=${size}`,
   );
