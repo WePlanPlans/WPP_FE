@@ -6,7 +6,6 @@ const DetailTours = () => {
     <>
       <DetailHeader />
       <DetailSectionTop />
-      {/* 추천 : DetailSectionBottom => 이런 점이 좋았어요, 리뷰 */}
     </>
   );
 };
