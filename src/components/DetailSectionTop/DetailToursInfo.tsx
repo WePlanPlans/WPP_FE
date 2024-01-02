@@ -1,10 +1,10 @@
 import { ReactComponent as HeartIcon } from '@assets/images/Heart.svg';
 
-interface InfoProps {
+interface DetailToursInfoProps {
   infoData: tourDetail;
 }
 
-export default function DetailToursInfo({ infoData }: InfoProps) {
+export default function DetailToursInfo({ infoData }: DetailToursInfoProps) {
   const { title, liked, originalThumbnailUrl } = infoData;
 
   return (
