@@ -1,7 +1,7 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import { Header } from '@components/common/header';
-import { Footer } from '@components/common/footer';
+import { Nav } from '@components/common/nav';
 import ABC from '@pages/abc/abc.page';
 import Main from '@pages/main/main.page';
 import Detail from '@pages/detail/detail.page';
@@ -13,7 +13,7 @@ export function MainLayout() {
       <StyledContentContainer>
         <Outlet />
       </StyledContentContainer>
-      <Footer />
+      <Nav />
     </StyledMainContainer>
   );
 }
