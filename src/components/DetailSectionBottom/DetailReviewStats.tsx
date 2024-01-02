@@ -13,7 +13,7 @@ const DetailReviewStats = () => {
   return (
     <>
       <div className="mb-2 mt-2 text-lg font-bold">이런 점이 좋았어요</div>
-      {reviewStats &&
+      {reviewStats && reviewStats.length > 0 ? (
         reviewStats.slice(0, showAll ? reviewStats.length : 3).map((data) => (
           <div key={uuidv4()} className="mb-2 h-10 w-full">
             <div className="relative h-10 w-[335px] rounded-lg bg-gray1">
@@ -35,13 +35,21 @@ const DetailReviewStats = () => {
               </div>
             </div>
           </div>
-        ))}
-
-      <div className="flex items-center justify-center">
-        <div onClick={() => setShowAll(!showAll)} className="cursor-pointer">
-          <DownIcon />
+        ))
+      ) : (
+        <div className="relative flex h-[120px] items-center justify-center gap-2 p-2">
+          <p className="flex-shrink-0 flex-grow-0 text-sm text-gray3">
+            첫번째 리뷰를 남겨주세요!
+          </p>
         </div>
-      </div>
+      )}
+      {reviewStats && reviewStats.length > 3 && (
+        <div className="flex items-center justify-center">
+          <div onClick={() => setShowAll(!showAll)} className="cursor-pointer">
+            <DownIcon />
+          </div>
+        </div>
+      )}
     </>
   );
 };
