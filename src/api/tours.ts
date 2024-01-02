@@ -8,10 +8,15 @@ export const getTours = async (
   page?: number,
   size?: number,
 ) => {
-  const res = await client.get(
-    `tours?region=${region}&page=${page}&size=${size}`,
-  );
-  return res;
+  if (region === '전체') {
+    const res = await client.get(`tours?page=${page}&size=${size}`);
+    return res;
+  } else {
+    const res = await client.get(
+      `tours?region=${region}&page=${page}&size=${size}`,
+    );
+    return res;
+  }
 };
 
 // 여행지 상세 조회

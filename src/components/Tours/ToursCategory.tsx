@@ -1,20 +1,28 @@
-import { getPopularTours } from '@api/region';
 import ToursCategoryItem from './ToursCategoryItem';
 import { useEffect, useState } from 'react';
+import { getPopularRegion } from '@api/region';
 
 interface RegionTypes {
   areaCode: number;
   subAreaCode: number;
   name: string;
 }
-const ToursCategory = () => {
+
+interface ToursCategoryProps {
+  selectedRegion: string;
+  setSelectedRegion: (region: string) => void;
+}
+
+const ToursCategory = ({
+  selectedRegion,
+  setSelectedRegion,
+}: ToursCategoryProps) => {
   const [regions, setRegions] = useState<RegionTypes[]>([]);
-  const [selectedRegion, setSelectedRegion] = useState<string>('전체');
 
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const res = await getPopularTours();
+        const res = await getPopularRegion();
         const allRegions = [
           { name: '전체', areaCode: 0, subAreaCode: 0 },
           ...res.data.data.regions,

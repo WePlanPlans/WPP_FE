@@ -11,20 +11,27 @@ interface TourType {
   reviewCount: number;
   smallThumbnailUrl: string;
 }
-const ToursList = () => {
+
+interface ToursListProps {
+  selectedRegion: string;
+}
+
+const ToursList = ({ selectedRegion }: ToursListProps) => {
   const [tours, setTours] = useState<TourType[]>([]);
+
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const res = await getTours('서울', 0, 10);
+        const res = await getTours(selectedRegion, 0, 10);
         setTours(res.data.data.content);
       } catch (error) {
-        console.error('여행지 조회 실패:', error);
+        console.error('인기여행지 조회 실패:', error);
       }
     };
 
     fetchTours();
-  }, []);
+  }, [selectedRegion]);
+
   return (
     <div className="no-scrollbar grid grid-cols-2 gap-[15px] overflow-y-scroll">
       {tours.map((tour) => {
