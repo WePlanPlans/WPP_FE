@@ -2,6 +2,7 @@ import { A, DetailReviews } from '.';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getDetailTours } from '@api/tours';
+import { useEffect } from 'react';
 
 export default function DetailSectionBottom() {
   const params = useParams();
@@ -10,11 +11,14 @@ export default function DetailSectionBottom() {
     queryKey: ['details', tourId],
     queryFn: () => getDetailTours(tourId),
   });
+  if (data) {
+    return (
+      <>
+        <A />
+        <DetailReviews reviewData={data} />
+      </>
+    );
+  }
 
-  return (
-    <>
-      <A />
-      <DetailReviews reviewData={data} />
-    </>
-  );
+  if (isError) console.log('error');
 }
