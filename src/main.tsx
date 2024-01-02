@@ -9,7 +9,7 @@ import './index.css';
 // }
 if (import.meta.env.DEV) {
   const { worker } = await import('./mocks/browser.ts');
-  await worker.start();
+  await worker.stop();
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
