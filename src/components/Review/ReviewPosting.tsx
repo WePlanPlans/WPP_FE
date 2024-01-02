@@ -1,10 +1,14 @@
 import { useState, ChangeEvent } from 'react';
+import { contentState } from '@recoil/review';
+import { useSetRecoilState } from 'recoil';
 
 export default function ReviewPosting() {
+  const setContent = useSetRecoilState(contentState);
   const [textLength, setTextLength] = useState(0);
 
   const handleTextChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const inputText = event.target.value;
+    setContent(inputText);
     setTextLength(inputText.length);
   };
 

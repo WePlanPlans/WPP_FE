@@ -7,18 +7,18 @@ import { isModalOpenState, titleState } from '@recoil/modal';
 import { Modal } from '@components/common/modal';
 
 export default function DetailReview() {
-  const tourItemId = 1; // 아마도 동적으로 tourItemId를 설정해야 할 것입니다.
-  const { id } = useParams();
+  const params = useParams();
+  const tourId = Number(params.id);
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
   const setTitle = useSetRecoilState(titleState);
 
   const { data: toursReviews } = useQuery({
     queryKey: ['toursReviews'],
-    queryFn: () => getToursReviews(tourItemId),
+    queryFn: () => getToursReviews(tourId),
   });
 
   const selectedReview = toursReviews?.data?.data?.reviewInfos.filter(
-    (item: any) => item.reviewId.toString() === id,
+    (item: any) => item.reviewId.toString() === tourId,
   );
 
   const openModal = (title: string) => {

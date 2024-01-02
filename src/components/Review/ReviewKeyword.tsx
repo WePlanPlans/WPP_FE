@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getReviewKeywords } from '@api/review';
 import { useQuery } from '@tanstack/react-query';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { keywordsState } from '@recoil/review';
 
 interface Keyword {
   keywordId: number;
@@ -13,7 +15,7 @@ export default function ReviewKeyword() {
   const { state } = location;
   const { contentTypeId } = state;
   const [keywordType, setKeywordType] = useState('');
-  const [selectedKeywords, setSelectedKeywords] = useState<Keyword[]>([]);
+  const [selectedKeywords, setSelectedKeywords] = useRecoilState(keywordsState);
 
   useEffect(() => {
     if (contentTypeId === 12) {

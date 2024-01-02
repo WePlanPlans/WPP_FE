@@ -1,5 +1,12 @@
 import { ButtonPrimary } from '@components/common/button/Button';
 
-export default function ReviewButton() {
-  return <ButtonPrimary onClick={() => {}}>완료</ButtonPrimary>;
+interface ButtonProps {
+  onClick: () => void;
 }
+
+const ReviewButton = (props: ButtonProps) => {
+  const { onClick } = props;
+  return <ButtonPrimary onClick={onClick}>완료</ButtonPrimary>;
+};
+
+export default ReviewButton;
