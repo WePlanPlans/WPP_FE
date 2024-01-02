@@ -2,9 +2,9 @@ import { Outlet, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import { Header } from '@components/common/header';
 import { Nav } from '@components/common/nav';
-import ABC from '@pages/abc/abc.page';
 import Main from '@pages/main/main.page';
 import Detail from '@pages/detail/detail.page';
+import PostingReview from '@pages/postingReview/postingReview.page';
 
 export function MainLayout() {
   return (
@@ -25,7 +25,7 @@ const MainRouter = () => {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Main />} />
           <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/abc" element={<ABC />} />
+          <Route path="/postingReview/:id" element={<PostingReview />} />
         </Route>
       </Routes>
     </>
