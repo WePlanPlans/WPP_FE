@@ -1,3 +1,9 @@
+// import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+
+import { getDetailTours } from '@api/tours';
+
 import {
   DetailToursInfo,
   DetailToursRating,
@@ -5,14 +11,25 @@ import {
   DetailTourButtons,
 } from '.';
 
-// 담당 컴포넌트들 호출하는 컴포넌트(분업 때문에 페이지 느낌으로 나눠봤습니다), API 호출 컴포넌트,
 export default function DetailSectionTop() {
-  return (
-    <>
-      <DetailToursInfo />
-      <DetailToursRating />
-      <DetailToursMap />
-      <DetailTourButtons />
-    </>
-  );
+  const params = useParams();
+  const tourId = Number(params.id);
+
+  const { isError, isLoading, isFetching, data } = useQuery({
+    queryKey: ['details', tourId],
+    queryFn: () => getDetailTours(tourId),
+  });
+
+  if (data) {
+    return (
+      <>
+        <DetailToursInfo infoData={data} />
+        <DetailToursRating />
+        <DetailToursMap mapData={data} />
+        <DetailTourButtons />
+      </>
+    );
+  }
+
+  if (isError) console.log('error');
 }
