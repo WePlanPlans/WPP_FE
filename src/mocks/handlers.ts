@@ -11,15 +11,15 @@ export const handlers = [
     const commentData = req.body;
 
     const responseData = {
-      comments: [
-        {
-          contentId: commentId,
-          authorNickname: '은별',
-          authorProfileImageUrl: 'https://~~~.png',
-          content: commentData,
-          createdTime: '2023-12-28T07:51:46.980Z',
-        },
-      ],
+      status: 0,
+      message: 'string',
+      data: {
+        commentId: commentId,
+        authorNickname: '은별',
+        authorProfileImageUrl: 'https://~~~.png',
+        content: commentData,
+        createdTime: '2023-12-28T15:12:40.231Z',
+      },
     };
 
     return res(ctx.status(200), ctx.json(responseData));
@@ -29,10 +29,12 @@ export const handlers = [
   rest.delete(`${SERVER_URL}/comments/:commentId`, (req, res, ctx) => {
     const { commentId } = req.params;
 
-    return res(
-      ctx.status(200),
-      ctx.json({ message: '댓글 삭제 성공', commentId }),
-    );
+    const responseData = {
+      status: 0,
+      message: `댓글 삭제 성공, commentId: ${commentId}`,
+    };
+
+    return res(ctx.status(200), ctx.json(responseData));
   }),
 
   // 댓글 작성
@@ -41,15 +43,15 @@ export const handlers = [
     const commentData = req.body;
 
     const responseData = {
-      comments: [
-        {
-          contentId: commentId,
-          authorNickname: '은별',
-          authorProfileImageUrl: 'https://~~~.png',
-          content: commentData,
-          createdTime: '2023-12-28T07:51:46.980Z',
-        },
-      ],
+      status: 0,
+      message: 'string',
+      data: {
+        commentId: commentId,
+        authorNickname: '은별',
+        authorProfileImageUrl: 'https://~~~.png',
+        content: commentData,
+        createdTime: '2023-12-28T15:15:48.041Z',
+      },
     };
 
     return res(ctx.status(200), ctx.json(responseData));
@@ -62,18 +64,7 @@ export const handlers = [
     const { reviewId } = req.params;
     const reviewData = req.body as ReviewRequest;
 
-    const responseData = {
-      reviewId: reviewId,
-      authorNickname: '은별',
-      authorProfileImageUrl: 'https://~~~.png',
-      rating: reviewData.rating,
-      createdTime: new Date().toISOString(),
-      content: reviewData.content,
-      keywords: reviewData.keywords.map((keyword) => ({
-        ...keyword,
-        type: 'ACCOMMODATION_KEYWORD',
-      })),
-    };
+    const responseData = reviewData;
 
     return res(ctx.status(200), ctx.json(responseData));
   }),
@@ -93,16 +84,23 @@ export const handlers = [
     const reviewData = req.body as ReviewRequest;
 
     const responseData = {
-      reviewId: reviewId,
-      authorNickname: '은별',
-      authorProfileImageUrl: 'https://~~~.png',
-      rating: reviewData.rating,
-      createdTime: new Date().toISOString(),
-      content: reviewData.content,
-      keywords: reviewData.keywords.map((keyword) => ({
-        ...keyword,
-        type: 'ACCOMMODATION_KEYWORD',
-      })),
+      status: 0,
+      message: 'string',
+      data: {
+        reviewId: reviewId,
+        authorNickname: '은별',
+        authorProfileImageUrl: 'https://~~~.png',
+        rating: 4,
+        createdTime: '2023-12-28T16:24:09.639Z',
+        content: '~~~여서 ~~~ 해서 ~~로 좋았습니다.',
+        keywords: [
+          {
+            keywordId: 1,
+            content: '깨끗해요',
+            type: 'ACCOMMODATION_KEYWORD',
+          },
+        ],
+      },
     };
 
     return res(ctx.status(200), ctx.json(responseData));
@@ -111,15 +109,19 @@ export const handlers = [
   // 리뷰 댓글 조회
   rest.get(`${SERVER_URL}/reviews/:reviewId/comments`, (req, res, ctx) => {
     const responseData = {
-      comments: [
-        {
-          contentId: 1,
-          authorNickname: '은별',
-          authorProfileImageUrl: 'https://~~~.png',
-          content: '잘보고 갑니다~',
-          createdTime: '2023-12-28T11:09:57.181Z',
-        },
-      ],
+      status: 0,
+      message: 'string',
+      data: {
+        comments: [
+          {
+            commentId: 1,
+            authorNickname: '은별',
+            authorProfileImageUrl: 'https://~~~.png',
+            content: '잘보고 갑니다~',
+            createdTime: '2023-12-28T16:29:34.105Z',
+          },
+        ],
+      },
     };
 
     return res(ctx.status(200), ctx.json(responseData));
@@ -128,13 +130,17 @@ export const handlers = [
   // 리뷰 키워드 조회
   rest.get(`${SERVER_URL}/reviews/keywords`, (req, res, ctx) => {
     const responseData = {
-      keywords: [
-        {
-          keywordId: 1,
-          content: '깨끗해요',
-          type: 'ACCOMMODATION_KEYWORD',
-        },
-      ],
+      status: 0,
+      message: 'string',
+      data: {
+        keywords: [
+          {
+            keywordId: 1,
+            content: '깨끗해요',
+            type: 'ACCOMMODATION_KEYWORD',
+          },
+        ],
+      },
     };
     return res(ctx.status(200), ctx.json(responseData));
   }),
@@ -143,8 +149,32 @@ export const handlers = [
 
   // 나의 여정 목록 조회
   rest.get(`${SERVER_URL}/trips`, (req, res, ctx) => {
-    const responseData = [
-      {
+    const responseData = {
+      status: 0,
+      message: 'string',
+      data: {
+        trips: [
+          {
+            tripId: 1,
+            tripName: '나의 ~번째 여정',
+            startDate: '2023-12-28',
+            endDate: '2023-12-28',
+            numberOfTripMembers: 2,
+            tripStatus: '여행 전',
+            tripThumbnailUrl: 'https://~~~~.png',
+          },
+        ],
+      },
+    };
+    return res(ctx.status(200), ctx.json(responseData));
+  }),
+
+  // 여정 생성
+  rest.post(`${SERVER_URL}/trips`, (req, res, ctx) => {
+    const responseData = {
+      status: 0,
+      message: 'string',
+      data: {
         tripId: 1,
         tripName: '나의 ~번째 여정',
         startDate: '2023-12-28',
@@ -153,14 +183,7 @@ export const handlers = [
         tripStatus: '여행 전',
         tripThumbnailUrl: 'https://~~~~.png',
       },
-      // 추가 여정 데이터 필요 시 여기에 추가
-    ];
-    return res(ctx.status(200), ctx.json(responseData));
-  }),
-
-  // 여정 생성
-  rest.post(`${SERVER_URL}/trips`, (req, res, ctx) => {
-    const responseData = req.body;
+    };
 
     return res(ctx.status(201), ctx.json(responseData));
   }),
@@ -179,79 +202,110 @@ export const handlers = [
 
   // 인기 여행지 조회
   rest.get(`${SERVER_URL}/tours`, (req, res, ctx) => {
-    const responseData = [
-      {
-        id: 1,
-        title: '여행지 이름',
-        rating: 4.5,
-        reviewCount: 100,
-        goodCount: 100,
-        good: false,
-        smallThumbnailUrl: 'http://~~~~~~image.jpg',
+    const { page, size } = req.params;
+    const responseData = {
+      status: 0,
+      message: 'string',
+      data: {
+        totalPages: 0,
+        totalElements: 0,
+        pageable: {
+          pageNumber: page,
+          pageSize: size,
+          offset: 0,
+          sort: {
+            sorted: true,
+            empty: true,
+            unsorted: true,
+          },
+          paged: true,
+          unpaged: true,
+        },
+        size: size, // 확인필요
+        content: [
+          {
+            id: 1,
+            title: '여행지 이름',
+            ratingAverage: 4.5,
+            reviewCount: 100,
+            likedCount: 100,
+            liked: false,
+            smallThumbnailUrl: 'http://~~~~~~image.jpg',
+          },
+        ],
+        number: page, // 확인필요
+        sort: {
+          sorted: true,
+          empty: true,
+          unsorted: true,
+        },
+        numberOfElements: 0,
+        first: true,
+        last: true,
+        empty: true,
       },
-    ];
+    };
 
     return res(ctx.status(200), ctx.json(responseData));
   }),
 
   // 여행지 상세 조회
-  rest.get(`${SERVER_URL}/tours/:tourId`, (req, res, ctx) => {
+  rest.get(`${SERVER_URL}/tours/:tourItemId`, (req, res, ctx) => {
     const { tourId } = req.params;
     const responseData = {
-      id: tourId,
-      title: '여행지 이름',
-      rating: 4.5,
-      good: false,
-      fullAddress: 'OO시/도 OO구/군 OO로/길 OOO',
-      zipcode: '00000',
-      longitude: '127.04',
-      latitude: '33.56',
-      tel: '010-0000-0000',
-      originalThumbnailUrl: 'http://~~~~~~image.jpg',
-      keywordCount: 100,
-      reviewInfos: [
-        {
-          reviewId: 1,
-          authorNickname: '은별',
-          authorProfileImageUrl: 'https://~~~.png',
-          rating: 4,
-          createdTime: '2023-12-28T11:31:54.947Z',
-          content: '~~~여서 ~~~ 해서 ~~로 좋았습니다.',
-          keywords: [
-            {
-              keywordId: 1,
-              content: '깨끗해요',
-              type: 'ACCOMMODATION_KEYWORD',
-            },
-          ],
-        },
-      ],
+      status: 0,
+      message: 'string',
+      data: {
+        id: tourId,
+        title: '여행지 이름',
+        liked: false,
+        fullAddress: 'OO시/도 OO구/군 OO로/길 OOO',
+        zipcode: '00000',
+        longitude: '127.04',
+        latitude: '33.56',
+        tel: '010-0000-0000',
+        originalThumbnailUrl: 'http://~~~~~~image.jpg',
+      },
     };
 
     return res(ctx.status(200), ctx.json(responseData));
   }),
 
   // 여행 상품 리뷰 조회
-  rest.get(`${SERVER_URL}/tours/:tourId/reviews`, (req, res, ctx) => {
+  rest.get(`${SERVER_URL}/tours/:tourItemId/reviews`, (req, res, ctx) => {
     const responseData = {
-      reviewInfos: [
-        {
-          reviewId: 1,
-          authorNickname: '은별',
-          authorProfileImageUrl: 'https://~~~.png',
-          rating: 4,
-          createdTime: '2023-12-28T11:34:08.087Z',
-          content: '~~~여서 ~~~ 해서 ~~로 좋았습니다.',
-          keywords: [
-            {
-              keywordId: 1,
-              content: '깨끗해요',
-              type: 'ACCOMMODATION_KEYWORD',
-            },
-          ],
-        },
-        // 필요에 따라 추가 리뷰 정보를 여기에 포함
-      ],
+      status: 0,
+      message: 'string',
+      data: {
+        ratingAverage: 4.5,
+        reviewTotalCount: 10,
+        keywordTotalCount: 10,
+        reviewInfos: [
+          {
+            reviewId: 1,
+            authorNickname: '은별',
+            authorProfileImageUrl: 'https://~~~.png',
+            rating: 4,
+            createdTime: '2023-12-28T16:01:42.494Z',
+            content: '~~~여서 ~~~ 해서 ~~로 좋았습니다.',
+            keywords: [
+              {
+                keywordId: 1,
+                content: '깨끗해요',
+                type: 'ACCOMMODATION_KEYWORD',
+              },
+            ],
+          },
+        ],
+        tourKeywordInfos: [
+          {
+            keywordId: 1,
+            content: '깨끗해요',
+            type: 'ACCOMMODATION_KEYWORD',
+            keywordCount: 2,
+          },
+        ],
+      },
     };
 
     return res(ctx.status(200), ctx.json(responseData));
@@ -259,25 +313,48 @@ export const handlers = [
 
   // 여행지 검색
   rest.get(`${SERVER_URL}/tours/search`, (req, res, ctx) => {
+    const { page, size } = req.params;
     const responseData = {
-      reviewInfos: [
-        {
-          reviewId: 1,
-          authorNickname: '은별',
-          authorProfileImageUrl: 'https://~~~.png',
-          rating: 4,
-          createdTime: '2023-12-28T11:34:08.087Z',
-          content: '~~~여서 ~~~ 해서 ~~로 좋았습니다.',
-          keywords: [
-            {
-              keywordId: 1,
-              content: '깨끗해요',
-              type: 'ACCOMMODATION_KEYWORD',
-            },
-          ],
+      status: 0,
+      message: 'string',
+      data: {
+        totalPages: 0,
+        totalElements: 0,
+        pageable: {
+          pageNumber: page,
+          pageSize: size,
+          offset: 0,
+          sort: {
+            sorted: true,
+            empty: true,
+            unsorted: true,
+          },
+          paged: true,
+          unpaged: true,
         },
-        // 필요에 따라 추가 리뷰 정보를 여기에 포함
-      ],
+        size: size, // 확인필요
+        content: [
+          {
+            id: 1,
+            title: '여행지 이름',
+            ratingAverage: 4.5,
+            reviewCount: 100,
+            likedCount: 100,
+            liked: false,
+            smallThumbnailUrl: 'http://~~~~~~image.jpg',
+          },
+        ],
+        number: page, // 확인필요
+        sort: {
+          sorted: true,
+          empty: true,
+          unsorted: true,
+        },
+        numberOfElements: 0,
+        first: true,
+        last: true,
+        empty: true,
+      },
     };
 
     return res(ctx.status(200), ctx.json(responseData));
@@ -288,13 +365,17 @@ export const handlers = [
   // 회원 정보 조회
   rest.get(`${SERVER_URL}/member`, (req, res, ctx) => {
     const responseData = {
-      memberId: 1,
-      nickname: '닉네임',
-      email: 'example@mail.com',
-      profileImageUrl: '프로필 이미지',
-      ageType: '연령대',
-      genderType: '성별',
-      survey: '설문조사 결과',
+      status: 0,
+      message: 'string',
+      data: {
+        memberId: 1,
+        nickname: '닉네임',
+        email: 'example@mail.com',
+        profileImageUrl: '프로필 이미지',
+        ageType: '연령대',
+        genderType: '성별',
+        survey: '설문조사 결과',
+      },
     };
 
     return res(ctx.status(200), ctx.json(responseData));
@@ -305,13 +386,17 @@ export const handlers = [
     const memberData = req.body as MemberRequest;
 
     const responseData = {
-      memberId: 1,
-      nickname: memberData.nickname,
-      email: 'example@mail.com',
-      profileImageUrl: memberData.profileImageUrl,
-      ageType: '연령대',
-      genderType: '성별',
-      survey: memberData.survey,
+      status: 0,
+      message: 'string',
+      data: {
+        memberId: 1,
+        nickname: memberData.nickname,
+        email: 'example@mail.com',
+        profileImageUrl: memberData.profileImageUrl,
+        ageType: '연령대',
+        genderType: '성별',
+        survey: memberData.survey,
+      },
     };
 
     return res(
@@ -331,18 +416,46 @@ export const handlers = [
   // 나의 여정 조회
   rest.get(`${SERVER_URL}/member/trips`, (req, res, ctx) => {
     const responseData = {
-      trips: [
-        {
-          tripId: 1,
-          tripName: '나의 ~번째 여정',
-          startDate: '2023-12-28',
-          endDate: '2023-12-28',
-          numberOfTripMembers: 2,
-          tripStatus: '여행 전',
-          tripThumbnailUrl: 'https://~~~~.png',
+      status: 0,
+      message: 'string',
+      data: {
+        totalPages: 0,
+        totalElements: 0,
+        pageable: {
+          pageNumber: 0,
+          pageSize: 0,
+          offset: 0,
+          sort: {
+            sorted: true,
+            empty: true,
+            unsorted: true,
+          },
+          paged: true,
+          unpaged: true,
         },
-      ],
-      // 필요시 나의 여정 추가
+        size: 0,
+        content: [
+          {
+            tripId: 1,
+            tripName: '나의 ~번째 여정',
+            startDate: '2023-12-28',
+            endDate: '2023-12-28',
+            numberOfTripMembers: 2,
+            tripStatus: '여행 전',
+            tripThumbnailUrl: 'https://~~~~.png',
+          },
+        ],
+        number: 0,
+        sort: {
+          sorted: true,
+          empty: true,
+          unsorted: true,
+        },
+        numberOfElements: 0,
+        first: true,
+        last: true,
+        empty: true,
+      },
     };
 
     return res(ctx.status(200), ctx.json(responseData));
@@ -351,18 +464,46 @@ export const handlers = [
   // 나의 관심 여행지 조회
   rest.get(`${SERVER_URL}/member/tours`, (req, res, ctx) => {
     const responseData = {
-      tours: [
-        {
-          id: 1,
-          title: '여행지 이름',
-          rating: 4.5,
-          reviewCount: 100,
-          goodCount: 100,
-          good: false,
-          smallThumbnailUrl: 'http://~~~~~~image.jpg',
+      status: 0,
+      message: 'string',
+      data: {
+        totalPages: 0,
+        totalElements: 0,
+        pageable: {
+          pageNumber: 0,
+          pageSize: 0,
+          offset: 0,
+          sort: {
+            sorted: true,
+            empty: true,
+            unsorted: true,
+          },
+          paged: true,
+          unpaged: true,
         },
-      ],
-      // 필요시 관심 여행지 추가
+        size: 0,
+        content: [
+          {
+            id: 1,
+            title: '여행지 이름',
+            ratingAverage: 4.5,
+            reviewCount: 100,
+            likedCount: 100,
+            liked: false,
+            smallThumbnailUrl: 'http://~~~~~~image.jpg',
+          },
+        ],
+        number: 0,
+        sort: {
+          sorted: true,
+          empty: true,
+          unsorted: true,
+        },
+        numberOfElements: 0,
+        first: true,
+        last: true,
+        empty: true,
+      },
     };
 
     return res(ctx.status(200), ctx.json(responseData));
@@ -371,23 +512,52 @@ export const handlers = [
   // 나의 리뷰 조회
   rest.get(`${SERVER_URL}/member/reviews`, (req, res, ctx) => {
     const responseData = {
-      reviewInfos: [
-        {
-          reviewId: 1,
-          authorNickname: '은별',
-          authorProfileImageUrl: 'https://~~~.png',
-          rating: 4,
-          createdTime: '2023-12-28T11:51:53.628Z',
-          content: '~~~여서 ~~~ 해서 ~~로 좋았습니다.',
-          keywords: [
-            {
-              keywordId: 1,
-              content: '깨끗해요',
-              type: 'ACCOMMODATION_KEYWORD',
-            },
-          ],
+      status: 0,
+      message: 'string',
+      data: {
+        totalPages: 0,
+        totalElements: 0,
+        pageable: {
+          pageNumber: 0,
+          pageSize: 0,
+          offset: 0,
+          sort: {
+            sorted: true,
+            empty: true,
+            unsorted: true,
+          },
+          paged: true,
+          unpaged: true,
         },
-      ],
+        size: 0,
+        content: [
+          {
+            reviewId: 1,
+            authorNickname: '은별',
+            authorProfileImageUrl: 'https://~~~.png',
+            rating: 4,
+            createdTime: '2023-12-28T16:15:43.756Z',
+            content: '~~~여서 ~~~ 해서 ~~로 좋았습니다.',
+            keywords: [
+              {
+                keywordId: 1,
+                content: '깨끗해요',
+                type: 'ACCOMMODATION_KEYWORD',
+              },
+            ],
+          },
+        ],
+        number: 0,
+        sort: {
+          sorted: true,
+          empty: true,
+          unsorted: true,
+        },
+        numberOfElements: 0,
+        first: true,
+        last: true,
+        empty: true,
+      },
     };
 
     return res(ctx.status(200), ctx.json(responseData));
@@ -424,7 +594,11 @@ export const handlers = [
     const loginData = req.body;
 
     const responseData = {
-      token: 'jwtToken',
+      status: 0,
+      message: 'string',
+      data: {
+        token: 'jwtToken',
+      },
     };
 
     return res(
@@ -438,12 +612,47 @@ export const handlers = [
     const loginData = req.body;
 
     const responseData = {
-      token: 'jwtToken',
+      status: 0,
+      message: 'string',
+      data: {
+        token: 'jwtToken',
+      },
+    };
+    return res(
+      ctx.status(200),
+      ctx.json({ message: '카카오 로그인 성공', loginData, responseData }),
+    );
+  }),
+
+  // 닉네임 중복조회
+  rest.get(`${SERVER_URL}/auth/nicknames/check/:nickname`, (req, res, ctx) => {
+    const responseData = {
+      status: 0,
+      message: 'string',
+      data: {
+        exists: true,
+      },
     };
 
     return res(
       ctx.status(200),
-      ctx.json({ message: '카카오 로그인 성공', loginData, responseData }),
+      ctx.json({ message: '닉네임 중복조회 완료', responseData }),
+    );
+  }),
+
+  // 이메일 중복조회
+  rest.get(`${SERVER_URL}/auth/emails/check/:email`, (req, res, ctx) => {
+    const responseData = {
+      status: 0,
+      message: 'string',
+      data: {
+        exists: true,
+      },
+    };
+
+    return res(
+      ctx.status(200),
+      ctx.json({ message: '이메일 중복조회 완료', responseData }),
     );
   }),
 
@@ -454,13 +663,17 @@ export const handlers = [
     const areaCode = req.url.searchParams.get('areaCode');
 
     const responseData = {
-      regions: [
-        {
-          areaCode: areaCode,
-          subAreaCode: 0,
-          name: '서울시',
-        },
-      ],
+      status: 0,
+      message: 'string',
+      data: {
+        regions: [
+          {
+            areaCode: areaCode, // 확인필요
+            subAreaCode: 0,
+            name: '서울시',
+          },
+        ],
+      },
     };
 
     return res(ctx.status(200), ctx.json(responseData));
@@ -469,34 +682,14 @@ export const handlers = [
   // 인기 지역 조회
   rest.get(`${SERVER_URL}/region/popular`, (req, res, ctx) => {
     const responseData = {
-      status: 200,
-      message: 'SUCCESS',
+      status: 0,
+      message: 'string',
       data: {
         regions: [
           {
             areaCode: 1,
-            subAreaCode: null,
-            name: '서울',
-          },
-          {
-            areaCode: 6,
-            subAreaCode: null,
-            name: '부산',
-          },
-          {
-            areaCode: 39,
-            subAreaCode: null,
-            name: '제주도',
-          },
-          {
-            areaCode: 35,
-            subAreaCode: 2,
-            name: '경주',
-          },
-          {
-            areaCode: 32,
-            subAreaCode: 1,
-            name: '강릉',
+            subAreaCode: 0,
+            name: '서울시',
           },
         ],
       },
@@ -511,20 +704,12 @@ export const handlers = [
   rest.get(`${SERVER_URL}/category`, (req, res, ctx) => {
     // 모의 카테고리 데이터
     const responseData = {
-      status: 200,
-      message: 'SUCCESS',
+      status: 0,
+      message: 'string',
       data: [
         {
           code: 39,
           name: '식당',
-        },
-        {
-          code: 32,
-          name: '숙소',
-        },
-        {
-          code: 12,
-          name: '관광지',
         },
       ],
     };

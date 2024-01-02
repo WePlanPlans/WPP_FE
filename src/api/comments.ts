@@ -1,12 +1,4 @@
-import axios from 'axios';
-
-export const client = axios.create({
-  baseURL: import.meta.env.VITE_SERVER_URL,
-  headers: {
-    'content-type': 'application/json',
-    withCredentials: true,
-  },
-});
+import client from './client';
 
 // 댓글 관련 API
 
@@ -25,9 +17,10 @@ export const deleteComments = async (commentId: string) => {
 };
 
 // 댓글작성
-export const postComments = async (content: string) => {
+export const postComments = async (content: string, reviewId: number) => {
   const res = await client.post(`comments/`, {
-    content,
+    content: content,
+    reviewId: reviewId,
   });
   return res;
 };
