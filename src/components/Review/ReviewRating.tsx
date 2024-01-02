@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { StarIcon } from '@components/common/icons/Icons';
+import { useLocation } from 'react-router-dom';
 
 const ReviewRating = () => {
   const [rating, setRating] = useState(0);
   const [isHalfClicked, setIsHalfClicked] = useState(false);
+  const location = useLocation();
+  const { state } = location;
+  const { title } = state;
 
   const handleStarClick = (index: number) => {
     const newRating = index + 1;
@@ -20,8 +24,8 @@ const ReviewRating = () => {
 
   return (
     <div className="mb-6 flex flex-col items-center justify-center">
-      <div className="mb-4 font-bold">(호텔 이름)</div>
-      <div className="flex">
+      <div className="mb-1 text-xl font-bold">{title}</div>
+      <button className="flex gap-1">
         {Array.from({ length: 5 }, (_, index) => (
           <StarIcon
             key={index}
@@ -33,7 +37,7 @@ const ReviewRating = () => {
             className="cursor-pointer"
           />
         ))}
-      </div>
+      </button>
     </div>
   );
 };

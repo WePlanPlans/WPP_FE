@@ -1,7 +1,26 @@
 import { ReactComponent as PenIcon } from '@assets/images/Pen.svg';
 import { ReactComponent as CalendarIcon } from '@assets/images/Calendar.svg';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
-export default function DetailTourButtons() {
+interface reviewProps {
+  reviewData: any;
+}
+
+export default function DetailTourButtons({ reviewData }: reviewProps) {
+  const { title, contentTypeId } = reviewData;
+  const params = useParams();
+  const tourId = Number(params.id);
+  const navigate = useNavigate();
+
+  const handlePostingReivew = () => {
+    navigate(`/reviewPosting/${tourId}`, {
+      state: { title, contentTypeId },
+    });
+  };
+  useEffect(() => {
+    console.log('contentTypeId', contentTypeId);
+  }, [contentTypeId]);
   return (
     <div className="mt-2 flex w-full items-center justify-between py-2.5">
       <button className="flex h-[53px] w-[157.5px] items-center justify-center gap-2 rounded-lg border border-solid border-gray3 p-2">
@@ -10,7 +29,9 @@ export default function DetailTourButtons() {
       </button>
       <button className="flex h-[53px] w-[157.5px] items-center justify-center gap-2 rounded-lg border border-solid border-gray3 p-2">
         <PenIcon />
-        <span className="text-sm">리뷰 쓰기</span>
+        <span className="text-sm" onClick={handlePostingReivew}>
+          리뷰 쓰기
+        </span>
       </button>
     </div>
   );

@@ -4,10 +4,18 @@ import InfiniteScroll from 'react-infinite-scroller';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import ReviewItem from './ReviewItem';
 import { StarIcon } from '@components/common/icons/Icons';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function DetailReview() {
+interface reviewProps {
+  reviewData: any;
+}
+
+export default function DetailReviews({ reviewData }: reviewProps) {
   const [reviewDataLength, setReviewDataLength] = useState<number>(0);
-  const tourItemId = 1;
+  const { title, contentTypeId } = reviewData;
+  const params = useParams();
+  const tourId = Number(params.id);
+  const navigate = useNavigate();
 
   const {
     data: toursReviews,
@@ -15,13 +23,23 @@ export default function DetailReview() {
     hasNextPage,
   } = useInfiniteQuery({
     queryKey: ['toursReviews'],
-    queryFn: ({ pageParam }) => getToursReviews(tourItemId),
+    queryFn: ({ pageParam }) => getToursReviews(tourId),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages, lastPageParam) => {
       const lastData = lastPage?.data?.data?.reviewInfos;
       return lastData && lastData.length === 4 ? lastPageParam + 1 : undefined;
     },
   });
+
+  const handleReviewClick = (id: number) => {
+    navigate(`/reviewComment/${id}`);
+  };
+
+  const handlePostingReivew = () => {
+    navigate(`/reviewPosting/${tourId}`, {
+      state: { title, contentTypeId },
+    });
+  };
 
   useEffect(() => {
     if (toursReviews) {
@@ -57,6 +75,7 @@ export default function DetailReview() {
                     content={item.content}
                     keywords={item.keywords} // keywordId, content, type
                     commentCount={2} //commentCount가 swagger에는 있는데 response에는 없음
+                    onClick={() => handleReviewClick(item.reviewId)}
                   />
                 ),
               )}
@@ -65,16 +84,12 @@ export default function DetailReview() {
         </InfiniteScroll>
       )}
       {reviewDataLength == 0 && (
-        <div className="flex flex-col items-center justify-center">
+        <div
+          className="flex cursor-pointer flex-col items-center justify-center"
+          onClick={handlePostingReivew}>
           <div className="mb-2 flex">
             {Array.from({ length: 5 }, (_, index) => (
-              <StarIcon
-                key={index}
-                size={30}
-                color="none"
-                fill={'#EDEDED'}
-                className="cursor-pointer"
-              />
+              <StarIcon key={index} size={30} color="none" fill={'#EDEDED'} />
             ))}
           </div>
           <div className="text-sm text-gray3">첫번째 리뷰를 남겨주세요!</div>

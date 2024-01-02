@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { StarIcon, ChatIcon } from '@components/common/icons/Icons';
+import { StarIcon, ChatIcon, MoreIcon } from '@components/common/icons/Icons';
 
 interface Keyword {
   keywordId: number;
@@ -15,6 +15,7 @@ interface ItemProps {
   content: string;
   keywords: Keyword[]; // keywordId, content, type
   commentCount: number;
+  onClick?: () => void;
 }
 
 const Item: React.FC<ItemProps> = (props: ItemProps) => {
@@ -26,6 +27,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     content,
     keywords,
     commentCount,
+    onClick,
   } = props;
 
   const formatCreatedTime = (timeString: string): string => {
@@ -42,7 +44,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     console.log('commentCount', commentCount);
   }, []);
   return (
-    <div className="mb-4">
+    <div className="mb-4 cursor-pointer" onClick={onClick}>
       <div className=" mb-5 flex items-center">
         {/* {authorProfileImageUrl} */}
         <div className="mr-2">
@@ -70,6 +72,9 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
         <div className="mb-0.5 mt-auto text-sm text-gray3">
           {formatCreatedTime(createdTime)}
         </div>
+        <div className="ml-auto cursor-pointer">
+          <MoreIcon fill="#D7D7D7" color="none" />
+        </div>
       </div>
       <div className=" mb-4 text-gray7">{content}</div>
       <div className="flex">
@@ -85,8 +90,8 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
           })}
         </div>
         <div className="ml-auto flex items-center justify-between">
-          <ChatIcon size={20} />
-          <div className="ml-1">{commentCount}</div>
+          <ChatIcon size={20} color="#888888" />
+          <div className="ml-1 text-gray4">{commentCount}</div>
         </div>
       </div>
     </div>

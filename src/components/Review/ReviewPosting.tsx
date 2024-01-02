@@ -10,10 +10,10 @@ export default function ReviewPosting() {
 
   return (
     <div className="flex flex-col">
-      <div className="mb-5 font-bold">리뷰를 작성해주세요</div>
+      <div className="mb-5 text-lg font-bold">리뷰를 작성해주세요</div>
       <div className="mb-1">
         <textarea
-          className="h-32 w-full rounded-md border p-2 text-sm"
+          className="h-[152px] w-full rounded-md border p-2 text-sm"
           placeholder="직접 경험한 솔직한 리뷰를 남겨주세요"
           onChange={handleTextChange}
         />

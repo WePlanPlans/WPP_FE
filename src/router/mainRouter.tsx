@@ -4,16 +4,17 @@ import { Header } from '@components/common/header';
 import { Footer } from '@components/common/footer';
 import Main from '@pages/main/main.page';
 import Detail from '@pages/detail/detail.page';
-import PostingReview from '@pages/postingReview/postingReview.page';
+import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
+import ReviewComment from '@pages/reviewComment/reviewComment.page';
 
 export function MainLayout() {
   return (
     <StyledMainContainer>
-      <Header />
+      {/* <Header /> */}
       <StyledContentContainer>
         <Outlet />
       </StyledContentContainer>
-      <Footer />
+      {/* <Footer /> */}
     </StyledMainContainer>
   );
 }
@@ -25,7 +26,8 @@ const MainRouter = () => {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Main />} />
           <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/postingReview/:id" element={<PostingReview />} />
+          <Route path="/reviewPosting/:id" element={<ReviewPosting />} />
+          <Route path="/reviewComment/:id" element={<ReviewComment />} />
         </Route>
       </Routes>
     </>
@@ -44,6 +46,6 @@ const StyledMainContainer = styled.div`
 `;
 
 const StyledContentContainer = styled.div`
-  padding: 0 20px;
+  padding: 0 20px 20px;
   margin-bottom: auto;
 `;

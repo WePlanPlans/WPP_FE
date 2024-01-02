@@ -10,6 +10,7 @@ import {
   DetailToursMap,
   DetailTourButtons,
 } from '.';
+import { useEffect } from 'react';
 
 export default function DetailSectionTop() {
   const params = useParams();
@@ -26,7 +27,7 @@ export default function DetailSectionTop() {
         <DetailToursInfo infoData={data} />
         <DetailToursRating />
         <DetailToursMap mapData={data} />
-        <DetailTourButtons />
+        <DetailTourButtons reviewData={data} />
       </>
     );
   }
