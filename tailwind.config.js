@@ -12,6 +12,7 @@ export default {
         gray5: '#5e5e5e',
         gray6: '#38393C',
         gray7: '#1E1E1E',
+        main1: '#062139',
       },
     },
   },

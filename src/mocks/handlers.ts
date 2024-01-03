@@ -251,12 +251,12 @@ export const handlers = [
 
   // 여행지 상세 조회
   rest.get(`${SERVER_URL}/tours/:tourItemId`, (req, res, ctx) => {
-    const { tourId } = req.params;
+    const { tourItemId } = req.params;
     const responseData = {
       status: 0,
       message: 'string',
       data: {
-        id: tourId,
+        id: tourItemId,
         title: '여행지 이름',
         liked: false,
         fullAddress: 'OO시/도 OO구/군 OO로/길 OOO',
@@ -564,11 +564,11 @@ export const handlers = [
   }),
 
   // 나의 관심 여행지 삭제
-  rest.delete(`${SERVER_URL}/member/tours/:tourId`, (req, res, ctx) => {
-    const { tourId } = req.params;
+  rest.delete(`${SERVER_URL}/member/tours/:tourItemId`, (req, res, ctx) => {
+    const { tourItemId } = req.params;
     return res(
       ctx.status(200),
-      ctx.json({ message: `관심 여행지 ${tourId} 삭제 성공` }),
+      ctx.json({ message: `관심 여행지 ${tourItemId} 삭제 성공` }),
     );
   }),
 
