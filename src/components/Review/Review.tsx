@@ -10,7 +10,7 @@ import axios from 'axios';
 
 export default function Review() {
   const params = useParams();
-  const tourId = Number(params.id);
+  const tourItemId = Number(params.id);
   const [rating, setRating] = useRecoilState(ratingState);
   const [keywords, setKeywords] = useRecoilState(keywordsState);
   const [content, setContent] = useRecoilState(contentState);
@@ -18,12 +18,12 @@ export default function Review() {
   const handlePostReview = async () => {
     try {
       const reviewData = {
-        tourItemId: tourId,
+        tourItemId: tourItemId,
         rating: rating,
         keywords: keywords,
         content: content,
       };
-      const response = await axios.post('/api/reviews', reviewData);
+      const response = await postReview(reviewData);
       console.log('리뷰가 성공적으로 등록되었습니다.', response.data);
       setRating(0);
       setKeywords([]);

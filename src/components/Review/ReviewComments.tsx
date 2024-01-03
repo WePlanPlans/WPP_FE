@@ -5,15 +5,17 @@ import CommentItem from './CommentItem';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import { isModalOpenState, titleState } from '@recoil/modal';
 import { Modal } from '@components/common/modal';
+import { useEffect } from 'react';
 
 export default function ReviewComments() {
-  const { id } = useParams();
+  const params = useParams();
+  const reviewId = Number(params.id);
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
   const setTitle = useSetRecoilState(titleState);
 
   const { data: reviewComments } = useQuery({
     queryKey: ['reviewComments'],
-    queryFn: () => getReviewComments(Number(id)),
+    queryFn: () => getReviewComments(reviewId),
   });
 
   const openModal = (title: string) => {
@@ -25,22 +27,25 @@ export default function ReviewComments() {
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    console.log('reviewComments', reviewComments);
+  }, [reviewComments]);
   return (
     <>
       <div className="mb-4 text-xs">
         댓글
         <span className="pl-0.5 font-bold">
-          {reviewComments?.data?.data?.comments?.length}
+          {reviewComments?.data?.data?.comments?.totalElements}
         </span>
       </div>
-      {reviewComments?.data?.data?.comments?.map((comment: any) => {
+      {reviewComments?.data?.data?.comments?.content?.map((item: any) => {
         return (
           <CommentItem
-            key={comment.commentId}
-            authorNickname={comment.authorNickname}
-            authorProfileImageUrl={comment.authorProfileImageUrl}
-            createdTime={comment.createdTime}
-            content={comment.content}
+            key={item.commentId}
+            authorNickname={item.authorNickname}
+            authorProfileImageUrl={item.authorProfileImageUrl}
+            createdTime={item.createdTime}
+            content={item.content}
             onClick={() => openModal('내 댓글')}
           />
         );

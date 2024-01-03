@@ -19,3 +19,8 @@ export const contentState = atom({
   key: 'contentState',
   default: '',
 });
+
+export const commentState = atom({
+  key: 'commentState',
+  default: '',
+});

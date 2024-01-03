@@ -44,7 +44,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     console.log('commentCount', commentCount);
   }, []);
   return (
-    <div className="mb-4 cursor-pointer" onClick={onClick}>
+    <div className="mb-8 cursor-pointer" onClick={onClick}>
       <div className=" mb-5 flex items-center">
         {/* {authorProfileImageUrl} */}
         <div className="mr-2">
@@ -78,7 +78,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
       </div>
       <div className=" mb-4 text-gray7">{content}</div>
       <div className="flex">
-        <div className="flex">
+        <div className="flex gap-2">
           {keywords.map((keyword, idx) => {
             return (
               <div

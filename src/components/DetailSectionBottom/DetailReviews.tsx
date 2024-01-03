@@ -14,7 +14,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   const [reviewDataLength, setReviewDataLength] = useState<number>(0);
   const { title, contentTypeId } = reviewData;
   const params = useParams();
-  const tourId = Number(params.id);
+  const tourItemId = Number(params.id);
   const navigate = useNavigate();
 
   const {
@@ -23,7 +23,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
     hasNextPage,
   } = useInfiniteQuery({
     queryKey: ['toursReviews'],
-    queryFn: ({ pageParam }) => getToursReviews(tourId),
+    queryFn: ({ pageParam }) => getToursReviews(tourItemId),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages, lastPageParam) => {
       const lastData = lastPage?.data?.data?.reviewInfos;
@@ -31,27 +31,28 @@ export default function DetailReviews({ reviewData }: reviewProps) {
     },
   });
 
-  const handleReviewClick = (id: number) => {
-    navigate(`/reviewComment/${id}`);
+  const handleReviewClick = (item: any) => {
+    const reviewId = item.reviewId;
+    navigate(`/reviewComment/${reviewId}`, { state: { item } });
   };
 
   const handlePostingReivew = () => {
-    navigate(`/reviewPosting/${tourId}`, {
+    navigate(`/reviewPosting/${tourItemId}`, {
       state: { title, contentTypeId },
     });
   };
 
   useEffect(() => {
-    if (toursReviews) {
-      const totalCount = toursReviews.pages.reduce(
-        (accumulator, page) =>
-          accumulator + (page?.data?.data?.reviewInfos?.length || 0),
-        0,
-      );
-      setReviewDataLength(totalCount);
-    }
+    setReviewDataLength(toursReviews?.pages[0].data.data.reviewTotalCount);
   }, [toursReviews]);
 
+  // useEffect(() => {
+  //   console.log(
+  //     'toursReviews.pages[0].data.data.reviewTotalCount',
+  //     toursReviews?.pages[0].data.data.reviewTotalCount,
+  //   );
+  //   console.log('toursReviews', toursReviews);
+  // }, [toursReviews]);
   return (
     <>
       <div className="mb-4 mt-2 text-lg font-bold">
@@ -64,7 +65,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
           initialLoad={false}>
           {toursReviews?.pages?.map((page, pageIndex) => (
             <div key={pageIndex}>
-              {page?.data?.data?.reviewInfos?.map(
+              {page?.data?.data?.reviewInfos?.content?.map(
                 (item: any, index: number) => (
                   <ReviewItem
                     key={item.reviewId}
@@ -75,7 +76,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
                     content={item.content}
                     keywords={item.keywords} // keywordId, content, type
                     commentCount={2} //commentCount가 swagger에는 있는데 response에는 없음
-                    onClick={() => handleReviewClick(item.reviewId)}
+                    onClick={() => handleReviewClick(item)}
                   />
                 ),
               )}

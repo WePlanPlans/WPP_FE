@@ -10,11 +10,11 @@ interface reviewProps {
 export default function DetailTourButtons({ reviewData }: reviewProps) {
   const { title, contentTypeId } = reviewData;
   const params = useParams();
-  const tourId = Number(params.id);
+  const tourItemId = Number(params.id);
   const navigate = useNavigate();
 
   const handlePostingReivew = () => {
-    navigate(`/reviewPosting/${tourId}`, {
+    navigate(`/reviewPosting/${tourItemId}`, {
       state: { title, contentTypeId },
     });
   };

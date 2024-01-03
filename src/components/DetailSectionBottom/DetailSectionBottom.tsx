@@ -6,10 +6,10 @@ import { useEffect } from 'react';
 
 export default function DetailSectionBottom() {
   const params = useParams();
-  const tourId = Number(params.id);
+  const tourItemId = Number(params.id);
   const { isError, isLoading, isFetching, data } = useQuery({
-    queryKey: ['details', tourId],
-    queryFn: () => getDetailTours(tourId),
+    queryKey: ['details', tourItemId],
+    queryFn: () => getDetailTours(tourItemId),
   });
   if (data) {
     return (
