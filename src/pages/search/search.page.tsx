@@ -9,6 +9,8 @@ export const Search = () => {
 
   const queryParams = new URLSearchParams(location.search);
   const regionFromQuery = queryParams.get('region');
+  const [selectedRegion, setSelectedRegion] = useState(regionFromQuery);
+  const [searchWord, setSearchWord] = useState('');
 
   useEffect(() => {
     if (regionFromQuery) {
@@ -22,9 +24,6 @@ export const Search = () => {
       setSearchWord(searchWordFromQuery);
     }
   }, [location]);
-
-  const [selectedRegion, setSelectedRegion] = useState(regionFromQuery);
-  const [searchWord, setSearchWord] = useState('');
 
   return (
     <>

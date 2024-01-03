@@ -42,7 +42,7 @@ export const getToursReviews = async (tourItemId: number) => {
 
 // 여행지 검색
 export const getToursSearch = async (options: {
-  region: string;
+  region?: string;
   searchWord: string;
   category?: string;
   page?: number;
@@ -50,7 +50,11 @@ export const getToursSearch = async (options: {
 }) => {
   const { region, searchWord, category, page = 0, size } = options;
 
-  let query = `tours/search?region=${region}&searchWord=${searchWord}`;
+  let query = `tours/search?searchWord=${searchWord}`;
+
+  if (region) {
+    query += `&region=${region}`;
+  }
 
   if (category) {
     query += `&category=${category}`;
