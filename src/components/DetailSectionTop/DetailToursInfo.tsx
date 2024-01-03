@@ -17,7 +17,7 @@ export default function DetailToursInfo({ infoData }: DetailToursInfoProps) {
         />
       </div>
       <div className="mt-1 flex w-full items-center justify-between py-2">
-        <h1 className="font-['Pretendard'] text-2xl font-bold text-black">
+        <h1 className="font-['Pretendard'] text-2xl font-bold text-black ">
           {title}
         </h1>
         {liked ? (

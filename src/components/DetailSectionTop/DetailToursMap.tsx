@@ -12,6 +12,7 @@ interface DetailToursMapProps {
 export default function DetailToursMap({ mapData }: DetailToursMapProps) {
   const { fullAddress, longitude, latitude, tel } = mapData;
   const [isMapVisible, setIsMapVisible] = useState<boolean>(false);
+  const [isAddressVisible, setIsAddressVisible] = useState<boolean>(false);
 
   const [_] = useKakaoLoader({
     appkey: VITE_KAKAO_MAP_API_KEY,
@@ -32,12 +33,21 @@ export default function DetailToursMap({ mapData }: DetailToursMapProps) {
   return (
     <div className="mt-4 w-full">
       <div className="relative flex w-full items-center justify-between">
-        <div className="relative flex flex-shrink-0 flex-grow-0 items-center justify-start gap-[5px]">
+        <div
+          className="relative flex flex-shrink-0 items-center justify-start gap-[5px]"
+          onClick={() => setIsAddressVisible(!isAddressVisible)}>
           <MapIcon size={17} fill="#888888" color="none" />
-          <p className="flex-shrink-0 flex-grow-0 text-left text-sm text-[#1e1e1e]">
-            {fullAddress}
-          </p>
+          {!isAddressVisible ? (
+            <p className="max-w-[310px] flex-shrink-0 flex-grow-0 overflow-hidden overflow-ellipsis whitespace-nowrap text-left text-sm text-[#1e1e1e]">
+              {fullAddress}
+            </p>
+          ) : (
+            <p className="max-w-[310px] flex-shrink-0 flex-grow-0 overflow-hidden text-left text-sm text-[#1e1e1e]">
+              {fullAddress}
+            </p>
+          )}
         </div>
+
         <CheckIcon onClick={closeMap} size={17} className="cursor-pointer" />
       </div>
       <div className="flex justify-center">
