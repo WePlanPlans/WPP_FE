@@ -1,3 +1,5 @@
+import { Back } from '@components/common';
+import { ProgressBarIcon } from '@components/common/icons/Icons';
 import { UserEmailInputBox, UserPwInputBox } from '@components/user';
 import { useState } from 'react';
 
@@ -6,7 +8,11 @@ const Signup = () => {
 
   return (
     <div className="relative">
-      <h1 className="title1 my-11">
+      <Back />
+      <div className=" mt-2 flex justify-end">
+        <ProgressBarIcon progress={1} />
+      </div>
+      <h1 className="title1 mb-9 mt-8">
         위플플 이용을 위해
         <br />
         회원가입을 해주세요

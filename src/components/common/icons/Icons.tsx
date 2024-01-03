@@ -766,3 +766,48 @@ export const KakaoIcon = () => {
     </svg>
   );
 };
+
+interface ProgressBarProps {
+  progress: number;
+}
+
+export const ProgressBarIcon = ({ progress }: ProgressBarProps) => {
+  return (
+    <svg
+      width="74"
+      height="3"
+      viewBox="0 0 74 3"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <g id="Group 36811">
+        <rect
+          id="Rectangle 2586"
+          x="0.0184326"
+          y="0.0751953"
+          width="22"
+          height="2"
+          rx="1"
+          fill="#29DDF6"
+        />
+        <rect
+          id="Rectangle 2587"
+          x="25.8544"
+          y="0.0751953"
+          width="22"
+          height="2"
+          rx="1"
+          fill={progress > 1 ? '#29DDF6' : '#D7D7D7'}
+        />
+        <rect
+          id="Rectangle 2588"
+          x="51.1543"
+          y="0.0751953"
+          width="22"
+          height="2"
+          rx="1"
+          fill={progress > 2 ? '#29DDF6' : '#D7D7D7'}
+        />
+      </g>
+    </svg>
+  );
+};
