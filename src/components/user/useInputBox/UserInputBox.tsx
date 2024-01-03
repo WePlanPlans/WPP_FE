@@ -1,15 +1,13 @@
 import { useState } from 'react';
-import ValidifyCheck from './ValidifyCheck';
 import { CloseIcon } from '@components/common/icons/Icons';
-import EmailValidifyCheck from './EmailValidifyCheck';
 
 interface Props {
   label: string;
   type?: string;
   placeholder: string;
-  children: React.ReactNode;
+  // children: React.ReactNode;
   validifyCheckList?: string[];
-  onInputBlur: VoidFunction;
+  // onInputBlur: VoidFunction;
   marginB?: string;
 }
 
@@ -17,9 +15,7 @@ const UserInputBox = ({
   label,
   type = 'password',
   placeholder,
-  children,
-  validifyCheckList,
-  onInputBlur,
+  // validifyCheckList,
   marginB = 'mb-6',
 }: Props) => {
   const [inputValue, setInputValue] = useState('');
@@ -30,7 +26,7 @@ const UserInputBox = ({
 
   return (
     <div className={`${marginB} flex flex-col gap-2`}>
-      <div className="flex flex-col gap-[0.4375rem]">
+      <div className="flex flex-col gap-2">
         <label htmlFor={label} className="body3 text-main2">
           {label}
         </label>
@@ -43,7 +39,6 @@ const UserInputBox = ({
             required
             value={inputValue}
             onChange={onInputChange}
-            onBlur={onInputBlur}
           />
           {inputValue && (
             <button
@@ -56,7 +51,6 @@ const UserInputBox = ({
           )}
         </div>
       </div>
-      {children}
 
       {/* {type === 'email' && <EmailValidifyCheck inputValue={inputValue} />}
 
