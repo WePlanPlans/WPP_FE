@@ -1,4 +1,4 @@
-name: Vercel Production Deployment
+name: GitHub Actions Vercel Preview Deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -7,22 +7,19 @@ on:
     branches:
       - main
 jobs:
-  Deploy-Production:
+  Deploy-Preview:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install Vercel CLI
-        run: npm install --global vercel@latest
+        run: npm install --global vercel@canary
       - name: Install pnpm
         run: npm install -g pnpm
       - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        id: deploy
-        run: |
-          DEPLOY_URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} | grep -o 'https://[^ ]*')
-          echo "::set-output name=url::$DEPLOY_URL"
+        run: vercel deploy --token=${{ secrets.VERCEL_TOKEN }}
       - name: Set Fixed Domain Alias
-        run: vercel alias set ${{ steps.deploy.outputs.url }} https://weplanplans-dev.vercel.app/ --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel alias ${{ env.VERCEL_URL }} https://weplanplans-dev.vercel.app/ --token=${{ secrets.VERCEL_TOKEN }}
