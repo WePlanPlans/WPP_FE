@@ -1,5 +1,5 @@
-import { ButtonPrimary } from '@components/common/button/Button';
+import { Button } from '@components/common';
 
 export default function ReviewButton() {
-  return <ButtonPrimary onClick={() => {}}>완료</ButtonPrimary>;
+  return <Button onClick={() => {}}>완료</Button>;
 }

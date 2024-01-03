@@ -5,6 +5,7 @@ import Main from '@pages/main/main.page';
 import Detail from '@pages/detail/detail.page';
 import { Signup } from '@pages/index';
 import PostingReview from '@pages/postingReview/postingReview.page';
+import Signin from '@pages/signin/signin.page';
 
 export function MainLayout() {
   return (
@@ -27,6 +28,7 @@ const MainRouter = () => {
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/postingReview/:id" element={<PostingReview />} />
+          <Route path="/signin" element={<Signin />} />
         </Route>
       </Routes>
     </>

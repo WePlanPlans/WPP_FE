@@ -1,26 +1,33 @@
 import { ReactNode } from 'react';
+
 interface ButtonProps {
-  onClick: () => void;
+  isActive?: boolean;
+  type?: 'submit' | 'button' | 'reset' | undefined;
+  onClick?: VoidFunction;
   children: ReactNode;
-  className?: string;
+  outline?: boolean;
 }
 
-export const ButtonWhite: React.FC<ButtonProps> = ({ onClick, children }) => {
+const Button = ({
+  isActive = true,
+  type = 'submit',
+  onClick,
+  children,
+  outline = false,
+}: ButtonProps) => {
   return (
     <button
+      type={type}
       onClick={onClick}
-      className="btn-base border-gray3 rounded-lg border border-solid text-sm">
+      disabled={!isActive}
+      className={`btn-base headline1 ${
+        outline
+          ? 'text-main1 border-main1 border-[1.5px] border-solid bg-white'
+          : 'bg-main1  text-white'
+      } h-14 p-2 disabled:cursor-not-allowed disabled:bg-gray3`}>
       {children}
     </button>
   );
 };
 
-export const ButtonPrimary: React.FC<ButtonProps> = ({ onClick, children }) => {
-  return (
-    <button
-      onClick={onClick}
-      className="btn-base disabled:bg-gray3 bg-primary text-lg font-bold text-white disabled:cursor-not-allowed">
-      {children}
-    </button>
-  );
-};
+export default Button;
