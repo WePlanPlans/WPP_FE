@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { StarIcon } from '@components/common/icons/Icons';
 
 const ReviewRating = () => {
