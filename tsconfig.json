@@ -33,6 +33,11 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "custom.d.ts", "svg.d.ts"],
+  "include": [
+    "src",
+    "custom.d.ts",
+    "svg.d.ts",
+    "src/pages/signup/SignupSurvey.tsx"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

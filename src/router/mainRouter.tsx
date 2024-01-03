@@ -4,14 +4,14 @@ import { Nav } from '@components/common/nav';
 import Main from '@pages/main/main.page';
 import Detail from '@pages/detail/detail.page';
 import { Signup } from '@pages/index';
+import SignupSurvey from '@pages/signup/SignupSurvey';
 import PostingReview from '@pages/postingReview/postingReview.page';
 import { useLocation } from 'react-router-dom';
+import Signin from '@pages/signin/signin.page';
 
 export function MainLayout() {
   const location = useLocation();
-
-  const hideNavPaths = ['/'];
-
+  const hideNavPaths = ['/signup', '/signin'];
   const showNav = !hideNavPaths.some((path) =>
     location.pathname.includes(path),
   );
@@ -34,8 +34,10 @@ const MainRouter = () => {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Main />} />
           <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/signup" element={<Signup />} />
           <Route path="/postingReview/:id" element={<PostingReview />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup/survey" element={<SignupSurvey />} />
+          <Route path="/signin" element={<Signin />} />
         </Route>
       </Routes>
     </>

@@ -1,11 +1,5 @@
-import Preference from '@components/Preference';
-
 const Main = () => {
-  return (
-    <>
-      <Preference />
-    </>
-  );
+  return <></>;
 };
 
 export default Main;
