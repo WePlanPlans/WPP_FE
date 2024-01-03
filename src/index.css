@@ -47,15 +47,36 @@ code {
   .title3,
   .headline1,
   .headline2,
+  .body1,
   .body2,
-  .body4 {
+  .body3,
+  .body4,
+  .body5,
+  .body6,
+  .caption1,
+  .caption2 {
+    font-style: normal;
+    line-height: normal;
+  }
+
+  .title1,
+  .title2,
+  .title3,
+  .headline1,
+  .headline2,
+  .body2 {
     @apply font-bold;
   }
 }
 
-.body5,
-.caption1 {
+.body1,
+.body5 {
   @apply font-medium;
+}
+
+.body3,
+.caption1 {
+  @apply font-semibold;
 }
 
 .title1 {
@@ -73,24 +94,26 @@ code {
 .headline1 {
   font-size: 16px;
 }
+
 .headline2,
 .body1 {
   font-size: 15px;
 }
 
 .body2,
-.body3 {
+.body3,
+.body4,
+.body5 {
   font-size: 14px;
 }
-.body4,
-.body5,
+
 .body6 {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .caption1,
 .caption2 {
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .no-scrollbar::-webkit-scrollbar {
