@@ -20,19 +20,10 @@ export default function ReviewComments() {
     queryFn: () => getReviewComments(reviewId),
   });
 
-  const openModal = (title: string, commentId: number) => {
-    setTitle(title);
-    setTargetCommentId(commentId);
-    setIsModalOpen(true);
-  };
-
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
-  useEffect(() => {
-    console.log('reviewComments', reviewComments);
-  }, [reviewComments]);
   return (
     <>
       <div className="mb-4 text-xs">
@@ -51,11 +42,11 @@ export default function ReviewComments() {
         return (
           <CommentItem
             key={item.commentId}
+            commentId={item.commentId}
             authorNickname={item.authorNickname}
             authorProfileImageUrl={item.authorProfileImageUrl}
             createdTime={item.createdTime}
             content={item.content}
-            onClick={() => openModal('내 댓글', item.commentId)}
           />
         );
       })}
