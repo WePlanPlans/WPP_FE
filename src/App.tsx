@@ -16,7 +16,7 @@ const App = () => {
         <BrowserRouter>
           <ThemeProvider theme={theme}>
             <GlobalStyle />
-            <MainRouter />
+            <MainRouter  />
           </ThemeProvider>
         </BrowserRouter>
       </RecoilRoot>

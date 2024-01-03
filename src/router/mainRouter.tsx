@@ -5,15 +5,24 @@ import Main from '@pages/main/main.page';
 import Detail from '@pages/detail/detail.page';
 import { Signup } from '@pages/index';
 import PostingReview from '@pages/postingReview/postingReview.page';
+import { useLocation } from 'react-router-dom';
 
 export function MainLayout() {
+  const location = useLocation();
+
+  const hideNavPaths = ['/'];
+
+  const showNav = !hideNavPaths.some((path) =>
+    location.pathname.includes(path),
+  );
+
   return (
     <div className="mx-auto my-0 flex min-h-[100vh] max-w-[412px] flex-col bg-white ">
       <Header />
-      <div className="mb-auto px-[20px] py-0">
+      <div className="px-[20px] py-0">
         <Outlet />
       </div>
-      <Nav />
+      {showNav && <Nav />}
     </div>
   );
 }
