@@ -3,17 +3,17 @@ import { ResultCategory } from './ResultCategory';
 import { useInfiniteQuery } from '@tanstack/react-query';
 interface SearchResultProps {
   selectedRegion: string | null;
-  searchValue: string;
+  searchWord: string;
 }
 
 export const SearchResult = ({
   selectedRegion,
-  searchValue,
+  searchWord,
 }: SearchResultProps) => {
   const fetchSearchResult = async () => {
     const options = {
       region: selectedRegion || '',
-      searchWord: searchValue,
+      searchWord: searchWord,
       category: '식당' || undefined,
       page: 1,
       size: 10,
@@ -43,32 +43,34 @@ export const SearchResult = ({
     isError,
     isLoading,
   } = useInfiniteQuery({
-    queryKey: ['toursSearch', selectedRegion, searchValue],
+    queryKey: ['toursSearch', selectedRegion, searchWord],
     queryFn: fetchSearchResult,
     initialPageParam: 0,
     getNextPageParam: (lastPage, pages) => lastPage.nextPage,
-    enabled: !!searchValue,
+    enabled: !!searchWord,
   });
 
-  // if (isLoading) return <div>Loading...</div>;
-  // if (isError) return <div>error</div>;
   // const searchData = data?.pages.flatMap((page) => page.data);
   const searchData = data?.pages;
 
   console.log('data:', searchData);
+
+  // if (isLoading) return <div>Loading...</div>;
+  // if (isError) return <div>error</div>;
+
   return (
     <>
       <div className="tabs">전체 숙소 식당 관광지</div>
       {selectedRegion && (
         <div className="title3 pt-3">{selectedRegion} 지역 내의 검색결과 </div>
       )}
-      {searchData ? (
+      {/* {searchData ? (
         searchData.map((item, index) => (
           <ResultCategory key={index} result={item} /> // ResultCategory에 각 검색 결과 항목을 전달
         ))
       ) : (
         <div>검색결과가 없습니다</div>
-      )}
+      )} */}
     </>
   );
 };

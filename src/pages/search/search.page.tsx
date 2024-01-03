@@ -1,12 +1,10 @@
 import { RegionSelect } from '@components/search/RegionSelect';
-import { SearchInput } from '@components/search/SearchInput';
+import SearchInput from '@components/search/SearchInput';
 import { SearchResult } from '@components/search/SearchResult';
-import useDebounce from '@hooks/useDebounce';
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export const Search = () => {
-  const navigate = useNavigate();
   const location = useLocation();
 
   const queryParams = new URLSearchParams(location.search);
@@ -18,41 +16,23 @@ export const Search = () => {
     } else {
       setSelectedRegion('');
     }
+
+    const searchWordFromQuery = queryParams.get('searchWord');
+    if (searchWordFromQuery) {
+      setSearchWord(searchWordFromQuery);
+    }
   }, [location]);
 
-  const [searchValue, setSearchValue] = useState('');
   const [selectedRegion, setSelectedRegion] = useState(regionFromQuery);
-
-  const handleRegionChange = (selectedRegion: string) => {
-    console.log('선택한 지역:', selectedRegion);
-    setSelectedRegion(selectedRegion);
-    // setSearchValue(selectedRegion);
-    navigate(`?region=${encodeURIComponent(selectedRegion)}`);
-    console.log('selected region:', selectedRegion);
-  };
-
-  const handleInputChange = (value: string) => {
-    setSearchValue(value);
-  };
-
-  const debouncedSearchValue = useDebounce(searchValue, 300);
-  useEffect(() => {
-    console.log('search value:', debouncedSearchValue);
-  }, [debouncedSearchValue]);
+  const [searchWord, setSearchWord] = useState('');
 
   return (
     <>
-      <SearchInput
-        onInputChange={handleInputChange}
-        selectedRegion={selectedRegion}
-      />
-      {selectedRegion || debouncedSearchValue ? (
-        <SearchResult
-          selectedRegion={selectedRegion}
-          searchValue={debouncedSearchValue}
-        />
+      <SearchInput />
+      {searchWord ? (
+        <SearchResult selectedRegion={selectedRegion} searchWord={searchWord} />
       ) : (
-        <RegionSelect onRegionChange={handleRegionChange} />
+        <RegionSelect />
       )}
     </>
   );
