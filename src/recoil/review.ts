@@ -24,3 +24,8 @@ export const commentState = atom({
   key: 'commentState',
   default: '',
 });
+
+export const targetReviewIdState = atom({
+  key: 'targetReviewIdState',
+  default: 0,
+});

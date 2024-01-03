@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { StarIcon, ChatIcon, MoreIcon } from '@components/common/icons/Icons';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import { isModalOpenState, titleState } from '@recoil/modal';
+import { targetReviewIdState } from '@recoil/review';
 
 interface Keyword {
   keywordId: number;
@@ -10,6 +11,7 @@ interface Keyword {
 }
 
 interface ItemProps {
+  reviewId: number;
   authorNickname: string;
   authorProfileImageUrl: string;
   rating: number;
@@ -22,6 +24,7 @@ interface ItemProps {
 
 const Item: React.FC<ItemProps> = (props: ItemProps) => {
   const {
+    reviewId,
     authorNickname,
     authorProfileImageUrl,
     rating,
@@ -34,10 +37,11 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
 
   const setTitle = useSetRecoilState(titleState);
-
-  const openModal = (title: string, e: React.MouseEvent) => {
+  const setTargetReviewId = useSetRecoilState(targetReviewIdState);
+  const openModal = (title: string, reviewId: number, e: React.MouseEvent) => {
     e.stopPropagation();
     setTitle(title);
+    setTargetReviewId(reviewId);
     setIsModalOpen(true);
   };
 
@@ -86,7 +90,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
           </div>
           <div
             className="ml-auto cursor-pointer"
-            onClick={(e) => openModal('내 리뷰', e)}>
+            onClick={(e) => openModal('내 리뷰', reviewId, e)}>
             <MoreIcon fill="#888888" color="none" />
           </div>
         </div>

@@ -11,6 +11,7 @@ export default function DetailReview() {
     <div className="mb-6 ">
       <ReviewItem
         key={item.reviewId}
+        reviewId={item.reviewId}
         authorNickname={item.authorNickname}
         authorProfileImageUrl={item.authorProfileImageUrl}
         rating={item.rating}

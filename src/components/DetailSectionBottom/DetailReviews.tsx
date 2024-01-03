@@ -78,6 +78,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
                 (item: any, index: number) => (
                   <ReviewItem
                     key={item.reviewId}
+                    reviewId={item.reviewId}
                     authorNickname={item.authorNickname}
                     authorProfileImageUrl={item.authorProfileImageUrl}
                     rating={item.rating}
