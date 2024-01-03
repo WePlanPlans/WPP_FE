@@ -115,3 +115,7 @@ code {
 .caption2 {
   font-size: 12px;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
