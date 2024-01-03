@@ -22,7 +22,7 @@ export default function DetailToursInfo({ infoData }: DetailToursInfoProps) {
         </h1>
         {liked ? (
           <div className="top-75 h-[24px] w-[24px] cursor-pointer">
-            <HeartIcon fill="red" color="none" />
+            <HeartIcon fill="#FF2167" color="none" />
           </div>
         ) : (
           <div className="top-75 h-[24px] w-[24px] cursor-pointer">
