@@ -27,5 +27,5 @@ jobs:
         run: |
           DEPLOY_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} | grep -o 'https://[^ ]*')
           echo "::set-output name=url::$DEPLOY_URL"
-      - name: Alias Deployment to Custom Domain
-        run: vercel alias ${{ steps.deploy.outputs.url }} https://weplanplans-dev.vercel.app/ --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Alias Deployment to Fixed Domain
+        run: vercel alias ${{ steps.deploy.outputs.url }} weplanplans-dev.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
