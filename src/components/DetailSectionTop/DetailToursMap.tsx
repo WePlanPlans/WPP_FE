@@ -32,11 +32,11 @@ export default function DetailToursMap({ mapData }: DetailToursMapProps) {
 
   return (
     <div className="mt-4 w-full">
-      <div className="relative flex w-full items-center justify-between">
+      <div className="relative flex w-full items-center justify-between ">
         <div
-          className="relative flex flex-shrink-0 items-center justify-start gap-[5px]"
+          className="relative flex flex-shrink-0 items-center justify-start "
           onClick={() => setIsAddressVisible(!isAddressVisible)}>
-          <MapIcon size={17} fill="#888888" color="none" />
+          <MapIcon size={20} fill="#888888" color="none" />
           {!isAddressVisible ? (
             <p className="max-w-[310px] flex-shrink-0 flex-grow-0 overflow-hidden overflow-ellipsis whitespace-nowrap text-left text-sm text-[#1e1e1e]">
               {fullAddress}
