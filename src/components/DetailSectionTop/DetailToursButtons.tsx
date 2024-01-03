@@ -1,5 +1,4 @@
-import { ReactComponent as PenIcon } from '@assets/images/Pen.svg';
-import { ReactComponent as CalendarIcon } from '@assets/images/Calendar.svg';
+import { PenIcon, CalendarIcon } from '@components/common/icons/Icons';
 
 export default function DetailTourButtons() {
   return (
