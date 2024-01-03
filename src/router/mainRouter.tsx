@@ -1,20 +1,20 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
-import styled from 'styled-components';
 import { Header } from '@components/common/header';
-import { Footer } from '@components/common/footer';
+import { Nav } from '@components/common/nav';
 import Main from '@pages/main/main.page';
 import { Search } from '@pages/search/search.page';
 import Detail from '@pages/detail/detail.page';
+import PostingReview from '@pages/postingReview/postingReview.page';
 
 export function MainLayout() {
   return (
-    <StyledMainContainer>
+    <div className="mx-auto my-0 flex min-h-[100vh] max-w-[412px] flex-col bg-white ">
       <Header />
-      <StyledContentContainer>
+      <div className="mb-auto px-[20px] py-0">
         <Outlet />
-      </StyledContentContainer>
-      <Footer />
-    </StyledMainContainer>
+      </div>
+      <Nav />
+    </div>
   );
 }
 
@@ -26,6 +26,7 @@ const MainRouter = () => {
           <Route index element={<Main />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/postingReview/:id" element={<PostingReview />} />
         </Route>
       </Routes>
     </>
@@ -33,17 +34,3 @@ const MainRouter = () => {
 };
 
 export default MainRouter;
-
-const StyledMainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  margin: 0 auto;
-  max-width: 375px;
-  min-height: 100vh;
-`;
-
-const StyledContentContainer = styled.div`
-  padding: 0 20px;
-  margin-bottom: auto;
-`;
