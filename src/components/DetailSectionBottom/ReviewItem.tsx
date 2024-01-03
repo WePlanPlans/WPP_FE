@@ -2,7 +2,14 @@ import { useEffect } from 'react';
 import { StarIcon, ChatIcon, MoreIcon } from '@components/common/icons/Icons';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import { isModalOpenState, titleState } from '@recoil/modal';
-import { targetReviewIdState } from '@recoil/review';
+import {
+  ratingState,
+  keywordsState,
+  contentState,
+  targetReviewIdState,
+  tourItemIdState,
+  contentTypeIdState,
+} from '@recoil/review';
 
 interface Keyword {
   keywordId: number;
@@ -20,6 +27,8 @@ interface ItemProps {
   keywords: Keyword[]; // keywordId, content, type
   commentCount: number;
   onClick?: () => void;
+  tourItemId: number;
+  contentTypeId?: number;
 }
 
 const Item: React.FC<ItemProps> = (props: ItemProps) => {
@@ -33,14 +42,28 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     keywords,
     commentCount,
     onClick,
+    tourItemId,
+    contentTypeId,
   } = props;
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
 
+  const setRating = useSetRecoilState(ratingState);
+  const setKeywords = useSetRecoilState(keywordsState);
+  const setContent = useSetRecoilState(contentState);
   const setTitle = useSetRecoilState(titleState);
+  const setTourItemId = useSetRecoilState(tourItemIdState);
+  const setContentTypeId = useSetRecoilState(contentTypeIdState);
   const setTargetReviewId = useSetRecoilState(targetReviewIdState);
   const openModal = (title: string, reviewId: number, e: React.MouseEvent) => {
     e.stopPropagation();
     setTitle(title);
+    setTourItemId(tourItemId);
+    if (contentTypeId) {
+      setContentTypeId(contentTypeId);
+    }
+    setRating(rating);
+    setKeywords(keywords);
+    setContent(content);
     setTargetReviewId(reviewId);
     setIsModalOpen(true);
   };

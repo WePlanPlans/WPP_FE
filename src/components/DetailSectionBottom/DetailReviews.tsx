@@ -7,6 +7,15 @@ import { StarIcon } from '@components/common/icons/Icons';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import { isModalOpenState, titleState } from '@recoil/modal';
+import {
+  ratingState,
+  keywordsState,
+  contentState,
+  targetReviewIdState,
+  tourItemIdState,
+  contentTypeIdState,
+  isModifyingReviewState,
+} from '@recoil/review';
 import { Modal } from '@components/common/modal';
 
 interface reviewProps {
@@ -19,6 +28,14 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   const params = useParams();
   const tourItemId = Number(params.id);
   const navigate = useNavigate();
+  const setRating = useSetRecoilState(ratingState);
+  const setKeywords = useSetRecoilState(keywordsState);
+  const setContent = useSetRecoilState(contentState);
+  const setTitle = useSetRecoilState(titleState);
+  const setTourItemId = useSetRecoilState(tourItemIdState);
+  const setContentTypeId = useSetRecoilState(contentTypeIdState);
+  const setTargetReviewId = useSetRecoilState(targetReviewIdState);
+  const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
 
   const {
     data: toursReviews,
@@ -36,7 +53,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
 
   const handleReviewClick = (item: any) => {
     const reviewId = item.reviewId;
-    navigate(`/reviewComment/${reviewId}`, { state: { item } });
+    navigate(`/reviewComment/${reviewId}`, { state: { item, tourItemId } });
   };
 
   const handlePostingReivew = () => {
@@ -48,6 +65,16 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
 
   const closeModal = () => {
+    setTitle('');
+    setTourItemId(0);
+    if (contentTypeId) {
+      setContentTypeId(0);
+    }
+    setRating(0);
+    setKeywords([]);
+    setContent('');
+    setTargetReviewId(0);
+    setIsModifyingReview(false);
     setIsModalOpen(false);
   };
 
@@ -55,13 +82,6 @@ export default function DetailReviews({ reviewData }: reviewProps) {
     setReviewDataLength(toursReviews?.pages[0].data.data.reviewTotalCount);
   }, [toursReviews]);
 
-  // useEffect(() => {
-  //   console.log(
-  //     'toursReviews.pages[0].data.data.reviewTotalCount',
-  //     toursReviews?.pages[0].data.data.reviewTotalCount,
-  //   );
-  //   console.log('toursReviews', toursReviews);
-  // }, [toursReviews]);
   return (
     <>
       <div className="mb-4 mt-2 text-lg font-bold">
@@ -87,6 +107,8 @@ export default function DetailReviews({ reviewData }: reviewProps) {
                     keywords={item.keywords} // keywordId, content, type
                     commentCount={item.commentCount}
                     onClick={() => handleReviewClick(item)}
+                    tourItemId={tourItemId}
+                    contentTypeId={contentTypeId}
                   />
                 ),
               )}

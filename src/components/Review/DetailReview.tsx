@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 export default function DetailReview() {
   const location = useLocation();
   const { state } = location;
-  const { item } = state;
+  const { item, tourItemId } = state;
 
   return (
     <div className="mb-6 ">
@@ -19,6 +19,7 @@ export default function DetailReview() {
         content={item.content}
         keywords={item.keywords} // keywordId, content, type
         commentCount={item.commentCount}
+        tourItemId={tourItemId}
       />
     </div>
   );

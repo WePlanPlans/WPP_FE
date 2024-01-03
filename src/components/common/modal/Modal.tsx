@@ -1,11 +1,24 @@
 import React, { useEffect } from 'react';
 import Modal from 'react-modal';
 import { DeleteIcon, PenIcon } from '@components/common/icons/Icons';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { titleState } from '@recoil/modal';
-import { deleteReview } from '@api/review';
-import { deleteComments } from '@api/comments';
-import { targetReviewIdState, targetCommentIdState } from '@recoil/review';
+import { deleteReview, putReview } from '@api/review';
+import { deleteComments, putComments } from '@api/comments';
+import {
+  ratingState,
+  keywordsState,
+  contentState,
+  targetReviewIdState,
+  reviewDataState,
+  targetCommentIdState,
+  commentContentState,
+  isModifyingCommentState,
+  isModifyingReviewState,
+  tourItemIdState,
+  contentTypeIdState,
+} from '@recoil/review';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 interface ModalProps {
   isOpen: boolean;
@@ -13,9 +26,19 @@ interface ModalProps {
 }
 
 const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
+  const rating = useRecoilValue(ratingState);
+  const keywords = useRecoilValue(keywordsState);
+  const content = useRecoilValue(contentState);
   const title = useRecoilValue(titleState);
   const targetReviewId = useRecoilValue(targetReviewIdState);
+  const reviewData = useRecoilValue(reviewDataState);
   const targetCommentId = useRecoilValue(targetCommentIdState);
+  const commentContent = useRecoilValue(commentContentState);
+  const tourItemId = useRecoilValue(tourItemIdState);
+  const contentTypeId = useRecoilValue(contentTypeIdState);
+  const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
+  const setIsModifyingComment = useSetRecoilState(isModifyingCommentState);
+  const navigate = useNavigate();
 
   const customStyles = {
     content: {
@@ -35,7 +58,25 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
     },
   };
 
-  const handleEdit = () => {};
+  const handleEdit = () => {
+    if (title == '내 리뷰') {
+      setIsModifyingReview(true);
+      navigate(`/reviewPosting/${tourItemId}`, {
+        state: {
+          title,
+          contentTypeId,
+          targetReviewId,
+          rating,
+          keywords,
+          content,
+        },
+      });
+      // putReview(reviewData, targetReviewId);
+    } else if (title == '내 댓글') {
+      setIsModifyingComment(true);
+      // putComments(commentContent, targetCommentId);
+    }
+  };
 
   const handleDelete = () => {
     if (title == '내 리뷰') {

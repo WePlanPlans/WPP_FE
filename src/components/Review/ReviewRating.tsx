@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { StarIcon } from '@components/common/icons/Icons';
 import { useLocation } from 'react-router-dom';
 import { ratingState } from '@recoil/review';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 const ReviewRating = () => {
-  const setFinalRating = useSetRecoilState(ratingState);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useRecoilState(ratingState);
   const [isHalfClicked, setIsHalfClicked] = useState(false);
   const location = useLocation();
   const { state } = location;
@@ -14,13 +13,12 @@ const ReviewRating = () => {
 
   const handleStarClick = (index: number) => {
     const newRating = index + 1;
-    setRating((prevRating) => {
+    setRating((prevRating: any) => {
       const updatedIsHalfClicked =
         prevRating === newRating ? !isHalfClicked : false;
       setIsHalfClicked(updatedIsHalfClicked);
       // set함수가 비동기적이어서 업데이트된 값이 아래의 로직에 바로 반영되지 않기 때문에 updatedIsHalfClicked라는 변수를 통해 직접 계산하도록 설정
       const updatedRating = updatedIsHalfClicked ? prevRating - 0.5 : newRating;
-      setFinalRating(updatedRating);
       return updatedRating;
     });
   };

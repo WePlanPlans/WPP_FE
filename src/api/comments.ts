@@ -3,7 +3,7 @@ import client from './client';
 // 댓글 관련 API
 
 // 댓글수정
-export const putComments = async (content: string, commentId: string) => {
+export const putComments = async (content: string, commentId: number) => {
   const res = await client.put(`comments/${commentId}`, {
     content,
   });
