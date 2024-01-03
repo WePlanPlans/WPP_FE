@@ -1,7 +1,9 @@
 ## 📝 프로젝트 소개
+
 여정공유 여행플랫폼
 
 ## 📖 Commit convention
+
 - Feat : 새로운 기능 추가
 - Fix : 버그 수정
 - Env : 개발 환경 관련 설정
@@ -13,4 +15,4 @@
 - Test : 테스트 추가/수정
 - Chore : 빌드 관련 코드 수정
 - Rename : 파일 및 폴더명 수정
-- Remove : 파일 삭제
+- Remove : 파일 삭제.
