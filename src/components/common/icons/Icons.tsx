@@ -223,6 +223,32 @@ export const LeftIcon: React.FC<IconProps> = ({
   );
 };
 
+export const BackIcon: React.FC<IconProps> = ({
+  size = 9,
+  fill = '#1E1E1E',
+  onClick,
+  cursor = 'pointer',
+}) => {
+  return (
+    <svg
+      onClick={onClick}
+      width={size}
+      height="16"
+      viewBox="0 0 9 16"
+      fill={fill}
+      cursor={cursor}
+      xmlns="http://www.w3.org/2000/svg">
+      <g id="Back">
+        <path
+          d="M8.70308 0.743953C9.0189 1.02827 9.04218 1.51229 8.75507 1.82503L3.04497 8.04492L8.75506 14.2648C9.04218 14.5776 9.0189 15.0616 8.70308 15.3459C8.38725 15.6302 7.89847 15.6072 7.61136 15.2944L0.956054 8.04492L7.61136 0.795433C7.89847 0.482685 8.38725 0.459636 8.70308 0.743953Z"
+          fillRule="evenodd"
+          clipRule="evenodd"
+        />
+      </g>
+    </svg>
+  );
+};
+
 export const MapIcon: React.FC<IconProps> = ({
   size = 25,
   color = 'black',
