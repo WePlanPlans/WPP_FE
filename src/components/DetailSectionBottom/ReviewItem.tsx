@@ -122,7 +122,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
               return (
                 <div
                   key={idx}
-                  className="rounded-md bg-gray-100 px-2 py-1 text-sm">
+                  className="rounded-md bg-gray1 px-2 py-1 text-sm text-gray6">
                   {keyword.content}
                 </div>
               );

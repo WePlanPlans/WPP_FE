@@ -4,12 +4,10 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 
 export default function ReviewPosting() {
   const [content, setContent] = useRecoilState(contentState);
-  const [textLength, setTextLength] = useState(0);
 
   const handleTextChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const inputText = event.target.value;
     setContent(inputText);
-    setTextLength(inputText.length);
   };
 
   return (
@@ -24,7 +22,7 @@ export default function ReviewPosting() {
         />
       </div>
       <div className="mb-2 ml-auto text-sm">
-        {textLength} <span className="text-gray4">/ 400</span>
+        {content.length} <span className="text-gray4">/ 400</span>
       </div>
     </div>
   );

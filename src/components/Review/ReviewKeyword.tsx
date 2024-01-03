@@ -69,7 +69,7 @@ export default function ReviewKeyword() {
             );
 
             return (
-              <div
+              <button
                 className={`flex items-center justify-center row-${row} col-${col} h-[40px] cursor-pointer rounded-md ${
                   isSelected
                     ? 'bg-main1 text-white'
@@ -78,7 +78,7 @@ export default function ReviewKeyword() {
                 key={keyword.keywordId}
                 onClick={() => handleKeywordClick(keyword)}>
                 {keyword.content}
-              </div>
+              </button>
             );
           },
         )}

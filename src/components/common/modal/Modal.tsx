@@ -87,6 +87,7 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
   const handleDelete = () => {
     if (title == '내 리뷰') {
       deleteReview(targetReviewId);
+      setIsModalOpen(false);
     } else if (title == '내 댓글') {
       deleteComments(targetCommentId);
       setIsModalOpen(false);

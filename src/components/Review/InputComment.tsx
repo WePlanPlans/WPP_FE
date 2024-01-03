@@ -28,7 +28,7 @@ export const InputComment: React.FC<InputCommentProps> = () => {
   return (
     <>
       <div className="bottom-4 flex rounded-md border border-solid border-[#d7d7d7] px-2 py-1">
-        <div className="mr-1 text-sm font-bold text-[#29ddf6]">|</div>
+        <div className="mr-0.5 text-sm font-bold text-[#29ddf6]">ㅣ</div>
         <div className="flex  w-full">
           <input
             type="text"
