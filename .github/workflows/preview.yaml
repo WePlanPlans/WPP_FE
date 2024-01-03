@@ -7,6 +7,8 @@ on:
     branches:
       - dev
   pull_request:
+    branches-ignore:
+      - main
     types:
       - opened
 jobs:
