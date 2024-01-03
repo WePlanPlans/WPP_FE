@@ -24,3 +24,5 @@ jobs:
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Alias Deployment to Custom Domain
+        run: vercel alias --token=${{ secrets.VERCEL_TOKEN }} https://weplanplans-dev.vercel.app/
