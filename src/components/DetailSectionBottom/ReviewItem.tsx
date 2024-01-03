@@ -20,7 +20,7 @@ interface ItemProps {
 const Item: React.FC<ItemProps> = (props: ItemProps) => {
   const {
     authorNickname,
-    authorProfileImageUrl,
+    // authorProfileImageUrl,
     rating,
     createdTime,
     content,

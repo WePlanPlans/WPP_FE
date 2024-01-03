@@ -8,7 +8,7 @@ import {
   DetailToursInfo,
   DetailToursRating,
   DetailToursMap,
-  DetailTourButtons,
+  DetailToursButtons,
 } from '.';
 
 export default function DetailSectionTop() {
@@ -28,11 +28,11 @@ export default function DetailSectionTop() {
   if (detailQuery.error || reviewQuery.error) console.log('error - 예외 처리');
 
   return detailQuery.data && reviewQuery.data?.data.data ? (
-    <div className="max-h-[500px]">
+    <div className="max-h-full">
       <DetailToursInfo infoData={detailQuery.data} />
       <DetailToursRating reviewData={reviewQuery.data.data.data} />
       <DetailToursMap mapData={detailQuery.data} />
-      <DetailTourButtons />
+      <DetailToursButtons />
     </div>
   ) : null;
 }

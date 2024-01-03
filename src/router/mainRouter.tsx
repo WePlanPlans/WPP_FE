@@ -1,13 +1,20 @@
-import { Outlet, Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import { Header } from '@components/common/header';
 import { Nav } from '@components/common/nav';
 import Main from '@pages/main/main.page';
 import Detail from '@pages/detail/detail.page';
 import PostingReview from '@pages/postingReview/postingReview.page';
+import { useEffect } from 'react';
 
 export function MainLayout() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
-    <div className="mx-auto my-0 flex min-h-[100vh] max-w-[375px] flex-col bg-white ">
+    <div className="mx-auto my-0 flex min-h-[100vh] max-w-[412px] flex-col bg-white ">
       <Header />
       <div className="mb-auto px-[20px] py-0">
         <Outlet />

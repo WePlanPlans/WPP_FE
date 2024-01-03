@@ -16,7 +16,7 @@ const DetailReviewStats = () => {
       {reviewStats && reviewStats.length > 0 ? (
         reviewStats.slice(0, showAll ? reviewStats.length : 3).map((data) => (
           <div key={uuidv4()} className="mb-2 h-10 w-full">
-            <div className="relative h-10 w-[335px] rounded-lg bg-gray1">
+            <div className="relative h-10 w-full rounded-lg bg-gray1">
               <div
                 className="absolute top-0 h-10 rounded-lg"
                 style={{
@@ -24,7 +24,7 @@ const DetailReviewStats = () => {
                   backgroundColor: getColor(data.keywordCount),
                 }}
               />
-              <div className="absolute left-[14.5px] top-[12.23px] flex items-center justify-start gap-[108px]">
+              <div className="absolute left-[14.5px] top-[12.23px] flex items-center justify-start gap-[145px]">
                 <div className="flex items-start justify-start gap-1.5">
                   <p className="w-4">{getEmoji(data.content)}</p>
                   <p className="h-[15.55px] w-[166px] font-bold text-gray6">
