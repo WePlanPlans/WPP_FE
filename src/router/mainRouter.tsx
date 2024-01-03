@@ -7,7 +7,7 @@ import PostingReview from '@pages/postingReview/postingReview.page';
 
 export function MainLayout() {
   return (
-    <div className="mx-auto my-0 flex min-h-[100vh] max-w-[375px] flex-col bg-white ">
+    <div className="mx-auto my-0 flex min-h-[100vh] max-w-[412px] flex-col bg-white ">
       <Header />
       <div className="mb-auto px-[20px] py-0">
         <Outlet />
