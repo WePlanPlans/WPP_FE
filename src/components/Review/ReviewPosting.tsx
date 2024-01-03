@@ -1,9 +1,9 @@
-import { useState, ChangeEvent } from 'react';
-import { contentState } from '@recoil/review';
-import { useSetRecoilState } from 'recoil';
+import { useState, useEffect, ChangeEvent } from 'react';
+import { contentState, keywordsState } from '@recoil/review';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 export default function ReviewPosting() {
-  const setContent = useSetRecoilState(contentState);
+  const [content, setContent] = useRecoilState(contentState);
   const [textLength, setTextLength] = useState(0);
 
   const handleTextChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -22,7 +22,7 @@ export default function ReviewPosting() {
           onChange={handleTextChange}
         />
       </div>
-      <div className="mb-3 ml-auto text-sm">
+      <div className="mb-2 ml-auto text-sm">
         {textLength} <span className="text-gray4">/ 400</span>
       </div>
     </div>

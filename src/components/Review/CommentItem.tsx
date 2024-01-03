@@ -43,12 +43,12 @@ const CommentItem: React.FC<ItemProps> = (props: ItemProps) => {
         </div>
         <div className=" flex flex-col justify-center gap-1">
           <div className="text-sm font-bold">{authorNickname}</div>
-          <div className="text-xs text-gray3">
+          <div className="text-xs text-gray4">
             {formatCreatedTime(createdTime)}
           </div>
         </div>
         <div className="ml-auto cursor-pointer" onClick={onClick}>
-          <MoreIcon fill="#D7D7D7" color="none" />
+          <MoreIcon fill="#888888" color="none" />
         </div>
       </div>
 

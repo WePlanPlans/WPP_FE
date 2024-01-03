@@ -5,6 +5,9 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import ReviewItem from './ReviewItem';
 import { StarIcon } from '@components/common/icons/Icons';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useSetRecoilState, useRecoilState } from 'recoil';
+import { isModalOpenState, titleState } from '@recoil/modal';
+import { Modal } from '@components/common/modal';
 
 interface reviewProps {
   reviewData: any;
@@ -42,6 +45,12 @@ export default function DetailReviews({ reviewData }: reviewProps) {
     });
   };
 
+  const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   useEffect(() => {
     setReviewDataLength(toursReviews?.pages[0].data.data.reviewTotalCount);
   }, [toursReviews]);
@@ -75,7 +84,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
                     createdTime={item.createdTime}
                     content={item.content}
                     keywords={item.keywords} // keywordId, content, type
-                    commentCount={2} //commentCount가 swagger에는 있는데 response에는 없음
+                    commentCount={item.commentCount}
                     onClick={() => handleReviewClick(item)}
                   />
                 ),
@@ -96,6 +105,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
           <div className="text-sm text-gray3">첫번째 리뷰를 남겨주세요!</div>
         </div>
       )}
+      <Modal isOpen={isModalOpen} closeModal={closeModal} />
     </>
   );
 }
