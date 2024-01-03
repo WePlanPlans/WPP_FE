@@ -4,7 +4,8 @@ import { DeleteIcon, PenIcon } from '@components/common/icons/Icons';
 import { useRecoilValue } from 'recoil';
 import { titleState } from '@recoil/modal';
 import { deleteReview } from '@api/review';
-import { targetReviewIdState } from '@recoil/review';
+import { deleteComments } from '@api/comments';
+import { targetReviewIdState, targetCommentIdState } from '@recoil/review';
 
 interface ModalProps {
   isOpen: boolean;
@@ -14,6 +15,7 @@ interface ModalProps {
 const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
   const title = useRecoilValue(titleState);
   const targetReviewId = useRecoilValue(targetReviewIdState);
+  const targetCommentId = useRecoilValue(targetCommentIdState);
 
   const customStyles = {
     content: {
@@ -36,7 +38,11 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
   const handleEdit = () => {};
 
   const handleDelete = () => {
-    deleteReview(targetReviewId);
+    if (title == '내 리뷰') {
+      deleteReview(targetReviewId);
+    } else if (title == '내 댓글') {
+      deleteComments(targetCommentId);
+    }
   };
 
   return (

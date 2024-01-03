@@ -55,9 +55,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
 
     return formattedDate;
   };
-  useEffect(() => {
-    console.log('commentCount', commentCount);
-  }, []);
+
   return (
     <>
       <div className="mb-8 cursor-pointer" onClick={onClick}>

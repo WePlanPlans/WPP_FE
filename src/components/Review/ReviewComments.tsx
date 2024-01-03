@@ -6,20 +6,23 @@ import { useSetRecoilState, useRecoilState } from 'recoil';
 import { isModalOpenState, titleState } from '@recoil/modal';
 import { Modal } from '@components/common/modal';
 import { useEffect } from 'react';
+import { targetCommentIdState } from '@recoil/review';
 
 export default function ReviewComments() {
   const params = useParams();
   const reviewId = Number(params.id);
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
   const setTitle = useSetRecoilState(titleState);
+  const setTargetCommentId = useSetRecoilState(targetCommentIdState);
 
   const { data: reviewComments } = useQuery({
     queryKey: ['reviewComments'],
     queryFn: () => getReviewComments(reviewId),
   });
 
-  const openModal = (title: string) => {
+  const openModal = (title: string, commentId: number) => {
     setTitle(title);
+    setTargetCommentId(commentId);
     setIsModalOpen(true);
   };
 
@@ -52,7 +55,7 @@ export default function ReviewComments() {
             authorProfileImageUrl={item.authorProfileImageUrl}
             createdTime={item.createdTime}
             content={item.content}
-            onClick={() => openModal('내 댓글')}
+            onClick={() => openModal('내 댓글', item.commentId)}
           />
         );
       })}

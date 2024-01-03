@@ -11,7 +11,7 @@ export const putComments = async (content: string, commentId: string) => {
 };
 
 // 댓글삭제
-export const deleteComments = async (commentId: string) => {
+export const deleteComments = async (commentId: number) => {
   const res = await client.delete(`comments/${commentId}`);
   return res;
 };
