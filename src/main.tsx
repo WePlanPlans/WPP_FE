@@ -4,7 +4,7 @@ import './index.css';
 
 if (import.meta.env.DEV) {
   const { worker } = await import('./mocks/browser.ts');
-  await worker.stop();
+  await worker.start();
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
