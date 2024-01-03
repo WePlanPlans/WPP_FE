@@ -258,7 +258,7 @@ export const MapIcon: React.FC<IconProps> = ({
     <svg
       width={size}
       height={size}
-      viewBox="0 0 17 17"
+      viewBox="2 -1.5 20 20"
       fill={fill}
       xmlns="http://www.w3.org/2000/svg">
       <g id="Group 36689">
