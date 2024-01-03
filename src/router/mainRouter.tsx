@@ -5,6 +5,7 @@ import { Footer } from '@components/common/footer';
 import ABC from '@pages/abc/abc.page';
 import Main from '@pages/main/main.page';
 import Detail from '@pages/detail/detail.page';
+import { Signup } from '@pages/index';
 
 export function MainLayout() {
   return (
@@ -25,6 +26,7 @@ const MainRouter = () => {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Main />} />
           <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/abc" element={<ABC />} />
         </Route>
       </Routes>
