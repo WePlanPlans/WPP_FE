@@ -3,6 +3,7 @@ import { Header } from '@components/common/header';
 import { Nav } from '@components/common/nav';
 import Main from '@pages/main/main.page';
 import Detail from '@pages/detail/detail.page';
+import { Signup } from '@pages/index';
 import PostingReview from '@pages/postingReview/postingReview.page';
 
 export function MainLayout() {
@@ -24,6 +25,7 @@ const MainRouter = () => {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Main />} />
           <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/postingReview/:id" element={<PostingReview />} />
         </Route>
       </Routes>
