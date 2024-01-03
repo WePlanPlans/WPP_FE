@@ -92,3 +92,7 @@ code {
 .caption2 {
   font-size: 11px;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
