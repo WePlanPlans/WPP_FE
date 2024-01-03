@@ -38,6 +38,9 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
+  react-kakao-maps-sdk:
+    specifier: ^1.1.24
+    version: 1.1.24(react-dom@18.2.0)(react@18.2.0)
   react-router-dom:
     specifier: ^6.21.1
     version: 6.21.1(react-dom@18.2.0)(react@18.2.0)
@@ -3752,6 +3755,10 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
+  /kakao.maps.d.ts@0.1.39:
+    resolution: {integrity: sha512-KXENJ8hHYtjb5G+0vf8TXx/PwWW4j5ndDiQTSMvGtF7EFWu2P3N/+Zivcj9/UKn3j29Iz/sIUaA7WL8Ug3IDGQ==}
+    dev: false
+
   /keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
     dependencies:
@@ -4297,6 +4304,18 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-kakao-maps-sdk@1.1.24(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-leLbFwBj6zbTdDg6A9U7EwYT2oq0+2F+NHZSVTyCmmvyc4yt2zpRvUmcAt8I6h2SDUdgHbpvKAV1sZoRIxD4JQ==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18
+      react-dom: ^16.8 || ^17 || ^18
+    dependencies:
+      '@babel/runtime': 7.23.6
+      kakao.maps.d.ts: 0.1.39
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react-refresh@0.14.0:

@@ -29,15 +29,25 @@ export const getToursReviews = async (tourItemId: number) => {
 };
 
 // 여행지 검색
-export const getToursSearch = async (
-  region: string,
-  searchWord: string,
-  page: number = 0,
-  size: number,
-  category?: string,
-) => {
-  const res = await client.get(
-    `tours/search?region=${region}&category=${category}&searchWord=${searchWord}&page=${page}&size=${size}}`,
-  );
+export const getToursSearch = async (options: {
+  region: string;
+  searchWord: string;
+  category?: string;
+  page?: number;
+  size?: number;
+}) => {
+  const { region, searchWord, category, page = 0, size } = options;
+
+  let query = `tours/search?region=${region}&searchWord=${searchWord}`;
+
+  if (category) {
+    query += `&category=${category}`;
+  }
+  query += `&page=${page}`;
+
+  if (size) {
+    query += `&size=${size}`;
+  }
+  const res = await client.get(query);
   return res;
 };
