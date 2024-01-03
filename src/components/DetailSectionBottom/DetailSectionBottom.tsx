@@ -5,7 +5,7 @@ export default function DetailSectionBottom() {
   return (
     <>
       <DetailReviewStats />
-      <DetailReview />
+      {/* <DetailReview /> */}
     </>
   );
 }

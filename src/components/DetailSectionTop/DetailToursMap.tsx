@@ -14,7 +14,7 @@ export default function DetailToursMap({ mapData }: DetailToursMapProps) {
   const [isMapVisible, setIsMapVisible] = useState<boolean>(false);
 
   const MapStyle = {
-    width: '325px',
+    width: '372px',
     height: isMapVisible ? 0 : '150px',
     marginTop: isMapVisible ? '15px' : '15px',
     marginBottom: isMapVisible ? '15px' : '15px',
