@@ -71,7 +71,7 @@ export default function DetailToursMap({ mapData }: DetailToursMapProps) {
         <PhoneIcon size={17} />
         <div className="relative flex w-[309px] flex-shrink-0 flex-grow-0 items-center justify-between">
           <p className="flex-shrink-0 flex-grow-0 text-left text-sm text-[#1e1e1e]">
-            {tel}
+            {tel ? tel : '전화번호가 없어요'}
           </p>
           <div className="h-4 w-4 flex-shrink-0 flex-grow-0">
             <div className="absolute left-[292.5px] top-0 h-4 w-4"></div>
