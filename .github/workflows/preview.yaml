@@ -23,9 +23,4 @@ jobs:
       - name: Build Project Artifacts
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        id: deploy
-        run: |
-          DEPLOY_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} | grep -o 'https://[^ ]*')
-          echo "::set-output name=url::$DEPLOY_URL"
-      - name: Alias Deployment to Fixed Domain
-        run: vercel alias ${{ steps.deploy.outputs.url }} weplanplans-dev.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
