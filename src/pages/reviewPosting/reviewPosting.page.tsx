@@ -1,7 +1,7 @@
 import Review from '@components/Review/Review';
 import { ReviewHeader } from '@components/common/header';
 
-const PostingReview = () => {
+const ReviewPosting = () => {
   return (
     <>
       <ReviewHeader />
@@ -10,4 +10,4 @@ const PostingReview = () => {
   );
 };
 
-export default PostingReview;
+export default ReviewPosting;

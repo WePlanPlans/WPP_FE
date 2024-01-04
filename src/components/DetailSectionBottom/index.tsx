@@ -1,4 +1,4 @@
 import DetailReviewStats from './DetailReviewStats';
-import DetailReview from './DetailReview';
+import DetailReviews from './DetailReviews';
 
-export { DetailReviewStats, DetailReview };
+export { DetailReviews, DetailReviewStats };
