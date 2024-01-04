@@ -1,6 +1,6 @@
-import { useState, useEffect, ChangeEvent } from 'react';
-import { contentState, keywordsState } from '@recoil/review';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { ChangeEvent } from 'react';
+import { contentState } from '@recoil/review';
+import { useRecoilState } from 'recoil';
 
 export default function ReviewPosting() {
   const [content, setContent] = useRecoilState(contentState);
