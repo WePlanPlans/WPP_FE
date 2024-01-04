@@ -1,7 +1,7 @@
 import { getToursReviews } from '@api/tours';
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import ReviewItem from './ReviewItem';
 import { StarIcon } from '@components/common/icons/Icons';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -37,18 +37,9 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   const setTargetReviewId = useSetRecoilState(targetReviewIdState);
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
 
-  const {
-    data: toursReviews,
-    fetchNextPage,
-    hasNextPage,
-  } = useInfiniteQuery({
+  const { data: toursReviews } = useQuery({
     queryKey: ['toursReviews'],
-    queryFn: ({ pageParam }) => getToursReviews(tourItemId),
-    initialPageParam: 0,
-    getNextPageParam: (lastPage, allPages, lastPageParam) => {
-      const lastData = lastPage?.data?.data?.reviewInfos;
-      return lastData && lastData.length === 4 ? lastPageParam + 1 : undefined;
-    },
+    queryFn: () => getToursReviews(tourItemId),
   });
 
   const handleReviewClick = (item: any) => {
@@ -79,7 +70,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   };
 
   useEffect(() => {
-    setReviewDataLength(toursReviews?.pages[0].data.data.reviewTotalCount);
+    setReviewDataLength(toursReviews?.data?.data?.reviewTotalCount);
   }, [toursReviews]);
 
   return (
@@ -88,33 +79,26 @@ export default function DetailReviews({ reviewData }: reviewProps) {
         리뷰<span className="pl-1 text-gray4">{reviewDataLength}</span>
       </div>
       {reviewDataLength > 0 && (
-        <InfiniteScroll
-          hasMore={hasNextPage}
-          loadMore={() => fetchNextPage()}
-          initialLoad={false}>
-          {toursReviews?.pages?.map((page, pageIndex) => (
-            <div key={pageIndex}>
-              {page?.data?.data?.reviewInfos?.content?.map(
-                (item: any, index: number) => (
-                  <ReviewItem
-                    key={item.reviewId}
-                    reviewId={item.reviewId}
-                    authorNickname={item.authorNickname}
-                    authorProfileImageUrl={item.authorProfileImageUrl}
-                    rating={item.rating}
-                    createdTime={item.createdTime}
-                    content={item.content}
-                    keywords={item.keywords} // keywordId, content, type
-                    commentCount={item.commentCount}
-                    onClick={() => handleReviewClick(item)}
-                    tourItemId={tourItemId}
-                    contentTypeId={contentTypeId}
-                  />
-                ),
-              )}
-            </div>
-          ))}
-        </InfiniteScroll>
+        <div>
+          {toursReviews?.data?.data?.reviewInfos?.content?.map(
+            (item: any, index: number) => (
+              <ReviewItem
+                key={item.reviewId}
+                reviewId={item.reviewId}
+                authorNickname={item.authorNickname}
+                authorProfileImageUrl={item.authorProfileImageUrl}
+                rating={item.rating}
+                createdTime={item.createdTime}
+                content={item.content}
+                keywords={item.keywords} // keywordId, content, type
+                commentCount={item.commentCount}
+                onClick={() => handleReviewClick(item)}
+                tourItemId={tourItemId}
+                contentTypeId={contentTypeId}
+              />
+            ),
+          )}
+        </div>
       )}
       {reviewDataLength == 0 && (
         <div
