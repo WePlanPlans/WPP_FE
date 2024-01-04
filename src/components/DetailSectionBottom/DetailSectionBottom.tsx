@@ -1,4 +1,4 @@
-import { DetailReviews } from '.';
+import { DetailReviews, DetailReviewStats } from '.';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getDetailTours } from '@api/tours';
@@ -14,6 +14,7 @@ export default function DetailSectionBottom() {
   if (data) {
     return (
       <>
+        <DetailReviewStats />
         <DetailReviews reviewData={data} />
       </>
     );
