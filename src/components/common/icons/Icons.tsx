@@ -2,6 +2,9 @@ interface IconProps {
   size?: number;
   color?: string;
   fill?: string;
+  onClick?: () => void;
+  className?: string;
+  isHalf?: boolean;
 }
 
 export const HomeIcon: React.FC<IconProps> = ({
@@ -11,20 +14,16 @@ export const HomeIcon: React.FC<IconProps> = ({
 }) => {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
-      viewBox="0 0 23 23"
-      color={color}
-      fill={fill}
-      xmlns="http://www.w3.org/2000/svg">
-      <g id="Home">
-        <path
-          id="Rectangle 74"
-          d="M1.69238 10.6334C1.69238 9.35824 2.27632 8.15325 3.2772 7.36309L9.00636 2.84006C10.5202 1.64497 12.6563 1.64497 14.1701 2.84006L19.8992 7.36309C20.9001 8.15325 21.484 9.35824 21.484 10.6334V17.4684C21.484 19.7696 19.6186 21.6351 17.3174 21.6351H15.7549C15.1796 21.6351 14.7132 21.1687 14.7132 20.5934V17.4684C14.7132 16.3178 13.7805 15.3851 12.6299 15.3851H10.5465C9.39596 15.3851 8.46322 16.3178 8.46322 17.4684V20.5934C8.46322 21.1687 7.99685 21.6351 7.42155 21.6351H5.85905C3.55786 21.6351 1.69238 19.7696 1.69238 17.4684L1.69238 10.6334Z"
-          stroke={color}
-          stroke-width="1.5625"
-        />
-      </g>
+      viewBox="0 0 25 25"
+      fill={fill}>
+      <path
+        d="M2.94556 11.3541C2.94556 10.1299 3.50614 8.97315 4.46698 8.21459L9.96698 3.87248C11.4202 2.72519 13.4709 2.72519 14.9241 3.87248L20.4241 8.21459C21.385 8.97315 21.9456 10.1299 21.9456 11.3541V17.9157C21.9456 20.1248 20.1547 21.9157 17.9456 21.9157H16.4456C15.8933 21.9157 15.4456 21.468 15.4456 20.9157V17.9157C15.4456 16.8111 14.5501 15.9157 13.4456 15.9157H11.4456C10.341 15.9157 9.44556 16.8111 9.44556 17.9157V20.9157C9.44556 21.468 8.99784 21.9157 8.44556 21.9157H6.94556C4.73642 21.9157 2.94556 20.1248 2.94556 17.9157L2.94556 11.3541Z"
+        stroke={color}
+        strokeWidth="1.5"
+      />
     </svg>
   );
 };
@@ -36,100 +35,82 @@ export const CalendarIcon: React.FC<IconProps> = ({
 }) => {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
-      viewBox="0 0 21 22"
-      fill={fill}
-      xmlns="http://www.w3.org/2000/svg">
-      <g id="Calendar">
-        <rect
-          id="Rectangle 2"
-          x="1.5614"
-          y="2.87842"
-          width="18"
-          height="18"
-          rx="5"
-          stroke={color}
-          stroke-width="1.5"
-        />
-        <path
-          id="Line"
-          d="M1.5614 7.87842H19.5614"
-          stroke={color}
-          stroke-width="1.5"
-          stroke-linejoin="round"
-        />
-        <path
-          id="Line_2"
-          d="M15.0614 1.37842L15.0614 4.37842"
-          stroke={color}
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-        <path
-          id="Line_3"
-          d="M6.0614 1.37842L6.0614 4.37842"
-          stroke={color}
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-        <g id="Group 220">
-          <g id="Group 218">
-            <path
-              id="Line_4"
-              d="M5.0614 11.8784H6.0614"
-              stroke={color}
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              id="Line_5"
-              d="M10.0614 11.8784H11.0614"
-              stroke={color}
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              id="Line_6"
-              d="M15.0614 11.8784H16.0614"
-              stroke={color}
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </g>
-          <g id="Group 219">
-            <path
-              id="Line_7"
-              d="M5.0614 15.8784H6.0614"
-              stroke={color}
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              id="Line_8"
-              d="M10.0614 15.8784H11.0614"
-              stroke={color}
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              id="Line_9"
-              d="M15.0614 15.8784H16.0614"
-              stroke={color}
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </g>
-        </g>
-      </g>
+      viewBox="0 0 25 25"
+      fill={fill}>
+      <rect
+        x="3.1955"
+        y="4.66537"
+        width="18"
+        height="18"
+        rx="5"
+        stroke={color}
+        strokeWidth="1.5"
+      />
+      <path
+        d="M3.1955 9.66537H21.1955"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.6956 3.16537L16.6956 6.16537"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7.69556 3.16537L7.69556 6.16537"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.69543 13.6646H7.69543"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11.6954 13.6646H12.6954"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.6955 13.6646H17.6955"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.69543 17.6654H7.69543"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11.6954 17.6654H12.6954"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.6955 17.6654H17.6955"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 };
@@ -141,19 +122,16 @@ export const HeartIcon: React.FC<IconProps> = ({
 }) => {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
       viewBox="0 0 25 25"
-      fill={fill}
-      xmlns="http://www.w3.org/2000/svg">
-      <g id="&#236;&#176;&#156;">
-        <path
-          id="Heart"
-          d="M4.07828 13.1744L10.2393 19.6674C11.4223 20.9142 13.4088 20.9142 14.5918 19.6674L20.7528 13.1744C22.9698 10.8379 22.9698 7.04976 20.7528 4.71329C18.5358 2.37682 14.9413 2.37682 12.7243 4.71329C12.5565 4.89019 12.2746 4.89019 12.1067 4.71329C9.88974 2.37682 6.29528 2.37682 4.07828 4.71329C1.86128 7.04976 1.86128 10.8379 4.07828 13.1744Z"
-          stroke={color}
-          stroke-width="1.5"
-        />
-      </g>
+      fill={fill}>
+      <path
+        d="M4.56662 14.1289L10.7276 20.622C11.9106 21.8687 13.8971 21.8687 15.0801 20.622L21.2411 14.1289C23.4581 11.7925 23.4581 8.00429 21.2411 5.66782C19.0241 3.33135 15.4297 3.33135 13.2127 5.66782V5.66782C13.0448 5.84472 12.7629 5.84472 12.5951 5.66782V5.66782C10.3781 3.33135 6.78362 3.33135 4.56662 5.66782C2.34962 8.00429 2.34962 11.7925 4.56662 14.1289Z"
+        stroke={color}
+        strokeWidth="1.5"
+      />
     </svg>
   );
 };
@@ -165,28 +143,24 @@ export const UserIcon: React.FC<IconProps> = ({
 }) => {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
-      viewBox="0 0 16 20"
-      fill={fill}
-      xmlns="http://www.w3.org/2000/svg">
-      <g id="User">
-        <circle
-          id="Ellipse 33"
-          cx="4"
-          cy="4"
-          r="4"
-          transform="matrix(-1 0 0 1 12.0197 1.37842)"
-          stroke={color}
-          stroke-width="1.5"
-        />
-        <path
-          id="Rectangle 2"
-          d="M1.01965 15.3131C1.01965 14.4527 1.56051 13.6853 2.37074 13.3959V13.3959C6.02369 12.0913 10.0156 12.0913 13.6686 13.3959V13.3959C14.4788 13.6853 15.0197 14.4527 15.0197 15.3131V16.6286C15.0197 17.816 13.9679 18.7282 12.7924 18.5602L11.838 18.4239C9.3053 18.0621 6.734 18.0621 4.20128 18.4239L3.24686 18.5602C2.07136 18.7282 1.01965 17.816 1.01965 16.6286V15.3131Z"
-          stroke={color}
-          stroke-width="1.5"
-        />
-      </g>
+      viewBox="0 0 25 25"
+      fill={fill}>
+      <circle
+        cx="4"
+        cy="4"
+        r="4"
+        transform="matrix(-1 0 0 1 16.6538 3.91537)"
+        stroke={color}
+        strokeWidth="1.5"
+      />
+      <path
+        d="M5.65381 17.85C5.65381 16.9897 6.19466 16.2222 7.0049 15.9328V15.9328C10.6578 14.6282 14.6498 14.6282 18.3027 15.9328V15.9328C19.113 16.2222 19.6538 16.9897 19.6538 17.85V19.1656C19.6538 20.353 18.6021 21.2651 17.4266 21.0972L16.4722 20.9609C13.9395 20.599 11.3682 20.599 8.83543 20.9609L7.88101 21.0972C6.70551 21.2651 5.65381 20.353 5.65381 19.1656V17.85Z"
+        stroke={color}
+        strokeWidth="1.5"
+      />
     </svg>
   );
 };
@@ -208,7 +182,7 @@ export const CheckIcon: React.FC<IconProps> = ({
           id="Vector 734"
           d="M3.12079 5.40039L8.41553 10.6951L13.7103 5.40039"
           stroke={color}
-          stroke-linecap="round"
+          strokeLinecap="round"
         />
       </g>
     </svg>
@@ -232,8 +206,8 @@ export const LeftIcon: React.FC<IconProps> = ({
           id="Vector"
           d="M4.74112 1.18604L1.44823 4.47893C1.0577 4.86945 1.0577 5.50262 1.44823 5.89314L4.74112 9.18604M1.74112 5.18604L15.7411 5.18604"
           stroke={color}
-          stroke-width="1.5"
-          stroke-linecap="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
         />
       </g>
     </svg>
@@ -285,23 +259,23 @@ export const PenIcon: React.FC<IconProps> = ({
             id="Rectangle 74"
             d="M12.9793 3.21944C13.6297 2.56808 14.6846 2.56768 15.3354 3.21855L17.412 5.29509C18.0573 5.94042 18.064 6.98512 17.427 7.63868L9.73273 15.5331C9.26238 16.0156 8.61727 16.2878 7.94365 16.2877L5.65019 16.2876C4.9395 16.2876 4.37194 15.6952 4.40183 14.9846L4.50029 12.6437C4.52662 12.0177 4.78681 11.4244 5.22936 10.9811L12.9793 3.21944Z"
             stroke={color}
-            stroke-width="1.25"
+            strokeWidth="1.25"
           />
           <path
             id="Line"
             d="M11.2227 5.12033L15.3475 9.24512"
             stroke={color}
-            stroke-width="1.25"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.25"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             id="Line_2"
             d="M13.2701 16.2266H18.3715"
             stroke={color}
-            stroke-width="1.25"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="1.25"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </g>
       </g>
@@ -359,19 +333,43 @@ export const StarIcon: React.FC<IconProps> = ({
   size = 25,
   color = 'black',
   fill = 'none',
+  onClick,
+  className,
+  isHalf,
 }) => {
+  const renderLinearGradient = () => {
+    if (isHalf) {
+      return (
+        <defs>
+          <linearGradient id="grad">
+            <stop offset="50%" stopColor="#FFEC3E" />
+            <stop offset="50%" stopColor="#EDEDED" />
+          </linearGradient>
+        </defs>
+      );
+    }
+    return null;
+  };
+
+  const renderStarPath = () => (
+    <path
+      id="Star 5"
+      d="M7.46447 0.974901C7.76382 0.0535908 9.06723 0.0535913 9.36658 0.974902L10.4362 4.2667C10.57 4.67872 10.954 4.95768 11.3872 4.95768H14.8484C15.8171 4.95768 16.2199 6.1973 15.4362 6.7667L12.636 8.80114C12.2855 9.05578 12.1389 9.50715 12.2728 9.91917L13.3423 13.211C13.6417 14.1323 12.5872 14.8984 11.8035 14.329L9.00331 12.2946C8.65283 12.0399 8.17823 12.0399 7.82774 12.2946L5.02757 14.329C4.24386 14.8984 3.18938 14.1323 3.48873 13.211L4.5583 9.91917C4.69217 9.50715 4.54552 9.05578 4.19503 8.80114L1.39486 6.7667C0.611146 6.1973 1.01392 4.95768 1.98265 4.95768H5.44385C5.87707 4.95768 6.26103 4.67872 6.3949 4.2667L7.46447 0.974901Z"
+      stroke={color}
+      fill={isHalf ? 'url(#grad)' : fill}
+    />
+  );
+
   return (
     <svg
+      onClick={onClick}
+      className={className}
       width={size}
       height={size}
       viewBox="0 0 16 15"
-      fill={fill}
       xmlns="http://www.w3.org/2000/svg">
-      <path
-        id="Star 5"
-        d="M7.46447 0.974901C7.76382 0.0535908 9.06723 0.0535913 9.36658 0.974902L10.4362 4.2667C10.57 4.67872 10.954 4.95768 11.3872 4.95768H14.8484C15.8171 4.95768 16.2199 6.1973 15.4362 6.7667L12.636 8.80114C12.2855 9.05578 12.1389 9.50715 12.2728 9.91917L13.3423 13.211C13.6417 14.1323 12.5872 14.8984 11.8035 14.329L9.00331 12.2946C8.65283 12.0399 8.17823 12.0399 7.82774 12.2946L5.02757 14.329C4.24386 14.8984 3.18938 14.1323 3.48873 13.211L4.5583 9.91917C4.69217 9.50715 4.54552 9.05578 4.19503 8.80114L1.39486 6.7667C0.611146 6.1973 1.01392 4.95768 1.98265 4.95768H5.44385C5.87707 4.95768 6.26103 4.67872 6.3949 4.2667L7.46447 0.974901Z"
-        stroke={color}
-      />
+      {renderLinearGradient()}
+      {renderStarPath()}
     </svg>
   );
 };
@@ -397,15 +395,15 @@ export const PlusIcon: React.FC<IconProps> = ({
             id="Vector 728"
             d="M18.7384 28.5547H36.0937"
             stroke={color}
-            stroke-width="3"
-            stroke-linecap="round"
+            strokeWidth="3"
+            strokeLinecap="round"
           />
           <path
             id="Vector 729"
             d="M27.416 19.877L27.416 37.2323"
             stroke={color}
-            stroke-width="3"
-            stroke-linecap="round"
+            strokeWidth="3"
+            strokeLinecap="round"
           />
         </g>
       </g>
@@ -469,29 +467,29 @@ export const ChatIcon: React.FC<IconProps> = ({
             id="Vector"
             d="M10.9155 7.5918C10.6394 7.5918 10.4155 7.36794 10.4155 7.0918C10.4155 6.81565 10.6394 6.5918 10.9155 6.5918C11.1917 6.5918 11.4155 6.81565 11.4155 7.0918C11.4155 7.36794 11.1917 7.5918 10.9155 7.5918Z"
             stroke={color}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             id="Vector_2"
             d="M7.66553 7.5918C7.38938 7.5918 7.16553 7.36794 7.16553 7.0918C7.16553 6.81565 7.38938 6.5918 7.66553 6.5918C7.94167 6.5918 8.16553 6.81565 8.16553 7.0918C8.16553 7.36794 7.94167 7.5918 7.66553 7.5918Z"
             stroke={color}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             id="Vector_3"
             d="M4.41553 7.5918C4.13938 7.5918 3.91553 7.36794 3.91553 7.0918C3.91553 6.81565 4.13938 6.5918 4.41553 6.5918C4.69167 6.5918 4.91553 6.81565 4.91553 7.0918C4.91553 7.36794 4.69167 7.5918 4.41553 7.5918Z"
             stroke={color}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             id="Vector_4"
             d="M7.41553 0.591798C8.59129 0.592164 9.74493 0.911437 10.7536 1.51561C11.7622 2.11979 12.5881 2.98623 13.1433 4.02267C13.6985 5.05911 13.9621 6.22673 13.9061 7.40115C13.8502 8.57558 13.4767 9.71284 12.8255 10.6918L13.9155 13.5918L10.2655 12.9318C9.38662 13.3613 8.4221 13.5869 7.44388 13.5917C6.46566 13.5966 5.49895 13.3805 4.61584 12.9598C3.73272 12.539 2.95596 11.9243 2.34347 11.1616C1.73097 10.3988 1.29854 9.50765 1.07841 8.55451C0.858272 7.60136 0.856112 6.61082 1.07209 5.65673C1.28806 4.70263 1.7166 3.80958 2.32576 3.04416C2.93492 2.27874 3.70899 1.66069 4.59027 1.23607C5.47154 0.811449 6.43729 0.591221 7.41553 0.591798V0.591798Z"
             stroke={color}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </g>
       </g>
@@ -527,17 +525,17 @@ export const CloseIcon: React.FC<IconProps> = ({
           id="Line"
           d="M5.04033 5.62725L10.9731 11.5601"
           stroke={color}
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           id="Line_2"
           d="M10.9731 5.62725L5.04028 11.5601"
           stroke={color}
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
     </svg>
@@ -567,21 +565,21 @@ export const DeleteIcon: React.FC<IconProps> = ({
             id="Line"
             d="M9.74268 11.0928L9.74268 7.09277"
             stroke={color}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             id="Line_2"
             d="M7.07617 11.0928L7.07617 7.09277"
             stroke={color}
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
             id="Rectangle 4"
             d="M11.076 3.75928L10.7132 2.67097C10.5318 2.12652 10.0222 1.75928 9.44833 1.75928H7.37035C6.79645 1.75928 6.28693 2.12652 6.10544 2.67097L5.74268 3.75928"
             stroke={color}
-            stroke-linecap="round"
+            strokeLinecap="round"
           />
         </g>
       </g>
@@ -647,7 +645,7 @@ export const DownIcon: React.FC<IconProps> = ({
           id="Vector 734"
           d="M3.12079 5.40039L8.41553 10.6951L13.7103 5.40039"
           stroke={color}
-          stroke-linecap="round"
+          strokeLinecap="round"
         />
       </g>
     </svg>
@@ -674,17 +672,17 @@ export const SearchIcon: React.FC<IconProps> = ({
           rx="5.33333"
           ry="5.33333"
           stroke={color}
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           id="Line"
           d="M10.4155 10.5793L13.7489 13.9127"
           stroke={color}
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
     </svg>

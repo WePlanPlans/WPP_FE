@@ -1,18 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { ReactComponent as CloseIcon } from '@assets/images/DeleteInput.svg';
 import { ReactComponent as LeftIcon } from '@assets/images/Left.svg';
 import { ReactComponent as SearchIcon } from '@assets/images/Search.svg';
-import { ReactComponent as CloseIcon } from '@assets/images/DeleteInput.svg';
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-interface SearchInputProps {
-  onInputChange: (value: string) => void;
-  selectedRegion: string | number;
-}
-
-export const SearchInput: React.FC<SearchInputProps> = ({
-  onInputChange,
-  selectedRegion,
-}) => {
+const SearchInput = () => {
   const [inputValue, setInputValue] = useState('');
   const navigate = useNavigate();
 
@@ -22,19 +14,25 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 
   const clearInput = () => {
     setInputValue('');
-    onInputChange('');
   };
 
-  useEffect(() => {
-    setInputValue(selectedRegion.toString());
-  }, [selectedRegion]);
+  // useEffect(() => {
+  //   setInputValue(selectedRegion);
+  // }, [selectedRegion]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setInputValue(value);
-    onInputChange(value);
+    setInputValue(e.target.value);
   };
-  console.log(inputValue);
+
+  // 엔터 누르면 검색키워드 쿼리스트링으로 추가
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      const queryParams = new URLSearchParams(window.location.search);
+      queryParams.set('searchWord', inputValue);
+      navigate(`?${queryParams.toString()}`);
+    }
+  };
+
   return (
     <>
       <div className="relative mb-3 flex items-center">
@@ -42,10 +40,10 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         <SearchIcon className="absolute left-[36px] top-1/2  -translate-y-1/2 transform" />
         <input
           className="body1 ml-2.5 h-[40px] w-full items-center rounded-lg bg-gray1 pl-[32px] pr-2.5 focus:outline-none"
-          onClick={() => {}}
           placeholder="어디로 떠나세요?"
           value={inputValue}
           onChange={handleChange}
+          onKeyPress={handleKeyPress}
         />
         {inputValue && (
           <CloseIcon
@@ -57,3 +55,4 @@ export const SearchInput: React.FC<SearchInputProps> = ({
     </>
   );
 };
+export default React.memo(SearchInput);

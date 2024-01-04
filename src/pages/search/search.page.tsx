@@ -1,32 +1,37 @@
 import { RegionSelect } from '@components/search/RegionSelect';
-import { SearchInput } from '@components/search/SearchInput';
+import SearchInput from '@components/search/SearchInput';
 import { SearchResult } from '@components/search/SearchResult';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export const Search = () => {
-  const [searchValue, setSearchValue] = useState('');
-  const [selectedRegion, setSelectedRegion] = useState('');
+  const location = useLocation();
 
-  const handleRegionChange = (selectedRegion: string | number) => {
-    console.log('선택한 지역:', selectedRegion);
-    setSelectedRegion(selectedRegion.toString());
-    setSearchValue(selectedRegion.toString());
-  };
+  const queryParams = new URLSearchParams(location.search);
+  const regionFromQuery = queryParams.get('region');
+  const [selectedRegion, setSelectedRegion] = useState(regionFromQuery);
+  const [searchWord, setSearchWord] = useState('');
 
-  const handleInputChange = (value: string) => {
-    setSearchValue(value);
-  };
+  useEffect(() => {
+    if (regionFromQuery) {
+      setSelectedRegion(regionFromQuery);
+    } else {
+      setSelectedRegion('');
+    }
+
+    const searchWordFromQuery = queryParams.get('searchWord');
+    if (searchWordFromQuery) {
+      setSearchWord(searchWordFromQuery);
+    }
+  }, [location]);
 
   return (
     <>
-      <SearchInput
-        onInputChange={handleInputChange}
-        selectedRegion={selectedRegion}
-      />
-      {searchValue ? (
-        <SearchResult />
+      <SearchInput />
+      {searchWord ? (
+        <SearchResult selectedRegion={selectedRegion} searchWord={searchWord} />
       ) : (
-        <RegionSelect onRegionChange={handleRegionChange} />
+        <RegionSelect />
       )}
     </>
   );

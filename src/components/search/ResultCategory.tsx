@@ -1,15 +1,37 @@
 import { ButtonWhite } from '@components/common/button/Button';
 import { ResultItem } from './ResultItem';
+import { TourType } from '@/@types/tours.types';
+import { InfiniteQueryObserverResult } from '@tanstack/react-query';
 
-export const ResultCategory = () => {
+interface ResultCategoryProps {
+  data: TourType[];
+  category: string;
+  fetchNextPage: (() => Promise<InfiniteQueryObserverResult<any, any>>) | null;
+  hasNextPage: boolean;
+}
+
+export const ResultCategory = ({
+  data,
+  category,
+  fetchNextPage,
+  hasNextPage,
+}: ResultCategoryProps) => {
+  // console.log('hasNextPage', hasNextPage);
   return (
     <>
-      <h2 className="headline2 my-2.5">숙소</h2>
-      <ResultItem />
-      <ResultItem />
-      <ButtonWhite className="my-2" onClick={() => {}}>
-        숙소 더 보기
-      </ButtonWhite>
+      <h2 className="headline2 my-2.5">{category}</h2>
+      {data.map((item) => (
+        <ResultItem key={item.id} result={item} />
+      ))}
+      {hasNextPage ? (
+        <ButtonWhite
+          className="my-2"
+          onClick={() => fetchNextPage && fetchNextPage()}>
+          더보기
+        </ButtonWhite>
+      ) : (
+        <div className="mt-3 text-center text-gray3">검색 결과의 끝입니다.</div>
+      )}
     </>
   );
 };

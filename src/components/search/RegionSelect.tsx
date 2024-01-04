@@ -1,19 +1,24 @@
 import { AREA_CODE } from '@/constants';
-import { RadioSelect } from '@components/common/radio/Radio';
+import { ToggleValue } from '@components/common/toggleGroup/ToggleValue';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-interface RegionSelectProps {
-  onRegionChange: (selectedRegion: string | number) => void;
-}
+export const RegionSelect = ({}) => {
+  const navigate = useNavigate();
+  const [selectedRegion, setSelectedRegion] = useState('');
+  // 지역값 쿼리스트링으로 저장
+  const onRegionSelect = (value: string) => {
+    if (value === selectedRegion) {
+      navigate('?');
+      setSelectedRegion('');
+    } else {
+      navigate(`?region=${encodeURIComponent(value)}`);
+      setSelectedRegion(value);
+    }
+  };
 
-export const RegionSelect: React.FC<RegionSelectProps> = ({
-  onRegionChange,
-}) => {
+  console.log('');
   return (
-    <RadioSelect
-      items={AREA_CODE}
-      ariaLabel="지역선택"
-      onSelectionChange={onRegionChange}
-      // gridCols={3}
-    />
+    <ToggleValue values={Object.values(AREA_CODE)} onToggle={onRegionSelect} />
   );
 };
