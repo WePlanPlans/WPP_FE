@@ -5,6 +5,7 @@ interface IconProps {
   onClick?: () => void;
   className?: string;
   isHalf?: boolean;
+  cursor?: string;
 }
 
 export const HomeIcon: React.FC<IconProps> = ({
@@ -169,13 +170,17 @@ export const CheckIcon: React.FC<IconProps> = ({
   size = 25,
   color = 'black',
   fill = 'none',
+  onClick,
+  cursor = 'pointer',
 }) => {
   return (
     <svg
+      onClick={onClick}
       width={size}
       height={size}
       viewBox="0 0 17 17"
       fill={fill}
+      cursor={cursor}
       xmlns="http://www.w3.org/2000/svg">
       <g id="Group 36659">
         <path
@@ -193,13 +198,17 @@ export const LeftIcon: React.FC<IconProps> = ({
   size = 25,
   color = 'black',
   fill = 'none',
+  onClick,
+  cursor = 'pointer',
 }) => {
   return (
     <svg
+      onClick={onClick}
       width={size}
       height={size}
       viewBox="0 0 17 10"
       fill={fill}
+      cursor={cursor}
       xmlns="http://www.w3.org/2000/svg">
       <g id="Left">
         <path
@@ -208,6 +217,32 @@ export const LeftIcon: React.FC<IconProps> = ({
           stroke={color}
           strokeWidth="1.5"
           strokeLinecap="round"
+        />
+      </g>
+    </svg>
+  );
+};
+
+export const BackIcon: React.FC<IconProps> = ({
+  size = 9,
+  fill = '#1E1E1E',
+  onClick,
+  cursor = 'pointer',
+}) => {
+  return (
+    <svg
+      onClick={onClick}
+      width={size}
+      height="16"
+      viewBox="0 0 9 16"
+      fill={fill}
+      cursor={cursor}
+      xmlns="http://www.w3.org/2000/svg">
+      <g id="Back">
+        <path
+          d="M8.70308 0.743953C9.0189 1.02827 9.04218 1.51229 8.75507 1.82503L3.04497 8.04492L8.75506 14.2648C9.04218 14.5776 9.0189 15.0616 8.70308 15.3459C8.38725 15.6302 7.89847 15.6072 7.61136 15.2944L0.956054 8.04492L7.61136 0.795433C7.89847 0.482685 8.38725 0.459636 8.70308 0.743953Z"
+          fillRule="evenodd"
+          clipRule="evenodd"
         />
       </g>
     </svg>
@@ -223,15 +258,15 @@ export const MapIcon: React.FC<IconProps> = ({
     <svg
       width={size}
       height={size}
-      viewBox="0 0 17 17"
+      viewBox="2 -1.5 20 20"
       fill={fill}
       xmlns="http://www.w3.org/2000/svg">
       <g id="Group 36689">
         <g id="Group">
           <path
             id="Exclude"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M7.63905 13.4649C8.02061 14.0124 8.81045 14.0124 9.192 13.4649C10.4794 11.6176 12.9155 7.87993 12.9155 6.04785C12.9155 4.85438 12.4414 3.70978 11.5975 2.86587C10.7536 2.02196 9.609 1.54785 8.41553 1.54785C7.22205 1.54785 6.07746 2.02196 5.23355 2.86587C4.38963 3.70978 3.91553 4.85438 3.91553 6.04785C3.91553 7.87993 6.35168 11.6176 7.63905 13.4649ZM9.91553 6.04785C9.91553 6.87628 9.24395 7.54785 8.41553 7.54785C7.5871 7.54785 6.91553 6.87628 6.91553 6.04785C6.91553 5.21942 7.5871 4.54785 8.41553 4.54785C9.24395 4.54785 9.91553 5.21942 9.91553 6.04785Z"
             stroke={color}
           />
@@ -703,8 +738,8 @@ export const CameraIcon: React.FC<IconProps> = ({
       xmlns="http://www.w3.org/2000/svg">
       <path
         id="Vector"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M3.14101 1.46934C3.49974 0.877766 4.14214 0.460938 4.87796 0.460938H7.5831C8.31891 0.460938 8.96132 0.877766 9.32005 1.46934C9.42939 1.64966 9.55178 1.839 9.67791 2.01208C9.73825 2.0949 9.85609 2.16106 10.0196 2.16106H10.0871C11.3044 2.16106 12.2911 3.14781 12.2911 4.36491V8.7254C12.2911 9.94256 11.3044 10.9293 10.0873 10.9293H2.37378C1.15662 10.9293 0.169922 9.94256 0.169922 8.7254V4.36491C0.169922 3.14781 1.15643 2.16106 2.37365 2.16106H2.44121C2.6047 2.16106 2.7228 2.0949 2.78315 2.01208C2.90928 1.839 3.03167 1.64966 3.14101 1.46934ZM4.87796 1.56287C4.57032 1.56287 4.26555 1.74005 4.08324 2.0407C3.9634 2.23833 3.82358 2.45537 3.67372 2.66103C3.37133 3.076 2.89391 3.26298 2.44147 3.26298H2.37391C1.76539 3.26298 1.27185 3.75628 1.27185 4.36491V8.7254C1.27185 9.33398 1.7652 9.82733 2.37378 9.82733H10.0873C10.6959 9.82733 11.1892 9.33398 11.1892 8.7254V4.36491C11.1892 3.75628 10.6959 3.26298 10.0874 3.26298H10.0199C9.56741 3.26298 9.08973 3.076 8.78734 2.66103C8.63747 2.45537 8.49766 2.23833 8.37782 2.0407C8.19551 1.74005 7.89073 1.56287 7.5831 1.56287H4.87796ZM6.23053 4.31769C5.31766 4.31769 4.57764 5.05771 4.57764 5.97058C4.57764 6.88345 5.31766 7.62347 6.23053 7.62347C7.1434 7.62347 7.88342 6.88345 7.88342 5.97058C7.88342 5.05771 7.1434 4.31769 6.23053 4.31769ZM3.47571 5.97058C3.47571 4.44913 4.70908 3.21576 6.23053 3.21576C7.75197 3.21576 8.98535 4.44913 8.98535 5.97058C8.98535 7.49203 7.75197 8.7254 6.23053 8.7254C4.70908 8.7254 3.47571 7.49202 3.47571 5.97058Z"
         stroke={color}
       />

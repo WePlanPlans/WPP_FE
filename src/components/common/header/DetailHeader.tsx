@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { ReactComponent as LeftIcon } from '../../../assets/images/Left.svg';
+import { BackIcon } from '../icons/Icons';
 
 export default function DetailHeader() {
   const navigate = useNavigate();
@@ -9,8 +9,8 @@ export default function DetailHeader() {
   };
 
   return (
-    <header className="flex h-6 h-[48px] w-full items-center pl-1">
-      <LeftIcon className="cursor-pointer" onClick={goBack} />
+    <header className="relative mb-5 flex w-full items-center justify-start gap-2.5 bg-white px-1">
+      <BackIcon onClick={goBack} />
     </header>
   );
 }
