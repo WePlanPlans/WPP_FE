@@ -12,13 +12,19 @@ import Signup from '@pages/signup/signup.page';
 import Signin from '@pages/signin/signin.page';
 
 export function MainLayout() {
+  const location = useLocation();
+  const hideNavPaths = ['/signup', '/signin'];
+  const showNav = !hideNavPaths.some((path) =>
+    location.pathname.includes(path),
+  );
+
   return (
     <div className="mx-auto my-0 flex min-h-[100vh] max-w-[412px] flex-col bg-white ">
       <Header />
-      <div className="mb-auto px-[20px] py-0">
+      <div className="px-[20px] py-0">
         <Outlet />
       </div>
-      <Nav />
+      {showNav && <Nav />}
     </div>
   );
 }
