@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { ReactComponent as LeftIcon } from '@assets/images/Left.svg';
+import { LeftIcon } from '../icons/Icons';
 
 export default function ReviewHeader() {
   const navigate = useNavigate();
