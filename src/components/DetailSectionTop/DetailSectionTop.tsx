@@ -13,26 +13,26 @@ import {
 
 export default function DetailSectionTop() {
   const params = useParams();
-  const tourId = Number(params.id);
+  const tourItemId = Number(params.id);
 
   const detailQuery = useQuery({
-    queryKey: ['details', tourId],
-    queryFn: () => getDetailTours(tourId),
+    queryKey: ['details', tourItemId],
+    queryFn: () => getDetailTours(tourItemId),
   });
 
   const reviewQuery = useQuery({
-    queryKey: ['reviews', tourId],
-    queryFn: () => getToursReviews(tourId),
+    queryKey: ['reviews', tourItemId],
+    queryFn: () => getToursReviews(tourItemId),
   });
 
   if (detailQuery.error || reviewQuery.error) console.log('error - 예외 처리');
 
   return detailQuery.data && reviewQuery.data?.data.data ? (
-    <div className="max-h-full">
+    <div className="mb-[20px] max-h-full">
       <DetailToursInfo infoData={detailQuery.data} />
       <DetailToursRating reviewData={reviewQuery.data.data.data} />
       <DetailToursMap mapData={detailQuery.data} />
-      <DetailToursButtons />
+      <DetailToursButtons reviewData={detailQuery.data} />
     </div>
   ) : null;
 }
