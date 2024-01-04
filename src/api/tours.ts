@@ -35,21 +35,33 @@ export const getDetailTours = async (tourItemId: number) => {
 // 여행 상품 리뷰 조회
 export const getToursReviews = async (tourItemId: number) => {
   const res = await client.get(`tours/${tourItemId}/reviews`);
-  console.log('res', res);
-  console.log('res.data.data.reviewInfos', res.data.data.reviewInfos);
   return res;
 };
 
 // 여행지 검색
-export const getToursSearch = async (
-  region: number,
-  category: number,
-  searchWord: string,
-  page: number,
-  size: number,
-) => {
-  const res = await client.get(
-    `tours/search?region=${region}&category=${category}&searchWord=${searchWord}&page=${page}&size=${size}}`,
-  );
+export const getToursSearch = async (options: {
+  region?: string;
+  searchWord: string;
+  category?: string;
+  page?: number;
+  size?: number;
+}) => {
+  const { region, searchWord, category, page = 0, size } = options;
+
+  let query = `tours/search?searchWord=${searchWord}`;
+
+  if (region) {
+    query += `&region=${region}`;
+  }
+
+  if (category) {
+    query += `&category=${category}`;
+  }
+  query += `&page=${page}`;
+
+  if (size) {
+    query += `&size=${size}`;
+  }
+  const res = await client.get(query);
   return res;
 };

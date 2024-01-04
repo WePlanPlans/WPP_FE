@@ -39,7 +39,7 @@ export const getMemberReviews = async () => {
 };
 
 // 나의 관심 여행지 삭제
-export const deleteMemberTours = async (tourId: number) => {
-  const res = await client.delete(`member/tours/${tourId}`);
+export const deleteMemberTours = async (tourItemId: number) => {
+  const res = await client.delete(`member/tours/${tourItemId}`);
   return res;
 };
