@@ -20,7 +20,7 @@ const SignupSurvey = () => {
   };
 
   return (
-    <div className="flex h-[95vh] flex-col">
+    <div className="flex h-[95vh] flex-col ">
       <div className="relative flex flex-col items-start justify-start gap-3 p-4">
         <p className="flex-shrink-0 flex-grow-0 text-center text-2xl font-bold text-black">
           어떤 여행을 좋아하세요?
@@ -29,8 +29,7 @@ const SignupSurvey = () => {
           여행 취향을 골라주세요.
         </p>
       </div>
-
-      <div className="flex-grow overflow-y-hidden">
+      <div className="scrollbar-hide flex-grow overflow-y-auto">
         {SignupSurveyList.map((section, sectionIndex) => (
           <div
             key={section.title}
@@ -40,7 +39,7 @@ const SignupSurvey = () => {
                 {section.title}
               </p>
             </div>
-            <div className="flex items-start justify-between gap-2">
+            <div className="flex items-start justify-between gap-2 ">
               {section.options.map((option, optionIndex) => (
                 <button
                   key={option.text}
