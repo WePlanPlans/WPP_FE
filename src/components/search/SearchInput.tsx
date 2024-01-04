@@ -1,6 +1,6 @@
-import { ReactComponent as CloseIcon } from '@assets/images/DeleteInput.svg';
-import { ReactComponent as LeftIcon } from '@assets/images/Left.svg';
-import { ReactComponent as SearchIcon } from '@assets/images/Search.svg';
+import { CloseIcon } from '@components/common/icons/Icons';
+import { LeftIcon } from '@components/common/icons/Icons';
+import { SearchIcon } from '@components/common/icons/Icons';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
