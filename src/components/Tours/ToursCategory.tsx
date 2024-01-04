@@ -2,6 +2,8 @@ import { RegionTypes, ToursCategoryProps } from '@/@types/tours.types';
 import ToursCategoryItem from './ToursCategoryItem';
 import { getPopularRegion } from '@api/region';
 import { useQuery } from '@tanstack/react-query';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 const ToursCategory = ({
   selectedRegion,
@@ -34,16 +36,19 @@ const ToursCategory = ({
 
   return (
     <div className="no-scrollbar my-3 flex w-[100%] overflow-scroll overflow-y-hidden bg-white">
-      {regions.map((region: RegionTypes, index: number) => {
-        return (
-          <ToursCategoryItem
-            key={index}
-            name={region.name}
-            isSelected={region.name === selectedRegion}
-            onSelect={handleSelectRegion}
-          />
-        );
-      })}
+      <Swiper spaceBetween={8} slidesPerView={'auto'}>
+        {regions.map((region: RegionTypes, index: number) => {
+          return (
+            <SwiperSlide key={index} className="w-[58px]">
+              <ToursCategoryItem
+                name={region.name}
+                isSelected={region.name === selectedRegion}
+                onSelect={handleSelectRegion}
+              />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </div>
   );
 };
