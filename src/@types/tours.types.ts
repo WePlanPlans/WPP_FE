@@ -32,4 +32,7 @@ export interface TourType {
   ratingAverage: number;
   reviewCount: number;
   smallThumbnailUrl: string;
+  tourAddress?: string;
+  longitude?: string;
+  latitude?: string;
 }
