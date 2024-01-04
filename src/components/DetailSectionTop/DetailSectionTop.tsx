@@ -28,7 +28,7 @@ export default function DetailSectionTop() {
   if (detailQuery.error || reviewQuery.error) console.log('error - 예외 처리');
 
   return detailQuery.data && reviewQuery.data?.data.data ? (
-    <div className="max-h-full">
+    <div className="mb-[20px] max-h-full">
       <DetailToursInfo infoData={detailQuery.data} />
       <DetailToursRating reviewData={reviewQuery.data.data.data} />
       <DetailToursMap mapData={detailQuery.data} />
