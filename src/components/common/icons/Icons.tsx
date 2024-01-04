@@ -509,8 +509,8 @@ export const ChatIcon: React.FC<IconProps> = ({
 };
 
 export const CloseIcon: React.FC<IconProps> = ({
-  size = 25,
-  color = 'black',
+  size = 16,
+  color = 'white',
   fill = 'none',
 }) => {
   return (
@@ -654,7 +654,7 @@ export const DownIcon: React.FC<IconProps> = ({
 };
 
 export const SearchIcon: React.FC<IconProps> = ({
-  size = 25,
+  size = 16,
   color = 'black',
   fill = 'none',
 }) => {
