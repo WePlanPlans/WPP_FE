@@ -8,6 +8,8 @@ import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
 import ReviewComment from '@pages/reviewComment/reviewComment.page';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import Signup from '@pages/signup/signup.page';
+import Signin from '@pages/signin/signin.page';
 
 export function MainLayout() {
   return (
@@ -37,6 +39,8 @@ const MainRouter = () => {
           <Route path="/search" element={<Search />} />
           <Route path="/reviewPosting/:id" element={<ReviewPosting />} />
           <Route path="/reviewComment/:id" element={<ReviewComment />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
         </Route>
       </Routes>
     </>
