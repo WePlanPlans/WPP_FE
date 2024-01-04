@@ -17,11 +17,11 @@ export default function DetailTourButtons({ reviewData }: reviewProps) {
       state: { title, contentTypeId },
     });
   };
-  
+
   useEffect(() => {
     console.log('contentTypeId', contentTypeId);
   }, [contentTypeId]);
-  
+
   return (
     <div className="mt-2 flex w-full items-center justify-between gap-3 py-2.5">
       <button className="flex h-[53px] w-1/2 items-center justify-center gap-2 rounded-lg border border-solid border-gray3 p-2">
@@ -30,7 +30,7 @@ export default function DetailTourButtons({ reviewData }: reviewProps) {
       </button>
       <button className="flex h-[53px] w-1/2 items-center justify-center gap-2 rounded-lg border border-solid border-gray3 p-2">
         <PenIcon />
-        <span className="text-sm" onClick={handlePostingReivew}>
+        <span onClick={handlePostingReivew} className="text-sm">
           리뷰 쓰기
         </span>
       </button>

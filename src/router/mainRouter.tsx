@@ -1,13 +1,19 @@
-import { Outlet, Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import { Header } from '@components/common/header';
 import { Nav } from '@components/common/nav';
 import Main from '@pages/main/main.page';
 import { Search } from '@pages/search/search.page';
 import Detail from '@pages/detail/detail.page';
-import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
-import ReviewComment from '@pages/reviewComment/reviewComment.page';
+import { useEffect } from 'react';
+import { ReviewPosting } from '@components/Review';
 
 export function MainLayout() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <div className="mx-auto my-0 flex min-h-[100vh] max-w-[412px] flex-col bg-white ">
       <Header />
