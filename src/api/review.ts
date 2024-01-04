@@ -31,7 +31,7 @@ export const getReviewComments = async (reviewId: number) => {
 };
 
 // 리뷰키워드조회
-export const getReviewKeywords = async (keywordType: string) => {
-  const res = await client.get(`reviews/keywords?keywordType=${keywordType}`);
+export const getReviewKeywords = async (code: number) => {
+  const res = await client.get(`reviews/keywords?code=${code}`);
   return res;
 };

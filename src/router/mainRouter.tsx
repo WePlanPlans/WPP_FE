@@ -3,9 +3,8 @@ import { Header } from '@components/common/header';
 import { Nav } from '@components/common/nav';
 import Main from '@pages/main/main.page';
 import Detail from '@pages/detail/detail.page';
+import PostingReview from '@pages/postingReview/postingReview.page';
 import { useEffect } from 'react';
-import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
-import ReviewComment from '@pages/reviewComment/reviewComment.page';
 
 export function MainLayout() {
   const location = useLocation();
@@ -32,8 +31,7 @@ const MainRouter = () => {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Main />} />
           <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/reviewPosting/:id" element={<ReviewPosting />} />
-          <Route path="/reviewComment/:id" element={<ReviewComment />} />
+          <Route path="/postingReview/:id" element={<PostingReview />} />
         </Route>
       </Routes>
     </>
