@@ -18,12 +18,12 @@ export default function Review() {
   const params = useParams();
   const navigate = useNavigate();
   const tourItemId = Number(params.id);
-  const [rating, setRating] = useRecoilState(ratingState);
-  const [keywords, setKeywords] = useRecoilState(keywordsState);
-  const [content, setContent] = useRecoilState(contentState);
+  const [rating] = useRecoilState(ratingState);
+  const [keywords] = useRecoilState(keywordsState);
+  const [content] = useRecoilState(contentState);
   const isModifyingReview = useRecoilValue(isModifyingReviewState);
   const targetReviewId = useRecoilValue(targetReviewIdState);
-  const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
+  const [_, setIsModalOpen] = useRecoilState(isModalOpenState);
 
   const handlePostReview = async () => {
     try {

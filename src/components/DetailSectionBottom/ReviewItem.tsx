@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { StarIcon, ChatIcon, MoreIcon } from '@components/common/icons/Icons';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import { isModalOpenState, titleState } from '@recoil/modal';
@@ -45,7 +44,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     tourItemId,
     contentTypeId,
   } = props;
-  const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
+  const [_, setIsModalOpen] = useRecoilState(isModalOpenState);
 
   const setRating = useSetRecoilState(ratingState);
   const setKeywords = useSetRecoilState(keywordsState);

@@ -2,7 +2,7 @@ import { UserEmailInputBox, UserPwInputBox } from '@components/user';
 import { useState } from 'react';
 
 const Signup = () => {
-  const [isActive, setIsActive] = useState<boolean>(false);
+  const [isActive] = useState<boolean>(false);
 
   return (
     <div className="relative">

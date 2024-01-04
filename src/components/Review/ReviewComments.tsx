@@ -2,18 +2,17 @@ import { getReviewComments } from '@api/review';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import CommentItem from './CommentItem';
-import { useSetRecoilState, useRecoilState } from 'recoil';
-import { isModalOpenState, titleState } from '@recoil/modal';
+import { useRecoilState } from 'recoil';
+import { isModalOpenState } from '@recoil/modal';
 import { Modal } from '@components/common/modal';
-import { useEffect } from 'react';
-import { targetCommentIdState } from '@recoil/review';
+// import { targetCommentIdState } from '@recoil/review';
 
 export default function ReviewComments() {
   const params = useParams();
   const reviewId = Number(params.id);
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
-  const setTitle = useSetRecoilState(titleState);
-  const setTargetCommentId = useSetRecoilState(targetCommentIdState);
+  // const setTitle = useSetRecoilState(titleState);
+  // const setTargetCommentId = useSetRecoilState(targetCommentIdState);
 
   const { data: reviewComments } = useQuery({
     queryKey: ['reviewComments'],

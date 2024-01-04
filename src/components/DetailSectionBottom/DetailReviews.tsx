@@ -1,7 +1,7 @@
 import { getToursReviews } from '@api/tours';
 import { useEffect, useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroller';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+// import InfiniteScroll from 'react-infinite-scroller';
+import { useQuery } from '@tanstack/react-query';
 import ReviewItem from './ReviewItem';
 import { StarIcon } from '@components/common/icons/Icons';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -80,24 +80,22 @@ export default function DetailReviews({ reviewData }: reviewProps) {
       </div>
       {reviewDataLength > 0 && (
         <div>
-          {toursReviews?.data?.data?.reviewInfos?.content?.map(
-            (item: any, index: number) => (
-              <ReviewItem
-                key={item.reviewId}
-                reviewId={item.reviewId}
-                authorNickname={item.authorNickname}
-                authorProfileImageUrl={item.authorProfileImageUrl}
-                rating={item.rating}
-                createdTime={item.createdTime}
-                content={item.content}
-                keywords={item.keywords} // keywordId, content, type
-                commentCount={item.commentCount}
-                onClick={() => handleReviewClick(item)}
-                tourItemId={tourItemId}
-                contentTypeId={contentTypeId}
-              />
-            ),
-          )}
+          {toursReviews?.data?.data?.reviewInfos?.content?.map((item: any) => (
+            <ReviewItem
+              key={item.reviewId}
+              reviewId={item.reviewId}
+              authorNickname={item.authorNickname}
+              authorProfileImageUrl={item.authorProfileImageUrl}
+              rating={item.rating}
+              createdTime={item.createdTime}
+              content={item.content}
+              keywords={item.keywords} // keywordId, content, type
+              commentCount={item.commentCount}
+              onClick={() => handleReviewClick(item)}
+              tourItemId={tourItemId}
+              contentTypeId={contentTypeId}
+            />
+          ))}
         </div>
       )}
       {reviewDataLength == 0 && (

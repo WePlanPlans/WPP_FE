@@ -1,5 +1,5 @@
 import { ButtonPrimary } from '@components/common/button/Button';
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { contentState, keywordsState } from '@recoil/review';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
@@ -9,7 +9,7 @@ interface ButtonProps {
 
 const ReviewButton = (props: ButtonProps) => {
   const { onClick } = props;
-  const [content, setContent] = useRecoilState(contentState);
+  const [content] = useRecoilState(contentState);
   const keywords = useRecoilValue(keywordsState);
   const [isContentValid, setIsContentValid] = useState(false);
   const [isKeywordsValid, setIsKeywordsValid] = useState(false);

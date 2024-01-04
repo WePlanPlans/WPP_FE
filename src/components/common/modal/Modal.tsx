@@ -1,25 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Modal from 'react-modal';
 import { DeleteIcon, PenIcon } from '@components/common/icons/Icons';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { titleState, isModalOpenState } from '@recoil/modal';
-import { deleteReview, putReview } from '@api/review';
-import { deleteComments, putComments } from '@api/comments';
+import { deleteReview } from '@api/review';
+import { deleteComments } from '@api/comments';
 import {
   ratingState,
   keywordsState,
   contentState,
-  commentState,
+  // commentState,
   targetReviewIdState,
-  reviewDataState,
+  // reviewDataState,
   targetCommentIdState,
-  commentContentState,
+  // commentContentState,
   isModifyingCommentState,
   isModifyingReviewState,
   tourItemIdState,
   contentTypeIdState,
 } from '@recoil/review';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface ModalProps {
   isOpen: boolean;
@@ -30,12 +30,12 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
   const rating = useRecoilValue(ratingState);
   const keywords = useRecoilValue(keywordsState);
   const content = useRecoilValue(contentState);
-  const comment = useRecoilValue(commentState);
+  // const comment = useRecoilValue(commentState);
   const title = useRecoilValue(titleState);
   const targetReviewId = useRecoilValue(targetReviewIdState);
-  const reviewData = useRecoilValue(reviewDataState);
+  // const reviewData = useRecoilValue(reviewDataState);
   const targetCommentId = useRecoilValue(targetCommentIdState);
-  const commentContent = useRecoilValue(commentContentState);
+  // const commentContent = useRecoilValue(commentContentState);
   const tourItemId = useRecoilValue(tourItemIdState);
   const contentTypeId = useRecoilValue(contentTypeIdState);
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
