@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getReviewKeywords } from '@api/review';
 import { useQuery } from '@tanstack/react-query';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { keywordsState } from '@recoil/review';
 
 interface Keyword {
@@ -51,7 +51,7 @@ export default function ReviewKeyword() {
   };
 
   // 5x2 형태로 배치하기 위해 행(row)과 열(column)을 계산
-  const rows = 5;
+  // const rows = 5;
   const columns = 2;
 
   return (
