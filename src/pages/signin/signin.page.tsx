@@ -28,7 +28,7 @@ const Signin = () => {
     }
   };
   return (
-    <div>
+    <div className="flex h-[95vh] flex-col">
       <Back />
       <div className="mb-auto">
         <div className="mb-16 mt-14 flex flex-col items-center">
@@ -55,7 +55,7 @@ const Signin = () => {
         </form>
       </div>
 
-      <div>
+      <div className="mt-auto ">
         <div className="body6 mb-5 flex h-4 items-center gap-4 text-gray4">
           <hr className="flex-auto" />
           또는
