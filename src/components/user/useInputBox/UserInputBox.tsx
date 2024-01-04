@@ -3,6 +3,7 @@ import { CloseIcon } from '@components/common/icons/Icons';
 
 interface Props {
   label: string;
+  subLabel?: string;
   type?: string;
   placeholder: string;
   // children: React.ReactNode;
@@ -13,6 +14,7 @@ interface Props {
 
 const UserInputBox = ({
   label,
+  subLabel,
   type = 'password',
   placeholder,
   // validifyCheckList,
@@ -29,6 +31,7 @@ const UserInputBox = ({
       <div className="flex flex-col gap-2">
         <label htmlFor={label} className="body3 text-main2">
           {label}
+          {subLabel && <span className="body5">{subLabel}</span>}
         </label>
         <div className="focus-within:border-main1 flex h-10 items-center border-b-[1.25px] border-solid border-gray3">
           <input
