@@ -4,6 +4,7 @@ import { CloseIcon } from '@components/common/icons/Icons';
 interface Props {
   label: string;
   type?: string;
+  name: string;
   placeholder: string;
   // children: React.ReactNode;
   validifyCheckList?: string[];
@@ -14,6 +15,7 @@ interface Props {
 const UserInputBox = ({
   label,
   type = 'password',
+  name,
   placeholder,
   // validifyCheckList,
   marginB = 'mb-6',
@@ -35,19 +37,19 @@ const UserInputBox = ({
             id={label}
             className="w-full text-sm font-normal outline-none placeholder:text-gray3"
             type={type}
+            name={name}
             placeholder={placeholder}
             required
             value={inputValue}
             onChange={onInputChange}
           />
           {inputValue && (
-            <button
-              type="button"
+            <div
               onClick={() => {
                 setInputValue('');
               }}>
               <CloseIcon size={20} color="white" fill="#888888" />
-            </button>
+            </div>
           )}
         </div>
       </div>

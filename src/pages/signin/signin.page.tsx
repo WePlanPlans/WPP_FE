@@ -1,9 +1,32 @@
+import { postEmailLogin } from '@api/auth';
 import { Button } from '@components/common';
 import Back from '@components/common/back/Back';
 import { KakaoIcon, LogoIcon } from '@components/common/icons/Icons';
 import { UserInputBox } from '@components/user';
+import { useNavigate } from 'react-router-dom';
 
 const Signin = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const emailValue = formData.get('email');
+    const pwValue = formData.get('pw');
+
+    const res = await postEmailLogin({
+      email: emailValue as string,
+      password: pwValue as string,
+    });
+
+    if (res.data.status === 200) {
+      window.localStorage.setItem(
+        'accessToken',
+        res.data.data.tokenInfo.accessToken,
+      );
+      navigate('/');
+    }
+  };
   return (
     <div>
       <Back />
@@ -16,10 +39,16 @@ const Signin = () => {
             위플랜플랜즈에 오신 것을 환영합니다.
           </h1>
         </div>
-        <form className="mb-auto">
-          <UserInputBox label={'이메일'} placeholder={'이메일을 입력하세요'} />
+        <form className="mb-auto" onSubmit={handleSubmit}>
+          <UserInputBox
+            label={'이메일'}
+            type="email"
+            name="email"
+            placeholder={'이메일을 입력하세요'}
+          />
           <UserInputBox
             label={'비밀번호'}
+            name="pw"
             placeholder={'비밀번호를 입력하세요'}
           />
           <Button>로그인</Button>
