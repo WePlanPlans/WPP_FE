@@ -1,8 +1,16 @@
 import { TourType } from '@/@types/tours.types';
+import { useNavigate } from 'react-router-dom';
 
 export const ResultItem = ({ result }: { result: TourType }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/detail/${result.id}`); // 클릭 시 해당 경로로 이동
+  };
   return (
-    <div className="flex h-[52px] w-full py-1.5">
+    <div
+      className="flex h-[52px] w-full cursor-pointer py-1.5"
+      onClick={handleClick}>
       <div className="imgWrap mr-2.5 flex-shrink-0 overflow-hidden rounded-lg">
         <img
           className="h-10 w-10 object-cover"
