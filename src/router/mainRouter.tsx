@@ -5,7 +5,7 @@ import Detail from '@pages/detail/detail.page';
 import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
 import ReviewComment from '@pages/reviewComment/reviewComment.page';
 import { useEffect } from 'react';
-import MainLayout from './routerLayout';
+import MainLayout from './mainLayout';
 
 const MainRouter = () => {
   const location = useLocation();
