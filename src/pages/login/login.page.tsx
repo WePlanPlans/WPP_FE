@@ -5,7 +5,7 @@ import { KakaoIcon, LogoIcon } from '@components/common/icons/Icons';
 import { UserInputBox } from '@components/user';
 import { useNavigate } from 'react-router-dom';
 
-const Signin = () => {
+const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -74,4 +74,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Login;
