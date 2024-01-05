@@ -16,13 +16,13 @@ const Nav = () => {
           <div className="flex justify-center">
             <HomeIcon fill={isActive('/') ? 'currentColor' : 'none'} />
           </div>
-          <p className="caption2 mt-[3px] text-center">홈</p>
+          <p className="caption1 mt-[3px] text-center">홈</p>
         </div>
         <div
           onClick={() => navigate('/')}
           className="cursor-pointer flex-col items-center justify-center px-2">
           <CalendarIcon />
-          <p className="caption2 mt-[3px] text-center text-xs/[11px]">일정</p>
+          <p className="caption1 mt-[3px] text-center text-xs/[11px]">일정</p>
         </div>
         <div
           onClick={() => navigate('/')}
@@ -30,7 +30,7 @@ const Nav = () => {
           <div className="flex justify-center">
             <HeartIcon />
           </div>
-          <p className="caption2 mt-[3px] text-center text-xs/[11px]">찜</p>
+          <p className="caption1 mt-[3px] text-center text-xs/[11px]">찜</p>
         </div>
         <div
           onClick={() => navigate('/signin')}
@@ -38,7 +38,7 @@ const Nav = () => {
           <div className="flex justify-center">
             <UserIcon />
           </div>
-          <p className="caption2 mt-[3px] text-center">내정보</p>
+          <p className="caption1 mt-[3px] text-center">내정보</p>
         </div>
       </div>
     </nav>
