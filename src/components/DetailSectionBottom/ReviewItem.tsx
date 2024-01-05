@@ -10,6 +10,7 @@ import {
   contentTypeIdState,
 } from '@recoil/review';
 import { useEffect } from 'react';
+import { getEmoji } from '@utils/utils';
 
 interface Keyword {
   keywordId: number;
@@ -141,7 +142,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
               <div
                 key={idx}
                 className="rounded-md bg-gray1 px-2 py-1 text-sm text-gray6">
-                {keyword.content}
+                {getEmoji(keyword.content)} {keyword.content}
               </div>
             ))}
             {keywords.length > 2 && (
