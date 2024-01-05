@@ -8,6 +8,7 @@ interface ResultCategoryProps {
   category: string;
   fetchNextPage: (() => Promise<InfiniteQueryObserverResult<any, any>>) | null;
   hasNextPage: boolean;
+  isFetchingNextPage: boolean;
 }
 
 export const ResultCategory = ({
@@ -15,6 +16,7 @@ export const ResultCategory = ({
   category,
   fetchNextPage,
   hasNextPage,
+  isFetchingNextPage,
 }: ResultCategoryProps) => {
   // console.log('hasNextPage', hasNextPage);
   return (
@@ -23,11 +25,15 @@ export const ResultCategory = ({
       {data.map((item) => (
         <ResultItem key={item.id} result={item} />
       ))}
-      {hasNextPage ? (
+      {hasNextPage && !isFetchingNextPage ? (
         <ButtonWhite
           className="my-2"
           onClick={() => fetchNextPage && fetchNextPage()}>
           더보기
+        </ButtonWhite>
+      ) : isFetchingNextPage ? (
+        <ButtonWhite className="my-2" disabled>
+          Loading...
         </ButtonWhite>
       ) : (
         <div className="mt-3 text-center text-gray3"></div>

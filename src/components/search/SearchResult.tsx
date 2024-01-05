@@ -29,27 +29,33 @@ export const SearchResult = ({
   }, [searchWord]);
   console.log();
 
-  const { data, fetchNextPage, hasNextPage, isLoading, isError } =
-    useInfiniteQuery({
-      queryKey: ['searchResults', selectedRegion, searchWord, selectedCategory],
-      queryFn: ({ pageParam = 0 }) =>
-        getToursSearch({
-          region: selectedRegion || '',
-          searchWord: searchWord,
-          category: selectedCategory !== '전체' ? selectedCategory : undefined,
-          page: pageParam,
-          size: 10,
-        }),
-      initialPageParam: 0,
-      getNextPageParam: (lastPage, allPages) => {
-        if (!lastPage.data.data.last) {
-          return allPages.length;
-        }
-        return undefined;
-      },
-      enabled: !!searchWord,
-      retry: 2,
-    });
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isLoading,
+    isError,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
+    queryKey: ['searchResults', selectedRegion, searchWord, selectedCategory],
+    queryFn: ({ pageParam = 0 }) =>
+      getToursSearch({
+        region: selectedRegion || '',
+        searchWord: searchWord,
+        category: selectedCategory !== '전체' ? selectedCategory : undefined,
+        page: pageParam,
+        size: 10,
+      }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, allPages) => {
+      if (!lastPage.data.data.last) {
+        return allPages.length;
+      }
+      return undefined;
+    },
+    enabled: !!searchWord,
+    retry: 2,
+  });
 
   if (isLoading) {
     return <Spinner />;
@@ -97,6 +103,7 @@ export const SearchResult = ({
           category={selectedCategory}
           fetchNextPage={hasNextPage ? fetchNextPage : null}
           hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
         />
       )}
     </>
