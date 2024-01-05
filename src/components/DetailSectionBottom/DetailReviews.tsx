@@ -5,7 +5,7 @@ import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
 import ReviewItem from './ReviewItem';
 import { StarIcon } from '@components/common/icons/Icons';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSetRecoilState, useRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
 import { isModalOpenState, titleState } from '@recoil/modal';
 import {
   ratingState,
@@ -15,6 +15,7 @@ import {
   tourItemIdState,
   contentTypeIdState,
   isModifyingReviewState,
+  shouldOptimisticState,
 } from '@recoil/review';
 import { Modal } from '@components/common/modal';
 import React from 'react';
@@ -37,7 +38,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   const setContentTypeId = useSetRecoilState(contentTypeIdState);
   const setTargetReviewId = useSetRecoilState(targetReviewIdState);
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
-
+  const shouldOptimistic = useRecoilValue(shouldOptimisticState);
   const {
     data: toursReviews,
     fetchNextPage,
@@ -54,7 +55,6 @@ export default function DetailReviews({ reviewData }: reviewProps) {
       if (currentPage < totalPages - 1) {
         return currentPage + 1;
       }
-
       return undefined;
     },
   });

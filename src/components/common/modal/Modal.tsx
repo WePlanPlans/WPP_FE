@@ -18,6 +18,7 @@ import {
   isModifyingReviewState,
   tourItemIdState,
   contentTypeIdState,
+  shouldOptimisticState,
 } from '@recoil/review';
 import { useNavigate } from 'react-router-dom';
 
@@ -42,6 +43,7 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
   const setIsModifyingComment = useSetRecoilState(isModifyingCommentState);
   const navigate = useNavigate();
   const setIsModalOpen = useSetRecoilState(isModalOpenState);
+  const setShouldOptimistic = useSetRecoilState(shouldOptimisticState);
 
   const customStyles = {
     content: {
@@ -88,9 +90,11 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
   const handleDelete = () => {
     if (title == '내 리뷰') {
       deleteReview(targetReviewId);
+      setShouldOptimistic(true);
       setIsModalOpen(false);
     } else if (title == '내 댓글') {
       deleteComments(targetCommentId);
+      setShouldOptimistic(true);
       setIsModalOpen(false);
     }
   };
