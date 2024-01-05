@@ -194,31 +194,37 @@ export const CheckIcon: React.FC<IconProps> = ({
   );
 };
 
-export const LeftIcon: React.FC<IconProps> = ({
-  size = 25,
-  color = 'black',
-  fill = 'none',
+interface LeftIconProps {
+  width: number;
+  height: number;
+  fill: string;
+  onClick: VoidFunction;
+  cursor: string;
+}
+
+export const LeftIcon = ({
+  width = 8,
+  height = 15,
+  fill = '#1E1E1E',
   onClick,
   cursor = 'pointer',
-}) => {
+}: LeftIconProps) => {
   return (
     <svg
       onClick={onClick}
       cursor={cursor}
-      width={size}
-      height={size}
-      viewBox="0 0 17 10"
-      fill={fill}
+      width={width}
+      height={height}
+      viewBox="0 0 8 15"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg">
-      <g id="Left">
-        <path
-          id="Vector"
-          d="M4.74112 1.18604L1.44823 4.47893C1.0577 4.86945 1.0577 5.50262 1.44823 5.89314L4.74112 9.18604M1.74112 5.18604L15.7411 5.18604"
-          stroke={color}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      </g>
+      <path
+        id="Left"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M8.65547 0.743953C8.9713 1.02827 8.99457 1.51229 8.70746 1.82503L2.99737 8.04492L8.70746 14.2648C8.99457 14.5776 8.9713 15.0616 8.65547 15.3459C8.33964 15.6302 7.85086 15.6072 7.56375 15.2944L0.908447 8.04492L7.56375 0.795433C7.85087 0.482685 8.33965 0.459636 8.65547 0.743953Z"
+        fill={fill}
+      />
     </svg>
   );
 };
