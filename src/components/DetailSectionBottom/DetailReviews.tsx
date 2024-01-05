@@ -145,6 +145,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
                       onClick={() => handleReviewClick(item)}
                       tourItemId={tourItemId}
                       contentTypeId={contentTypeId}
+                      isReviews={true}
                     />
                   ))}
                 </React.Fragment>

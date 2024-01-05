@@ -29,6 +29,7 @@ interface ItemProps {
   onClick?: () => void;
   tourItemId: number;
   contentTypeId?: number;
+  isReviews: boolean;
 }
 
 const Item: React.FC<ItemProps> = (props: ItemProps) => {
@@ -44,6 +45,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     onClick,
     tourItemId,
     contentTypeId,
+    isReviews,
   } = props;
   const [_, setIsModalOpen] = useRecoilState(isModalOpenState);
 
@@ -125,7 +127,14 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
             <MoreIcon fill="#888888" color="none" />
           </div>
         </div>
-        <div className=" mb-4 text-gray7">{content}</div>
+        {isReviews ? (
+          <div className="mb-4 max-h-12 overflow-hidden text-gray7">
+            {content.length > 75 ? `${content.slice(0, 75)}...` : content}
+          </div>
+        ) : (
+          <div className="mb-4 text-gray7">{content}</div>
+        )}
+
         <div className="flex">
           <div className="flex gap-2">
             {keywords.slice(0, 2).map((keyword, idx) => (
