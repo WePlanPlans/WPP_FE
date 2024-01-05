@@ -1,5 +1,4 @@
 import { ButtonWhite } from '@components/common/button/Button';
-
 import { ResultItem } from './ResultItem';
 import { TourType } from '@/@types/tours.types';
 import { InfiniteQueryObserverResult } from '@tanstack/react-query';
@@ -31,7 +30,7 @@ export const ResultCategory = ({
           더보기
         </ButtonWhite>
       ) : (
-        <div className="mt-3 text-center text-gray3">검색 결과의 끝입니다.</div>
+        <div className="mt-3 text-center text-gray3"></div>
       )}
     </>
   );
