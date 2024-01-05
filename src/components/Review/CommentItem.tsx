@@ -1,13 +1,7 @@
 import { MoreIcon } from '@components/common/icons/Icons';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import { isModalOpenState, titleState } from '@recoil/modal';
-import {
-  commentState,
-  targetCommentIdState,
-  isModifyingCommentState,
-} from '@recoil/review';
-import { ChangeEvent } from 'react';
-import { putComments } from '@api/comments';
+import { commentState, targetCommentIdState } from '@recoil/review';
 
 interface ItemProps {
   commentId: number;
@@ -32,9 +26,6 @@ const CommentItem: React.FC<ItemProps> = (props: ItemProps) => {
   const [targetCommentId, setTargetCommentId] =
     useRecoilState(targetCommentIdState);
   const [comment, setComment] = useRecoilState(commentState);
-  const [isModifyingComment, setIsModifyingComment] = useRecoilState(
-    isModifyingCommentState,
-  );
 
   const openModal = (title: string, commentId: number) => {
     setTitle(title);
@@ -52,19 +43,6 @@ const CommentItem: React.FC<ItemProps> = (props: ItemProps) => {
     }).format(date);
 
     return formattedDate;
-  };
-
-  const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const inputText = event.target.value;
-    setComment(inputText);
-  };
-
-  const cancleCommentEdit = () => {
-    setIsModifyingComment(false);
-  };
-  const handeCommentEdit = () => {
-    putComments(comment, targetCommentId);
-    setIsModifyingComment(false);
   };
 
   return (
@@ -92,30 +70,7 @@ const CommentItem: React.FC<ItemProps> = (props: ItemProps) => {
           <MoreIcon fill="#888888" color="none" />
         </div>
       </div>
-      {isModifyingComment && commentId == targetCommentId && (
-        <div className="flex items-center">
-          <input
-            className="ml-11 mr-2 rounded-sm  border border-solid border-[#29ddf6] px-1 py-0.5 text-sm outline-none"
-            onChange={handleTextChange}
-            value={comment}
-          />
-          <div className="ml-auto mr-2 flex items-center gap-2">
-            <button
-              onClick={cancleCommentEdit}
-              className=" rounded-sm border border-solid border-gray4 px-1 py-0.5 text-sm font-bold">
-              취소
-            </button>
-            <button
-              onClick={handeCommentEdit}
-              className="rounded-sm border border-solid border-gray4 bg-[#29ddf6] px-1 py-0.5 text-sm font-bold text-white">
-              완료
-            </button>
-          </div>
-        </div>
-      )}
-      {!isModifyingComment && (
-        <div className="mb-4 ml-11 w-60 text-sm text-gray7">{content}</div>
-      )}
+      <div className="mb-4 ml-11 w-60 text-sm text-gray7">{content}</div>
     </div>
   );
 };

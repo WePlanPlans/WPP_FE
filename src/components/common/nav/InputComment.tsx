@@ -1,15 +1,23 @@
 import { KeyboardEvent, ChangeEvent, useState } from 'react';
 import { postComments } from '@api/comments';
 import { useParams } from 'react-router-dom';
+import { commentState } from '@recoil/review';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { putComments } from '@api/comments';
+import { isModifyingCommentState, targetCommentIdState } from '@recoil/review';
 
 interface InputCommentProps {
   classNameName?: string;
 }
 
 export const InputComment: React.FC<InputCommentProps> = () => {
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useRecoilState(commentState);
   const params = useParams();
   const reviewId = Number(params.id);
+  const [isModifyingComment, setIsModifyingComment] = useRecoilState(
+    isModifyingCommentState,
+  );
+  const targetCommentId = useRecoilValue(targetCommentIdState);
 
   const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
     const inputText = event.target.value;
@@ -17,7 +25,12 @@ export const InputComment: React.FC<InputCommentProps> = () => {
   };
 
   const handleSubmit = () => {
-    postComments(comment, reviewId);
+    if (isModifyingComment) {
+      putComments(comment, targetCommentId);
+      setIsModifyingComment(false);
+    } else {
+      postComments(comment, reviewId);
+    }
     setComment('');
   };
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -36,6 +49,7 @@ export const InputComment: React.FC<InputCommentProps> = () => {
               placeholder="댓글을 입력하세요"
               className=" w-full max-w-full text-sm placeholder-[#d7d7d7]  outline-none"
               onChange={handleTextChange}
+              value={comment}
               onKeyPress={handleKeyPress}
             />
           </div>
