@@ -64,6 +64,7 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
   const handleEdit = () => {
     if (title == '내 리뷰') {
       setIsModifyingReview(true);
+      setIsModalOpen(false);
       navigate(`/reviewPosting/${tourItemId}`, {
         state: {
           title,
