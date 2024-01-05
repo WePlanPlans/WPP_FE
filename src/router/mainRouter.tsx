@@ -10,6 +10,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Signup from '@pages/signup/signup.page';
 import Signin from '@pages/signin/signin.page';
+import { InputComment } from '@components/common/nav';
 
 export function MainLayout() {
   const location = useLocation();
@@ -31,6 +32,7 @@ export function MainLayout() {
         <Outlet />
       </div>
       {showNav && <Nav />}
+      {location.pathname.includes('/reviewComment') && <InputComment />}
     </div>
   );
 }
