@@ -2,15 +2,21 @@ import client from './client';
 
 // 인증 관련 API
 
-// 회원가입
-export const postSignup = async (authData: AuthRequest) => {
-  const res = await client.post(`auth/signup`, authData);
+// 이메일 중복 조회
+export const getCheckEmail = async (email: string) => {
+  const res = await client.get(`auth/emails/check/${email}`);
   return res;
 };
 
-// 로그아웃
-export const postLogout = async () => {
-  const res = await client.post(`auth/logout`);
+// 닉네임 중복 조회
+export const getCheckNickname = async (nickname: string) => {
+  const res = await client.get(`auth/nicknames/check/${nickname}`);
+  return res;
+};
+
+// 회원가입
+export const postSignup = async (authData: AuthRequest) => {
+  const res = await client.post(`auth/signup`, authData);
   return res;
 };
 
@@ -26,14 +32,8 @@ export const postKakaoLogin = async (LoginData: LoginRequest) => {
   return res;
 };
 
-// 닉네임 중복 조회
-export const getCheckNickname = async (nickname: string) => {
-  const res = await client.get(`auth/nicknames/check/${nickname}`);
-  return res;
-};
-
-// 이메일 중복 조회
-export const getCheckEmail = async (email: string) => {
-  const res = await client.get(`auth/emails/check/${email}`);
+// 로그아웃
+export const postLogout = async () => {
+  const res = await client.post(`auth/logout`);
   return res;
 };
