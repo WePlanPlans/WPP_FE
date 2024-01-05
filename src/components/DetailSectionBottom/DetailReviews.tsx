@@ -38,7 +38,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
 
   const { data: toursReviews } = useQuery({
-    queryKey: ['toursReviews'],
+    queryKey: ['toursReviews', tourItemId],
     queryFn: () => getToursReviews(tourItemId),
   });
 
@@ -73,31 +73,39 @@ export default function DetailReviews({ reviewData }: reviewProps) {
     setReviewDataLength(toursReviews?.data?.data?.reviewTotalCount);
   }, [toursReviews]);
 
+  useEffect(() => {
+    console.log('toursReviews', toursReviews);
+  }, [toursReviews]);
   return (
     <>
       <div className="mb-4 mt-2 text-lg font-bold">
         리뷰<span className="pl-1 text-gray4">{reviewDataLength}</span>
       </div>
-      {reviewDataLength > 0 && (
-        <div>
-          {toursReviews?.data?.data?.reviewInfos?.content?.map((item: any) => (
-            <ReviewItem
-              key={item.reviewId}
-              reviewId={item.reviewId}
-              authorNickname={item.authorNickname}
-              authorProfileImageUrl={item.authorProfileImageUrl}
-              rating={item.rating}
-              createdTime={item.createdTime}
-              content={item.content}
-              keywords={item.keywords} // keywordId, content, type
-              commentCount={item.commentCount}
-              onClick={() => handleReviewClick(item)}
-              tourItemId={tourItemId}
-              contentTypeId={contentTypeId}
-            />
-          ))}
-        </div>
-      )}
+      {toursReviews?.data?.data?.reviewInfos?.content &&
+        reviewDataLength > 0 && (
+          <div>
+            {toursReviews.data.data.reviewInfos.content.map(
+              (item: any) =>
+                // 조건부 렌더링 추가
+                item && (
+                  <ReviewItem
+                    key={item.reviewId}
+                    reviewId={item.reviewId}
+                    authorNickname={item.authorNickname}
+                    authorProfileImageUrl={item.authorProfileImageUrl}
+                    rating={item.rating}
+                    createdTime={item.createdTime}
+                    content={item.content}
+                    keywords={item.keywords}
+                    commentCount={item.commentCount}
+                    onClick={() => handleReviewClick(item)}
+                    tourItemId={tourItemId}
+                    contentTypeId={contentTypeId}
+                  />
+                ),
+            )}
+          </div>
+        )}
       {reviewDataLength == 0 && (
         <div
           className="flex cursor-pointer flex-col items-center justify-center"

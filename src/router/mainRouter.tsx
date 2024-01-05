@@ -13,7 +13,12 @@ import Signin from '@pages/signin/signin.page';
 
 export function MainLayout() {
   const location = useLocation();
-  const hideNavPaths = ['/signup', '/signin'];
+  const hideNavPaths = [
+    '/signup',
+    '/signin',
+    '/reviewPosting',
+    '/reviewComment',
+  ];
   const showNav = !hideNavPaths.some((path) =>
     location.pathname.includes(path),
   );

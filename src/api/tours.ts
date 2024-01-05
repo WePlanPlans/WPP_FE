@@ -34,8 +34,12 @@ export const getDetailTours = async (tourItemId: number) => {
 
 // 여행 상품 리뷰 조회
 export const getToursReviews = async (tourItemId: number) => {
-  const res = await client.get(`tours/${tourItemId}/reviews`);
-  return res;
+  try {
+    const res = await client.get(`tours/${tourItemId}/reviews`);
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 // 여행지 검색
