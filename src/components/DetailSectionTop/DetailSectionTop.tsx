@@ -25,14 +25,17 @@ export default function DetailSectionTop() {
     queryFn: () => getToursReviews(tourItemId),
   });
 
-  if (detailQuery.error || reviewQuery.error) console.log('error - 예외 처리');
-
-  return detailQuery.data && reviewQuery.data?.data.data ? (
-    <div className="mb-[20px] max-h-full">
-      <DetailToursInfo infoData={detailQuery.data} />
-      <DetailToursRating reviewData={reviewQuery.data.data.data} />
-      <DetailToursMap mapData={detailQuery.data} />
-      <DetailToursButtons reviewData={detailQuery.data} />
-    </div>
-  ) : null;
+  if (detailQuery.data && reviewQuery.data?.data.data) {
+    sessionStorage.setItem('contentTypeId', detailQuery.data.contentTypeId);
+    return (
+      <div className="mb-[20px] max-h-full">
+        <DetailToursInfo infoData={detailQuery.data} />
+        <DetailToursRating reviewData={reviewQuery.data.data.data} />
+        <DetailToursMap mapData={detailQuery.data} />
+        <DetailToursButtons reviewData={detailQuery.data} />
+      </div>
+    );
+  } else {
+    return null;
+  }
 }

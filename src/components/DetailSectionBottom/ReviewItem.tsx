@@ -9,6 +9,7 @@ import {
   tourItemIdState,
   contentTypeIdState,
 } from '@recoil/review';
+import { useEffect } from 'react';
 
 interface Keyword {
   keywordId: number;
@@ -59,7 +60,14 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     setTourItemId(tourItemId);
     if (contentTypeId) {
       setContentTypeId(contentTypeId);
+    } else {
+      const temp = sessionStorage.getItem('contentTypeId');
+      if (temp) {
+        const contentTypeId = parseInt(temp, 10);
+        setContentTypeId(contentTypeId);
+      }
     }
+
     setRating(rating);
     setKeywords(keywords);
     setContent(content);
@@ -78,6 +86,9 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     return formattedDate;
   };
 
+  useEffect(() => {
+    console.log('contentTypeId', contentTypeId);
+  }, [contentTypeId]);
   return (
     <>
       <div className="mb-8 cursor-pointer" onClick={onClick}>
