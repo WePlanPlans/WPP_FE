@@ -128,15 +128,18 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
         <div className=" mb-4 text-gray7">{content}</div>
         <div className="flex">
           <div className="flex gap-2">
-            {keywords.map((keyword, idx) => {
-              return (
-                <div
-                  key={idx}
-                  className="rounded-md bg-gray1 px-2 py-1 text-sm text-gray6">
-                  {keyword.content}
-                </div>
-              );
-            })}
+            {keywords.slice(0, 2).map((keyword, idx) => (
+              <div
+                key={idx}
+                className="rounded-md bg-gray1 px-2 py-1 text-sm text-gray6">
+                {keyword.content}
+              </div>
+            ))}
+            {keywords.length > 2 && (
+              <div className="rounded-md bg-gray1 px-2 py-1 text-sm text-gray6">
+                +{keywords.length - 2}
+              </div>
+            )}
           </div>
           <div className="ml-auto flex items-center justify-between">
             <ChatIcon size={20} color="#5E5E5E" />
