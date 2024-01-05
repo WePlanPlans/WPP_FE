@@ -61,6 +61,7 @@ const SearchInput = () => {
           value={inputValue}
           onChange={handleChange}
           onKeyPress={handleKeyPress}
+          autoFocus
         />
         {inputValue && (
           <div
