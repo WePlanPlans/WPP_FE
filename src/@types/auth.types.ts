@@ -1,4 +1,4 @@
-interface AuthRequest {
+export interface AuthRequest {
   email: string;
   password: string;
   name: string;
@@ -9,7 +9,7 @@ interface AuthRequest {
   survey: string;
 }
 
-interface LoginRequest {
+export interface LoginFormVlaue {
   email: string;
   password: string;
 }
