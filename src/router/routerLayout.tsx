@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 const MainLayout = () => {
   const location = useLocation();
-  const hideNavPaths = ['/signup', '/signin'];
+  const hideNavPaths = ['/signup', '/signin', '/search'];
   const showNav = !hideNavPaths.some((path) =>
     location.pathname.includes(path),
   );

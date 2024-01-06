@@ -75,7 +75,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
 
   return (
     <>
-      <div className="mb-4 mt-2 text-lg font-bold">
+      <div className="mb-4 mt-2 text-lg font-bold" id="scrollToReview">
         리뷰<span className="pl-1 text-gray4">{reviewDataLength}</span>
       </div>
       {reviewDataLength > 0 && (

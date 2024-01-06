@@ -120,9 +120,11 @@ export const HeartIcon: React.FC<IconProps> = ({
   size = 25,
   color = 'black',
   fill = 'none',
+  onClick,
 }) => {
   return (
     <svg
+      onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
@@ -470,7 +472,7 @@ export const ChatIcon: React.FC<IconProps> = ({
       xmlns="http://www.w3.org/2000/svg">
       <g
         id="mail-chat-bubble-typing-oval--messages-message-bubble-typing-chat"
-        clip-path="url(#clip0_447_1104)">
+        clipPath="url(#clip0_447_1104)">
         <g id="Group">
           <path
             id="Vector"
