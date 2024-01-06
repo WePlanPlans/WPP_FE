@@ -1,4 +1,4 @@
 import { Signup, SignupInfo } from './signup';
-import Login from './login/login.page';
+import { Login, LoginKakao } from './login';
 
-export { Signup, SignupInfo, Login };
+export { Signup, SignupInfo, Login, LoginKakao };
