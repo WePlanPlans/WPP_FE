@@ -44,6 +44,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
     fetchNextPage,
     hasNextPage,
     error,
+    refetch,
   } = useInfiniteQuery({
     queryKey: ['toursReviews'],
     queryFn: ({ pageParam = 0 }) => getToursReviews(tourItemId, pageParam, 10),

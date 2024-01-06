@@ -32,6 +32,7 @@ export const InputComment: React.FC<InputCommentProps> = () => {
       postComments(comment, reviewId);
     }
     setComment('');
+    window.location.reload();
   };
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {

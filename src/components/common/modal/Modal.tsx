@@ -80,10 +80,6 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
     } else if (title == '내 댓글') {
       setIsModifyingComment(true);
       setIsModalOpen(false);
-
-      // targetCommentId
-      // comment
-      // putComments(commentContent, targetCommentId);
     }
   };
 
@@ -97,6 +93,7 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
       setShouldOptimistic(true);
       setIsModalOpen(false);
     }
+    window.location.reload();
   };
 
   return (
