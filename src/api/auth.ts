@@ -33,6 +33,7 @@ export const postKakaoLogin = async (LoginData: LoginRequest) => {
 };
 
 // 로그아웃
+// TODO 서지수| 나중에 확인하고 수정하기
 export const postLogout = async () => {
   const res = await client.post(`auth/logout`);
   return res;
