@@ -1,26 +1,40 @@
 import { TourType, ToursListProps } from '@/@types/tours.types';
-import ToursItem from './ToursItem';
 import { getTours } from '@api/tours';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
-import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import ToursItem from './ToursItem';
+import ToursItemSkeleton from './ToursItemSkeleton';
 
 const ToursList = ({ selectedRegion }: ToursListProps) => {
-  const { fetchNextPage, hasNextPage, data, error } = useInfiniteQuery({
-    queryKey: ['tours', selectedRegion],
-    queryFn: ({ pageParam = 0 }) => getTours(selectedRegion, pageParam, 10),
-    initialPageParam: 0,
-    getNextPageParam: (lastPage) => {
-      const currentPage = lastPage?.data.data.pageable.pageNumber;
-      const totalPages = lastPage?.data.data.totalPages;
+  const { fetchNextPage, hasNextPage, data, isLoading, error } =
+    useInfiniteQuery({
+      queryKey: ['tours', selectedRegion],
+      queryFn: ({ pageParam = 0 }) => getTours(selectedRegion, pageParam, 10),
+      initialPageParam: 0,
+      getNextPageParam: (lastPage) => {
+        const currentPage = lastPage?.data.data.pageable.pageNumber;
+        const totalPages = lastPage?.data.data.totalPages;
 
-      if (currentPage < totalPages - 1) {
-        return currentPage + 1;
-      }
+        if (currentPage < totalPages - 1) {
+          return currentPage + 1;
+        }
 
-      return undefined;
-    },
-  });
+        return undefined;
+      },
+    });
+
+  const [showSkeleton, setShowSkeleton] = useState(isLoading);
+
+  useEffect(() => {
+    if (isLoading) {
+      setShowSkeleton(true);
+    } else {
+      const timer = setTimeout(() => setShowSkeleton(false), 200);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
 
   if (error) {
     return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
@@ -32,18 +46,27 @@ const ToursList = ({ selectedRegion }: ToursListProps) => {
       loadMore={() => fetchNextPage()}
       hasMore={hasNextPage}
       loader={
-        <div className="loader" key={0}>
-          Loading ...
+        <div key={uuidv4()} className="flex justify-center">
+          <div
+            className="z-[100] mx-auto h-8 w-8 animate-spin rounded-full border-[3px] border-solid border-current border-t-transparent pt-10 text-[blue-600] dark:text-[#28d8ff]"
+            role="status"
+            aria-label="loading">
+            <div className="sr-only">Loading...</div>
+          </div>
         </div>
       }>
-      <div className="no-scrollbar grid grid-cols-2 gap-[15px] overflow-y-scroll">
-        {data?.pages.map((group, index) => (
-          <React.Fragment key={index}>
-            {group?.data.data.content.map((tour: TourType) => (
-              <ToursItem key={tour.id} tour={tour} />
+      <div className="no-scrollbar grid min-h-[500px] grid-cols-2 gap-[15px] overflow-y-scroll">
+        {showSkeleton
+          ? Array.from({ length: 10 }, (_, index) => (
+              <ToursItemSkeleton key={index} />
+            ))
+          : data?.pages.map((group) => (
+              <React.Fragment key={uuidv4()}>
+                {group?.data.data.content.map((tour: TourType) => (
+                  <ToursItem key={uuidv4()} tour={tour} />
+                ))}
+              </React.Fragment>
             ))}
-          </React.Fragment>
-        ))}
       </div>
     </InfiniteScroll>
   );
