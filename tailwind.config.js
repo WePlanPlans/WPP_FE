@@ -15,7 +15,7 @@ export default {
         gray5: '#5e5e5e',
         gray6: '#38393C',
         gray7: '#1E1E1E',
-        red: '#F00',
+        red: '#FF0F00',
       },
     },
   },
