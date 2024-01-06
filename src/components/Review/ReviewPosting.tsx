@@ -7,7 +7,9 @@ export default function ReviewPosting() {
 
   const handleTextChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const inputText = event.target.value;
-    setContent(inputText);
+    if (inputText.length <= 400) {
+      setContent(inputText);
+    }
   };
 
   return (

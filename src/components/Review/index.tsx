@@ -4,7 +4,6 @@ import ReviewPosting from './ReviewPosting';
 import ReviewRating from './ReviewRating';
 import ReviewComments from './ReviewComments';
 import DetailReview from './DetailReview';
-import { InputComment } from './InputComment';
 
 export {
   ReviewButton,
@@ -13,5 +12,4 @@ export {
   ReviewRating,
   ReviewComments,
   DetailReview,
-  InputComment,
 };
