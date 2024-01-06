@@ -32,6 +32,36 @@ export const getDetailTours = async (tourItemId: number) => {
   }
 };
 
+// 관심 여행지 등록
+export const postLikedTours = async (options: { id: number }) => {
+  try {
+    const { id } = options;
+
+    let query = `/liked/${id}`;
+
+    const res = await client.post(query);
+
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+// 관심 여행지 삭제
+export const deleteLikedTours = async (options: { id: number }) => {
+  try {
+    const { id } = options;
+
+    let query = `/liked/${id}`;
+
+    const res = await client.delete(query);
+
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 // 여행 상품 리뷰 조회
 export const getToursReviews = async (tourItemId: number) => {
   const res = await client.get(`tours/${tourItemId}/reviews`);
