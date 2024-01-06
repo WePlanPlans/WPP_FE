@@ -6,17 +6,13 @@ const KakaoLoginButton = () => {
   const REDIRECT_URI = `${window.location.href}/kakao`;
   const KAKAO_LOGIN_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${VITE_KAKAO_LOGIN_TEST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
-  const onKakaoLoginClick = () => {
-    window.location.href = KAKAO_LOGIN_URL;
-  };
-
   return (
-    <button
-      onClick={onKakaoLoginClick}
+    <a
+      href={KAKAO_LOGIN_URL}
       className="body3 mb-2 flex h-14 w-full items-center justify-center gap-2 rounded-lg bg-[#fee304] p-2 text-['#3B1E1E']">
       <KakaoIcon />
       카카오로 로그인
-    </button>
+    </a>
   );
 };
 
