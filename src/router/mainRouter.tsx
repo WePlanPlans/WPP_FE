@@ -1,12 +1,12 @@
+import { Route, Routes, useLocation } from 'react-router-dom';
+import Main from '@pages/main/main.page';
+import { Search } from '@pages/search/search.page';
 import Detail from '@pages/detail/detail.page';
 import Main from '@pages/main/main.page';
 import ReviewComment from '@pages/reviewComment/reviewComment.page';
 import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
-import { Search } from '@pages/search/search.page';
-import Signin from '@pages/signin/signin.page';
-import Signup from '@pages/signup/signup.page';
 import { useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+
 import MainLayout from './routerLayout';
 
 const MainRouter = () => {
@@ -25,8 +25,6 @@ const MainRouter = () => {
           <Route path="/search" element={<Search />} />
           <Route path="/reviewPosting/:id" element={<ReviewPosting />} />
           <Route path="/reviewComment/:id" element={<ReviewComment />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin />} />
         </Route>
       </Routes>
     </>

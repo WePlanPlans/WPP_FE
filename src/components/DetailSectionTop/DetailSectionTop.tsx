@@ -13,6 +13,7 @@ import {
 
 export default function DetailSectionTop() {
   const params = useParams();
+
   const tourItemId = Number(params.id);
 
   const detailQuery = useQuery({
