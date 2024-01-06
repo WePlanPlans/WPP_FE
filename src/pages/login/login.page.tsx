@@ -2,8 +2,8 @@ import { postEmailLogin } from '@api/auth';
 import authCient from '@api/authClient';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import Back from '@components/common/back/Back';
-import { KakaoIcon, LogoIcon } from '@components/common/icons/Icons';
-import { ErrorMessage, AuthInputBox } from '@components/Auth';
+import { LogoIcon } from '@components/common/icons/Icons';
+import { ErrorMessage, AuthInputBox, KakaoLoginButton } from '@components/Auth';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { LoginFormVlaue } from '@/@types/auth.types';
@@ -20,7 +20,6 @@ const Login = () => {
     formState: { errors },
   } = useForm<LoginFormVlaue>({
     reValidateMode: 'onSubmit',
-    // 다른 옵션들...
   });
 
   const [isLoginFailed, setIsLoginFailed] = useState<boolean>(false);
@@ -105,10 +104,7 @@ const Login = () => {
           또는
           <hr className="flex-auto" />
         </div>
-        <button className="body3 mb-2 flex h-14 w-full items-center justify-center gap-2 rounded-lg bg-[#fee304] p-2 text-['#3B1E1E']">
-          <KakaoIcon />
-          카카오로 로그인
-        </button>
+        <KakaoLoginButton />
         <SubmitBtn outline type="button">
           회원가입
         </SubmitBtn>
