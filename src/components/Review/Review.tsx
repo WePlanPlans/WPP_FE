@@ -18,13 +18,12 @@ export default function Review() {
   const params = useParams();
   const navigate = useNavigate();
   const tourItemId = Number(params.id);
-  const [rating] = useRecoilState(ratingState);
-  const [keywords] = useRecoilState(keywordsState);
-  const [content] = useRecoilState(contentState);
+  const [rating, setRating] = useRecoilState(ratingState);
+  const [keywords, setKeywords] = useRecoilState(keywordsState);
+  const [content, setContent] = useRecoilState(contentState);
   const isModifyingReview = useRecoilValue(isModifyingReviewState);
   const targetReviewId = useRecoilValue(targetReviewIdState);
   const [_, setIsModalOpen] = useRecoilState(isModalOpenState);
-
   const handlePostReview = async () => {
     try {
       const reviewData = {
@@ -40,6 +39,9 @@ export default function Review() {
         const response = await postReview(reviewData);
         console.log('리뷰가 성공적으로 등록되었습니다.', response.data);
       }
+      setRating(0);
+      setKeywords([]);
+      setContent('');
       setIsModalOpen(false);
       navigate(`/detail/${tourItemId}`);
     } catch (error) {

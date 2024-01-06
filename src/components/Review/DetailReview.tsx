@@ -20,6 +20,7 @@ export default function DetailReview() {
         keywords={item.keywords} // keywordId, content, type
         commentCount={item.commentCount}
         tourItemId={tourItemId}
+        isReviews={false}
       />
     </div>
   );

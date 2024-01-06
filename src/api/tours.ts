@@ -63,9 +63,24 @@ export const deleteLikedTours = async (options: { id: number }) => {
 };
 
 // 여행 상품 리뷰 조회
-export const getToursReviews = async (tourItemId: number) => {
-  const res = await client.get(`tours/${tourItemId}/reviews`);
-  return res;
+export const getToursReviews = async (
+  tourItemId: number,
+  page?: number,
+  size?: number,
+) => {
+  try {
+    let url = `tours/${tourItemId}/reviews`;
+    if (page !== undefined) {
+      url += `?page=${page}`;
+    }
+    if (size !== undefined) {
+      url += `${page !== undefined ? '&' : '?'}size=${size}`;
+    }
+    const res = await client.get(url);
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 // 여행지 검색

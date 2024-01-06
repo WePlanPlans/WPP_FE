@@ -25,9 +25,24 @@ export const postReview = async (reviewData: ReviewRequest) => {
 };
 
 // 리뷰댓글조회
-export const getReviewComments = async (reviewId: number) => {
-  const res = await client.get(`reviews/${reviewId}/comments`);
-  return res;
+export const getReviewComments = async (
+  reviewId: number,
+  page?: number,
+  size?: number,
+) => {
+  try {
+    let url = `reviews/${reviewId}/comments`;
+    if (page !== undefined) {
+      url += `?page=${page}`;
+    }
+    if (size !== undefined) {
+      url += `${page !== undefined ? '&' : '?'}size=${size}`;
+    }
+    const res = await client.get(url);
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 // 리뷰키워드조회

@@ -2,10 +2,18 @@ import { Outlet } from 'react-router-dom';
 import { Header } from '@components/common/header';
 import { Nav } from '@components/common/nav';
 import { useLocation } from 'react-router-dom';
+import { InputComment } from '@components/common/nav';
 
 const MainLayout = () => {
   const location = useLocation();
-  const hideNavPaths = ['/signup', '/signin', '/search'];
+  const hideNavPaths = [
+    '/signup',
+    '/signin',
+    '/search',
+    '/detail',
+    '/reviewPosting',
+    '/reviewComment',
+  ];
   const showNav = !hideNavPaths.some((path) =>
     location.pathname.includes(path),
   );
@@ -17,6 +25,7 @@ const MainLayout = () => {
         <Outlet />
       </div>
       {showNav && <Nav />}
+      {location.pathname.includes('/reviewComment') && <InputComment />}
     </div>
   );
 };

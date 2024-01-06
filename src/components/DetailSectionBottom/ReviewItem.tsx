@@ -9,6 +9,9 @@ import {
   tourItemIdState,
   contentTypeIdState,
 } from '@recoil/review';
+import { useEffect } from 'react';
+import { getEmoji } from '@utils/utils';
+import { getStarFill } from '@utils/getStarFill';
 
 interface Keyword {
   keywordId: number;
@@ -28,6 +31,7 @@ interface ItemProps {
   onClick?: () => void;
   tourItemId: number;
   contentTypeId?: number;
+  isReviews: boolean;
 }
 
 const Item: React.FC<ItemProps> = (props: ItemProps) => {
@@ -43,6 +47,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     onClick,
     tourItemId,
     contentTypeId,
+    isReviews,
   } = props;
   const [_, setIsModalOpen] = useRecoilState(isModalOpenState);
 
@@ -59,7 +64,14 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     setTourItemId(tourItemId);
     if (contentTypeId) {
       setContentTypeId(contentTypeId);
+    } else {
+      const temp = sessionStorage.getItem('contentTypeId');
+      if (temp) {
+        const contentTypeId = parseInt(temp, 10);
+        setContentTypeId(contentTypeId);
+      }
     }
+
     setRating(rating);
     setKeywords(keywords);
     setContent(content);
@@ -78,6 +90,9 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     return formattedDate;
   };
 
+  useEffect(() => {
+    console.log('contentTypeId', contentTypeId);
+  }, [contentTypeId]);
   return (
     <>
       <div className="mb-8 cursor-pointer" onClick={onClick}>
@@ -100,7 +115,8 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
                   key={index}
                   size={20}
                   color="none"
-                  fill={index < rating ? '#FFEC3E' : '#EDEDED'}
+                  fill={getStarFill(index, rating)}
+                  isHalf={index === Math.floor(rating) && rating % 1 !== 0}
                 />
               ))}
             </div>
@@ -114,18 +130,28 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
             <MoreIcon fill="#888888" color="none" />
           </div>
         </div>
-        <div className=" mb-4 text-gray7">{content}</div>
+        {isReviews ? (
+          <div className="mb-4 max-h-12 overflow-hidden text-gray7">
+            {content.length > 75 ? `${content.slice(0, 75)}...` : content}
+          </div>
+        ) : (
+          <div className="mb-4 text-gray7">{content}</div>
+        )}
+
         <div className="flex">
           <div className="flex gap-2">
-            {keywords.map((keyword, idx) => {
-              return (
-                <div
-                  key={idx}
-                  className="rounded-md bg-gray1 px-2 py-1 text-sm text-gray6">
-                  {keyword.content}
-                </div>
-              );
-            })}
+            {keywords.slice(0, 2).map((keyword, idx) => (
+              <div
+                key={idx}
+                className="rounded-md bg-gray1 px-2 py-1 text-sm text-gray6">
+                {getEmoji(keyword.content)} {keyword.content}
+              </div>
+            ))}
+            {keywords.length > 2 && (
+              <div className="rounded-md bg-gray1 px-2 py-1 text-sm text-gray6">
+                +{keywords.length - 2}
+              </div>
+            )}
           </div>
           <div className="ml-auto flex items-center justify-between">
             <ChatIcon size={20} color="#5E5E5E" />
