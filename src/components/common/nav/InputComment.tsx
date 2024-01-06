@@ -50,7 +50,7 @@ export const InputComment: React.FC<InputCommentProps> = () => {
               placeholder="댓글을 입력하세요"
               className=" w-full max-w-full text-sm placeholder-[#d7d7d7]  outline-none"
               onChange={handleTextChange}
-              value={comment}
+              value={isModifyingComment ? comment : ''}
               onKeyPress={handleKeyPress}
             />
           </div>

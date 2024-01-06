@@ -88,6 +88,7 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
       deleteReview(targetReviewId);
       setShouldOptimistic(true);
       setIsModalOpen(false);
+      navigate(`/detail/${tourItemId}`);
     } else if (title == '내 댓글') {
       deleteComments(targetCommentId);
       setShouldOptimistic(true);
