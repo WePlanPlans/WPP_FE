@@ -8,7 +8,21 @@ const SearchInput = () => {
   const navigate = useNavigate();
 
   const goBack = () => {
-    navigate(-1);
+    const currentPath = window.location.pathname;
+    const queryParams = new URLSearchParams(window.location.search);
+
+    if (currentPath === '/search') {
+      if (queryParams.has('searchWord')) {
+        navigate('/search');
+        return;
+      } else if (queryParams.has('region')) {
+        navigate('/');
+        return;
+      }
+      navigate('/');
+    } else {
+      navigate(-1);
+    }
   };
 
   const clearInput = () => {
@@ -47,6 +61,7 @@ const SearchInput = () => {
           value={inputValue}
           onChange={handleChange}
           onKeyPress={handleKeyPress}
+          autoFocus
         />
         {inputValue && (
           <div

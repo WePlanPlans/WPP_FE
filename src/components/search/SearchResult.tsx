@@ -29,29 +29,33 @@ export const SearchResult = ({
   }, [searchWord]);
   console.log();
 
-  const { data, fetchNextPage, hasNextPage, isLoading, isError } =
-    useInfiniteQuery({
-      queryKey: ['searchResults', selectedRegion, searchWord, selectedCategory],
-      queryFn: ({ pageParam = 0 }) =>
-        getToursSearch({
-          region: selectedRegion || '',
-          searchWord: searchWord,
-          category: selectedCategory !== '전체' ? selectedCategory : undefined,
-          page: pageParam,
-          size: 10,
-        }),
-      initialPageParam: 0,
-      getNextPageParam: (lastPage, allPages) => {
-        // 'last' 필드가 false이면, 다음 페이지가 존재함
-        if (!lastPage.data.last) {
-          // 다음 페이지 번호 반환
-          return allPages.length + 1;
-        }
-        // 그렇지 않으면, 더 이상 페이지가 없으므로 undefined 반환
-        return undefined;
-      },
-      enabled: !!searchWord,
-    });
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isLoading,
+    isError,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
+    queryKey: ['searchResults', selectedRegion, searchWord, selectedCategory],
+    queryFn: ({ pageParam = 0 }) =>
+      getToursSearch({
+        region: selectedRegion || '',
+        searchWord: searchWord,
+        category: selectedCategory !== '전체' ? selectedCategory : undefined,
+        page: pageParam,
+        size: 10,
+      }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, allPages) => {
+      if (!lastPage.data.data.last) {
+        return allPages.length;
+      }
+      return undefined;
+    },
+    enabled: !!searchWord,
+    retry: 2,
+  });
 
   if (isLoading) {
     return <Spinner />;
@@ -60,11 +64,10 @@ export const SearchResult = ({
     console.log('error fetching search result ');
   }
 
-  console.log('hasNextPage', hasNextPage);
-
-  const searchResults = data?.pages.flatMap((page) => page.data.data.content);
-  // const searchOptions = data?
+  const searchResults =
+    data?.pages.flatMap((page) => page.data.data.content) || [];
   console.log('searchResults', searchResults);
+  const noResults = searchResults && searchResults.length === 0;
 
   return (
     <>
@@ -82,7 +85,7 @@ export const SearchResult = ({
           />
         ))}
       </div>
-      {searchResults ? (
+      {/* {searchResults ? (
         <ResultCategory
           data={searchResults}
           category={selectedCategory}
@@ -90,7 +93,18 @@ export const SearchResult = ({
           hasNextPage={hasNextPage}
         />
       ) : (
-        <div>검색결과가 없습니다.</div>
+        <div className="mt-3 text-center text-gray3">검색결과가 없습니다.</div>
+      )} */}
+      {noResults ? (
+        <div className="my-10 text-center text-gray3">검색결과가 없습니다.</div>
+      ) : (
+        <ResultCategory
+          data={searchResults}
+          category={selectedCategory}
+          fetchNextPage={hasNextPage ? fetchNextPage : null}
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+        />
       )}
     </>
   );
