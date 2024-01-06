@@ -1,5 +1,5 @@
 import { CheckIcon } from '@components/common/icons/Icons';
-import validationList from '@utils/user/validationList';
+import validationList from '@utils/Auth/validationList';
 import { useEffect, useState } from 'react';
 
 interface Props {

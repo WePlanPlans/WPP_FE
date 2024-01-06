@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import MainLayout from './mainLayout';
 import { Signup, SignupInfo } from '@pages/signup';
-import { Login } from '@pages/index';
+import { Login, LoginKakao } from '@pages/index';
 
 const AuthRouter = () => {
   return (
@@ -10,6 +10,7 @@ const AuthRouter = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/signup/info" element={<SignupInfo />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/login/kakao" element={<LoginKakao />} />
       </Route>
     </Routes>
   );

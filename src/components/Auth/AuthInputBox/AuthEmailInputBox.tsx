@@ -1,7 +1,7 @@
 import { CloseIcon } from '@components/common/icons/Icons';
 import { useState } from 'react';
 
-const UserEmailInputBox = () => {
+const AuthEmailInputBox = () => {
   const [inputValue, setInputValue] = useState<string>('');
 
   const [isEmailValidated, setIsEmailValidated] = useState(true);
@@ -63,4 +63,4 @@ const UserEmailInputBox = () => {
   );
 };
 
-export default UserEmailInputBox;
+export default AuthEmailInputBox;

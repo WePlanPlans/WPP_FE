@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { CloseIcon } from '@components/common/icons/Icons';
 import ValidifyCheck from './ValidifyCheck';
 
-const UserPwInputBox = () => {
+const AuthPwInputBox = () => {
   const [inputPwValue, setInputPwValue] = useState('');
 
   const onPwInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,4 +97,4 @@ const UserPwInputBox = () => {
   );
 };
 
-export default UserPwInputBox;
+export default AuthPwInputBox;

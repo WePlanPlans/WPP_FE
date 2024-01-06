@@ -2,11 +2,10 @@ import { postEmailLogin } from '@api/auth';
 import authCient from '@api/authClient';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import Back from '@components/common/back/Back';
-import { KakaoIcon, LogoIcon } from '@components/common/icons/Icons';
-import { ErrorMessage, UserInputBox } from '@components/user';
+import { LogoIcon } from '@components/common/icons/Icons';
+import { ErrorMessage, AuthInputBox, KakaoLoginButton } from '@components/Auth';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { LoginFormVlaue } from '@/@types/auth.types';
 import { useState } from 'react';
 import { AxiosError } from 'axios';
 
@@ -20,7 +19,6 @@ const Login = () => {
     formState: { errors },
   } = useForm<LoginFormVlaue>({
     reValidateMode: 'onSubmit',
-    // 다른 옵션들...
   });
 
   const [isLoginFailed, setIsLoginFailed] = useState<boolean>(false);
@@ -60,7 +58,7 @@ const Login = () => {
           </h1>
         </div>
         <form className="mb-auto" onSubmit={handleSubmit(onLoginSubmit)}>
-          <UserInputBox
+          <AuthInputBox
             label={'이메일'}
             id="email"
             type="email"
@@ -69,7 +67,7 @@ const Login = () => {
             inputValue={watch('email')}
             setValue={setValue}
           />
-          <UserInputBox
+          <AuthInputBox
             label={'비밀번호'}
             id="password"
             type="password"
@@ -89,7 +87,7 @@ const Login = () => {
           {!errors.email && !errors.password && isLoginFailed && (
             <>
               <ErrorMessage>
-                아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다.
+                이메일 또는 비밀번호를 잘못 입력했습니다.
               </ErrorMessage>
               <ErrorMessage>입력하신 내용을 다시 확인해주세요.</ErrorMessage>
             </>
@@ -105,10 +103,7 @@ const Login = () => {
           또는
           <hr className="flex-auto" />
         </div>
-        <button className="body3 mb-2 flex h-14 w-full items-center justify-center gap-2 rounded-lg bg-[#fee304] p-2 text-['#3B1E1E']">
-          <KakaoIcon />
-          카카오로 로그인
-        </button>
+        <KakaoLoginButton />
         <SubmitBtn outline type="button">
           회원가입
         </SubmitBtn>
