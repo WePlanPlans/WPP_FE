@@ -7,6 +7,7 @@ import ToursCategoryItemSkeleton from './ToursCategoryItemSkeleton';
 import { v4 as uuidv4 } from 'uuid';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 
 const ToursCategory = ({
   selectedRegion,

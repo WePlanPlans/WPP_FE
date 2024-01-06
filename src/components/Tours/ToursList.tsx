@@ -48,7 +48,7 @@ const ToursList = ({ selectedRegion }: ToursListProps) => {
       loader={
         <div key={uuidv4()} className="flex justify-center">
           <div
-            className="z-[105] mx-auto mt-10 h-8 w-8 animate-spin rounded-full border-[3px] border-solid border-current border-t-transparent text-[blue-600] dark:text-[#28d8ff]"
+            className="z-[100] mx-auto h-8 w-8 animate-spin rounded-full border-[3px] border-solid border-current border-t-transparent pt-10 text-[blue-600] dark:text-[#28d8ff]"
             role="status"
             aria-label="loading">
             <div className="sr-only">Loading...</div>
