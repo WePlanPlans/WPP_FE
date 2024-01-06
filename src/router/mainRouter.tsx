@@ -2,11 +2,9 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import Main from '@pages/main/main.page';
 import { Search } from '@pages/search/search.page';
 import Detail from '@pages/detail/detail.page';
-import Main from '@pages/main/main.page';
 import ReviewComment from '@pages/reviewComment/reviewComment.page';
 import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
 import { useEffect } from 'react';
-
 import MainLayout from './routerLayout';
 
 const MainRouter = () => {
