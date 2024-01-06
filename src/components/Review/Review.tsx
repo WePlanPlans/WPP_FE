@@ -24,7 +24,6 @@ export default function Review() {
   const isModifyingReview = useRecoilValue(isModifyingReviewState);
   const targetReviewId = useRecoilValue(targetReviewIdState);
   const [_, setIsModalOpen] = useRecoilState(isModalOpenState);
-
   const handlePostReview = async () => {
     try {
       const reviewData = {

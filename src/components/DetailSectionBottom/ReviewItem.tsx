@@ -11,6 +11,7 @@ import {
 } from '@recoil/review';
 import { useEffect } from 'react';
 import { getEmoji } from '@utils/utils';
+import { getStarFill } from '@utils/getStarFill';
 
 interface Keyword {
   keywordId: number;
@@ -114,7 +115,8 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
                   key={index}
                   size={20}
                   color="none"
-                  fill={index < rating ? '#FFEC3E' : '#EDEDED'}
+                  fill={getStarFill(index, rating)}
+                  isHalf={index === Math.floor(rating) && rating % 1 !== 0}
                 />
               ))}
             </div>
