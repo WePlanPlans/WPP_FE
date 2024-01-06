@@ -4,16 +4,9 @@ import { Search } from '@pages/search/search.page';
 import Detail from '@pages/detail/detail.page';
 import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
 import ReviewComment from '@pages/reviewComment/reviewComment.page';
-import { useEffect } from 'react';
 import MainLayout from './routerLayout';
 
 const MainRouter = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
-
   return (
     <>
       <Routes>
