@@ -1,52 +1,48 @@
-import { useState } from 'react';
 import { CloseIcon } from '@components/common/icons/Icons';
+import { UseFormRegisterReturn, UseFormSetValue } from 'react-hook-form';
 
 interface Props {
   label: string;
-  type?: string;
-  name: string;
+  id: 'email' | 'password';
+  type?: 'text' | 'email' | 'password';
   placeholder: string;
-  // children: React.ReactNode;
-  validifyCheckList?: string[];
-  // onInputBlur: VoidFunction;
+  register: UseFormRegisterReturn;
+  inputValue: string;
+  setValue: UseFormSetValue<LoginFormVlaue>;
   marginB?: string;
+  // validifyCheckList?: string[];
+  // onInputBlur: VoidFunction;
+  // children: React.ReactNode;
 }
 
-const UserInputBox = ({
+const AuthInputBox = ({
   label,
-  type = 'password',
-  name,
+  id,
+  type = 'text',
   placeholder,
-  // validifyCheckList,
+  register,
+  inputValue,
+  setValue,
   marginB = 'mb-6',
 }: Props) => {
-  const [inputValue, setInputValue] = useState('');
-
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
-
   return (
     <div className={`${marginB} flex flex-col gap-2`}>
       <div className="flex flex-col gap-2">
-        <label htmlFor={label} className="body3 text-main2">
+        <label htmlFor={id} className="body3 text-main2">
           {label}
         </label>
         <div className="flex h-10 items-center border-b-[1.25px] border-solid border-gray3 focus-within:border-main1">
           <input
-            id={label}
+            id={id}
             className="w-full text-sm font-normal outline-none placeholder:text-gray3"
             type={type}
-            name={name}
             placeholder={placeholder}
-            required
-            value={inputValue}
-            onChange={onInputChange}
+            {...register}
           />
           {inputValue && (
             <div
               onClick={() => {
-                setInputValue('');
+                setValue(id, '');
               }}>
               <CloseIcon size={20} color="white" fill="#888888" />
             </div>
@@ -71,4 +67,4 @@ const UserInputBox = ({
   );
 };
 
-export default UserInputBox;
+export default AuthInputBox;

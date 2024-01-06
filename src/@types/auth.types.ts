@@ -9,7 +9,7 @@ interface AuthRequest {
   survey: string;
 }
 
-interface LoginRequest {
+interface LoginFormVlaue {
   email: string;
   password: string;
 }
