@@ -1,26 +1,25 @@
-import React from 'react';
-import Modal from 'react-modal';
-import { DeleteIcon, PenIcon } from '@components/common/icons/Icons';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { titleState, isModalOpenState } from '@recoil/modal';
-import { deleteReview } from '@api/review';
 import { deleteComments } from '@api/comments';
+import { deleteReview } from '@api/review';
+import { DeleteIcon, PenIcon } from '@components/common/icons/Icons';
+import { isModalOpenState, titleState } from '@recoil/modal';
 import {
-  ratingState,
-  keywordsState,
   contentState,
-  // commentState,
-  targetReviewIdState,
-  // reviewDataState,
-  targetCommentIdState,
+  contentTypeIdState,
   // commentContentState,
   isModifyingCommentState,
   isModifyingReviewState,
+  keywordsState,
+  ratingState,
+  // reviewDataState,
+  targetCommentIdState,
+  // commentState,
+  targetReviewIdState,
   tourItemIdState,
-  contentTypeIdState,
-  shouldOptimisticState,
 } from '@recoil/review';
+import React from 'react';
+import Modal from 'react-modal';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 interface ModalProps {
   isOpen: boolean;
@@ -43,7 +42,6 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
   const setIsModifyingComment = useSetRecoilState(isModifyingCommentState);
   const navigate = useNavigate();
   const setIsModalOpen = useSetRecoilState(isModalOpenState);
-  const setShouldOptimistic = useSetRecoilState(shouldOptimisticState);
 
   const customStyles = {
     content: {
@@ -86,12 +84,10 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
   const handleDelete = () => {
     if (title == '내 리뷰') {
       deleteReview(targetReviewId);
-      setShouldOptimistic(true);
       setIsModalOpen(false);
       navigate(`/detail/${tourItemId}`);
     } else if (title == '내 댓글') {
       deleteComments(targetCommentId);
-      setShouldOptimistic(true);
       setIsModalOpen(false);
     }
     window.location.reload();

@@ -1,7 +1,7 @@
 import { MoreIcon } from '@components/common/icons/Icons';
-import { useSetRecoilState, useRecoilState } from 'recoil';
 import { isModalOpenState, titleState } from '@recoil/modal';
 import { commentState, targetCommentIdState } from '@recoil/review';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 
 interface ItemProps {
   commentId: number;
@@ -23,9 +23,8 @@ const CommentItem: React.FC<ItemProps> = (props: ItemProps) => {
   } = props;
   const [_, setIsModalOpen] = useRecoilState(isModalOpenState);
   const setTitle = useSetRecoilState(titleState);
-  const [targetCommentId, setTargetCommentId] =
-    useRecoilState(targetCommentIdState);
-  const [comment, setComment] = useRecoilState(commentState);
+  const setTargetCommentId = useSetRecoilState(targetCommentIdState);
+  const setComment = useSetRecoilState(commentState);
 
   const openModal = (title: string, commentId: number) => {
     setTitle(title);
