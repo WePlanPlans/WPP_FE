@@ -3,7 +3,7 @@ import authCient from '@api/authClient';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import Back from '@components/common/back/Back';
 import { KakaoIcon, LogoIcon } from '@components/common/icons/Icons';
-import { ErrorMessage, UserInputBox } from '@components/User1';
+import { ErrorMessage, UserInputBox } from '@components/User';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { LoginFormVlaue } from '@/@types/auth.types';
