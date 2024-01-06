@@ -24,8 +24,8 @@ const DetailReviewStats = () => {
                   backgroundColor: getColor(data.keywordCount),
                 }}
               />
-              <div className="absolute left-[14.5px] top-[12.23px] flex items-center justify-start gap-[145px]">
-                <div className="flex items-start justify-start gap-1.5">
+              <div className="absolute left-[14.5px] top-[12.23px] flex items-center justify-start gap-[137.5px]">
+                <div className="flex items-start justify-start gap-2.5">
                   <p className="w-4">{getEmoji(data.content)}</p>
                   <p className="h-[15.55px] w-[166px] font-bold text-gray6">
                     {data.content}
