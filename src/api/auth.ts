@@ -1,3 +1,4 @@
+import authClient from './authClient';
 import client from './client';
 
 // 인증 관련 API
@@ -33,8 +34,7 @@ export const postKakaoLogin = async (LoginData: LoginFormVlaue) => {
 };
 
 // 로그아웃
-// TODO 서지수| 나중에 확인하고 수정하기
 export const postLogout = async () => {
-  const res = await client.post(`auth/logout`);
+  const res = await authClient.post(`auth/logout`);
   return res;
 };
