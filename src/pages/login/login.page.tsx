@@ -6,7 +6,6 @@ import { LogoIcon } from '@components/common/icons/Icons';
 import { ErrorMessage, AuthInputBox, KakaoLoginButton } from '@components/Auth';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { LoginFormVlaue } from '@/@types/auth.types';
 import { useState } from 'react';
 import { AxiosError } from 'axios';
 

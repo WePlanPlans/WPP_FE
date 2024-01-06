@@ -21,13 +21,13 @@ export const postSignup = async (authData: AuthRequest) => {
 };
 
 // 로그인-이메일
-export const postEmailLogin = async (LoginData: LoginRequest) => {
+export const postEmailLogin = async (LoginData: LoginFormVlaue) => {
   const res = await client.post(`auth/login`, LoginData);
   return res;
 };
 
 // 로그인-카카오
-export const postKakaoLogin = async (LoginData: LoginRequest) => {
+export const postKakaoLogin = async (LoginData: LoginFormVlaue) => {
   const res = await client.post(`auth/login/kakao`, LoginData);
   return res;
 };

@@ -1,6 +1,5 @@
 import { CloseIcon } from '@components/common/icons/Icons';
 import { UseFormRegisterReturn, UseFormSetValue } from 'react-hook-form';
-import { LoginFormVlaue } from '@/@types/auth.types';
 
 interface Props {
   label: string;
