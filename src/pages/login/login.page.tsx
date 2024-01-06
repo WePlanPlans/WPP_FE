@@ -3,7 +3,12 @@ import authCient from '@api/authClient';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import Back from '@components/common/back/Back';
 import { LogoIcon } from '@components/common/icons/Icons';
-import { ErrorMessage, AuthInputBox, KakaoLoginButton } from '@components/Auth';
+import {
+  ErrorMessage,
+  AuthInputBox,
+  KakaoLoginButton,
+  SignupButton,
+} from '@components/Auth';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useState } from 'react';
@@ -104,9 +109,7 @@ const Login = () => {
           <hr className="flex-auto" />
         </div>
         <KakaoLoginButton />
-        <SubmitBtn outline type="button">
-          회원가입
-        </SubmitBtn>
+        <SignupButton />
       </div>
     </div>
   );
