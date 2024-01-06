@@ -22,13 +22,13 @@ const Login = () => {
     watch,
     resetField,
     formState: { errors },
-  } = useForm<LoginFormVlaue>({
+  } = useForm<LoginFormValue>({
     reValidateMode: 'onSubmit',
   });
 
   const [isLoginFailed, setIsLoginFailed] = useState<boolean>(false);
 
-  const onLoginSubmit: SubmitHandler<LoginFormVlaue> = async (data) => {
+  const onLoginSubmit: SubmitHandler<LoginFormValue> = async (data) => {
     const { email, password } = data;
     try {
       const res = await postEmailLogin({

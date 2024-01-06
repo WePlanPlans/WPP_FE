@@ -8,7 +8,7 @@ interface Props {
   placeholder: string;
   register: UseFormRegisterReturn;
   inputValue: string;
-  resetField: UseFormResetField<LoginFormVlaue | SignupFormValue>;
+  resetField: UseFormResetField<LoginFormValue | SignupFormValue>;
   marginB?: string;
   // validifyCheckList?: string[];
   // onInputBlur: VoidFunction;
