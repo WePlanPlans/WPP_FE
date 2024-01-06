@@ -1,24 +1,22 @@
 import { getToursReviews } from '@api/tours';
-import { useEffect, useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroller';
-import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
-import ReviewItem from './ReviewItem';
 import { StarIcon } from '@components/common/icons/Icons';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
+import { Modal } from '@components/common/modal';
 import { isModalOpenState, titleState } from '@recoil/modal';
 import {
-  ratingState,
-  keywordsState,
   contentState,
-  targetReviewIdState,
-  tourItemIdState,
   contentTypeIdState,
   isModifyingReviewState,
-  shouldOptimisticState,
+  keywordsState,
+  ratingState,
+  targetReviewIdState,
+  tourItemIdState,
 } from '@recoil/review';
-import { Modal } from '@components/common/modal';
-import React from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import React, { useEffect, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroller';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import ReviewItem from './ReviewItem';
 
 interface reviewProps {
   reviewData: any;
@@ -38,13 +36,11 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   const setContentTypeId = useSetRecoilState(contentTypeIdState);
   const setTargetReviewId = useSetRecoilState(targetReviewIdState);
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
-  const shouldOptimistic = useRecoilValue(shouldOptimisticState);
   const {
     data: toursReviews,
     fetchNextPage,
     hasNextPage,
     error,
-    refetch,
   } = useInfiniteQuery({
     queryKey: ['toursReviews'],
     queryFn: ({ pageParam = 0 }) => getToursReviews(tourItemId, pageParam, 10),
@@ -101,11 +97,9 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   }, [toursReviews]);
   return (
     <>
-      <div className="mb-4 mt-2 text-lg font-bold">
-        리뷰
-        <span className="pl-1 text-gray4">{reviewDataLength}</span>
+      <div className="mb-4 mt-2 text-lg font-bold" id="scrollToReview">
+        리뷰<span className="pl-1 text-gray4">{reviewDataLength}</span>
       </div>
-
       {reviewDataLength == 0 && (
         <div
           className="flex cursor-pointer flex-col items-center justify-center"

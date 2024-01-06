@@ -75,7 +75,3 @@ export const contentTypeIdState = atom({
   key: 'contentTypeIdState',
   default: 0,
 });
-export const shouldOptimisticState = atom({
-  key: 'shouldOptimisticState',
-  default: false,
-});

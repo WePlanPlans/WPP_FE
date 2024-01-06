@@ -1,10 +1,10 @@
 import { getReviewComments } from '@api/review';
+import { Modal } from '@components/common/modal';
+import { isModalOpenState } from '@recoil/modal';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import CommentItem from './CommentItem';
 import { useRecoilState } from 'recoil';
-import { isModalOpenState } from '@recoil/modal';
-import { Modal } from '@components/common/modal';
+import CommentItem from './CommentItem';
 // import { targetCommentIdState } from '@recoil/review';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';

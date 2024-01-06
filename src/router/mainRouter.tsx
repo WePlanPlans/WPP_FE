@@ -1,41 +1,13 @@
-import { Outlet, Route, Routes } from 'react-router-dom';
-import { Header } from '@components/common/header';
-import { Nav } from '@components/common/nav';
-import Main from '@pages/main/main.page';
-import { Search } from '@pages/search/search.page';
 import Detail from '@pages/detail/detail.page';
-import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
+import Main from '@pages/main/main.page';
 import ReviewComment from '@pages/reviewComment/reviewComment.page';
-import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
-import Signup from '@pages/signup/signup.page';
+import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
+import { Search } from '@pages/search/search.page';
 import Signin from '@pages/signin/signin.page';
-import { InputComment } from '@components/common/nav';
-
-export function MainLayout() {
-  const location = useLocation();
-  const hideNavPaths = [
-    '/signup',
-    '/signin',
-    '/reviewPosting',
-    '/reviewComment',
-    '/detail',
-  ];
-  const showNav = !hideNavPaths.some((path) =>
-    location.pathname.includes(path),
-  );
-
-  return (
-    <div className="mx-auto my-0 flex min-h-[100vh] max-w-[412px] flex-col bg-white ">
-      <Header />
-      <div className="px-[20px] py-0">
-        <Outlet />
-      </div>
-      {showNav && <Nav />}
-      {location.pathname.includes('/reviewComment') && <InputComment />}
-    </div>
-  );
-}
+import Signup from '@pages/signup/signup.page';
+import { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import MainLayout from './routerLayout';
 
 const MainRouter = () => {
   const location = useLocation();
