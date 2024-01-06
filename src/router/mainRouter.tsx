@@ -10,10 +10,17 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Signup from '@pages/signup/signup.page';
 import Signin from '@pages/signin/signin.page';
+import { InputComment } from '@components/common/nav';
 
 export function MainLayout() {
   const location = useLocation();
-  const hideNavPaths = ['/signup', '/signin'];
+  const hideNavPaths = [
+    '/signup',
+    '/signin',
+    '/reviewPosting',
+    '/reviewComment',
+    '/detail',
+  ];
   const showNav = !hideNavPaths.some((path) =>
     location.pathname.includes(path),
   );
@@ -25,6 +32,7 @@ export function MainLayout() {
         <Outlet />
       </div>
       {showNav && <Nav />}
+      {location.pathname.includes('/reviewComment') && <InputComment />}
     </div>
   );
 }

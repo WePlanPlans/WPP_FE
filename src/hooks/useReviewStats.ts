@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getToursReviews } from '@api/tours';
 import { TourKeywordInfo } from '@/@types/tours.types';
+import { useParams } from 'react-router-dom';
 
 type UseGetToursReviewsReturn = {
   reviewStats: TourKeywordInfo[] | null;
@@ -13,10 +14,12 @@ const sortTourKeywordInfos = (
 };
 
 export const useGetToursReviews = (): UseGetToursReviewsReturn => {
+  const params = useParams();
+  const tourItemId = Number(params.id);
+
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['toursReviews'],
-    queryFn: () => getToursReviews(99),
-    staleTime: 60000,
+    queryKey: ['toursReviews', tourItemId],
+    queryFn: () => getToursReviews(tourItemId),
   });
 
   const reviewStats = data?.data.data.tourKeywordInfos

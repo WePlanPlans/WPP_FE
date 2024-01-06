@@ -1,2 +1,3 @@
 import Nav from './Nav';
-export { Nav };
+import { InputComment } from './InputComment';
+export { Nav, InputComment };

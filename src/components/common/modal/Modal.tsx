@@ -18,6 +18,7 @@ import {
   isModifyingReviewState,
   tourItemIdState,
   contentTypeIdState,
+  shouldOptimisticState,
 } from '@recoil/review';
 import { useNavigate } from 'react-router-dom';
 
@@ -42,6 +43,7 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
   const setIsModifyingComment = useSetRecoilState(isModifyingCommentState);
   const navigate = useNavigate();
   const setIsModalOpen = useSetRecoilState(isModalOpenState);
+  const setShouldOptimistic = useSetRecoilState(shouldOptimisticState);
 
   const customStyles = {
     content: {
@@ -64,6 +66,7 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
   const handleEdit = () => {
     if (title == '내 리뷰') {
       setIsModifyingReview(true);
+      setIsModalOpen(false);
       navigate(`/reviewPosting/${tourItemId}`, {
         state: {
           title,
@@ -77,21 +80,21 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
     } else if (title == '내 댓글') {
       setIsModifyingComment(true);
       setIsModalOpen(false);
-
-      // targetCommentId
-      // comment
-      // putComments(commentContent, targetCommentId);
     }
   };
 
   const handleDelete = () => {
     if (title == '내 리뷰') {
       deleteReview(targetReviewId);
+      setShouldOptimistic(true);
       setIsModalOpen(false);
+      navigate(`/detail/${tourItemId}`);
     } else if (title == '내 댓글') {
       deleteComments(targetCommentId);
+      setShouldOptimistic(true);
       setIsModalOpen(false);
     }
+    window.location.reload();
   };
 
   return (
