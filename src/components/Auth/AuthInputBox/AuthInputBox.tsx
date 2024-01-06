@@ -1,5 +1,5 @@
 import { CloseIcon } from '@components/common/icons/Icons';
-import { UseFormRegisterReturn, UseFormSetValue } from 'react-hook-form';
+import { UseFormRegisterReturn, UseFormResetField } from 'react-hook-form';
 
 interface Props {
   label: string;
@@ -8,7 +8,7 @@ interface Props {
   placeholder: string;
   register: UseFormRegisterReturn;
   inputValue: string;
-  setValue: UseFormSetValue<LoginFormVlaue>;
+  resetField: UseFormResetField<LoginFormVlaue | SignupFormValue>;
   marginB?: string;
   // validifyCheckList?: string[];
   // onInputBlur: VoidFunction;
@@ -22,7 +22,7 @@ const AuthInputBox = ({
   placeholder,
   register,
   inputValue,
-  setValue,
+  resetField,
   marginB = 'mb-6',
 }: Props) => {
   return (
@@ -42,7 +42,7 @@ const AuthInputBox = ({
           {inputValue && (
             <div
               onClick={() => {
-                setValue(id, '');
+                resetField(id);
               }}>
               <CloseIcon size={20} color="white" fill="#888888" />
             </div>

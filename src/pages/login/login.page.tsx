@@ -20,7 +20,7 @@ const Login = () => {
     register,
     handleSubmit,
     watch,
-    setValue,
+    resetField,
     formState: { errors },
   } = useForm<LoginFormVlaue>({
     reValidateMode: 'onSubmit',
@@ -70,7 +70,7 @@ const Login = () => {
             placeholder={'이메일을 입력하세요'}
             register={register('email', { required: '아이디를 입력해주세요.' })}
             inputValue={watch('email')}
-            setValue={setValue}
+            resetField={resetField}
           />
           <AuthInputBox
             label={'비밀번호'}
@@ -81,7 +81,7 @@ const Login = () => {
               required: '비밀번호를 입력해주세요.',
             })}
             inputValue={watch('password')}
-            setValue={setValue}
+            resetField={resetField}
           />
           {errors.email?.type === 'required' && (
             <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
