@@ -16,7 +16,7 @@ interface Props {
   // children: React.ReactNode;
 }
 
-const UserInputBox = ({
+const AuthInputBox = ({
   label,
   id,
   type = 'text',
@@ -68,4 +68,4 @@ const UserInputBox = ({
   );
 };
 
-export default UserInputBox;
+export default AuthInputBox;

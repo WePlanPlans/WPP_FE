@@ -3,7 +3,7 @@ import authCient from '@api/authClient';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import Back from '@components/common/back/Back';
 import { KakaoIcon, LogoIcon } from '@components/common/icons/Icons';
-import { ErrorMessage, UserInputBox } from '@components/User';
+import { ErrorMessage, AuthInputBox } from '@components/Auth';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { LoginFormVlaue } from '@/@types/auth.types';
@@ -60,7 +60,7 @@ const Login = () => {
           </h1>
         </div>
         <form className="mb-auto" onSubmit={handleSubmit(onLoginSubmit)}>
-          <UserInputBox
+          <AuthInputBox
             label={'이메일'}
             id="email"
             type="email"
@@ -69,7 +69,7 @@ const Login = () => {
             inputValue={watch('email')}
             setValue={setValue}
           />
-          <UserInputBox
+          <AuthInputBox
             label={'비밀번호'}
             id="password"
             type="password"

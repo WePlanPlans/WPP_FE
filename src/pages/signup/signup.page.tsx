@@ -1,4 +1,4 @@
-import { UserEmailInputBox, UserPwInputBox } from '@components/User';
+import { AuthEmailInputBox, AuthPwInputBox } from '@components/Auth';
 import { useState } from 'react';
 
 const Signup = () => {
@@ -12,8 +12,8 @@ const Signup = () => {
         회원가입을 해주세요
       </h1>
       <form className="flex h-full flex-col">
-        <UserEmailInputBox />
-        <UserPwInputBox />
+        <AuthEmailInputBox />
+        <AuthPwInputBox />
 
         {/* TODO 서지수 | 모든 조건이 만족되어야지만 활성화되도록 수정 */}
         <div className="mt-auto">
