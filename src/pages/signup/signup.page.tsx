@@ -1,4 +1,4 @@
-import { UserEmailInputBox, UserPwInputBox } from '@components/user';
+import { UserEmailInputBox, UserPwInputBox } from '@components/User1';
 import { useState } from 'react';
 
 const Signup = () => {
