@@ -15,7 +15,6 @@ interface Props {
   resetField: UseFormResetField<any>; // TODO 서지수 | any 나중에 제거
   errors: FieldErrors<SignupFormValue>;
   setError: UseFormSetError<SignupFormValue>;
-  // marginB?: string;
 }
 
 const AuthEmailInputBox = ({
@@ -26,6 +25,8 @@ const AuthEmailInputBox = ({
   setError,
 }: Props) => {
   const patternValue = /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/;
+
+  const errorMessage = errors.email?.message;
 
   const onEmailBlur = async () => {
     if (patternValue.test(inputValue)) {
@@ -67,7 +68,7 @@ const AuthEmailInputBox = ({
         resetField={resetField}
       />
 
-      {errors.email && <ErrorMessage>{`${errors.email.message}`}</ErrorMessage>}
+      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </AuthInputWrapper>
   );
 };
