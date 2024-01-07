@@ -3,6 +3,7 @@ import AuthInput from '../AuthInput';
 import { getCheckEmail } from '@api/auth';
 import { UseFormRegister, UseFormResetField } from 'react-hook-form';
 import { useState } from 'react';
+import { ErrorMessage } from '@components/Auth';
 
 interface Props {
   register: UseFormRegister<SignupFormValue>;
@@ -12,7 +13,7 @@ interface Props {
 }
 
 const AuthEmailInputBox = ({ register, inputValue, resetField }: Props) => {
-  const [isEmailExist, setIsEmailExist] = useState<boolean>(false);
+  const [isEmailExist, setIsEmailExist] = useState<boolean>(true);
 
   const onEmailBlur = async () => {
     console.log('이메일 focus 해제');
@@ -52,7 +53,7 @@ const AuthEmailInputBox = ({ register, inputValue, resetField }: Props) => {
           : isEmailDuplicate && '사용 중인 이메일입니다.'}
       </span> */}
       {/* TODO 서지수 | 변경되면 코드 수정 */}
-      {/* {!isEmailExist && <ErrorMessage>사용 중인 이메일입니다.</ErrorMessage>} */}
+      {!isEmailExist && <ErrorMessage>사용 중인 이메일입니다.</ErrorMessage>}
     </AuthInputWrapper>
   );
 };
