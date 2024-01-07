@@ -17,12 +17,7 @@ const Signup = () => {
 
         {/* TODO 서지수 | 모든 조건이 만족되어야지만 활성화되도록 수정 */}
         <div className="mt-auto">
-          <button
-            className={`bottom-5 h-14 w-full rounded-lg ${
-              isActive ? 'bg-main1' : 'bg-gray3'
-            } headline1 relative text-white`}>
-            다음
-          </button>
+          <SubmitBtn isActive={false}>완료</SubmitBtn>
         </div>
       </form>
     </div>
