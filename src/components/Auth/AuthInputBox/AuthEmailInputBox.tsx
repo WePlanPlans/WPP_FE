@@ -3,7 +3,6 @@ import AuthInput from './AuthInput';
 import { getCheckEmail } from '@api/auth';
 import { UseFormRegister, UseFormResetField } from 'react-hook-form';
 import { useState } from 'react';
-import { ErrorMessage } from '..';
 
 interface Props {
   register: UseFormRegister<SignupFormValue>;
@@ -53,7 +52,7 @@ const AuthEmailInputBox = ({ register, inputValue, resetField }: Props) => {
           : isEmailDuplicate && '사용 중인 이메일입니다.'}
       </span> */}
       {/* TODO 서지수 | 변경되면 코드 수정 */}
-      {!isEmailExist && <ErrorMessage>사용 중인 이메일입니다.</ErrorMessage>}
+      {/* {!isEmailExist && <ErrorMessage>사용 중인 이메일입니다.</ErrorMessage>} */}
     </AuthInputWrapper>
   );
 };
