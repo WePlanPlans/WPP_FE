@@ -16,6 +16,7 @@ export default {
         gray6: '#38393C',
         gray7: '#1E1E1E',
         red: '#F00',
+        primary: '#29DDF6',
       },
     },
   },

@@ -72,7 +72,7 @@ export default function ReviewKeyword() {
               <button
                 className={`flex items-center justify-center row-${row} col-${col} h-[40px] cursor-pointer rounded-md ${
                   isSelected
-                    ? 'bg-main1 text-white'
+                    ? 'bg-[#062139] text-white'
                     : 'bg-gray-100 text-gray-500'
                 } px-2 py-1`}
                 key={keyword.keywordId}

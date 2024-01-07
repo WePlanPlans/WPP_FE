@@ -1,19 +1,12 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Main from '@pages/main/main.page';
 import { Search } from '@pages/search/search.page';
 import Detail from '@pages/detail/detail.page';
-import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
 import ReviewComment from '@pages/reviewComment/reviewComment.page';
-import { useEffect } from 'react';
+import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
 import MainLayout from './routerLayout';
 
 const MainRouter = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
-
   return (
     <>
       <Routes>
