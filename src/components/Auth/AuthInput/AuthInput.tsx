@@ -16,6 +16,8 @@ interface Props {
   // children: React.ReactNode;
 }
 
+// TODO 서지수 | 에러 발생 시 빨간 밑줄
+
 const AuthInput = ({
   label,
   id,
