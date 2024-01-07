@@ -1,5 +1,5 @@
-import AuthInputWrapper from './AuthInputWrapper';
-import AuthInput from './AuthInput';
+import AuthInputWrapper from '../AuthInputWrapper';
+import AuthInput from '../AuthInput';
 import {
   UseFormGetValues,
   UseFormRegister,

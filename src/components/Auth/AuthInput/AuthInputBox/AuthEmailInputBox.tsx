@@ -1,5 +1,5 @@
-import AuthInputWrapper from './AuthInputWrapper';
-import AuthInput from './AuthInput';
+import AuthInputWrapper from '../AuthInputWrapper';
+import AuthInput from '../AuthInput';
 import { getCheckEmail } from '@api/auth';
 import { UseFormRegister, UseFormResetField } from 'react-hook-form';
 import { useState } from 'react';
