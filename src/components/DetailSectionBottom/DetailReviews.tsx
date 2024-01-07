@@ -1,7 +1,11 @@
 import { getToursReviews } from '@api/tours';
 import { StarIcon } from '@components/common/icons/Icons';
 import { Modal } from '@components/common/modal';
-import { isModalOpenState, titleState } from '@recoil/modal';
+import {
+  isModalOpenState,
+  titleState,
+  modalChildrenState,
+} from '@recoil/modal';
 import {
   contentState,
   contentTypeIdState,
@@ -16,9 +20,11 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import ReviewItem from './ReviewItem';
 import Alert from '@components/common/alert/Alert';
+import EditDelete from '@components/common/modal/children/EditDelete';
+import DeleteAlert from '@components/common/modal/children/DeleteAlert';
 interface reviewProps {
   reviewData: any;
 }
@@ -38,6 +44,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   const setTargetReviewId = useSetRecoilState(targetReviewIdState);
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
   const [alert, setAlert] = useRecoilState(alertState);
+  const modalChildren = useRecoilValue(modalChildrenState);
   const {
     data: toursReviews,
     fetchNextPage,
@@ -95,7 +102,6 @@ export default function DetailReviews({ reviewData }: reviewProps) {
         setReviewDataLength(group?.data.data.reviewTotalCount);
       });
     }
-    console.log('toursReviews', toursReviews);
   }, [toursReviews]);
 
   useEffect(() => {
@@ -107,7 +113,6 @@ export default function DetailReviews({ reviewData }: reviewProps) {
           verb: '',
         }));
       }, 2000);
-
       return () => clearTimeout(timer);
     }
   }, [alert]);
@@ -167,8 +172,10 @@ export default function DetailReviews({ reviewData }: reviewProps) {
           })}
         </div>
       </InfiniteScroll>
-
-      <Modal isOpen={isModalOpen} closeModal={closeModal} />
+      <Modal isOpen={isModalOpen} closeModal={closeModal}>
+        {modalChildren === 'EditDelete' && <EditDelete />}
+        {modalChildren === 'DeleteAlert' && <DeleteAlert />}
+      </Modal>
     </>
   );
 }

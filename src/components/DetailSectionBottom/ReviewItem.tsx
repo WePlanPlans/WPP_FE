@@ -1,6 +1,10 @@
 import { StarIcon, ChatIcon, MoreIcon } from '@components/common/icons/Icons';
 import { useSetRecoilState, useRecoilState } from 'recoil';
-import { isModalOpenState, titleState } from '@recoil/modal';
+import {
+  isModalOpenState,
+  titleState,
+  modalChildrenState,
+} from '@recoil/modal';
 import {
   ratingState,
   keywordsState,
@@ -58,6 +62,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
   const setTourItemId = useSetRecoilState(tourItemIdState);
   const setContentTypeId = useSetRecoilState(contentTypeIdState);
   const setTargetReviewId = useSetRecoilState(targetReviewIdState);
+  const setModalChildren = useSetRecoilState(modalChildrenState);
   const [showMoreKeywords, setShowMoreKeywords] = useState(false);
 
   const openModal = (title: string, reviewId: number, e: React.MouseEvent) => {
@@ -78,6 +83,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     setKeywords(keywords);
     setContent(content);
     setTargetReviewId(reviewId);
+    setModalChildren('EditDelete');
     setIsModalOpen(true);
   };
 

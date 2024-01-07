@@ -36,16 +36,14 @@ export default function Review() {
         content: content,
       };
       if (isModifyingReview) {
-        const response = await putReview(reviewData, targetReviewId);
-        console.log('리뷰가 성공적으로 수정되었습니다.', response.data);
+        await putReview(reviewData, targetReviewId);
         setAlert(() => ({
           isAlert: true,
           noun: '리뷰',
           verb: '수정',
         }));
       } else {
-        const response = await postReview(reviewData);
-        console.log('리뷰가 성공적으로 등록되었습니다.', response.data);
+        await postReview(reviewData);
         setAlert(() => ({
           isAlert: true,
           noun: '리뷰',

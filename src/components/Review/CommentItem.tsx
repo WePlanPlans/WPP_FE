@@ -1,5 +1,9 @@
 import { MoreIcon } from '@components/common/icons/Icons';
-import { isModalOpenState, titleState } from '@recoil/modal';
+import {
+  isModalOpenState,
+  titleState,
+  modalChildrenState,
+} from '@recoil/modal';
 import { commentState, targetCommentIdState } from '@recoil/review';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 
@@ -25,11 +29,14 @@ const CommentItem: React.FC<ItemProps> = (props: ItemProps) => {
   const setTitle = useSetRecoilState(titleState);
   const setTargetCommentId = useSetRecoilState(targetCommentIdState);
   const setComment = useSetRecoilState(commentState);
+  const setModalChildren = useSetRecoilState(modalChildrenState);
 
   const openModal = (title: string, commentId: number) => {
     setTitle(title);
     setTargetCommentId(commentId);
     setComment(content);
+    setModalChildren('EditDelete');
+
     setIsModalOpen(true);
   };
 
