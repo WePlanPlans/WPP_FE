@@ -50,6 +50,8 @@ const Login = () => {
     }
   };
 
+  // TODO 서지수 | 마크업 컴포넌트화 해야함
+
   return (
     <div className="flex h-[95vh] flex-col">
       <Back />
