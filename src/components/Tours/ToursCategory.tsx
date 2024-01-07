@@ -30,7 +30,7 @@ const ToursCategory = ({
   }, [isLoading]);
 
   if (error) {
-    console.log('error - 예외 처리');
+    console.error('error');
   }
 
   const handleSelectRegion = (name: string) => {
