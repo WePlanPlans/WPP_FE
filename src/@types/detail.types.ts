@@ -9,3 +9,8 @@ interface tourDetail {
   tel: string;
   originalThumbnailUrl: string;
 }
+
+interface LikeProps {
+  liked: boolean;
+  id: number;
+}
