@@ -1,3 +1,4 @@
+import { postSignup } from '@api/auth';
 import {
   AuthEmailInputBox,
   AuthPwInputBox,
@@ -5,7 +6,8 @@ import {
 } from '@components/Auth';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const [isActive] = useState<boolean>(false);
@@ -19,8 +21,24 @@ const Signup = () => {
     formState: { errors },
   } = useForm<SignupFormValue>();
 
-  const onSignupSubmit = () => {
-    console.log('회원가입 버튼 클릭');
+  const navigate = useNavigate();
+
+  const onSignupSubmit: SubmitHandler<SignupFormValue> = async (data) => {
+    const { email, password } = data;
+
+    try {
+      const res = await postSignup({
+        email,
+        password,
+      });
+      console.log(res);
+      if (res.status === 200) {
+        // TODO 서지수 | 회원가입 로직 수정 후 취향 입력 페이지 또는 회원가입 완료 페이지로 이동
+        // navigate('/signup/survey');
+      }
+    } catch (err) {
+      console.error('회원가입 요청 중 에러 발생', err);
+    }
   };
 
   console.log(errors);
