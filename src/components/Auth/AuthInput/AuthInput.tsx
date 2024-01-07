@@ -49,7 +49,7 @@ const AuthInput = ({
               onClick={() => {
                 resetField(id);
               }}>
-              <CloseIcon size={20} color="white" fill="#888888" />
+              <CloseIcon size={20} fill="#D7D7D7" />
             </div>
           )}
         </div>

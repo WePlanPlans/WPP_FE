@@ -535,7 +535,7 @@ export const CloseIcon: React.FC<IconProps> = ({
       fill={fill}
       xmlns="http://www.w3.org/2000/svg">
       <g id="Group 36673">
-        <circle id="Ellipse" cx="8.00671" cy="8.59326" r="8" fill="#888888" />
+        <circle id="Ellipse" cx="8.00671" cy="8.59326" r="8" fill={fill} />
         <path
           id="Line"
           d="M5.04033 5.62725L10.9731 11.5601"
