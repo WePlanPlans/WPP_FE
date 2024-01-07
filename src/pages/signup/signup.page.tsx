@@ -1,5 +1,10 @@
 import { getCheckEmail } from '@api/auth';
-import { AuthEmailInputBox, AuthInput, ErrorMessage } from '@components/Auth';
+import {
+  AuthEmailInputBox,
+  AuthInput,
+  AuthPwInputBox,
+  ErrorMessage,
+} from '@components/Auth';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -38,25 +43,8 @@ const Signup = () => {
           inputValue={watch('email')}
           resetField={resetField}
         />
-
-        <AuthInput
-          label={'비밀번호'}
-          id="password"
-          type="password"
-          placeholder={'비밀번호를 입력해주세요'}
-          register={register('password', {
-            required: '비밀번호를 입력해주세요.',
-            minLength: 8,
-            maxLength: 20,
-            validate: {
-              checkEng: (value) => {
-                return /[a-zA-Z]/.test(value);
-              },
-              checkNum: (value) => {
-                return /[0-9]/.test(value);
-              },
-            },
-          })}
+        <AuthPwInputBox
+          register={register}
           inputValue={watch('password')}
           resetField={resetField}
         />
@@ -77,8 +65,6 @@ const Signup = () => {
           inputValue={watch('passwordCheck')}
           resetField={resetField}
         />
-        {/* <AuthEmailInputBox />
-        <AuthPwInputBox /> */}
 
         {/* TODO 서지수 | 모든 조건이 만족되어야지만 활성화되도록 수정 */}
         <div className="mt-auto">

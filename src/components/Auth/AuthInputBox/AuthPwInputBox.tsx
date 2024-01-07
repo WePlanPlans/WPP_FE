@@ -1,99 +1,39 @@
-import { useState } from 'react';
-import { CloseIcon } from '@components/common/icons/Icons';
-import ValidifyCheck from './ValidifyCheck';
+import AuthInputWrapper from './AuthInputWrapper';
+import AuthInput from './AuthInput';
+import { UseFormRegister, UseFormResetField } from 'react-hook-form';
 
-const AuthPwInputBox = () => {
-  const [inputPwValue, setInputPwValue] = useState('');
+interface Props {
+  register: UseFormRegister<SignupFormValue>;
+  inputValue: string;
+  resetField: UseFormResetField<any>; // TODO 서지수 | any 나중에 제거
+  // marginB?: string;
+}
 
-  const onPwInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputPwValue(e.target.value);
-  };
-
-  const [inputPwCheckValue, setInputPwCheckValue] = useState('');
-
-  const onPwCheckInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputPwCheckValue(e.target.value);
-  };
-
+const AuthPwInputBox = ({ register, inputValue, resetField }: Props) => {
   return (
-    <>
-      <div className="mb-6 flex flex-col gap-2">
-        <div className="flex flex-col gap-[0.4375rem]">
-          <label htmlFor="비밀번호" className="body3 text-main2">
-            비밀번호
-          </label>
-          <div className="flex h-10 items-center border-b-[1.25px] border-solid border-gray3 focus-within:border-main1">
-            <input
-              id="비밀번호"
-              className="w-full text-sm font-normal outline-none placeholder:text-gray3"
-              type="password"
-              placeholder="비밀번호를 입력해주세요"
-              required
-              value={inputPwValue}
-              onChange={onPwInputChange}
-            />
-            {inputPwValue && (
-              <button
-                type="button"
-                onClick={() => {
-                  setInputPwValue('');
-                }}>
-                <CloseIcon size={20} color="white" fill="#888888" />
-              </button>
-            )}
-          </div>
-        </div>
-        <div className="flex h-6 items-center gap-2">
-          {['checkPwEng', 'checkPwNum', 'checkPwLength'].map(
-            (validifyCheckItem) => (
-              <ValidifyCheck
-                key={validifyCheckItem}
-                checkId={validifyCheckItem}
-                inputValue={inputPwValue}
-              />
-            ),
-          )}
-        </div>
-      </div>
-
-      <div className="mb-6 flex flex-col gap-2">
-        <div className="flex flex-col gap-[0.4375rem]">
-          <label htmlFor="비밀번호 확인" className="body3 text-main2">
-            비밀번호 확인
-          </label>
-          <div className="flex h-10 items-center border-b-[1.25px] border-solid border-gray3 focus-within:border-main1">
-            <input
-              id="비밀번호 확인"
-              className="w-full text-sm font-normal outline-none placeholder:text-gray3"
-              type="password"
-              placeholder="비밀번호를 재입력해주세요"
-              required
-              value={inputPwCheckValue}
-              onChange={onPwCheckInputChange}
-            />
-            {inputPwCheckValue && (
-              <button
-                type="button"
-                onClick={() => {
-                  setInputPwCheckValue('');
-                }}>
-                <CloseIcon size={20} color="white" fill="#888888" />
-              </button>
-            )}
-          </div>
-        </div>
-        <div className="flex h-6 items-center gap-2">
-          {['checkPwMatch'].map((validifyCheckItem) => (
-            <ValidifyCheck
-              key={validifyCheckItem}
-              checkId={validifyCheckItem}
-              inputValue={inputPwCheckValue}
-              inputValueCheck={inputPwValue}
-            />
-          ))}
-        </div>
-      </div>
-    </>
+    <AuthInputWrapper>
+      <AuthInput
+        label={'비밀번호'}
+        id="password"
+        type="password"
+        placeholder={'비밀번호를 입력해주세요'}
+        register={register('password', {
+          required: '비밀번호를 입력해주세요.',
+          minLength: 8,
+          maxLength: 20,
+          validate: {
+            checkEng: (value) => {
+              return /[a-zA-Z]/.test(value);
+            },
+            checkNum: (value) => {
+              return /[0-9]/.test(value);
+            },
+          },
+        })}
+        inputValue={inputValue}
+        resetField={resetField}
+      />
+    </AuthInputWrapper>
   );
 };
 
