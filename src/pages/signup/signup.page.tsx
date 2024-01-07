@@ -5,23 +5,19 @@ import {
   AuthPwCheckInputBox,
 } from '@components/Auth';
 import SubmitBtn from '@components/common/button/SubmitBtn';
-import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
-  const [isActive] = useState<boolean>(false);
-
   const {
     register,
     handleSubmit,
     getValues,
     watch,
     resetField,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<SignupFormValue>();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const onSignupSubmit: SubmitHandler<SignupFormValue> = async (data) => {
     const { email, password } = data;
@@ -33,7 +29,7 @@ const Signup = () => {
       });
       console.log(res);
       if (res.status === 200) {
-        // TODO 서지수 | 회원가입 로직 수정 후 취향 입력 페이지 또는 회원가입 완료 페이지로 이동
+        // TODO 서지수 | 회원가입 로직 수정 후 취향 입력 페이지 또는 회원가입 완료 페이지로 이동기
         // navigate('/signup/survey');
       }
     } catch (err) {
@@ -41,7 +37,6 @@ const Signup = () => {
     }
   };
 
-  console.log(errors);
   return (
     <div className="flex h-[95vh] flex-col ">
       <h1 className="title1 my-11">
@@ -69,9 +64,8 @@ const Signup = () => {
           resetField={resetField}
         />
 
-        {/* TODO 서지수 | 모든 조건이 만족되어야지만 활성화되도록 수정 */}
         <div className="mt-auto">
-          <SubmitBtn isActive={true}>완료</SubmitBtn>
+          <SubmitBtn isActive={isValid}>완료</SubmitBtn>
         </div>
       </form>
     </div>
