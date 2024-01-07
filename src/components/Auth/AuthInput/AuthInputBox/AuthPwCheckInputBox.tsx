@@ -20,6 +20,11 @@ const AuthPwCheckInputBox = ({
   inputValue,
   resetField,
 }: Props) => {
+  const matchPassword = (value: string) => {
+    const { password } = getValues();
+    return password === value;
+  };
+
   return (
     <AuthInputWrapper>
       <AuthInput
@@ -29,12 +34,7 @@ const AuthPwCheckInputBox = ({
         placeholder={'비밀번호를 재입력해주세요'}
         register={register('passwordCheck', {
           required: '비밀번호를 재입력해주세요.',
-          validate: {
-            matchPassword: (value) => {
-              const { password } = getValues();
-              return password === value;
-            },
-          },
+          validate: matchPassword,
         })}
         inputValue={inputValue}
         resetField={resetField}

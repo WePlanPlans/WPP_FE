@@ -10,6 +10,13 @@ interface Props {
 }
 
 const AuthPwInputBox = ({ register, inputValue, resetField }: Props) => {
+  const checkEng = (value: string) => {
+    return /[a-zA-Z]/.test(value);
+  };
+  const checkNum = (value: string) => {
+    return /[0-9]/.test(value);
+  };
+
   return (
     <AuthInputWrapper>
       <AuthInput
@@ -22,12 +29,8 @@ const AuthPwInputBox = ({ register, inputValue, resetField }: Props) => {
           minLength: 8,
           maxLength: 20,
           validate: {
-            checkEng: (value) => {
-              return /[a-zA-Z]/.test(value);
-            },
-            checkNum: (value) => {
-              return /[0-9]/.test(value);
-            },
+            checkEng: checkEng,
+            checkNum: checkNum,
           },
         })}
         inputValue={inputValue}
