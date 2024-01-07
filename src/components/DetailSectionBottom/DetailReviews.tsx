@@ -10,6 +10,7 @@ import {
   ratingState,
   targetReviewIdState,
   tourItemIdState,
+  alertState,
 } from '@recoil/review';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
@@ -17,7 +18,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import ReviewItem from './ReviewItem';
-
+import Alert from '@components/common/alert/Alert';
 interface reviewProps {
   reviewData: any;
 }
@@ -36,6 +37,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   const setContentTypeId = useSetRecoilState(contentTypeIdState);
   const setTargetReviewId = useSetRecoilState(targetReviewIdState);
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
+  const [alert, setAlert] = useRecoilState(alertState);
   const {
     data: toursReviews,
     fetchNextPage,
@@ -95,8 +97,24 @@ export default function DetailReviews({ reviewData }: reviewProps) {
     }
     console.log('toursReviews', toursReviews);
   }, [toursReviews]);
+
+  useEffect(() => {
+    if (alert.isAlert) {
+      const timer = setTimeout(() => {
+        setAlert(() => ({
+          isAlert: false,
+          noun: '',
+          verb: '',
+        }));
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [alert]);
+
   return (
     <>
+      {alert.isAlert && <Alert noun={alert.noun} verb={alert.verb} />}
       <div className="mb-4 mt-2 text-lg font-bold" id="scrollToReview">
         리뷰<span className="pl-1 text-gray4">{reviewDataLength}</span>
       </div>
