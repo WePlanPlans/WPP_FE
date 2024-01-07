@@ -1,25 +1,25 @@
-import React from 'react';
-import Modal from 'react-modal';
-import { DeleteIcon, PenIcon } from '@components/common/icons/Icons';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { titleState, isModalOpenState } from '@recoil/modal';
-import { deleteReview } from '@api/review';
 import { deleteComments } from '@api/comments';
+import { deleteReview } from '@api/review';
+import { DeleteIcon, PenIcon } from '@components/common/icons/Icons';
+import { isModalOpenState, titleState } from '@recoil/modal';
 import {
-  ratingState,
-  keywordsState,
   contentState,
-  // commentState,
-  targetReviewIdState,
-  // reviewDataState,
-  targetCommentIdState,
+  contentTypeIdState,
   // commentContentState,
   isModifyingCommentState,
   isModifyingReviewState,
+  keywordsState,
+  ratingState,
+  // reviewDataState,
+  targetCommentIdState,
+  // commentState,
+  targetReviewIdState,
   tourItemIdState,
-  contentTypeIdState,
 } from '@recoil/review';
+import React from 'react';
+import Modal from 'react-modal';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 interface ModalProps {
   isOpen: boolean;
@@ -64,6 +64,7 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
   const handleEdit = () => {
     if (title == '내 리뷰') {
       setIsModifyingReview(true);
+      setIsModalOpen(false);
       navigate(`/reviewPosting/${tourItemId}`, {
         state: {
           title,
@@ -77,10 +78,6 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
     } else if (title == '내 댓글') {
       setIsModifyingComment(true);
       setIsModalOpen(false);
-
-      // targetCommentId
-      // comment
-      // putComments(commentContent, targetCommentId);
     }
   };
 
@@ -88,10 +85,12 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
     if (title == '내 리뷰') {
       deleteReview(targetReviewId);
       setIsModalOpen(false);
+      navigate(`/detail/${tourItemId}`);
     } else if (title == '내 댓글') {
       deleteComments(targetCommentId);
       setIsModalOpen(false);
     }
+    window.location.reload();
   };
 
   return (
