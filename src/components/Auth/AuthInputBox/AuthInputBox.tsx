@@ -3,12 +3,13 @@ import { UseFormRegisterReturn, UseFormResetField } from 'react-hook-form';
 
 interface Props {
   label: string;
-  id: 'email' | 'password';
+  id: 'email' | 'password' | 'passwordCheck';
   type?: 'text' | 'email' | 'password';
   placeholder: string;
   register: UseFormRegisterReturn;
+  blurHandler?: VoidFunction;
   inputValue: string;
-  resetField: UseFormResetField<LoginFormValue | SignupFormValue>;
+  resetField: UseFormResetField<any>; // TODO 서지수 | any 나중에 제거
   marginB?: string;
   // validifyCheckList?: string[];
   // onInputBlur: VoidFunction;
@@ -21,6 +22,7 @@ const AuthInputBox = ({
   type = 'text',
   placeholder,
   register,
+  blurHandler,
   inputValue,
   resetField,
   marginB = 'mb-6',
@@ -38,6 +40,7 @@ const AuthInputBox = ({
             type={type}
             placeholder={placeholder}
             {...register}
+            onBlur={blurHandler}
           />
           {inputValue && (
             <div

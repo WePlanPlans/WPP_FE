@@ -1,65 +1,60 @@
-import { CloseIcon } from '@components/common/icons/Icons';
+import AuthInputWrapper from './AuthInputWrapper';
+import AuthInputBox from './AuthInputBox';
+import { getCheckEmail } from '@api/auth';
+import { UseFormRegister, UseFormResetField } from 'react-hook-form';
 import { useState } from 'react';
+import { ErrorMessage } from '..';
 
-const AuthEmailInputBox = () => {
-  const [inputValue, setInputValue] = useState<string>('');
+interface Props {
+  register: UseFormRegister<SignupFormValue>;
+  inputValue: string;
+  resetField: UseFormResetField<any>; // TODO 서지수 | any 나중에 제거
+  // marginB?: string;
+}
 
-  const [isEmailValidated, setIsEmailValidated] = useState(true);
-  const [isEmailDuplicate, setIsEmailDuplicate] = useState(false);
+const AuthEmailInputBox = ({ register, inputValue, resetField }: Props) => {
+  const [isEmailExist, setIsEmailExist] = useState<boolean>(false);
 
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+  const onEmailBlur = async () => {
+    console.log('이메일 focus 해제');
 
-    if (e.target.value !== '') {
-      setIsEmailValidated(
-        /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/.test(inputValue),
-      );
-    } else {
-      setIsEmailDuplicate(false);
-    }
-  };
-
-  const onInputBlur = () => {
-    if (isEmailValidated) {
-      console.log('이메일 중복 확인 요청');
-      // setIsEmailDuplicate(true);
+    try {
+      const res = await getCheckEmail(inputValue);
+      if (res.status === 200) {
+        const isExist = res.data.data.exists;
+        setIsEmailExist(isExist);
+      }
+    } catch (err) {
+      console.error(err);
     }
   };
 
   return (
-    <div className="mb-14 flex flex-col gap-2">
-      <div className="flex flex-col gap-[0.4375rem]">
-        <label htmlFor="이메일" className="body3 text-main2">
-          이메일
-        </label>
-        <div className="flex h-10 items-center border-b-[1.25px] border-solid border-gray3 focus-within:border-main1">
-          <input
-            id="이메일"
-            className="w-full text-sm font-normal outline-none placeholder:text-gray3"
-            type="email"
-            placeholder="이메일 입력"
-            required
-            value={inputValue}
-            onChange={onInputChange}
-            onBlur={onInputBlur}
-          />
-          {inputValue && (
-            <button
-              type="button"
-              onClick={() => {
-                setInputValue('');
-              }}>
-              <CloseIcon size={20} color="white" fill="#888888" />
-            </button>
-          )}
-        </div>
-      </div>
-      <span className="body6 text-red">
+    <AuthInputWrapper>
+      <AuthInputBox
+        label={'이메일'}
+        id="email"
+        type="email"
+        placeholder={'이메일을 입력하세요'}
+        register={register('email', {
+          required: '아이디를 입력해주세요.',
+          pattern: {
+            value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+            message: '이메일 형식이 올바르지 않습니다.',
+          },
+        })}
+        blurHandler={onEmailBlur}
+        inputValue={inputValue}
+        resetField={resetField}
+      />
+      {/* <span className="body6 text-red">
         {!isEmailValidated
           ? '이메일 형식이 올바르지 않습니다.'
           : isEmailDuplicate && '사용 중인 이메일입니다.'}
-      </span>
-    </div>
+      </span> */}
+      {/* TODO 서지수 | 변경되면 코드 수정 */}
+      {!isEmailExist && <ErrorMessage>사용 중인 이메일입니다.</ErrorMessage>}
+    </AuthInputWrapper>
   );
 };
 
