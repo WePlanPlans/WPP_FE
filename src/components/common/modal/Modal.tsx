@@ -81,13 +81,13 @@ const ModalComponent: React.FC<ModalProps> = ({ isOpen, closeModal }) => {
     }
   };
 
-  const handleDelete = () => {
-    if (title == '내 리뷰') {
-      deleteReview(targetReviewId);
+  const handleDelete = async () => {
+    if (title === '내 리뷰') {
+      await deleteReview(targetReviewId);
       setIsModalOpen(false);
       navigate(`/detail/${tourItemId}`);
-    } else if (title == '내 댓글') {
-      deleteComments(targetCommentId);
+    } else if (title === '내 댓글') {
+      await deleteComments(targetCommentId);
       setIsModalOpen(false);
     }
     window.location.reload();
