@@ -1,9 +1,7 @@
-import { getCheckEmail } from '@api/auth';
 import {
   AuthEmailInputBox,
-  AuthInput,
   AuthPwInputBox,
-  ErrorMessage,
+  AuthPwCheckInputBox,
 } from '@components/Auth';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import { useState } from 'react';
@@ -19,9 +17,7 @@ const Signup = () => {
     watch,
     resetField,
     formState: { errors },
-  } = useForm<SignupFormValue>({
-    reValidateMode: 'onSubmit',
-  });
+  } = useForm<SignupFormValue>();
 
   const onSignupSubmit = () => {
     console.log('회원가입 버튼 클릭');
@@ -48,27 +44,16 @@ const Signup = () => {
           inputValue={watch('password')}
           resetField={resetField}
         />
-        <AuthInput
-          label={'비밀번호 확인'}
-          id="passwordCheck"
-          type="password"
-          placeholder={'비밀번호를 재입력해주세요'}
-          register={register('passwordCheck', {
-            required: '비밀번호를 재입력해주세요.',
-            validate: {
-              matchPassword: (value) => {
-                const { password } = getValues();
-                return password === value;
-              },
-            },
-          })}
+        <AuthPwCheckInputBox
+          register={register}
+          getValues={getValues}
           inputValue={watch('passwordCheck')}
           resetField={resetField}
         />
 
         {/* TODO 서지수 | 모든 조건이 만족되어야지만 활성화되도록 수정 */}
         <div className="mt-auto">
-          <SubmitBtn isActive={false}>완료</SubmitBtn>
+          <SubmitBtn isActive={true}>완료</SubmitBtn>
         </div>
       </form>
     </div>
