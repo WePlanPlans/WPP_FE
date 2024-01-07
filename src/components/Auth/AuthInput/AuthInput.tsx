@@ -5,6 +5,7 @@ interface Props {
   label: string;
   id: 'email' | 'password' | 'passwordCheck';
   type?: 'text' | 'email' | 'password';
+  isAutoFocus?: boolean;
   placeholder: string;
   register: UseFormRegisterReturn;
   blurHandler?: VoidFunction;
@@ -22,6 +23,7 @@ const AuthInput = ({
   label,
   id,
   type = 'text',
+  isAutoFocus = false,
   placeholder,
   register,
   blurHandler,
@@ -40,12 +42,14 @@ const AuthInput = ({
             id={id}
             className="w-full text-sm font-normal outline-none placeholder:text-gray3"
             type={type}
+            autoFocus={isAutoFocus}
             placeholder={placeholder}
             {...register}
             onBlur={blurHandler}
           />
           {inputValue && (
             <div
+              className="cursor-pointer"
               onClick={() => {
                 resetField(id);
               }}>
@@ -54,20 +58,6 @@ const AuthInput = ({
           )}
         </div>
       </div>
-
-      {/* {type === 'email' && <EmailValidifyCheck inputValue={inputValue} />}
-
-      {validifyCheckList && (
-        <div className="flex h-6 items-center gap-2">
-          {validifyCheckList.map((validifyCheckItem) => (
-            <ValidifyCheck
-              key={validifyCheckItem}
-              checkId={validifyCheckItem}
-              inputValue={inputValue}
-            />
-          ))}
-        </div>
-      )} */}
     </div>
   );
 };

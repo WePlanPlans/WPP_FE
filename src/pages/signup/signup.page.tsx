@@ -14,8 +14,11 @@ const Signup = () => {
     getValues,
     watch,
     resetField,
+    setError,
     formState: { errors, isValid },
-  } = useForm<SignupFormValue>();
+  } = useForm<SignupFormValue>({
+    mode: 'onChange',
+  });
 
   // const navigate = useNavigate();
 
@@ -51,6 +54,8 @@ const Signup = () => {
           register={register}
           inputValue={watch('email')}
           resetField={resetField}
+          errors={errors}
+          setError={setError}
         />
         <AuthPwInputBox
           register={register}
