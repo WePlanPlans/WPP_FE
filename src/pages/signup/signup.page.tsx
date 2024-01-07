@@ -1,9 +1,5 @@
 import { getCheckEmail } from '@api/auth';
-import {
-  AuthEmailInputBox,
-  AuthInputBox,
-  ErrorMessage,
-} from '@components/Auth';
+import { AuthEmailInputBox, AuthInput, ErrorMessage } from '@components/Auth';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -43,7 +39,7 @@ const Signup = () => {
           resetField={resetField}
         />
 
-        <AuthInputBox
+        <AuthInput
           label={'비밀번호'}
           id="password"
           type="password"
@@ -64,7 +60,7 @@ const Signup = () => {
           inputValue={watch('password')}
           resetField={resetField}
         />
-        <AuthInputBox
+        <AuthInput
           label={'비밀번호 확인'}
           id="passwordCheck"
           type="password"

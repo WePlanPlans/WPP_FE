@@ -5,7 +5,7 @@ import Back from '@components/common/back/Back';
 import { LogoIcon } from '@components/common/icons/Icons';
 import {
   ErrorMessage,
-  AuthInputBox,
+  AuthInput,
   KakaoLoginButton,
   SignupButton,
 } from '@components/Auth';
@@ -63,7 +63,7 @@ const Login = () => {
           </h1>
         </div>
         <form className="mb-auto" onSubmit={handleSubmit(onLoginSubmit)}>
-          <AuthInputBox
+          <AuthInput
             label={'이메일'}
             id="email"
             type="email"
@@ -72,7 +72,7 @@ const Login = () => {
             inputValue={watch('email')}
             resetField={resetField}
           />
-          <AuthInputBox
+          <AuthInput
             label={'비밀번호'}
             id="password"
             type="password"

@@ -1,5 +1,5 @@
 import AuthInputWrapper from './AuthInputWrapper';
-import AuthInputBox from './AuthInputBox';
+import AuthInput from './AuthInput';
 import { getCheckEmail } from '@api/auth';
 import { UseFormRegister, UseFormResetField } from 'react-hook-form';
 import { useState } from 'react';
@@ -31,7 +31,7 @@ const AuthEmailInputBox = ({ register, inputValue, resetField }: Props) => {
 
   return (
     <AuthInputWrapper>
-      <AuthInputBox
+      <AuthInput
         label={'이메일'}
         id="email"
         type="email"
