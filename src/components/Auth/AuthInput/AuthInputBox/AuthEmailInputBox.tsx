@@ -32,7 +32,7 @@ const AuthEmailInputBox = ({
         const res = await getCheckEmail(inputValue);
         if (res.status === 200) {
           const isExist = res.data.data.exists;
-          if (!isExist) {
+          if (isExist) {
             setError(
               'email',
               { message: '이미 사용 중인 이메일입니다.' },

@@ -6,6 +6,7 @@ import {
 } from '@components/Auth';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const {
@@ -21,7 +22,7 @@ const Signup = () => {
     criteriaMode: 'all',
   });
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const onSignupSubmit: SubmitHandler<SignupFormValue> = async (data) => {
     const { email, password } = data;
@@ -33,8 +34,7 @@ const Signup = () => {
       });
       console.log(res);
       if (res.status === 200) {
-        // TODO 서지수 | 회원가입 로직 수정 후 취향 입력 페이지 또는 회원가입 완료 페이지로 이동기
-        // navigate('/signup/survey');
+        navigate('/signup/success');
       }
     } catch (err) {
       console.error('회원가입 요청 중 에러 발생', err);
