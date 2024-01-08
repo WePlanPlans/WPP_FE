@@ -1,14 +1,13 @@
-import React from 'react';
-import { ButtonWhite, ButtonPrimary } from '@components/common/button/Button';
 import { deleteReview } from '@api/review';
-import { useNavigate } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { ButtonPrimary, ButtonWhite } from '@components/common/button/Button';
+import { isModalOpenState } from '@recoil/modal';
 import {
+  alertState,
   targetReviewIdState,
   tourItemIdState,
-  alertState,
 } from '@recoil/review';
-import { isModalOpenState } from '@recoil/modal';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 const DeleteAlert = ({}) => {
   const navigate = useNavigate();
   const tourItemId = useRecoilValue(tourItemIdState);
