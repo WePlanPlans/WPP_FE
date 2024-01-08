@@ -69,6 +69,7 @@ const Signup = () => {
           getValues={getValues}
           inputValue={watch('passwordCheck')}
           resetField={resetField}
+          errors={errors}
         />
 
         <div className="mt-auto">

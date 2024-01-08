@@ -18,7 +18,7 @@ const AuthPwInputBox = ({
   resetField,
   errors,
 }: Props) => {
-  const errorTypes = errors.password?.types;
+  const PwErrorTypes = errors.password?.types;
 
   const checkEng = (value: string) => {
     return /[a-zA-Z]/.test(value);
@@ -50,13 +50,13 @@ const AuthPwInputBox = ({
       <div className="flex h-6 items-center gap-2">
         <ValidifyCheck
           isValidated={
-            !!inputValue && !(errorTypes && 'checkEng' in errorTypes)
+            !!inputValue && !(PwErrorTypes && 'checkEng' in PwErrorTypes)
           }>
           영문포함
         </ValidifyCheck>
         <ValidifyCheck
           isValidated={
-            !!inputValue && !(errorTypes && 'checkNum' in errorTypes)
+            !!inputValue && !(PwErrorTypes && 'checkNum' in PwErrorTypes)
           }>
           숫자포함
         </ValidifyCheck>
@@ -64,8 +64,8 @@ const AuthPwInputBox = ({
           isValidated={
             !!inputValue &&
             !(
-              (errorTypes && 'minLength' in errorTypes) ||
-              (errorTypes && 'maxLength' in errorTypes)
+              (PwErrorTypes && 'minLength' in PwErrorTypes) ||
+              (PwErrorTypes && 'maxLength' in PwErrorTypes)
             )
           }>
           8~20자 이내
