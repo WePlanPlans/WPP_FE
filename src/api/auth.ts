@@ -1,5 +1,6 @@
-import type { AuthRequest } from '@/@types/auth.types';
 import client from './client';
+import authClient from './authClient';
+import type { AuthRequest } from '@/@types/auth.types';
 
 // 인증 관련 API
 
@@ -35,6 +36,6 @@ export const postKakaoLogin = async (LoginData: AuthRequest) => {
 
 // 로그아웃
 export const postLogout = async () => {
-  const res = await client.post(`auth/logout`);
+  const res = await authClient.post(`auth/logout`);
   return res;
 };
