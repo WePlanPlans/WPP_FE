@@ -18,9 +18,8 @@ export interface SignupFormValue extends AuthRequest {
 export interface AuthInputBoxProps {
   register: UseFormRegister<SignupFormValue>;
   inputValue: string;
-  resetField: UseFormResetField<SignupFormValue>; // TODO 서지수 | any 나중에 제거
+  resetField: UseFormResetField<SignupFormValue>;
   errors: FieldErrors<SignupFormValue>;
-  setError?: UseFormSetError<SignupFormValue>;
 }
 
 export interface AuthEmailInputBoxProps extends AuthInputBoxProps {

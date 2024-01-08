@@ -74,6 +74,7 @@ const Login = () => {
             register={register('email', { required: '아이디를 입력해주세요.' })}
             inputValue={watch('email')}
             resetField={resetField}
+            isInvalid={!!errors.email}
           />
           <AuthInput
             label={'비밀번호'}
@@ -85,6 +86,7 @@ const Login = () => {
             })}
             inputValue={watch('password')}
             resetField={resetField}
+            isInvalid={!!errors.password}
           />
           {errors.email?.type === 'required' && (
             <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>

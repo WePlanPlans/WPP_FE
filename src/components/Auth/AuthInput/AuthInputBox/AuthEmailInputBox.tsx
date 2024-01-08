@@ -11,7 +11,8 @@ const AuthEmailInputBox = ({
 }: AuthEmailInputBoxProps) => {
   const patternValue = /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/;
 
-  const errorMessage = errors.email?.message;
+  const emailError = errors.email;
+  const emailErrorMessage = emailError?.message;
 
   const onEmailBlur = async () => {
     if (patternValue.test(inputValue)) {
@@ -51,9 +52,10 @@ const AuthEmailInputBox = ({
         blurHandler={onEmailBlur}
         inputValue={inputValue}
         resetField={resetField}
+        isInvalid={!!emailError}
       />
 
-      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      {emailErrorMessage && <ErrorMessage>{emailErrorMessage}</ErrorMessage>}
     </AuthInputWrapper>
   );
 };

@@ -29,6 +29,7 @@ const AuthPwCheckInputBox = ({
         })}
         inputValue={inputValue}
         resetField={resetField}
+        isInvalid={!!PwCheckErrorTypes}
       />
 
       <div className="flex h-6 items-center gap-2">

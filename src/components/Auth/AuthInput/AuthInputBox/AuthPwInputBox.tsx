@@ -34,6 +34,7 @@ const AuthPwInputBox = ({
         })}
         inputValue={inputValue}
         resetField={resetField}
+        isInvalid={!!PwErrorTypes}
       />
 
       <div className="flex h-6 items-center gap-2">
