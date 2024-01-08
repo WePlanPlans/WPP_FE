@@ -1,10 +1,9 @@
-import AuthInputWrapper from '../AuthInputWrapper';
-import AuthInput from '../AuthInput';
 import {
   UseFormGetValues,
   UseFormRegister,
   UseFormResetField,
 } from 'react-hook-form';
+import { AuthInput, AuthInputWrapper } from './AuthInputItem';
 
 interface Props {
   register: UseFormRegister<SignupFormValue>;

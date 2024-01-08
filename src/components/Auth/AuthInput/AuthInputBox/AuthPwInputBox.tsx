@@ -1,11 +1,9 @@
-import AuthInputWrapper from '../AuthInputWrapper';
-import AuthInput from '../AuthInput';
 import {
   FieldErrors,
   UseFormRegister,
   UseFormResetField,
 } from 'react-hook-form';
-import ValidifyCheck from '../ValidifyCheck';
+import { AuthInput, AuthInputWrapper, ValidifyCheck } from './AuthInputItem';
 
 interface Props {
   register: UseFormRegister<SignupFormValue>;

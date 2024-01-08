@@ -1,5 +1,3 @@
-import AuthInputWrapper from '../AuthInputWrapper';
-import AuthInput from '../AuthInput';
 import { getCheckEmail } from '@api/auth';
 import {
   FieldErrors,
@@ -7,7 +5,7 @@ import {
   UseFormResetField,
   UseFormSetError,
 } from 'react-hook-form';
-import { ErrorMessage } from '@components/Auth';
+import { AuthInputWrapper, AuthInput, ErrorMessage } from './AuthInputItem';
 
 interface Props {
   register: UseFormRegister<SignupFormValue>;
