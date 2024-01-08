@@ -24,12 +24,12 @@ export const InputComment: React.FC<InputCommentProps> = () => {
     setComment(inputText);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (isModifyingComment) {
-      putComments(comment, targetCommentId);
+      await putComments(comment, targetCommentId);
       setIsModifyingComment(false);
     } else {
-      postComments(comment, reviewId);
+      await postComments(comment, reviewId);
     }
     setComment('');
     window.location.reload();
@@ -50,7 +50,7 @@ export const InputComment: React.FC<InputCommentProps> = () => {
               placeholder="댓글을 입력하세요"
               className=" w-full max-w-full text-sm placeholder-[#d7d7d7]  outline-none"
               onChange={handleTextChange}
-              value={isModifyingComment ? comment : ''}
+              value={comment}
               onKeyPress={handleKeyPress}
             />
           </div>

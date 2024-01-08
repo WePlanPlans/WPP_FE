@@ -9,9 +9,10 @@ import {
   contentState,
   isModifyingReviewState,
   targetReviewIdState,
+  toastPopUpState,
 } from '@recoil/review';
 import { isModalOpenState } from '@recoil/modal';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { useParams, useNavigate } from 'react-router-dom';
 
 export default function Review() {
@@ -24,6 +25,8 @@ export default function Review() {
   const isModifyingReview = useRecoilValue(isModifyingReviewState);
   const targetReviewId = useRecoilValue(targetReviewIdState);
   const [_, setIsModalOpen] = useRecoilState(isModalOpenState);
+  const setToastPopUp = useSetRecoilState(toastPopUpState);
+
   const handlePostReview = async () => {
     try {
       const reviewData = {
@@ -33,11 +36,19 @@ export default function Review() {
         content: content,
       };
       if (isModifyingReview) {
-        const response = await putReview(reviewData, targetReviewId);
-        console.log('리뷰가 성공적으로 수정되었습니다.', response.data);
+        await putReview(reviewData, targetReviewId);
+        setToastPopUp(() => ({
+          isPopUp: true,
+          noun: '리뷰',
+          verb: '수정',
+        }));
       } else {
-        const response = await postReview(reviewData);
-        console.log('리뷰가 성공적으로 등록되었습니다.', response.data);
+        await postReview(reviewData);
+        setToastPopUp(() => ({
+          isPopUp: true,
+          noun: '리뷰',
+          verb: '등록',
+        }));
       }
       setRating(0);
       setKeywords([]);
