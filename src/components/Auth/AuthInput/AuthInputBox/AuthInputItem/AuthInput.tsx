@@ -11,7 +11,6 @@ interface Props {
   blurHandler?: VoidFunction;
   inputValue: string;
   resetField: UseFormResetField<any>; // TODO 서지수 | any 나중에 제거
-  // marginB?: string;
 }
 
 // TODO 서지수 | 에러 발생 시 빨간 밑줄
@@ -26,7 +25,6 @@ const AuthInput = ({
   blurHandler,
   inputValue,
   resetField,
-  // marginB = 'mb-6',
 }: Props) => {
   return (
     <div className="flex flex-col gap-2">
