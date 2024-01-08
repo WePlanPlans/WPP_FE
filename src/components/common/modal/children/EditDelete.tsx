@@ -75,18 +75,18 @@ const EditDelete: React.FC = () => {
     <div className="mt-2">
       <div className="text-md mb-4 font-bold">{title}</div>
       <div>
-        <div className="flex h-[52px] cursor-pointer items-center gap-1">
+        <button
+          onClick={handleEdit}
+          className="flex h-[52px] w-full cursor-pointer items-center gap-1">
           <PenIcon color="#888888" />
-          <p className="text-gray7" onClick={handleEdit}>
-            수정하기
-          </p>
-        </div>
-        <div className="flex h-[52px] cursor-pointer items-center gap-1">
+          <p className="text-gray7">수정하기</p>
+        </button>
+        <button
+          onClick={handleDelete}
+          className="flex h-[52px] w-full cursor-pointer items-center gap-1">
           <DeleteIcon color="#888888" />
-          <p className="text-gray7" onClick={handleDelete}>
-            삭제하기
-          </p>
-        </div>
+          <p className="text-gray7">삭제하기</p>
+        </button>
       </div>
     </div>
   );
