@@ -1,6 +1,10 @@
 import { StarIcon, ChatIcon, MoreIcon } from '@components/common/icons/Icons';
 import { useSetRecoilState, useRecoilState } from 'recoil';
-import { isModalOpenState, titleState } from '@recoil/modal';
+import {
+  isModalOpenState,
+  titleState,
+  modalChildrenState,
+} from '@recoil/modal';
 import {
   ratingState,
   keywordsState,
@@ -9,7 +13,7 @@ import {
   tourItemIdState,
   contentTypeIdState,
 } from '@recoil/review';
-import { useEffect } from 'react';
+import { MouseEvent, useState } from 'react';
 import { getEmoji } from '@utils/utils';
 import { getStarFill } from '@utils/getStarFill';
 
@@ -58,6 +62,9 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
   const setTourItemId = useSetRecoilState(tourItemIdState);
   const setContentTypeId = useSetRecoilState(contentTypeIdState);
   const setTargetReviewId = useSetRecoilState(targetReviewIdState);
+  const setModalChildren = useSetRecoilState(modalChildrenState);
+  const [showMoreKeywords, setShowMoreKeywords] = useState(false);
+
   const openModal = (title: string, reviewId: number, e: React.MouseEvent) => {
     e.stopPropagation();
     setTitle(title);
@@ -76,6 +83,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     setKeywords(keywords);
     setContent(content);
     setTargetReviewId(reviewId);
+    setModalChildren('EditDelete');
     setIsModalOpen(true);
   };
 
@@ -90,9 +98,11 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     return formattedDate;
   };
 
-  useEffect(() => {
-    console.log('contentTypeId', contentTypeId);
-  }, [contentTypeId]);
+  const handleClickPlusButton = (e: MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setShowMoreKeywords(true);
+  };
+
   return (
     <>
       <div className="mb-8 cursor-pointer" onClick={onClick}>
@@ -138,22 +148,46 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
           <div className="mb-4 text-gray7">{content}</div>
         )}
 
-        <div className="flex">
+        <div className="flex ">
           <div className="flex gap-2">
-            {keywords.slice(0, 2).map((keyword, idx) => (
+            {!showMoreKeywords &&
+              keywords.slice(0, 2).map((keyword, idx) => (
+                <div
+                  key={idx}
+                  className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6">
+                  {getEmoji(keyword.content)} {keyword.content}
+                </div>
+              ))}
+            {keywords.length > 2 && !showMoreKeywords && (
               <div
-                key={idx}
-                className="rounded-md bg-gray1 px-2 py-1 text-sm text-gray6">
-                {getEmoji(keyword.content)} {keyword.content}
-              </div>
-            ))}
-            {keywords.length > 2 && (
-              <div className="rounded-md bg-gray1 px-2 py-1 text-sm text-gray6">
+                className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6"
+                onClick={(e) => {
+                  handleClickPlusButton(e);
+                }}>
                 +{keywords.length - 2}
               </div>
             )}
           </div>
-          <div className="ml-auto flex items-center justify-between">
+          <div>
+            {showMoreKeywords &&
+              Array.from({ length: Math.ceil(keywords.length / 2) }).map(
+                (_, lineIdx) => (
+                  <div key={lineIdx} className="mb-3 flex gap-2">
+                    {keywords
+                      .slice(lineIdx * 2, lineIdx * 2 + 2)
+                      .map((keyword, idx) => (
+                        <div
+                          key={idx}
+                          className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6">
+                          {getEmoji(keyword.content)} {keyword.content}
+                        </div>
+                      ))}
+                  </div>
+                ),
+              )}
+          </div>
+
+          <div className="ml-auto mr-2 flex ">
             <ChatIcon size={20} color="#5E5E5E" />
             <div className="ml-1 text-gray5">{commentCount}</div>
           </div>

@@ -9,3 +9,8 @@ export const titleState = atom({
   key: 'titleState',
   default: '',
 });
+
+export const modalChildrenState = atom({
+  key: 'modalChildrenState',
+  default: '',
+});

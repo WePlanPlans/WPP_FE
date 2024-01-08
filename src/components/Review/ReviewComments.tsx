@@ -1,13 +1,16 @@
 import { getReviewComments } from '@api/review';
 import { Modal } from '@components/common/modal';
-import { isModalOpenState } from '@recoil/modal';
+import { isModalOpenState, modalChildrenState } from '@recoil/modal';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import CommentItem from './CommentItem';
 // import { targetCommentIdState } from '@recoil/review';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
+import EditDelete from '@components/common/modal/children/EditDelete';
+import DeleteAlert from '@components/common/modal/children/DeleteAlert';
+import { commentState } from '@recoil/review';
 
 export default function ReviewComments() {
   const params = useParams();
@@ -16,6 +19,8 @@ export default function ReviewComments() {
   // const setTitle = useSetRecoilState(titleState);
   // const setTargetCommentId = useSetRecoilState(targetCommentIdState);
   const [commentDataLength, setCommentDataLength] = useState<number>(0);
+  const modalChildren = useRecoilValue(modalChildrenState);
+  const setComment = useSetRecoilState(commentState);
 
   const {
     data: reviewComments,
@@ -42,6 +47,7 @@ export default function ReviewComments() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setComment('');
   };
   useEffect(() => {
     {
@@ -93,8 +99,10 @@ export default function ReviewComments() {
           })}
         </div>
       </InfiniteScroll>
-
-      <Modal isOpen={isModalOpen} closeModal={closeModal} />
+      <Modal isOpen={isModalOpen} closeModal={closeModal}>
+        {modalChildren === 'EditDelete' && <EditDelete />}
+        {modalChildren === 'DeleteAlert' && <DeleteAlert />}
+      </Modal>
     </>
   );
 }
