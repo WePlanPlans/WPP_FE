@@ -1,21 +1,15 @@
 import {
-  AuthInput,
-  ErrorMessage,
-} from './AuthInput/AuthInputBox/AuthInputItem';
-import {
   AuthEmailInputBox,
   AuthPwInputBox,
   AuthPwCheckInputBox,
 } from './AuthInput/AuthInputBox';
-import KakaoLoginButton from './KakaoLoginButton';
-import SignupButton from './SignupButton';
+import { AuthButtonsWrapper, LoginForm, LoginLogo } from './Login';
 
 export {
-  AuthInput,
   AuthEmailInputBox,
   AuthPwInputBox,
   AuthPwCheckInputBox,
-  ErrorMessage,
-  KakaoLoginButton,
-  SignupButton,
+  AuthButtonsWrapper,
+  LoginForm,
+  LoginLogo,
 };
