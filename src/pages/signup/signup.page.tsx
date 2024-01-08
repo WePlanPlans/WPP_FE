@@ -1,5 +1,6 @@
 import type { SignupFormValue } from '@/@types/auth.types';
 import { postSignup } from '@api/auth';
+import authClient from '@api/authClient';
 import {
   AuthEmailInputBox,
   AuthPwInputBox,
@@ -36,6 +37,8 @@ const Signup = () => {
       });
       console.log(res);
       if (res.status === 200) {
+        authClient.defaults.headers.common['Authorization'] =
+          res.data.data.tokenInfo.accessToken;
         navigate('/signup/success');
       }
     } catch (err) {
