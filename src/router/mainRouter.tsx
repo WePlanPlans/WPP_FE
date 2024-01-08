@@ -5,6 +5,8 @@ import Detail from '@pages/detail/detail.page';
 import ReviewComment from '@pages/reviewComment/reviewComment.page';
 import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
 import MainLayout from './mainLayout';
+import { Signup, SignupInfo } from '@pages/signup';
+import { Login, LoginKakao } from '@pages/login';
 
 const MainRouter = () => {
   return (
@@ -16,6 +18,10 @@ const MainRouter = () => {
           <Route path="/search" element={<Search />} />
           <Route path="/reviewPosting/:id" element={<ReviewPosting />} />
           <Route path="/reviewComment/:id" element={<ReviewComment />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup/info" element={<SignupInfo />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/login/kakao" element={<LoginKakao />} />
         </Route>
       </Routes>
     </>
