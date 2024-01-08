@@ -18,7 +18,7 @@ const BackBox = ({ children, isShowSkip, isShowSave }: Props) => {
       <LeftIcon />
       {children}
       {isShowSkip && <button className="body4 text-gray7">건너뛰기</button>}
-      {isShowSave && <button className="headline2 text-main1">저장</button>}
+      {isShowSave && <button className="headline2 text-main2">저장</button>}
     </div>
   );
 };

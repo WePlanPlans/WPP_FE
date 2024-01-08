@@ -7,7 +7,7 @@ const MainLayout = () => {
   const location = useLocation();
   const hideNavPaths = [
     '/signup',
-    '/signin',
+    '/login',
     '/search',
     '/detail',
     '/reviewPosting',
