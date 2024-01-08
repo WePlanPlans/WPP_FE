@@ -8,14 +8,11 @@ import {
 import {
   contentState,
   contentTypeIdState,
-  // commentContentState,
   isModifyingCommentState,
   isModifyingReviewState,
   keywordsState,
   ratingState,
-  // reviewDataState,
   targetCommentIdState,
-  // commentState,
   targetReviewIdState,
   tourItemIdState,
 } from '@recoil/review';
@@ -27,12 +24,9 @@ const EditDelete: React.FC = () => {
   const rating = useRecoilValue(ratingState);
   const keywords = useRecoilValue(keywordsState);
   const content = useRecoilValue(contentState);
-  // const comment = useRecoilValue(commentState);
   const title = useRecoilValue(titleState);
   const targetReviewId = useRecoilValue(targetReviewIdState);
-  // const reviewData = useRecoilValue(reviewDataState);
   const targetCommentId = useRecoilValue(targetCommentIdState);
-  // const commentContent = useRecoilValue(commentContentState);
   const tourItemId = useRecoilValue(tourItemIdState);
   const contentTypeId = useRecoilValue(contentTypeIdState);
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
