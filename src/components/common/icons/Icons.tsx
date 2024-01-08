@@ -198,11 +198,11 @@ export const CheckIcon = ({
 };
 
 interface LeftIconProps {
-  width: number;
-  height: number;
-  fill: string;
-  onClick: VoidFunction;
-  cursor: string;
+  width?: number;
+  height?: number;
+  fill?: string;
+  onClick?: VoidFunction;
+  cursor?: string;
 }
 
 export const LeftIcon = ({

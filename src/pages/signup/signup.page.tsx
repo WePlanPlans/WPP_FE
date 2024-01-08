@@ -5,6 +5,7 @@ import {
   AuthPwInputBox,
   AuthPwCheckInputBox,
 } from '@components/Auth';
+import { BackBox } from '@components/common';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -43,8 +44,9 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex h-[95vh] flex-col ">
-      <h1 className="title1 my-11">
+    <div className="flex h-[95vh] flex-col">
+      <BackBox />
+      <h1 className="title1 my-10">
         위플플 이용을 위해
         <br />
         회원가입을 해주세요

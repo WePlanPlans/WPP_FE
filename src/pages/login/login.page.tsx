@@ -1,7 +1,6 @@
 import { postEmailLogin } from '@api/auth';
 import authCient from '@api/authClient';
 import SubmitBtn from '@components/common/button/SubmitBtn';
-import Back from '@components/common/back/Back';
 import { LogoIcon } from '@components/common/icons/Icons';
 import {
   ErrorMessage,
@@ -14,6 +13,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { AxiosError } from 'axios';
 import type { AuthRequest } from '@/@types/auth.types';
+import BackBox from '@components/common/BackBox/BackBox';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ const Login = () => {
 
   return (
     <div className="flex h-[95vh] flex-col">
-      <Back />
+      <BackBox />
       <div className="mb-auto">
         <div className="mb-16 mt-14 flex flex-col items-center">
           <div className="mb-2">
