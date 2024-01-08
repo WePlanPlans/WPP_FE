@@ -9,7 +9,7 @@ import {
   contentState,
   isModifyingReviewState,
   targetReviewIdState,
-  alertState,
+  toastPopUpState,
 } from '@recoil/review';
 import { isModalOpenState } from '@recoil/modal';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
@@ -25,7 +25,7 @@ export default function Review() {
   const isModifyingReview = useRecoilValue(isModifyingReviewState);
   const targetReviewId = useRecoilValue(targetReviewIdState);
   const [_, setIsModalOpen] = useRecoilState(isModalOpenState);
-  const setAlert = useSetRecoilState(alertState);
+  const setToastPopUp = useSetRecoilState(toastPopUpState);
 
   const handlePostReview = async () => {
     try {
@@ -37,15 +37,15 @@ export default function Review() {
       };
       if (isModifyingReview) {
         await putReview(reviewData, targetReviewId);
-        setAlert(() => ({
-          isAlert: true,
+        setToastPopUp(() => ({
+          isPopUp: true,
           noun: '리뷰',
           verb: '수정',
         }));
       } else {
         await postReview(reviewData);
-        setAlert(() => ({
-          isAlert: true,
+        setToastPopUp(() => ({
+          isPopUp: true,
           noun: '리뷰',
           verb: '등록',
         }));

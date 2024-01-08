@@ -14,7 +14,7 @@ import {
   ratingState,
   targetReviewIdState,
   tourItemIdState,
-  alertState,
+  toastPopUpState,
 } from '@recoil/review';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
@@ -22,7 +22,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import ReviewItem from './ReviewItem';
-import Alert from '@components/common/alert/Alert';
+import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
 import EditDelete from '@components/common/modal/children/EditDelete';
 import DeleteAlert from '@components/common/modal/children/DeleteAlert';
 interface reviewProps {
@@ -43,7 +43,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   const setContentTypeId = useSetRecoilState(contentTypeIdState);
   const setTargetReviewId = useSetRecoilState(targetReviewIdState);
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
-  const [alert, setAlert] = useRecoilState(alertState);
+  const [toastPopUp, setToastPopUp] = useRecoilState(toastPopUpState);
   const modalChildren = useRecoilValue(modalChildrenState);
   const {
     data: toursReviews,
@@ -105,10 +105,10 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   }, [toursReviews]);
 
   useEffect(() => {
-    if (alert.isAlert) {
+    if (toastPopUp.isPopUp) {
       const timer = setTimeout(() => {
-        setAlert(() => ({
-          isAlert: false,
+        setToastPopUp(() => ({
+          isPopUp: false,
           noun: '',
           verb: '',
         }));
@@ -119,7 +119,9 @@ export default function DetailReviews({ reviewData }: reviewProps) {
 
   return (
     <>
-      {alert.isAlert && <Alert noun={alert.noun} verb={alert.verb} />}
+      {toastPopUp.isPopUp && (
+        <ToastPopUp noun={toastPopUp.noun} verb={toastPopUp.verb} />
+      )}
       <div className="mb-4 mt-2 text-lg font-bold" id="scrollToReview">
         리뷰<span className="pl-1 text-gray4">{reviewDataLength}</span>
       </div>

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { ReactComponent as CircleCheckIcon } from '@assets/images/CircleCheck.svg';
 
-interface AlertProps {
+interface ToastPopUpProps {
   noun: string;
   verb: string;
 }
 
-const Alert: React.FC<AlertProps> = ({ noun, verb }) => {
+const ToastPopUp: React.FC<ToastPopUpProps> = ({ noun, verb }) => {
   const [particle, setParticle] = useState('가');
   const [visible, setVisible] = useState(true);
 
@@ -50,4 +50,4 @@ const Alert: React.FC<AlertProps> = ({ noun, verb }) => {
   );
 };
 
-export default Alert;
+export default ToastPopUp;
