@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { AxiosError } from 'axios';
 import type { AuthRequest } from '@/@types/auth.types';
 import BackBox from '@components/common/BackBox/BackBox';
+import { AuthInputWrapper } from '@components/Auth/AuthInput/AuthInputBox/AuthInputItem';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -66,28 +67,36 @@ const Login = () => {
           </h1>
         </div>
         <form className="mb-auto" onSubmit={handleSubmit(onLoginSubmit)}>
-          <AuthInput
-            label={'이메일'}
-            id="email"
-            type="email"
-            placeholder={'이메일을 입력하세요'}
-            register={register('email', { required: '아이디를 입력해주세요.' })}
-            inputValue={watch('email')}
-            resetField={resetField}
-            isInvalid={!!errors.email}
-          />
-          <AuthInput
-            label={'비밀번호'}
-            id="password"
-            type="password"
-            placeholder={'비밀번호를 입력하세요'}
-            register={register('password', {
-              required: '비밀번호를 입력해주세요.',
-            })}
-            inputValue={watch('password')}
-            resetField={resetField}
-            isInvalid={!!errors.password}
-          />
+          <AuthInputWrapper>
+            <AuthInput
+              label={'이메일'}
+              id="email"
+              type="email"
+              placeholder={'이메일을 입력하세요'}
+              register={register('email', {
+                required: '아이디를 입력해주세요.',
+              })}
+              inputValue={watch('email')}
+              resetField={resetField}
+              isInvalid={!!errors.email}
+            />
+          </AuthInputWrapper>
+
+          <AuthInputWrapper>
+            <AuthInput
+              label={'비밀번호'}
+              id="password"
+              type="password"
+              placeholder={'비밀번호를 입력하세요'}
+              register={register('password', {
+                required: '비밀번호를 입력해주세요.',
+              })}
+              inputValue={watch('password')}
+              resetField={resetField}
+              isInvalid={!!errors.password}
+            />
+          </AuthInputWrapper>
+
           {errors.email?.type === 'required' && (
             <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
           )}
