@@ -2,7 +2,7 @@ import { deleteReview } from '@api/review';
 import { ButtonPrimary, ButtonWhite } from '@components/common/button/Button';
 import { isModalOpenState } from '@recoil/modal';
 import {
-  alertState,
+  toastPopUpState,
   targetReviewIdState,
   tourItemIdState,
 } from '@recoil/review';
@@ -13,15 +13,15 @@ const DeleteAlert = ({}) => {
   const tourItemId = useRecoilValue(tourItemIdState);
   const targetReviewId = useRecoilValue(targetReviewIdState);
   const setIsModalOpen = useSetRecoilState(isModalOpenState);
-  const setAlert = useSetRecoilState(alertState);
+  const setToastPopUp = useSetRecoilState(toastPopUpState);
 
   const handleDeleteButton = async () => {
     await deleteReview(targetReviewId);
     setIsModalOpen(false);
     navigate(`/detail/${tourItemId}`);
     window.location.reload();
-    setAlert(() => ({
-      isAlert: true,
+    setToastPopUp(() => ({
+      isPopUp: true,
       noun: '리뷰',
       verb: '삭제',
     }));
