@@ -2,6 +2,7 @@ import type { SignupFormValue } from '@/@types/auth.types';
 import { postSignup } from '@api/auth';
 import authClient from '@api/authClient';
 import {
+  AuthTitle,
   AuthEmailInputBox,
   AuthPwInputBox,
   AuthPwCheckInputBox,
@@ -48,11 +49,13 @@ const Signup = () => {
   return (
     <div className="flex h-[95vh] flex-col">
       <BackBox />
-      <h1 className="title1 my-10">
-        위플플 이용을 위해
-        <br />
-        회원가입을 해주세요
-      </h1>
+      <AuthTitle
+        title={
+          <>
+            위플플 이용을 위해 <br /> 회원가입을 해주세요
+          </>
+        }
+      />
       <form
         onSubmit={handleSubmit(onSignupSubmit)}
         className="flex h-full flex-col">
