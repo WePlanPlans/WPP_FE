@@ -62,7 +62,7 @@ const Login = () => {
           <div className="mb-2">
             <LogoIcon />
           </div>
-          <h1 className="body6 text-gray6">
+          <h1 className="body6 text-gray4">
             위플랜플랜즈에 오신 것을 환영합니다.
           </h1>
         </div>
