@@ -75,3 +75,11 @@ export const contentTypeIdState = atom({
   key: 'contentTypeIdState',
   default: 0,
 });
+export const alertState = atom({
+  key: 'alertState',
+  default: {
+    isAlert: false,
+    noun: '',
+    verb: '',
+  },
+});
