@@ -1,19 +1,6 @@
 import { getCheckEmail } from '@api/auth';
-import {
-  FieldErrors,
-  UseFormRegister,
-  UseFormResetField,
-  UseFormSetError,
-} from 'react-hook-form';
 import { AuthInputWrapper, AuthInput, ErrorMessage } from './AuthInputItem';
-
-interface Props {
-  register: UseFormRegister<SignupFormValue>;
-  inputValue: string;
-  resetField: UseFormResetField<any>; // TODO 서지수 | any 나중에 제거
-  errors: FieldErrors<SignupFormValue>;
-  setError: UseFormSetError<SignupFormValue>;
-}
+import type { AuthEmailInputBoxProps } from '@/@types/auth.types';
 
 const AuthEmailInputBox = ({
   register,
@@ -21,7 +8,7 @@ const AuthEmailInputBox = ({
   resetField,
   errors,
   setError,
-}: Props) => {
+}: AuthEmailInputBoxProps) => {
   const patternValue = /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/;
 
   const errorMessage = errors.email?.message;

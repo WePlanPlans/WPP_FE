@@ -1,3 +1,4 @@
+import type { AuthRequest } from '@/@types/auth.types';
 import client from './client';
 
 // 인증 관련 API

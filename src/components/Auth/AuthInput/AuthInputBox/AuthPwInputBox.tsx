@@ -1,23 +1,12 @@
-import {
-  FieldErrors,
-  UseFormRegister,
-  UseFormResetField,
-} from 'react-hook-form';
+import type { AuthInputBoxProps } from '@/@types/auth.types';
 import { AuthInput, AuthInputWrapper, ValidifyCheck } from './AuthInputItem';
-
-interface Props {
-  register: UseFormRegister<SignupFormValue>;
-  inputValue: string;
-  resetField: UseFormResetField<any>; // TODO 서지수 | any 나중에 제거
-  errors: FieldErrors<SignupFormValue>;
-}
 
 const AuthPwInputBox = ({
   register,
   inputValue,
   resetField,
   errors,
-}: Props) => {
+}: AuthInputBoxProps) => {
   const PwErrorTypes = errors.password?.types;
 
   const checkEng = (value: string) => {

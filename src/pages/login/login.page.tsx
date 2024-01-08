@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { AxiosError } from 'axios';
+import type { AuthRequest } from '@/@types/auth.types';
 
 const Login = () => {
   const navigate = useNavigate();
