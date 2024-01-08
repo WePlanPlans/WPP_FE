@@ -1,3 +1,4 @@
+import type { AuthRequest } from '@/@types/auth.types';
 import client from './client';
 
 // 인증 관련 API
@@ -21,19 +22,18 @@ export const postSignup = async (authData: AuthRequest) => {
 };
 
 // 로그인-이메일
-export const postEmailLogin = async (LoginData: LoginFormVlaue) => {
+export const postEmailLogin = async (LoginData: AuthRequest) => {
   const res = await client.post(`auth/login`, LoginData);
   return res;
 };
 
 // 로그인-카카오
-export const postKakaoLogin = async (LoginData: LoginFormVlaue) => {
+export const postKakaoLogin = async (LoginData: AuthRequest) => {
   const res = await client.post(`auth/login/kakao`, LoginData);
   return res;
 };
 
 // 로그아웃
-// TODO 서지수| 나중에 확인하고 수정하기
 export const postLogout = async () => {
   const res = await client.post(`auth/logout`);
   return res;

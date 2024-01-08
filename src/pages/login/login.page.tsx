@@ -1,13 +1,19 @@
 import { postEmailLogin } from '@api/auth';
 import authCient from '@api/authClient';
 import SubmitBtn from '@components/common/button/SubmitBtn';
-import Back from '@components/common/back/Back';
 import { LogoIcon } from '@components/common/icons/Icons';
-import { ErrorMessage, AuthInputBox, KakaoLoginButton } from '@components/Auth';
+import {
+  ErrorMessage,
+  AuthInput,
+  KakaoLoginButton,
+  SignupButton,
+} from '@components/Auth';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { AxiosError } from 'axios';
+import type { AuthRequest } from '@/@types/auth.types';
+import BackBox from '@components/common/BackBox/BackBox';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,15 +21,15 @@ const Login = () => {
     register,
     handleSubmit,
     watch,
-    setValue,
+    resetField,
     formState: { errors },
-  } = useForm<LoginFormVlaue>({
+  } = useForm<AuthRequest>({
     reValidateMode: 'onSubmit',
   });
 
   const [isLoginFailed, setIsLoginFailed] = useState<boolean>(false);
 
-  const onLoginSubmit: SubmitHandler<LoginFormVlaue> = async (data) => {
+  const onLoginSubmit: SubmitHandler<AuthRequest> = async (data) => {
     const { email, password } = data;
     try {
       const res = await postEmailLogin({
@@ -45,9 +51,11 @@ const Login = () => {
     }
   };
 
+  // TODO 서지수 | 마크업 컴포넌트화 해야함
+
   return (
     <div className="flex h-[95vh] flex-col">
-      <Back />
+      <BackBox />
       <div className="mb-auto">
         <div className="mb-16 mt-14 flex flex-col items-center">
           <div className="mb-2">
@@ -58,16 +66,17 @@ const Login = () => {
           </h1>
         </div>
         <form className="mb-auto" onSubmit={handleSubmit(onLoginSubmit)}>
-          <AuthInputBox
+          <AuthInput
             label={'이메일'}
             id="email"
             type="email"
             placeholder={'이메일을 입력하세요'}
             register={register('email', { required: '아이디를 입력해주세요.' })}
             inputValue={watch('email')}
-            setValue={setValue}
+            resetField={resetField}
+            isInvalid={!!errors.email}
           />
-          <AuthInputBox
+          <AuthInput
             label={'비밀번호'}
             id="password"
             type="password"
@@ -76,7 +85,8 @@ const Login = () => {
               required: '비밀번호를 입력해주세요.',
             })}
             inputValue={watch('password')}
-            setValue={setValue}
+            resetField={resetField}
+            isInvalid={!!errors.password}
           />
           {errors.email?.type === 'required' && (
             <ErrorMessage>{`${errors.email?.message}`}</ErrorMessage>
@@ -104,9 +114,7 @@ const Login = () => {
           <hr className="flex-auto" />
         </div>
         <KakaoLoginButton />
-        <SubmitBtn outline type="button">
-          회원가입
-        </SubmitBtn>
+        <SignupButton />
       </div>
     </div>
   );

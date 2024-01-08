@@ -24,7 +24,7 @@ const SubmitBtn = ({
         outline
           ? 'border-[1.5px] border-solid border-main1 bg-white text-main1'
           : 'bg-main1  text-white'
-      } h-14 p-2 disabled:cursor-not-allowed disabled:bg-gray3`}>
+      } h-14 disabled:cursor-not-allowed disabled:bg-gray3`}>
       {children}
     </button>
   );

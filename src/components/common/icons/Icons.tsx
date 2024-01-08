@@ -166,28 +166,31 @@ export const UserIcon: React.FC<IconProps> = ({
   );
 };
 
-export const CheckIcon: React.FC<IconProps> = ({
-  size = 25,
-  color = 'black',
+interface ChackIconProps {
+  width?: number;
+  height?: number;
+  color?: string;
+  fill?: string;
+}
+
+export const CheckIcon = ({
+  width = 16,
+  height = 16,
+  color = '#888888',
   fill = 'none',
-  onClick,
-  cursor = 'pointer',
-}) => {
+}: ChackIconProps) => {
   return (
     <svg
-      onClick={onClick}
-      cursor={cursor}
-      width={size}
-      height={size}
+      width={width}
+      height={height}
       viewBox="0 0 17 17"
       fill={fill}
       xmlns="http://www.w3.org/2000/svg">
-      <g id="Group 36659">
+      <g id="Group 36698">
         <path
-          id="Vector 734"
-          d="M3.12079 5.40039L8.41553 10.6951L13.7103 5.40039"
+          id="Vector 747"
+          d="M2.93848 8.00788L7.01646 12.0858L13.4343 5.66797"
           stroke={color}
-          strokeLinecap="round"
         />
       </g>
     </svg>
@@ -195,11 +198,11 @@ export const CheckIcon: React.FC<IconProps> = ({
 };
 
 interface LeftIconProps {
-  width: number;
-  height: number;
-  fill: string;
-  onClick: VoidFunction;
-  cursor: string;
+  width?: number;
+  height?: number;
+  fill?: string;
+  onClick?: VoidFunction;
+  cursor?: string;
 }
 
 export const LeftIcon = ({
@@ -535,7 +538,7 @@ export const CloseIcon: React.FC<IconProps> = ({
       fill={fill}
       xmlns="http://www.w3.org/2000/svg">
       <g id="Group 36673">
-        <circle id="Ellipse" cx="8.00671" cy="8.59326" r="8" fill="#888888" />
+        <circle id="Ellipse" cx="8.00671" cy="8.59326" r="8" fill={fill} />
         <path
           id="Line"
           d="M5.04033 5.62725L10.9731 11.5601"
@@ -647,9 +650,13 @@ export const DownIcon: React.FC<IconProps> = ({
   size = 25,
   color = 'black',
   fill = 'none',
+  onClick,
+  cursor = 'pointer',
 }) => {
   return (
     <svg
+      onClick={onClick}
+      cursor={cursor}
       width={size}
       height={size}
       viewBox="0 0 17 17"
