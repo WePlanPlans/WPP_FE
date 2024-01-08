@@ -1,28 +1,82 @@
-import { AuthEmailInputBox, AuthPwInputBox } from '@components/Auth';
-import { useState } from 'react';
+import type { SignupFormValue } from '@/@types/auth.types';
+import { postSignup } from '@api/auth';
+import {
+  AuthEmailInputBox,
+  AuthPwInputBox,
+  AuthPwCheckInputBox,
+} from '@components/Auth';
+import { BackBox } from '@components/common';
+import SubmitBtn from '@components/common/button/SubmitBtn';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
-  const [isActive] = useState<boolean>(false);
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    watch,
+    resetField,
+    setError,
+    formState: { errors, isValid },
+  } = useForm<SignupFormValue>({
+    mode: 'onChange',
+    criteriaMode: 'all',
+  });
+
+  const navigate = useNavigate();
+
+  const onSignupSubmit: SubmitHandler<SignupFormValue> = async (data) => {
+    const { email, password } = data;
+
+    try {
+      const res = await postSignup({
+        email,
+        password,
+      });
+      console.log(res);
+      if (res.status === 200) {
+        navigate('/signup/success');
+      }
+    } catch (err) {
+      console.error('회원가입 요청 중 에러 발생', err);
+    }
+  };
 
   return (
-    <div className="flex h-[95vh] flex-col ">
-      <h1 className="title1 my-11">
+    <div className="flex h-[95vh] flex-col">
+      <BackBox />
+      <h1 className="title1 my-10">
         위플플 이용을 위해
         <br />
         회원가입을 해주세요
       </h1>
-      <form className="flex h-full flex-col">
-        <AuthEmailInputBox />
-        <AuthPwInputBox />
+      <form
+        onSubmit={handleSubmit(onSignupSubmit)}
+        className="flex h-full flex-col">
+        <AuthEmailInputBox
+          register={register}
+          inputValue={watch('email')}
+          resetField={resetField}
+          errors={errors}
+          setError={setError}
+        />
+        <AuthPwInputBox
+          register={register}
+          inputValue={watch('password')}
+          resetField={resetField}
+          errors={errors}
+        />
+        <AuthPwCheckInputBox
+          register={register}
+          getValues={getValues}
+          inputValue={watch('passwordCheck')}
+          resetField={resetField}
+          errors={errors}
+        />
 
-        {/* TODO 서지수 | 모든 조건이 만족되어야지만 활성화되도록 수정 */}
         <div className="mt-auto">
-          <button
-            className={`bottom-5 h-14 w-full rounded-lg ${
-              isActive ? 'bg-main1' : 'bg-gray3'
-            } headline1 relative text-white`}>
-            다음
-          </button>
+          <SubmitBtn isActive={isValid}>완료</SubmitBtn>
         </div>
       </form>
     </div>
