@@ -1,11 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import { BackIcon } from '../icons/Icons';
+import { commentState } from '@recoil/review';
+import { useSetRecoilState } from 'recoil';
 
 export default function DetailHeader() {
   const navigate = useNavigate();
+  const setComment = useSetRecoilState(commentState);
 
   const goBack = () => {
     navigate(-1);
+    setComment('');
   };
 
   return (

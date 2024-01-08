@@ -75,3 +75,11 @@ export const contentTypeIdState = atom({
   key: 'contentTypeIdState',
   default: 0,
 });
+export const toastPopUpState = atom({
+  key: 'toastPopUpState',
+  default: {
+    isPopUp: false,
+    noun: '',
+    verb: '',
+  },
+});

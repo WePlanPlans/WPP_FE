@@ -1,11 +1,11 @@
-import { HeartIcon } from '@components/common/icons/Icons';
+import Like from '@components/common/like/Like';
 
 interface DetailToursInfoProps {
   infoData: tourDetail;
 }
 
 export default function DetailToursInfo({ infoData }: DetailToursInfoProps) {
-  const { title, liked, originalThumbnailUrl } = infoData;
+  const { title, liked, originalThumbnailUrl, id } = infoData;
 
   return (
     <>
@@ -20,15 +20,7 @@ export default function DetailToursInfo({ infoData }: DetailToursInfoProps) {
         <h1 className="font-['Pretendard'] text-2xl font-bold text-black ">
           {title}
         </h1>
-        {liked ? (
-          <div className="top-75 h-[24px] w-[24px] cursor-pointer">
-            <HeartIcon fill="#FF2167" color="none" />
-          </div>
-        ) : (
-          <div className="top-75 h-[24px] w-[24px] cursor-pointer">
-            <HeartIcon fill="#D7D7D7" color="none" />
-          </div>
-        )}
+        <Like liked={liked} id={id} />
       </div>
     </>
   );

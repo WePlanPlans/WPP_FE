@@ -9,6 +9,8 @@ export const Search = () => {
 
   const queryParams = new URLSearchParams(location.search);
   const regionFromQuery = queryParams.get('region');
+  const searchWordFromQuery = queryParams.get('searchWord');
+
   const [selectedRegion, setSelectedRegion] = useState(regionFromQuery);
   const [searchWord, setSearchWord] = useState('');
 
@@ -19,11 +21,12 @@ export const Search = () => {
       setSelectedRegion('');
     }
 
-    const searchWordFromQuery = queryParams.get('searchWord');
     if (searchWordFromQuery) {
       setSearchWord(searchWordFromQuery);
+    } else {
+      setSearchWord('');
     }
-  }, [location]);
+  }, [location, regionFromQuery, searchWordFromQuery]);
 
   return (
     <>

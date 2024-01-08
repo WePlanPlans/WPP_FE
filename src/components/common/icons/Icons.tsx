@@ -120,9 +120,11 @@ export const HeartIcon: React.FC<IconProps> = ({
   size = 25,
   color = 'black',
   fill = 'none',
+  onClick,
 }) => {
   return (
     <svg
+      onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
@@ -223,8 +225,8 @@ export const LeftIcon = ({
       xmlns="http://www.w3.org/2000/svg">
       <path
         id="Left"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M8.65547 0.743953C8.9713 1.02827 8.99457 1.51229 8.70746 1.82503L2.99737 8.04492L8.70746 14.2648C8.99457 14.5776 8.9713 15.0616 8.65547 15.3459C8.33964 15.6302 7.85086 15.6072 7.56375 15.2944L0.908447 8.04492L7.56375 0.795433C7.85087 0.482685 8.33965 0.459636 8.65547 0.743953Z"
         fill={fill}
       />
@@ -479,7 +481,7 @@ export const ChatIcon: React.FC<IconProps> = ({
       xmlns="http://www.w3.org/2000/svg">
       <g
         id="mail-chat-bubble-typing-oval--messages-message-bubble-typing-chat"
-        clip-path="url(#clip0_447_1104)">
+        clipPath="url(#clip0_447_1104)">
         <g id="Group">
           <path
             id="Vector"
@@ -780,8 +782,8 @@ export const KakaoIcon = () => {
       xmlns="http://www.w3.org/2000/svg">
       <path
         id="Kakao"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M8.60938 12.9979C13.0277 12.9979 16.6094 10.2415 16.6094 6.84126C16.6094 3.44101 13.0277 0.68457 8.60938 0.68457C4.1911 0.68457 0.609375 3.44101 0.609375 6.84126C0.609375 9.02531 2.08711 10.9437 4.31509 12.0367L3.76215 15.1916L6.86492 12.8511C7.42645 12.9473 8.01022 12.9979 8.60938 12.9979Z"
         fill="#3B1E1E"
       />

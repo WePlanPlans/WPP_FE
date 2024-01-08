@@ -1,5 +1,6 @@
 import { TourType } from '@/@types/tours.types';
 import { HeartIcon, StarIcon } from '@components/common/icons/Icons';
+import Like from '@components/common/like/Like';
 import { useNavigate } from 'react-router-dom';
 
 const ToursItem = ({ tour }: { tour: TourType }) => {
@@ -26,11 +27,7 @@ const ToursItem = ({ tour }: { tour: TourType }) => {
           alt="여행지 이미지"
         />
         <div className="absolute right-[8px] top-[8px] z-10 w-[24px]">
-          <HeartIcon
-            size={24}
-            color={liked ? '#ff2167' : '#ffffff'}
-            fill={liked ? '#ff2167' : '#D7D7D7'}
-          />
+          <Like liked={liked} id={id} />
         </div>
       </div>
       <p className="headline1 mt-2 overflow-hidden text-clip whitespace-nowrap px-[2px] leading-normal">
