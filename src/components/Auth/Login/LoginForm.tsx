@@ -27,8 +27,6 @@ const LoginForm = () => {
 
   const navigate = useNavigate();
 
-  console.log(errors);
-  console.log(!!errors);
   const onLoginSubmit: SubmitHandler<AuthRequest> = async (data) => {
     const { email, password } = data;
     try {

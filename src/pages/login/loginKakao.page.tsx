@@ -1,4 +1,3 @@
-import { postKakaoLogin } from '@api/auth';
 import { useEffect } from 'react';
 
 const LoginKakao = () => {
@@ -7,7 +6,7 @@ const LoginKakao = () => {
   useEffect(() => {
     console.log(code);
     try {
-      const res = postKakaoLogin();
+      // const res = postKakaoLogin();
     } catch (err) {
       console.log('카카오 로그인 중 에러 발생');
     }
