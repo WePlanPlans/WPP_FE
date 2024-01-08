@@ -31,7 +31,7 @@ const ReviewButton = (props: ButtonProps) => {
   }, [keywords]);
 
   return (
-    <>
+    <div className="mb-4">
       {isContentValid === false && isKeywordsValid === false && (
         <div className="mb-2 flex items-center justify-center text-xs text-[#FF0F00]">
           키워드를 선택하거나 텍스트를 10자 이상 입력해주세요
@@ -43,7 +43,7 @@ const ReviewButton = (props: ButtonProps) => {
         disabled={isContentValid === false && isKeywordsValid === false}>
         완료
       </ButtonPrimary>
-    </>
+    </div>
   );
 };
 
