@@ -35,7 +35,6 @@ const Signup = () => {
         email,
         password,
       });
-      console.log(res);
       if (res.status === 200) {
         authClient.defaults.headers.common['Authorization'] =
           res.data.data.tokenInfo.accessToken;
