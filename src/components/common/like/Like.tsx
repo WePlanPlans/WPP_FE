@@ -12,6 +12,7 @@ const Like = ({ liked, id }: LikeProps) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['details'] });
       queryClient.invalidateQueries({ queryKey: ['tours'] });
+      queryClient.invalidateQueries({ queryKey: ['wishList'] });
     },
     onError: () => console.log('error'),
   });
@@ -21,6 +22,7 @@ const Like = ({ liked, id }: LikeProps) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['details'] });
       queryClient.invalidateQueries({ queryKey: ['tours'] });
+      queryClient.invalidateQueries({ queryKey: ['wishList'] });
     },
     onError: () => console.log('error'),
   });
