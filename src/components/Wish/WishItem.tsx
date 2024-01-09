@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 interface WishItemProps {
   wishList: TourType;
-  isLastItem: boolean;
 }
 
 const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
@@ -39,8 +38,8 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
         </div>
 
         <div className="ml-[8px] flex flex-col items-start justify-between gap-[15px]">
-          <div>
-            <p className="overflow-hidden text-clip whitespace-nowrap px-[2px] font-['Pretendard'] text-[16px] font-bold leading-normal text-black">
+          <div className="max-w-[240px]">
+            <p className="overflow-hidden truncate text-clip whitespace-nowrap px-[2px] font-['Pretendard'] text-[16px] font-bold leading-normal text-black">
               {title}
             </p>
             <div className="ml-[3px] mt-[5px] max-w-[260px]">

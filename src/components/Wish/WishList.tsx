@@ -55,20 +55,11 @@ const WishList: React.FC<WishListProps> = ({
           ? Array.from({ length: 10 }, (_, index) => (
               <ToursItemSkeleton key={index} />
             ))
-          : filteredData.map((group, pageIndex) => (
+          : filteredData.map((group) => (
               <React.Fragment key={uuidv4()}>
-                {group?.data.content.map(
-                  (wishList: TourType, index: number, array: TourType[]) => (
-                    <WishItem
-                      key={uuidv4()}
-                      wishList={wishList}
-                      isLastItem={
-                        pageIndex === filteredData.length - 1 &&
-                        index === array.length - 1
-                      }
-                    />
-                  ),
-                )}
+                {group?.data.content.map((wishList: TourType) => (
+                  <WishItem key={uuidv4()} wishList={wishList} />
+                ))}
               </React.Fragment>
             ))}
       </div>

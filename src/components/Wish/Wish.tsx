@@ -18,11 +18,11 @@ const Wish = () => {
         if (
           lastPage &&
           lastPage.data &&
-          lastPage.data.data &&
-          lastPage.data.data.pageable
+          lastPage.data &&
+          lastPage.data.pageable
         ) {
-          const currentPage = lastPage.data.data.pageable.pageNumber;
-          const totalPages = lastPage.data.data.totalPages;
+          const currentPage = lastPage.data.pageable.pageNumber;
+          const totalPages = lastPage.data.totalPages;
 
           if (currentPage < totalPages - 1) {
             return currentPage + 1;
