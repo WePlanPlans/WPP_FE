@@ -3,7 +3,9 @@ import { UseFormRegisterReturn, UseFormResetField } from 'react-hook-form';
 
 interface Props {
   label: string;
-  id: 'email' | 'password' | 'passwordCheck';
+  subLabel?: string;
+  required?: boolean;
+  id: 'email' | 'password' | 'passwordCheck' | 'nickname';
   type?: 'text' | 'email' | 'password';
   isAutoFocus?: boolean;
   placeholder: string;
@@ -16,6 +18,8 @@ interface Props {
 
 const AuthInput = ({
   label,
+  subLabel,
+  required,
   id,
   type = 'text',
   isAutoFocus = false,
@@ -28,9 +32,13 @@ const AuthInput = ({
 }: Props) => {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="body3 text-main1">
-        {label}
-      </label>
+      <div>
+        <label htmlFor={id} className="body3 text-main1">
+          {label}
+        </label>
+        <span className="body5 text-main1">{subLabel}</span>
+        {required && <span className="body5 text-red"> *</span>}
+      </div>
       <div
         className={`flex h-10 items-center border-b-[1.25px] border-solid border-gray3 ${
           isInvalid ? 'border-red' : 'focus-within:border-main2'
