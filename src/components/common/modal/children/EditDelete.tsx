@@ -19,6 +19,7 @@ import {
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const EditDelete: React.FC = () => {
   const rating = useRecoilValue(ratingState);
@@ -34,6 +35,7 @@ const EditDelete: React.FC = () => {
   const navigate = useNavigate();
   const setIsModalOpen = useSetRecoilState(isModalOpenState);
   const setModalChildren = useSetRecoilState(modalChildrenState);
+  const queryClient = useQueryClient();
 
   const handleEdit = () => {
     if (title == '내 리뷰') {
@@ -55,13 +57,20 @@ const EditDelete: React.FC = () => {
     }
   };
 
+  const { mutate: deleteCommentMutate } = useMutation({
+    mutationFn: (targetCommentId: number) => deleteComments(targetCommentId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['reviewComments'] });
+    },
+    onError: () => console.log('error'),
+  });
+
   const handleDelete = async () => {
     if (title === '내 리뷰') {
       setModalChildren('DeleteAlert');
     } else if (title === '내 댓글') {
-      await deleteComments(targetCommentId);
+      await deleteCommentMutate(targetCommentId);
       setIsModalOpen(false);
-      window.location.reload();
     }
   };
 

@@ -30,7 +30,6 @@ const DeleteAlert = ({}) => {
     await deleteReviewMutate(targetReviewId);
     setIsModalOpen(false);
     navigate(`/detail/${tourItemId}`);
-    // window.location.reload();
     setToastPopUp(() => ({
       isPopUp: true,
       noun: '리뷰',
