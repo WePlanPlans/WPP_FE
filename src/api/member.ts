@@ -48,9 +48,30 @@ export const getMemberTrips = async () => {
 };
 
 // 나의 관심 여행지 조회
-export const getMemberTours = async () => {
-  const res = await authClient.get(`member/tours`);
-  return res;
+export const getMemberTours = async (page?: number, size?: number) => {
+  try {
+    const res = await authClient.get(`member/tours?&page=${page}&size=${size}`);
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const getTours = async (
+  region?: string,
+  page?: number,
+  size?: number,
+) => {
+  try {
+    const res = await client.get(
+      `tours?${
+        region !== '전체' && `region=${region}`
+      }&page=${page}&size=${size}`,
+    );
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 // 나의 리뷰 조회
