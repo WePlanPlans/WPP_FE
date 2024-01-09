@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import WishItem from './WishItem';
 import ToursItemSkeleton from '@components/Tours/ToursItemSkeleton';
 import { TourType } from '@/@types/tours.types';
+import { Spinner } from '@components/common/spinner/Spinner';
 
 interface WishListProps {
   toursData: { pages: Array<{ data: { content: TourType[] } }> };
@@ -42,12 +43,7 @@ const WishList: React.FC<WishListProps> = ({
       hasMore={hasNextPage}
       loader={
         <div key={uuidv4()} className="flex justify-center">
-          <div
-            className="z-[100] mx-auto h-8 w-8 animate-spin rounded-full border-[3px] border-solid border-current border-t-transparent pt-10 text-[blue-600] dark:text-[#28d8ff]"
-            role="status"
-            aria-label="loading">
-            <div className="sr-only">Loading...</div>
-          </div>
+          <Spinner />
         </div>
       }>
       <div className="no-scrollbar grid grid-cols-1 gap-[5px] overflow-y-scroll">
