@@ -3,6 +3,7 @@ import client from './client';
 
 // 유저 관련 API
 
+
 // 회원 정보 조회
 export const getMember = async () => {
   const res = await authClient.get(`member`);
@@ -11,36 +12,57 @@ export const getMember = async () => {
 
 // 회원 정보 수정
 export const putMember = async (memberData: MemberRequest) => {
-  const res = await client.put(`member`, memberData);
+  const res = await authClient.put(`member`, memberData);
+  return res;
+};
+
+// 여행 취향 수정
+export const putMemberSurvey = async (memberData: MemberRequest) => {
+  const res = await authClient.put(`member/survey`, memberData);
+  return res;
+};
+
+// 비밀번호 수정
+export const putMemberPassword = async (memberData: MemberRequest) => {
+  const res = await authClient.put(`member/password`, memberData);
+  return res;
+};
+
+// 프로필 이미지 업로드
+export const postMember = async (imgData: any) => {
+  authClient.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+  const res = await authClient.post(`member`, imgData);
+  authClient.defaults.headers.post['Content-Type'] = 'application/json';
+
   return res;
 };
 
 // 회원 탈퇴
 export const deleteMember = async () => {
-  const res = await client.delete(`member`);
+  const res = await authClient.delete(`member`);
   return res;
 };
 
 // 나의 여정 조회
 export const getMemberTrips = async () => {
-  const res = await client.get(`member/trips`);
+  const res = await authClient.get(`member/trips`);
   return res;
 };
 
 // 나의 관심 여행지 조회
 export const getMemberTours = async () => {
-  const res = await client.get(`member/tours`);
+  const res = await authClient.get(`member/tours`);
   return res;
 };
 
 // 나의 리뷰 조회
 export const getMemberReviews = async () => {
-  const res = await client.get(`member/reviews`);
+  const res = await authClient.get(`member/reviews`);
   return res;
 };
 
 // 나의 관심 여행지 삭제
-export const deleteMemberTours = async (tourItemId: number) => {
-  const res = await client.delete(`member/tours/${tourItemId}`);
-  return res;
-};
+// export const deleteMemberTours = async (tourItemId: number) => {
+//   const res = await authClient.delete(`member/tours/${tourItemId}`);
+//   return res;
+// };
