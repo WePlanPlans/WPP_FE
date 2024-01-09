@@ -20,6 +20,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { commentState } from '@recoil/review';
 
 const EditDelete: React.FC = () => {
   const rating = useRecoilValue(ratingState);
@@ -35,6 +36,8 @@ const EditDelete: React.FC = () => {
   const navigate = useNavigate();
   const setIsModalOpen = useSetRecoilState(isModalOpenState);
   const setModalChildren = useSetRecoilState(modalChildrenState);
+  const setComment = useSetRecoilState(commentState);
+
   const queryClient = useQueryClient();
 
   const handleEdit = () => {
@@ -71,6 +74,7 @@ const EditDelete: React.FC = () => {
     } else if (title === '내 댓글') {
       await deleteCommentMutate(targetCommentId);
       setIsModalOpen(false);
+      setComment('');
     }
   };
 
