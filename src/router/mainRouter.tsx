@@ -5,9 +5,9 @@ import Detail from '@pages/detail/detail.page';
 import ReviewComment from '@pages/reviewComment/reviewComment.page';
 import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
 import WishList from '@pages/wishList/wishList.page';
-import MainLayout from './mainLayout';
 import { Signup, SignupSuccess, SignupSurvey, SignupInfo } from '@pages/signup';
 import { Login, LoginKakao } from '@pages/login';
+import MainLayout from './routerLayout';
 
 const MainRouter = () => {
   return (

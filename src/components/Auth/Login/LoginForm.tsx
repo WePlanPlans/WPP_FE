@@ -1,7 +1,6 @@
 import type { AuthRequest } from '@/@types/auth.types';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { postEmailLogin } from '@api/auth';
-import authClient from '@api/authClient';
 import { useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
@@ -35,8 +34,11 @@ const LoginForm = () => {
         password,
       });
       if (res.data.status === 200) {
-        authClient.defaults.headers.common['Authorization'] =
-          res.data.data.tokenInfo.accessToken;
+        window.localStorage.setItem(
+          'accessToken',
+          res.data.data.tokenInfo.accessToken,
+        );
+        // TODO 서지수 | 로그인 후 어디로 갈지 물어보고 수정
         navigate('/');
       }
     } catch (err) {
