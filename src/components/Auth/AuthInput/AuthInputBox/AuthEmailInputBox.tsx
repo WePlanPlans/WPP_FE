@@ -21,11 +21,7 @@ const AuthEmailInputBox = ({
         if (res.status === 200) {
           const isExist = res.data.data.exists;
           if (isExist) {
-            setError(
-              'email',
-              { message: '이미 사용 중인 이메일입니다.' },
-              { shouldFocus: true },
-            );
+            setError('email', { message: '이미 사용 중인 이메일입니다.' });
           }
         }
       } catch (err) {
