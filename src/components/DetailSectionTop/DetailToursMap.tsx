@@ -63,19 +63,6 @@ export default function DetailToursMap({ mapData }: DetailToursMapProps) {
             position={{
               lat: Number(latitude),
               lng: Number(longitude),
-            }}
-            image={{
-              src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png',
-              size: {
-                width: 45,
-                height: 50,
-              },
-              options: {
-                offset: {
-                  x: 18,
-                  y: 50,
-                },
-              },
             }}></MapMarker>
         </Map>
       </div>

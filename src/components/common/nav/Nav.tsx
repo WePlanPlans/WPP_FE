@@ -25,10 +25,10 @@ const Nav = () => {
           <p className="caption1 mt-[5px] text-center text-xs/[11px]">일정</p>
         </div>
         <div
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/wishList')}
           className="cursor-pointer flex-col items-center justify-center px-2">
           <div className="flex justify-center">
-            <HeartIcon />
+            <HeartIcon fill={isActive('/wishList') ? 'currentColor' : 'none'} />
           </div>
           <p className="caption1 mt-[4px] text-center text-xs/[11px]">찜</p>
         </div>
