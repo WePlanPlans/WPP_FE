@@ -5,7 +5,7 @@ import {
   AuthInput,
   AuthInputWrapper,
 } from '@components/Auth/AuthInput/AuthInputBox';
-import AuthDropDown from '@components/Auth/SignupInfo/AuthDropDown';
+import AuthDropDown from '@components/Auth/SignupInfo/AuthDropDown/AuthDropDown';
 import { BackBox } from '@components/common';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import { CameraIcon } from '@components/common/icons/Icons';
@@ -137,12 +137,20 @@ const SignupInfo = () => {
           </div>
 
           <div className="flex flex-col gap-6">
-            <AuthDropDown label="성별" />
-            <AuthDropDown label="연령대" />
+            <AuthDropDown
+              label="성별"
+              text={'성별을 선택해주세요.'}
+              options={genderArr}
+            />
+            <AuthDropDown
+              label="연령대"
+              text={'연령대를 선택해주세요.'}
+              options={ageArr}
+            />
           </div>
         </div>
         <div className="mt-auto">
-          <SubmitBtn>완료</SubmitBtn>
+          <SubmitBtn isActive={isValid}>완료</SubmitBtn>
         </div>
       </form>
     </div>
@@ -150,3 +158,17 @@ const SignupInfo = () => {
 };
 
 export default SignupInfo;
+
+const genderArr: SelectOption[] = [
+  { id: '1', value: '여' },
+  { id: '2', value: '남' },
+  { id: '3', value: '기타' },
+];
+
+const ageArr: SelectOption[] = [
+  { id: '1', value: '10대' },
+  { id: '2', value: '20대' },
+  { id: '3', value: '30대' },
+  { id: '4', value: '40대' },
+  { id: '5', value: '50대 이상' },
+];
