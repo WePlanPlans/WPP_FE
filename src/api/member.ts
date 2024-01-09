@@ -1,6 +1,8 @@
+import authClient from './authClient';
+import client from './client';
+
 // 유저 관련 API
 
-import authClient from './authClient';
 
 // 회원 정보 조회
 export const getMember = async () => {
