@@ -821,3 +821,22 @@ export const BackIcon: React.FC<IconProps> = ({
     </svg>
   );
 };
+
+export const RightIcon = ({ size = 16, fill = '#0D0D0D' }: IconProps) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <g id="Group 36673">
+        <path
+          id="Icon"
+          d="M5.9062 12.5372C5.64585 12.2768 5.64585 11.8547 5.9062 11.5944L9.43479 8.06576L5.9062 4.53716C5.64585 4.27681 5.64585 3.8547 5.9062 3.59435C6.16655 3.334 6.58866 3.334 6.84901 3.59435L10.849 7.59435C11.1094 7.8547 11.1094 8.27681 10.849 8.53716L6.84901 12.5372C6.58866 12.7975 6.16655 12.7975 5.9062 12.5372Z"
+          fill={fill}
+        />
+      </g>
+    </svg>
+  );
+};
