@@ -3,12 +3,20 @@ import { LeftIcon } from '../icons/Icons';
 import { ReactNode } from 'react';
 
 interface Props {
+  showBack?: boolean;
+  // backHandler?: VoidFunction;
   children?: ReactNode;
-  isShowSkip?: boolean;
-  isShowSave?: boolean;
+  showSkip?: boolean;
+  showSave?: boolean;
 }
 
-const BackBox = ({ children, isShowSkip, isShowSave }: Props) => {
+const BackBox = ({
+  showBack,
+  // backHandler,
+  children,
+  showSkip,
+  showSave,
+}: Props) => {
   const navigate = useNavigate();
 
   const onSkipClick = () => {
@@ -19,17 +27,22 @@ const BackBox = ({ children, isShowSkip, isShowSave }: Props) => {
   };
 
   return (
-    <div
-      className="flex h-10 items-center justify-between"
-      onClick={() => navigate(-1)}>
-      <LeftIcon />
+    <div className="flex h-10 items-center justify-between">
+      {showBack && (
+        <button
+          onClick={() => {
+            navigate(-1);
+          }}>
+          <LeftIcon />
+        </button>
+      )}
       {children}
-      {isShowSkip && (
+      {showSkip && (
         <button className="body4 text-gray7" onClick={onSkipClick}>
           건너뛰기
         </button>
       )}
-      {isShowSave && (
+      {showSave && (
         <button className="headline2 text-main2" onClick={onSaveClick}>
           저장
         </button>

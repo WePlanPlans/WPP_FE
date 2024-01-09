@@ -5,7 +5,7 @@ import AuthSurvey from '@components/Auth/AuthSurvey/AuthSurvey';
 const SignupSurvey = () => {
   return (
     <div className="flex h-full flex-col">
-      <BackBox isShowSkip />
+      <BackBox showSkip />
       <AuthTitle
         title={'어떤 여행을 좋아하세요?'}
         subTitle="여행 취향을 골라주세요."
