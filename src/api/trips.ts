@@ -40,9 +40,8 @@ export const getTripsLike = async (
 };
 
 // 우리의 관심 여행지 등록
-// 요청바디 추가필요
-export const postTripsLike = async (tripId: number) => {
-  const res = await client.post(`trips/${tripId}/tripLikedTours`);
+export const postTripsLike = async (tripId: number, tourItemIds: number[]) => {
+  const res = await client.post(`trips/${tripId}/tripLikedTours`, tourItemIds);
   return res;
 };
 
