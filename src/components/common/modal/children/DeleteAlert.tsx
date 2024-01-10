@@ -29,12 +29,14 @@ const DeleteAlert = ({}) => {
   const handleDeleteButton = async () => {
     await deleteReviewMutate(targetReviewId);
     setIsModalOpen(false);
-    navigate(`/detail/${tourItemId}`);
     setToastPopUp(() => ({
       isPopUp: true,
       noun: '리뷰',
       verb: '삭제',
     }));
+    if (location.pathname.includes('/reviewComment')) {
+      navigate(`/detail/${tourItemId}`);
+    }
   };
 
   return (

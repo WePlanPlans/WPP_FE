@@ -13,7 +13,10 @@ const ToastPopUp: React.FC<ToastPopUpProps> = ({ noun, verb }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setVisible(false);
-    }, 3000);
+      setTimeout(() => {
+        setVisible(true);
+      }, 500);
+    }, 1500);
 
     return () => clearTimeout(timeout);
   }, []);
@@ -32,7 +35,7 @@ const ToastPopUp: React.FC<ToastPopUpProps> = ({ noun, verb }) => {
         bottom: 'auto',
         marginRight: '-50%',
         transform: visible ? 'translate(-50%, 0)' : 'translate(-50%, -50%)',
-        width: '375px',
+        width: '335px', // 375 - 40(20 20)(패딩)
         height: '64px',
         borderRadius: '1rem',
         border: '1px solid #29DDF6',
@@ -40,6 +43,7 @@ const ToastPopUp: React.FC<ToastPopUpProps> = ({ noun, verb }) => {
         color: '#062139',
         transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
         opacity: visible ? 1 : 0,
+        zIndex: 1, // 이거 해줘야 kakao-map도 dimmed됨
       }}>
       <CircleCheckIcon fill="#29DDF6" className="mr-2" />
       <p>
