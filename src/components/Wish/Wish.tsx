@@ -3,6 +3,8 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { getMemberTours } from '@api/member';
 import WishCategory from './WishCategory';
 import WishList from './WishList';
+import NoDataMessage from '@components/common/noData/NoDataMessage';
+import { HeartIcon } from '@components/common/icons/Icons';
 
 const Wish = () => {
   const [selectedContentTypeId, setSelectedContentTypeId] = useState<
@@ -47,13 +49,21 @@ const Wish = () => {
         <WishCategory onCategoryClick={handleCategoryClick} />
       </div>
 
-      <WishList
-        toursData={data || { pages: [] }}
-        fetchNextPage={fetchNextPage}
-        hasNextPage={hasNextPage}
-        isLoading={isLoading}
-        selectedContentTypeId={selectedContentTypeId}
-      />
+      {data?.pages[0].data.content.length > 0 ? (
+        <WishList
+          toursData={data || { pages: [] }}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+          isLoading={isLoading}
+          selectedContentTypeId={selectedContentTypeId}
+        />
+      ) : (
+        <NoDataMessage
+          message1="저장된 관심 여행지가 없습니다."
+          message2="가고 싶은 장소를 저장해보세요!"
+          icon={<HeartIcon size={44} fill="#EDEDED" color="#EDEDED" />}
+        />
+      )}
     </div>
   );
 };
