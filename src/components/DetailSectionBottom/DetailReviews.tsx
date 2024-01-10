@@ -112,7 +112,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
           noun: '',
           verb: '',
         }));
-      }, 3500);
+      }, 1500);
       return () => clearTimeout(timer);
     }
   }, [toastPopUp]);
