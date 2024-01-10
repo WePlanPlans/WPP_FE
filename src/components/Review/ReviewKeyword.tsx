@@ -57,7 +57,7 @@ export default function ReviewKeyword() {
   return (
     <>
       <div className="mb-5 text-lg font-bold">어떤 점이 좋았나요? </div>
-      <div className="mb-10 grid grid-cols-2 gap-2 font-bold">
+      <div className="text-md mb-10 grid grid-cols-2 gap-2 font-bold">
         {reviewKeywords?.data?.data?.keywords?.map(
           (keyword: any, index: number) => {
             const row = Math.floor(index / columns) + 1;
