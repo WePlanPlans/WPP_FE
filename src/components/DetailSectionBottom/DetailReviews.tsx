@@ -115,7 +115,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
       }, 3500);
       return () => clearTimeout(timer);
     }
-  }, [alert]);
+  }, [toastPopUp]);
 
   return (
     <>
