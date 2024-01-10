@@ -1,16 +1,13 @@
 import { getCheckNickname } from '@api/auth';
 import { putMember } from '@api/member';
 import { AuthTitle } from '@components/Auth';
-import {
-  AuthInput,
-  AuthInputWrapper,
-} from '@components/Auth/AuthInput/AuthInputBox';
+import { AuthInput } from '@components/Auth/AuthInput/AuthInputBox';
 import AuthDropDown from '@components/Auth/SignupInfo/AuthDropDown/AuthDropDown';
 import { BackBox } from '@components/common';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import { CameraIcon } from '@components/common/icons/Icons';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SignupInfo = () => {
   const {
@@ -47,7 +44,7 @@ const SignupInfo = () => {
   };
 
   const onInfoSubmit: SubmitHandler<any> = async (data) => {
-    // const { email, password } = data;
+    const {} = data;
 
     try {
       const res = await putMember({

@@ -1,4 +1,4 @@
-import { CheckIcon, DownIcon } from '@components/common/icons/Icons';
+import { CheckIcon } from '@components/common/icons/Icons';
 import * as Select from '@radix-ui/react-select';
 import React, { ReactNode, Ref } from 'react';
 

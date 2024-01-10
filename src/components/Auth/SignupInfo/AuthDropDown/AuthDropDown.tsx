@@ -11,7 +11,7 @@ interface Props {
 
 const AuthDropDown = ({ label, text, options }: Props) => {
   // const [isShow, setIsShow] = useState<boolean>(false);
-  const [isSelected, setIsSelected] = useState<string>(text);
+  const [_, setIsSelected] = useState<string>(text);
 
   return (
     // <div className="z-10 flex flex-col">
@@ -47,6 +47,7 @@ const AuthDropDown = ({ label, text, options }: Props) => {
     // </div>
 
     <Select.Root onValueChange={() => setIsSelected('dd')}>
+      <h2 className="body2 mb-2 text-main1">{label}</h2>
       <Select.Trigger className="data-[placeholder]:body5 relative flex h-12 items-center justify-center rounded-lg border border-solid border-gray3 bg-white hover:bg-gray1 data-[state=open]:rounded-b-none data-[placeholder]:text-gray4">
         <Select.Value className="body5 text-gray6" placeholder={text} />
         <Select.Icon className="absolute right-[10px] top-4">
