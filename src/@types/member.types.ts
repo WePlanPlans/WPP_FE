@@ -13,16 +13,17 @@ interface SelectOption {
 interface MemberInfo {
   nickname: string;
   email: string;
-  profileImageUrl: string;
+  profileImageUrl: string | null;
   ageType:
     | 'TEENAGER'
     | 'TWENTIES'
     | 'THIRTIES'
     | 'FOURTIES'
     | 'ABOVE_FIFTIES'
-    | 'DEFATULT';
-  genderType: 'MALE' | 'FEMALE' | 'NON_BINARY';
-  survey: Survey;
+    | 'DEFATULT'
+    | null;
+  genderType: 'MALE' | 'FEMALE' | 'NON_BINARY' | null;
+  survey: Survey | null;
 }
 
 interface EditSurvey {
@@ -30,11 +31,11 @@ interface EditSurvey {
 }
 
 interface Survey {
-  accommodation: '분위기' | '가격';
-  activeHours: '아침형' | '저녁형';
-  food: '노포 맛집' | '인테리어';
-  planning: '철저하게' | '여유롭게';
-  tripStyle: '엑티비티' | '휴양';
+  accommodation: '분위기' | '가격' | null;
+  activeHours: '아침형' | '저녁형' | null;
+  food: '노포 맛집' | '인테리어' | null;
+  planning: '철저하게' | '여유롭게' | null;
+  tripStyle: '엑티비티' | '휴양' | null;
 }
 
 interface SurveyArr {

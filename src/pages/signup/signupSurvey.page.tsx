@@ -21,7 +21,7 @@ const SignupSurvey = () => {
         title={'어떤 여행을 좋아하세요?'}
         subTitle="여행 취향을 골라주세요."
       />
-      <AuthSurvey />
+      <AuthSurvey path="/signup/info" />
     </div>
   );
 };

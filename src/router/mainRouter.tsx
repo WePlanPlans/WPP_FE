@@ -14,8 +14,10 @@ import {
   EditUserSurvey,
   Mypage,
 } from '@pages/mypage';
+import useGetUserInfo from '@hooks/useGetUserInfo';
 
 const MainRouter = () => {
+  useGetUserInfo();
   return (
     <>
       <Routes>
