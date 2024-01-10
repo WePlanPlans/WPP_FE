@@ -1,25 +1,64 @@
+import { getMember } from '@api/member';
 import { RightIcon } from '@components/common/icons/Icons';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import LogoutButton from './LogoutButton';
+import { useRecoilState } from 'recoil';
+import { UserInfoState } from '@recoil/Auth.atom';
+import { getItem } from '@utils/localStorageFun';
 
 const MypageInfo = () => {
+  const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useRecoilState(UserInfoState);
+
+  useEffect(() => {
+    const getMemberInfo = async () => {
+      try {
+        const res = await getMember();
+        if (res.data.status === 200) {
+          setUserInfo(res.data.data);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    if (getItem('accessToken')) {
+      getMemberInfo();
+    }
+  }, []);
+
   return (
-    <Link
-      to="/mypage/info"
+    <button
+      onClick={() => {
+        navigate(userInfo ? '/mypage/info' : '/login');
+      }}
       className="mb-6 flex h-16 w-full items-center justify-between">
       <div className="flex gap-3">
         <div className="h-[60px] w-[60px] overflow-hidden rounded-full">
-          <img src="http://k.kakaocdn.net/dn/1G9kp/btsAot8liOn/8CWudi3uy07rvFNUkk3ER0/img_110x110.jpg" />
+          <img
+            src={
+              userInfo
+                ? userInfo.profileImageUrl
+                : 'http://k.kakaocdn.net/dn/1G9kp/btsAot8liOn/8CWudi3uy07rvFNUkk3ER0/img_110x110.jpg'
+            }
+          />
         </div>
-        <div className="flex flex-col items-start">
-          <span className="title3 mb-1 text-black">은별</span>
-          <span className="caption2 mb-2 text-black">
-            estarrrr01234@naver.com
-          </span>
-          <button className="caption2 text-gray4">로그아웃</button>
+        <div className="flex flex-col items-start justify-center">
+          {userInfo ? (
+            <>
+              <span className="title3 mb-1 text-black">
+                {userInfo.nickname}
+              </span>
+              <span className="caption2 mb-2 text-black">{userInfo.email}</span>
+              <LogoutButton />
+            </>
+          ) : (
+            <div className="title3 text-gray7">로그인을 해주세요</div>
+          )}
         </div>
       </div>
       <RightIcon />
-    </Link>
+    </button>
   );
 };
 

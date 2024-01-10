@@ -1,11 +1,17 @@
 import { postLogout } from '@api/auth';
+import { UserInfoState } from '@recoil/Auth.atom';
 import { removeItem } from '@utils/localStorageFun';
+import { useSetRecoilState } from 'recoil';
 
 const LogoutButton = () => {
-  const onLogoutClick = async () => {
+  const setUserInfo = useSetRecoilState(UserInfoState);
+
+  const onLogoutClick = async (e: any) => {
+    e.stopPropagation();
     try {
       const res = await postLogout();
       if (res.data === 'LOGOUT!') {
+        setUserInfo(null);
         removeItem('accessToken');
       }
     } catch (err) {
