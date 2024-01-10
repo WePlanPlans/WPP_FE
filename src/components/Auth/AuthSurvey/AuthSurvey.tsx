@@ -1,64 +1,50 @@
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import AuthSurveyOption from './AuthSurveyOption';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { putMemberSurvey } from '@api/member';
+import { useNavigate } from 'react-router-dom';
+import { surveyArr } from '@utils/survey.constants';
 
 const AuthSurvey = () => {
+  const { register, handleSubmit, watch } = useForm<Survey>();
+  const navigate = useNavigate();
+
+  const onSaveSubmit: SubmitHandler<Survey> = async (data) => {
+    try {
+      const res = await putMemberSurvey({ survey: data });
+      if (res.data.status === 200) {
+        navigate('/signup/info');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('오류가 발생했습니다. 다시 시도해주세요');
+    }
+  };
+
   return (
-    <form className="mb-8">
+    <form className="mb-8" onSubmit={handleSubmit(onSaveSubmit)}>
       <div className="overflow-auto">
-        {sections.map((section) => (
-          <div key={section.title} className="mb-8 flex flex-col gap-4">
-            <h2 className="headline1 text-gray7">{section.title}</h2>
+        {surveyArr.map((section) => (
+          <fieldset key={section.id} className="mb-8 flex flex-col gap-4">
+            <legend className="headline1 mb-2 text-gray7">
+              {section.title}
+            </legend>
             <div className="flex gap-2">
               {section.options.map((option) => (
-                <AuthSurveyOption key={option.text} isActive={option.active}>
-                  {option.text}
-                </AuthSurveyOption>
+                <AuthSurveyOption
+                  key={option}
+                  name={section.id}
+                  content={option}
+                  register={register}
+                />
               ))}
             </div>
-          </div>
+          </fieldset>
         ))}
       </div>
-      <SubmitBtn>완료</SubmitBtn>
+      <SubmitBtn isActive={Object.keys(watch()).length !== 0}>완료</SubmitBtn>
     </form>
   );
 };
 
 export default AuthSurvey;
-
-const sections = [
-  {
-    title: '계획성',
-    options: [
-      { text: '철저하게', active: true },
-      { text: '여유롭게', active: false },
-    ],
-  },
-  {
-    title: '활동성',
-    options: [
-      { text: '아침형', active: true },
-      { text: '저녁형', active: false },
-    ],
-  },
-  {
-    title: '숙소',
-    options: [
-      { text: '분위기', active: true },
-      { text: '가격', active: false },
-    ],
-  },
-  {
-    title: '음식',
-    options: [
-      { text: '노포 맛집', active: true },
-      { text: '인테리어', active: false },
-    ],
-  },
-  {
-    title: '관광지',
-    options: [
-      { text: '액티비티', active: true },
-      { text: '휴양', active: false },
-    ],
-  },
-];

@@ -7,6 +7,7 @@ interface Props {
   // backHandler?: VoidFunction;
   children?: ReactNode;
   showSkip?: boolean;
+  skipHandler?: VoidFunction;
   showSave?: boolean;
 }
 
@@ -15,6 +16,7 @@ const BackBox = ({
   // backHandler,
   children,
   showSkip,
+  skipHandler,
   showSave,
 }: Props) => {
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ const BackBox = ({
     navigate(-1);
   };
   const onSkipClick = () => {
-    console.log('스킵 버튼 클릭');
+    skipHandler && skipHandler();
   };
   const onSaveClick = () => {
     console.log('저장 버튼 클릭');
