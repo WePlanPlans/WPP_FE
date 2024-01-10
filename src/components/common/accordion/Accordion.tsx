@@ -1,5 +1,5 @@
 import * as accordion from '@radix-ui/react-accordion';
-import { CheckIcon } from '../icons/Icons';
+import { DownIcon } from '../icons/Icons';
 
 interface AccordionProps {
   title: React.ReactNode;
@@ -13,7 +13,7 @@ const Accordion: React.FC<AccordionProps> = ({ title, content }) => {
         <accordion.Header className="flex">
           {title}
           <accordion.Trigger className="ml-auto">
-            <CheckIcon size={17} className="rotate-on-open" />
+            <DownIcon size={17} className="rotate-on-open" />
           </accordion.Trigger>
         </accordion.Header>
         <accordion.Content>{content}</accordion.Content>

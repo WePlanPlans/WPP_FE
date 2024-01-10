@@ -1,4 +1,3 @@
-import authClient from './authClient';
 import client from './client';
 
 // 여정 관련 API
