@@ -13,7 +13,7 @@ const WishList = () => {
     if (token) {
       setIsLoggedIn(true);
     } else {
-      navigate('/signin');
+      navigate('/login');
     }
   }, []);
 
