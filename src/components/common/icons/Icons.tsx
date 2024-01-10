@@ -840,3 +840,39 @@ export const RightIcon = ({ size = 16, fill = '#0D0D0D' }: IconProps) => {
     </svg>
   );
 };
+
+interface ProgressBarProps {
+  full?: boolean;
+}
+
+export const ProgressBarIcon = ({ full = false }: ProgressBarProps) => {
+  return (
+    <svg
+      width="49"
+      height="3"
+      viewBox="0 0 49 3"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <g id="Group 36811">
+        <rect
+          id="Rectangle 2586"
+          x="0.417969"
+          y="0.527344"
+          width="22"
+          height="2"
+          rx="1"
+          fill="#29DDF6"
+        />
+        <rect
+          id="Rectangle 2587"
+          x="26.2539"
+          y="0.527344"
+          width="22"
+          height="2"
+          rx="1"
+          fill={full ? '#29DDF6' : '#D7D7D7'}
+        />
+      </g>
+    </svg>
+  );
+};

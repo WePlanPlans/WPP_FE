@@ -17,8 +17,8 @@ export const putMember = async (memberData: MemberRequest) => {
 };
 
 // 여행 취향 수정
-export const putMemberSurvey = async (memberData: MemberRequest) => {
-  const res = await authClient.put(`member/survey`, memberData);
+export const putMemberSurvey = async (surveyData: EditSurvey) => {
+  const res = await authClient.put(`member/survey`, surveyData);
   return res;
 };
 
