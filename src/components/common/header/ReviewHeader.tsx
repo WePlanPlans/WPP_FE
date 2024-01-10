@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { LeftIcon } from '../icons/Icons';
+import { BackIcon } from '../icons/Icons';
 import { useSetRecoilState } from 'recoil';
 import { ratingState, keywordsState, contentState } from '@recoil/review';
 
@@ -17,11 +17,13 @@ export default function ReviewHeader() {
   };
 
   return (
-    <header className="flex h-6 h-[48px] w-full items-center pl-1">
-      <div className="flex items-center">
-        <LeftIcon className="cursor-pointer" onClick={goBack} />
+    <header className="mb-4 flex items-center ">
+      <div
+        onClick={goBack}
+        className=" flex cursor-pointer items-center px-3 py-2">
+        <BackIcon />
       </div>
-      <div className="flex-grow pr-5 text-center text-sm font-bold">
+      <div className="flex-grow pr-9 text-center text-sm font-bold">
         리뷰 쓰기
       </div>
     </header>
