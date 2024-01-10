@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { useKakaoLoader } from 'react-kakao-maps-sdk';
-import { PhoneIcon, MapIcon, DownIcon } from '@components/common/icons/Icons';
+import { PhoneIcon, MapIcon, CheckIcon } from '@components/common/icons/Icons';
 
 const VITE_KAKAO_MAP_API_KEY = import.meta.env.VITE_KAKAO_MAP_API_KEY;
 
@@ -49,7 +49,7 @@ export default function DetailToursMap({ mapData }: DetailToursMapProps) {
         </div>
 
         <div className="cursor-pointer" onClick={closeMap}>
-          <CheckIcon size={17} />
+          <CheckIcon width={17} height={17} />
         </div>
       </div>
       <div className="flex justify-center">
