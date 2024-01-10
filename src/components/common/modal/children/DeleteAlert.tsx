@@ -7,21 +7,24 @@ import {
   tourItemIdState,
 } from '@recoil/review';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
 
 const DeleteAlert = ({}) => {
   const navigate = useNavigate();
   const tourItemId = useRecoilValue(tourItemIdState);
   const targetReviewId = useRecoilValue(targetReviewIdState);
   const setIsModalOpen = useSetRecoilState(isModalOpenState);
-  const setToastPopUp = useSetRecoilState(toastPopUpState);
+  const [toastPopUp, setToastPopUp] = useRecoilState(toastPopUpState);
+
   const queryClient = useQueryClient();
 
   const { mutate: deleteReviewMutate } = useMutation({
     mutationFn: (targetReviewId: number) => deleteReview(targetReviewId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['toursReviews'] });
+      return <ToastPopUp noun={toastPopUp.noun} verb={toastPopUp.verb} />;
     },
     onError: () => console.log('error'),
   });
