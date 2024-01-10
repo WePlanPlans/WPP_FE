@@ -52,6 +52,10 @@ const Like = ({ liked, id }: LikeProps) => {
     navigate('/login');
   };
 
+  const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+  };
+
   return (
     <>
       {isLoggedIn ? (
@@ -76,7 +80,8 @@ const Like = ({ liked, id }: LikeProps) => {
                 로그인 하시겠습니까?
               </>
             }
-            onConfirm={handleConfirm}>
+            onConfirm={handleConfirm}
+            onCancel={handleCancel}>
             <div
               onClick={onClickLikeButton}
               className="top-75 h-[24px] w-[24px] cursor-pointer">
