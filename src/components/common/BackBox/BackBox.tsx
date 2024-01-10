@@ -27,23 +27,28 @@ const BackBox = ({
   };
 
   return (
-    <div className="flex h-10 items-center justify-between">
+    <div className="relative flex h-10 items-center justify-center">
       {showBack && (
         <button
+          className="absolute left-0"
           onClick={() => {
             navigate(-1);
           }}>
           <LeftIcon />
         </button>
       )}
-      {children}
+      <h1 className="headline2 text-black">{children}</h1>
       {showSkip && (
-        <button className="body4 text-gray7" onClick={onSkipClick}>
+        <button
+          className="body4 absolute right-0 text-gray7"
+          onClick={onSkipClick}>
           건너뛰기
         </button>
       )}
       {showSave && (
-        <button className="headline2 text-main2" onClick={onSaveClick}>
+        <button
+          className="headline2 absolute right-0 text-main2"
+          onClick={onSaveClick}>
           저장
         </button>
       )}

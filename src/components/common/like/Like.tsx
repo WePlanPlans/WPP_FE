@@ -32,7 +32,7 @@ const Like = ({ liked, id }: LikeProps) => {
     const token = localStorage.getItem('accessToken');
     if (!token) {
       // 비로그인 알람창 처리 필요
-      navigate('/signin');
+      navigate('/logn');
     } else {
       if (liked === false) {
         likeMutate(id);

@@ -5,7 +5,7 @@ interface Props {
   label: string;
   subLabel?: string;
   required?: boolean;
-  id: 'email' | 'password' | 'passwordCheck' | 'nickname';
+  id: 'email' | 'currentPw' | 'password' | 'passwordCheck' | 'nickname';
   type?: 'text' | 'email' | 'password';
   isAutoFocus?: boolean;
   placeholder: string;

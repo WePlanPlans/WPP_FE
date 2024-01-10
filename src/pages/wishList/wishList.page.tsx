@@ -1,4 +1,5 @@
 import Wish from '@components/Wish/Wish';
+import { getItem } from '@utils/localStorageFun';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,11 +9,11 @@ const WishList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = window.localStorage.getItem('accessToken');
+    const token = getItem('accessToken');
     if (token) {
       setIsLoggedIn(true);
     } else {
-      navigate('/signin');
+      navigate('/login');
     }
   }, []);
 

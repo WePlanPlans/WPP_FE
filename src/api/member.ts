@@ -1,8 +1,8 @@
+import type { EditPasswordProps } from '@/@types/auth.types';
 import authClient from './authClient';
 import client from './client';
 
 // 유저 관련 API
-
 
 // 회원 정보 조회
 export const getMember = async () => {
@@ -23,8 +23,8 @@ export const putMemberSurvey = async (memberData: MemberRequest) => {
 };
 
 // 비밀번호 수정
-export const putMemberPassword = async (memberData: MemberRequest) => {
-  const res = await authClient.put(`member/password`, memberData);
+export const putMemberPassword = async (pwDataa: EditPasswordProps) => {
+  const res = await authClient.put(`member/password`, pwDataa);
   return res;
 };
 
