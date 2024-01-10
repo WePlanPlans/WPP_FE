@@ -33,7 +33,7 @@ const Nav = () => {
           <p className="caption1 mt-[4px] text-center text-xs/[11px]">찜</p>
         </div>
         <div
-          onClick={() => navigate('/login')}
+          onClick={() => navigate('/mypage')}
           className="cursor-pointer flex-col items-center justify-center px-1">
           <div className="flex justify-center">
             <UserIcon />
