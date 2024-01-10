@@ -47,7 +47,8 @@ const Like = ({ liked, id }: LikeProps) => {
     }
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
     navigate('/login');
   };
 

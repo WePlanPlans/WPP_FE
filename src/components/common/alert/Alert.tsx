@@ -4,7 +4,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 interface AlertProps {
   title: string;
   message: ReactNode;
-  onConfirm: () => void;
+  onConfirm: (() => void) | ((e: React.MouseEvent<HTMLElement>) => void);
   children: ReactNode;
 }
 
