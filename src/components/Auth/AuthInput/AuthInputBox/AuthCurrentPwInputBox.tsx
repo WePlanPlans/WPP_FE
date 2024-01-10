@@ -5,7 +5,6 @@ const AuthCurrentPwInputBox = ({
   inputValue,
   resetField,
   errors,
-  setError,
 }: any) => {
   const currentPwError = errors.currentPw;
   const currentPwErrorMessage = currentPwError?.message;
