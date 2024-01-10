@@ -16,7 +16,7 @@ const ToastPopUp: React.FC<ToastPopUpProps> = ({ noun, verb }) => {
       setTimeout(() => {
         setVisible(true);
       }, 500);
-    }, 1000);
+    }, 1500);
 
     return () => clearTimeout(timeout);
   }, []);
