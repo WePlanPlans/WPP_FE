@@ -19,6 +19,9 @@ const BackBox = ({
 }: Props) => {
   const navigate = useNavigate();
 
+  const onBackClick = () => {
+    navigate(-1);
+  };
   const onSkipClick = () => {
     console.log('스킵 버튼 클릭');
   };
@@ -29,11 +32,7 @@ const BackBox = ({
   return (
     <div className="relative flex h-10 items-center justify-center">
       {showBack && (
-        <button
-          className="absolute left-0"
-          onClick={() => {
-            navigate(-1);
-          }}>
+        <button className="absolute left-0" onClick={onBackClick}>
           <LeftIcon />
         </button>
       )}
