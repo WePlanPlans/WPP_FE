@@ -876,3 +876,48 @@ export const ProgressBarIcon = ({ full = false }: ProgressBarProps) => {
     </svg>
   );
 };
+
+export const SuccessIcon = () => {
+  return (
+    <svg
+      width="81"
+      height="81"
+      viewBox="0 0 81 81"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <g id="Group 36821">
+        <circle
+          id="Ellipse 546"
+          cx="40.4226"
+          cy="40.2585"
+          r="35.1238"
+          stroke="#29DDF6"
+          stroke-width="4"
+        />
+        <path
+          id="Vector 792"
+          d="M25.2881 38.8061L36.2808 50.1801L55.5577 30.3379"
+          stroke="#29DDF6"
+          stroke-width="5.33333"
+          stroke-linecap="round"
+        />
+        <g id="Group 36821_2">
+          <circle
+            id="Ellipse 545"
+            cx="40.9551"
+            cy="40.4521"
+            r="40"
+            fill="#DAFBFF"
+          />
+          <path
+            id="Vector 792_2"
+            d="M21.8516 38.6183L35.7266 52.9746L60.0579 27.9297"
+            stroke="#29DDF6"
+            stroke-width="5.33333"
+            stroke-linecap="round"
+          />
+        </g>
+      </g>
+    </svg>
+  );
+};
