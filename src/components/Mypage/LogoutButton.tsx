@@ -1,11 +1,12 @@
 import { postLogout } from '@api/auth';
+import { removeItem } from '@utils/localStorageFun';
 
 const LogoutButton = () => {
   const onLogoutClick = async () => {
     try {
       const res = await postLogout();
       if (res.data === 'LOGOUT!') {
-        window.localStorage.removeItem('accessToken');
+        removeItem('accessToken');
       }
     } catch (err) {
       console.error(err);

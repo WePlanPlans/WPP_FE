@@ -10,6 +10,7 @@ import {
   AuthInputWrapper,
   ErrorMessage,
 } from '../AuthInput/AuthInputBox';
+import { setItem } from '@utils/localStorageFun';
 
 const LoginForm = () => {
   const [isLoginFailed, setIsLoginFailed] = useState<boolean>(false);
@@ -34,10 +35,7 @@ const LoginForm = () => {
         password,
       });
       if (res.data.status === 200) {
-        window.localStorage.setItem(
-          'accessToken',
-          res.data.data.tokenInfo.accessToken,
-        );
+        setItem('accessToken', res.data.data.tokenInfo.accessToken);
         // TODO 서지수 | 로그인 후 어디로 갈지 물어보고 수정
         navigate('/');
       }
