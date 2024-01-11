@@ -8,14 +8,16 @@ const LogoutButton = () => {
 
   const onLogoutClick = async (e: any) => {
     e.stopPropagation();
-    try {
-      const res = await postLogout();
-      if (res.data === 'LOGOUT!') {
-        setUserInfo(null);
-        removeItem('accessToken');
+    if (confirm('로그아웃 하시겠습니까?')) {
+      try {
+        const res = await postLogout();
+        if (res.data === 'LOGOUT!') {
+          setUserInfo(null);
+          removeItem('accessToken');
+        }
+      } catch (err) {
+        console.error(err);
       }
-    } catch (err) {
-      console.error(err);
     }
   };
 
