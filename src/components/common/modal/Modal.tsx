@@ -40,13 +40,14 @@ export const getModalStyles = (modalChildren: string) => {
         bottom: '0',
         marginRight: '-50%',
         transform: 'translate(-50%, 0)',
-        width: '415px', // 375px + padding 40 (20 20)
+        width: '375px',
         height: '186px',
         borderTopLeftRadius: '2rem',
         borderTopRightRadius: '2rem',
       },
       overlay: {
         backgroundColor: 'rgba(0, 0, 0, 0.25)',
+        zIndex: 1, // 이거 해줘야 kakao-map도 dimmed됨
       },
     };
   } else if (modalChildren === 'DeleteAlert') {
@@ -64,6 +65,7 @@ export const getModalStyles = (modalChildren: string) => {
       },
       overlay: {
         backgroundColor: 'rgba(0, 0, 0, 0.25)',
+        zIndex: 1, // 이거 해줘야 kakao-map도 dimmed됨
       },
     };
   }
