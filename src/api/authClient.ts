@@ -1,8 +1,5 @@
 import { getItem, removeItem, setItem } from '@utils/localStorageFun';
 import axios from 'axios';
-import { postLogout } from './auth';
-import { useSetRecoilState } from 'recoil';
-import { UserInfoState } from '@recoil/Auth.atom';
 
 const authClient = axios.create({
   baseURL: `${import.meta.env.VITE_SERVER_URL}api/`,
