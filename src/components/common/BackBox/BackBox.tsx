@@ -9,6 +9,7 @@ interface Props {
   showSkip?: boolean;
   skipHandler?: VoidFunction;
   showSave?: boolean;
+  saveHandler?: VoidFunction;
 }
 
 const BackBox = ({
@@ -18,6 +19,7 @@ const BackBox = ({
   showSkip,
   skipHandler,
   showSave,
+  saveHandler,
 }: Props) => {
   const navigate = useNavigate();
 
@@ -28,7 +30,7 @@ const BackBox = ({
     skipHandler && skipHandler();
   };
   const onSaveClick = () => {
-    console.log('저장 버튼 클릭');
+    saveHandler && saveHandler();
   };
 
   return (
