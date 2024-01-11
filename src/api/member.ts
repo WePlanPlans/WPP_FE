@@ -1,3 +1,4 @@
+import type { EditPasswordProps } from '@/@types/auth.types';
 import authClient from './authClient';
 import client from './client';
 
@@ -16,14 +17,14 @@ export const putMember = async (memberData: MemberRequest) => {
 };
 
 // 여행 취향 수정
-export const putMemberSurvey = async (memberData: MemberRequest) => {
-  const res = await authClient.put(`member/survey`, memberData);
+export const putMemberSurvey = async (surveyData: EditSurvey) => {
+  const res = await authClient.put(`member/survey`, surveyData);
   return res;
 };
 
 // 비밀번호 수정
-export const putMemberPassword = async (memberData: MemberRequest) => {
-  const res = await authClient.put(`member/password`, memberData);
+export const putMemberPassword = async (pwDataa: EditPasswordProps) => {
+  const res = await authClient.put(`member/password`, pwDataa);
   return res;
 };
 
