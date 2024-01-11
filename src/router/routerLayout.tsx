@@ -12,6 +12,7 @@ const MainLayout = () => {
     '/detail',
     '/reviewPosting',
     '/reviewComment',
+    '/myPageReview',
   ];
   const showNav = !hideNavPaths.some((path) =>
     location.pathname.includes(path),

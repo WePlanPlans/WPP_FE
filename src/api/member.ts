@@ -3,7 +3,6 @@ import client from './client';
 
 // 유저 관련 API
 
-
 // 회원 정보 조회
 export const getMember = async () => {
   const res = await authClient.get(`member`);
@@ -77,9 +76,20 @@ export const getTours = async (
 };
 
 // 나의 리뷰 조회
-export const getMemberReviews = async () => {
-  const res = await authClient.get(`member/reviews`);
-  return res;
+export const getMemberReviews = async (page?: number, size?: number) => {
+  try {
+    let url = `member/reviews`;
+    if (page !== undefined) {
+      url += `?page=${page}`;
+    }
+    if (size !== undefined) {
+      url += `${page !== undefined ? '&' : '?'}size=${size}`;
+    }
+    const res = await authClient.get(url);
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 // 나의 관심 여행지 삭제
