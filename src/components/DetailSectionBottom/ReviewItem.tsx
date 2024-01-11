@@ -161,7 +161,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
           <div className="mb-4 text-gray7">{content}</div>
         )}
 
-        <div className="flex ">
+        <div className="flex items-center ">
           <div className="flex gap-2">
             {!showMoreKeywords &&
               keywords.slice(0, 2).map((keyword, idx) => (
