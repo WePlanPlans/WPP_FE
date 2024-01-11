@@ -33,12 +33,14 @@ export const CalendarIcon: React.FC<IconProps> = ({
   size = 25,
   color = 'black',
   fill = 'none',
+  className,
 }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
+      className={className}
       viewBox="0 0 25 25"
       fill={fill}>
       <rect
@@ -654,6 +656,7 @@ export const DownIcon: React.FC<IconProps> = ({
   fill = 'none',
   onClick,
   cursor = 'pointer',
+  className,
 }) => {
   return (
     <svg
@@ -661,6 +664,7 @@ export const DownIcon: React.FC<IconProps> = ({
       cursor={cursor}
       width={size}
       height={size}
+      className={className}
       viewBox="0 0 17 17"
       fill={fill}
       xmlns="http://www.w3.org/2000/svg">
