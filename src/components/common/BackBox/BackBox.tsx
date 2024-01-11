@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { LeftIcon } from '../icons/Icons';
 import { ReactNode } from 'react';
 
