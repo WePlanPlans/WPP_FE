@@ -14,15 +14,15 @@ interface MemberInfo {
   nickname: string;
   email: string;
   profileImageUrl: string | null;
-  ageType:
-    | 'TEENAGER'
-    | 'TWENTIES'
-    | 'THIRTIES'
-    | 'FOURTIES'
-    | 'ABOVE_FIFTIES'
-    | 'DEFATULT'
-    | null;
-  genderType: 'MALE' | 'FEMALE' | 'NON_BINARY' | null;
+  ageType: string | null;
+  // | 'TEENAGER'
+  // | 'TWENTIES'
+  // | 'THIRTIES'
+  // | 'FOURTIES'
+  // | 'ABOVE_FIFTIES'
+  // | 'DEFATULT'
+  genderType: string | null;
+  // 'MALE' | 'FEMALE' | 'NON_BINARY' | 'DEFATULT';
   survey: Survey | null;
 }
 

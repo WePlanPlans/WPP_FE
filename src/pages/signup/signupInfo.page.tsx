@@ -77,7 +77,13 @@ const SignupInfo = () => {
 
   return (
     <div className="flex h-[95vh] flex-col">
-      <BackBox showBack showSkip />
+      <BackBox
+        showBack
+        showSkip
+        skipHandler={() => {
+          navigate('/');
+        }}
+      />
       <AuthTitle
         title={
           <>
