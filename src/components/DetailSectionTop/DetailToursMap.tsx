@@ -47,8 +47,8 @@ export default function DetailToursMap({ mapData }: DetailToursMapProps) {
             </p>
           )}
         </div>
-        <div>
-          <DownIcon size={17} className="cursor-pointer" onClick={closeMap} />
+        <div className="cursor-pointer" onClick={closeMap}>
+          <DownIcon size={17} />
         </div>
       </div>
       <div className="flex justify-center">
