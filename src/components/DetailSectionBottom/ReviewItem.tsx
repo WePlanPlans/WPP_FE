@@ -16,6 +16,7 @@ import {
 import { MouseEvent, useState } from 'react';
 import { getEmoji } from '@utils/utils';
 import { getStarFill } from '@utils/getStarFill';
+import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
 
 interface Keyword {
   keywordId: number;
@@ -33,16 +34,17 @@ interface ItemProps {
   keywords: Keyword[]; // keywordId, content, type
   commentCount: number;
   onClick?: () => void;
-  tourItemId: number;
+  tourItemId?: number;
   contentTypeId?: number;
-  isReviews: boolean;
+  canTextOverflow: boolean;
+  isAuthor?: boolean;
 }
 
 const Item: React.FC<ItemProps> = (props: ItemProps) => {
   const {
     reviewId,
     authorNickname,
-    // authorProfileImageUrl,
+    authorProfileImageUrl,
     rating,
     createdTime,
     content,
@@ -51,7 +53,8 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     onClick,
     tourItemId,
     contentTypeId,
-    isReviews,
+    canTextOverflow,
+    isAuthor,
   } = props;
   const [_, setIsModalOpen] = useRecoilState(isModalOpenState);
 
@@ -68,7 +71,9 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
   const openModal = (title: string, reviewId: number, e: React.MouseEvent) => {
     e.stopPropagation();
     setTitle(title);
-    setTourItemId(tourItemId);
+    if (tourItemId) {
+      setTourItemId(tourItemId);
+    }
     if (contentTypeId) {
       setContentTypeId(contentTypeId);
     } else {
@@ -107,15 +112,19 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     <>
       <div className="cursor-pointer pb-4" onClick={onClick}>
         <div className=" mb-5 flex items-center">
-          {/* {authorProfileImageUrl} */}
           <div className="mr-2">
-            <img
-              src={
-                'https://img.freepik.com/free-photo/portrait-of-a-cute-little-girl-in-a-blue-hat-3d-rendering_1142-38897.jpg?w=740&t=st=1704099517~exp=1704100117~hmac=49bf38020d3b7a61618f4db96fa5fdfa20a7c263be7f73b9987054b12f9d5027'
-              }
-              alt="유저 프로필"
-              className="w-12 rounded-full"
-            />
+            {!(
+              authorProfileImageUrl === 'http://asiduheimage.jpg' ||
+              authorProfileImageUrl === null
+            ) ? (
+              <img
+                src={authorProfileImageUrl}
+                alt="유저 프로필"
+                className="w-12 rounded-full"
+              />
+            ) : (
+              <NullUser className="" />
+            )}
           </div>
           <div className=" mr-2 flex flex-col gap-1">
             <div className="font-bold">{authorNickname}</div>
@@ -134,13 +143,15 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
           <div className="mb-0.5 mt-auto text-sm text-gray4">
             {formatCreatedTime(createdTime)}
           </div>
-          <div
-            className="ml-auto cursor-pointer"
-            onClick={(e) => openModal('내 리뷰', reviewId, e)}>
-            <MoreIcon fill="#888888" color="none" />
-          </div>
+          {isAuthor && (
+            <div
+              className="ml-auto cursor-pointer"
+              onClick={(e) => openModal('내 리뷰', reviewId, e)}>
+              <MoreIcon fill="#888888" color="none" />
+            </div>
+          )}
         </div>
-        {isReviews ? (
+        {canTextOverflow ? (
           <div className="mb-4 max-h-12 overflow-hidden text-gray7">
             {content.length > 75 ? `${content.slice(0, 75)}...` : content}
           </div>

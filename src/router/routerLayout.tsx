@@ -12,6 +12,7 @@ const MainLayout = () => {
     '/detail',
     '/reviewPosting',
     '/reviewComment',
+    '/myPageReview',
     '/info',
     '/survey',
   ];
