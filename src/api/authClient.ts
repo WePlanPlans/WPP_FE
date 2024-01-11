@@ -38,8 +38,6 @@ authClient.interceptors.response.use(
     return res;
   },
   function (error) {
-    console.error(error);
-
     if (error.response.status === 401) {
       // 응답이 401으로 오는 경우
       // 1. 엑세스 토큰이 없는 경우(엑세스 토큰이 없습니다.)
