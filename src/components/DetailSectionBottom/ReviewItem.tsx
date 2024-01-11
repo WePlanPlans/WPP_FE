@@ -13,7 +13,7 @@ import {
   tourItemIdState,
   contentTypeIdState,
 } from '@recoil/review';
-import { MouseEvent, useState, useEffect } from 'react';
+import { MouseEvent, useState } from 'react';
 import { getEmoji } from '@utils/utils';
 import { getStarFill } from '@utils/getStarFill';
 import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';

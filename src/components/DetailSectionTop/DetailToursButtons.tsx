@@ -5,7 +5,7 @@ import MyAlert from '@components/common/modal/children/MyAlert';
 import { isModalOpenState, modalChildrenState } from '@recoil/modal';
 import { isModifyingReviewState } from '@recoil/review';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 
 interface reviewProps {
   reviewData: any;
