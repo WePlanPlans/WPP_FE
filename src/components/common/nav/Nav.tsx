@@ -51,7 +51,9 @@ const Nav = () => {
                 fill={isActive('/wishList') ? 'currentColor' : 'none'}
               />
             </div>
-            <p className="caption1 mt-[4px] text-center text-xs/[11px]">찜</p>
+            <p className="caption1 mt-[4px] text-center text-xs/[11px]">
+              관심목록
+            </p>
           </div>
         ) : (
           <Alert
@@ -70,7 +72,9 @@ const Nav = () => {
                   fill={isActive('/wishList') ? 'currentColor' : 'none'}
                 />
               </div>
-              <p className="caption1 mt-[4px] text-center text-xs/[11px]">찜</p>
+              <p className="caption1 mt-[4px] text-center text-xs/[11px]">
+                관심목록
+              </p>
             </div>
           </Alert>
         )}
