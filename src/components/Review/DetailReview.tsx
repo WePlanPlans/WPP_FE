@@ -8,21 +8,19 @@ export default function DetailReview() {
   const { item, tourItemId } = state;
 
   return (
-    <div className="mb-6 ">
-      <ReviewItem
-        key={item.reviewId}
-        reviewId={item.reviewId}
-        authorNickname={item.authorNickname}
-        authorProfileImageUrl={item.authorProfileImageUrl}
-        rating={item.rating}
-        createdTime={item.createdTime}
-        content={item.content}
-        keywords={item.keywords} // keywordId, content, type
-        commentCount={item.commentCount}
-        tourItemId={tourItemId}
-        canTextOverflow={false}
-        isAuthor={item.isAuthor}
-      />
-    </div>
+    <ReviewItem
+      key={item.reviewId}
+      reviewId={item.reviewId}
+      authorNickname={item.authorNickname}
+      authorProfileImageUrl={item.authorProfileImageUrl}
+      rating={item.rating}
+      createdTime={item.createdTime}
+      content={item.content}
+      keywords={item.keywords} // keywordId, content, type
+      commentCount={item.commentCount}
+      tourItemId={tourItemId}
+      canTextOverflow={false}
+      isAuthor={item.isAuthor}
+    />
   );
 }

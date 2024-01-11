@@ -63,9 +63,9 @@ export default function ReviewComments() {
 
   return (
     <>
-      <div className="mb-4 text-xs">
+      <div className="mb-4 text-sm">
         댓글
-        <span className="pl-0.5 font-bold">{commentDataLength}</span>
+        <span className="pl-1 font-bold">{commentDataLength}</span>
       </div>
       <div className="flex flex-col">
         {commentDataLength == 0 && (
