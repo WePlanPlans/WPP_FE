@@ -26,7 +26,7 @@ export const getDetailTours = async (tourItemId: number) => {
   try {
     const {
       data: { data },
-    } = await client.get(`tours/${tourItemId}`);
+    } = await authClient.get(`tours/${tourItemId}`);
     return data;
   } catch (e) {
     console.error(e);
@@ -77,7 +77,7 @@ export const getToursReviews = async (
     if (size !== undefined) {
       url += `${page !== undefined ? '&' : '?'}size=${size}`;
     }
-    const res = await client.get(url);
+    const res = await authClient.get(url);
     return res;
   } catch (e) {
     console.error(e);
