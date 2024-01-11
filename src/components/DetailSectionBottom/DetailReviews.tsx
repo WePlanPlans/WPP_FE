@@ -24,7 +24,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import ReviewItem from './ReviewItem';
 import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
 import EditDelete from '@components/common/modal/children/EditDelete';
-import DeleteAlert from '@components/common/modal/children/DeleteAlert';
+import MyAlert from '@components/common/modal/children/MyAlert';
 interface reviewProps {
   reviewData: any;
 }
@@ -45,6 +45,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
   const [toastPopUp, setToastPopUp] = useRecoilState(toastPopUpState);
   const modalChildren = useRecoilValue(modalChildrenState);
+
   const {
     data: toursReviews,
     fetchNextPage,
@@ -178,7 +179,9 @@ export default function DetailReviews({ reviewData }: reviewProps) {
       </InfiniteScroll>
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
         {modalChildren === 'EditDelete' && <EditDelete />}
-        {modalChildren === 'DeleteAlert' && <DeleteAlert />}
+        {modalChildren === 'MyAlert' && (
+          <MyAlert title="리뷰 삭제" content="리뷰를 삭제할까요?" />
+        )}
       </Modal>
     </>
   );

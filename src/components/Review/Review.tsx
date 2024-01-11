@@ -14,6 +14,12 @@ import {
 import { isModalOpenState } from '@recoil/modal';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+interface EditReviewMutationParams {
+  reviewData: any;
+  targetReviewId: number;
+}
 
 export default function Review() {
   const params = useParams();
@@ -26,6 +32,21 @@ export default function Review() {
   const targetReviewId = useRecoilValue(targetReviewIdState);
   const [_, setIsModalOpen] = useRecoilState(isModalOpenState);
   const setToastPopUp = useSetRecoilState(toastPopUpState);
+  const queryClient = useQueryClient();
+
+  const { mutate: editReviewMutate } = useMutation({
+    mutationFn: ({ reviewData, targetReviewId }: EditReviewMutationParams) =>
+      putReview(reviewData, targetReviewId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['toursReviews'],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['myReviews'],
+      });
+    },
+    onError: () => console.log('error'),
+  });
 
   const handlePostReview = async () => {
     try {
@@ -36,7 +57,7 @@ export default function Review() {
         content: content,
       };
       if (isModifyingReview) {
-        await putReview(reviewData, targetReviewId);
+        await editReviewMutate({ reviewData, targetReviewId });
         setToastPopUp(() => ({
           isPopUp: true,
           noun: '리뷰',
@@ -54,7 +75,11 @@ export default function Review() {
       setKeywords([]);
       setContent('');
       setIsModalOpen(false);
-      navigate(`/detail/${tourItemId}`);
+      if (tourItemId == 0) {
+        navigate('/myPageReview');
+      } else {
+        navigate(`/detail/${tourItemId}`);
+      }
     } catch (error) {
       console.error(
         `리뷰 ${isModifyingReview ? '수정' : '등록'} 중 오류 발생:`,

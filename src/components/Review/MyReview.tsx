@@ -1,5 +1,4 @@
 import { getMemberReviews } from '@api/member';
-import { StarIcon } from '@components/common/icons/Icons';
 import { Modal } from '@components/common/modal';
 import { isModalOpenState, modalChildrenState } from '@recoil/modal';
 import {
@@ -14,17 +13,15 @@ import {
 import { useInfiniteQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import ReviewItem from '@components/DetailSectionBottom/ReviewItem';
 import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
 import EditDelete from '@components/common/modal/children/EditDelete';
-import DeleteAlert from '@components/common/modal/children/DeleteAlert';
+import MyAlert from '@components/common/modal/children/MyAlert';
 
 export default function MyReview() {
   const [reviewDataLength, setReviewDataLength] = useState<number>(0);
-  const params = useParams();
-  const tourItemId = Number(params.id);
   const navigate = useNavigate();
   const setRating = useSetRecoilState(ratingState);
   const setKeywords = useSetRecoilState(keywordsState);
@@ -60,11 +57,7 @@ export default function MyReview() {
 
   const handleReviewClick = (item: any) => {
     const reviewId = item.reviewId;
-    navigate(`/reviewComment/${reviewId}`, { state: { item, tourItemId } });
-  };
-
-  const handlePostingReivew = () => {
-    navigate(`/reviewPosting/${tourItemId}`);
+    navigate(`/reviewComment/${reviewId}`, { state: { item } });
   };
 
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
@@ -110,15 +103,9 @@ export default function MyReview() {
         나의 리뷰<span className="pl-1 text-gray4">{reviewDataLength}</span>
       </div>
       {reviewDataLength == 0 && (
-        <div
-          className="flex cursor-pointer flex-col items-center justify-center"
-          onClick={handlePostingReivew}>
-          <div className="mb-2 flex">
-            {Array.from({ length: 5 }, (_, index) => (
-              <StarIcon key={index} size={30} color="none" fill={'#EDEDED'} />
-            ))}
-          </div>
-          <div className="text-sm text-gray3">첫번째 리뷰를 남겨주세요!</div>
+        <div>
+          <div>작성한 리뷰가 없습니다</div>
+          <div>다녀온 여행지의 리뷰를 남겨보세요!</div>
         </div>
       )}
       <InfiniteScroll
@@ -135,23 +122,24 @@ export default function MyReview() {
             {
               return (
                 <React.Fragment key={index}>
-                  {group?.data.data.content.map((item: any) => (
-                    <ReviewItem
-                      key={item.reviewId}
-                      reviewId={item.reviewId}
-                      authorNickname={item.authorNickname}
-                      authorProfileImageUrl={item.authorProfileImageUrl}
-                      rating={item.rating}
-                      createdTime={item.createdTime}
-                      content={item.content}
-                      keywords={item.keywords}
-                      commentCount={item.commentCount}
-                      onClick={() => handleReviewClick(item)}
-                      tourItemId={tourItemId}
-                      canTextOverflow={true}
-                      isAuthor={item.isAuthor}
-                    />
-                  ))}
+                  {group?.data.data.content.map((item: any) => {
+                    item.isAuthor = true;
+                    return (
+                      <ReviewItem
+                        key={item.reviewId}
+                        reviewId={item.reviewId}
+                        authorNickname={item.authorNickname}
+                        authorProfileImageUrl={item.authorProfileImageUrl}
+                        rating={item.rating}
+                        createdTime={item.createdTime}
+                        content={item.content}
+                        keywords={item.keywords}
+                        commentCount={item.commentCount}
+                        onClick={() => handleReviewClick(item)}
+                        canTextOverflow={true}
+                      />
+                    );
+                  })}
                 </React.Fragment>
               );
             }
@@ -160,7 +148,9 @@ export default function MyReview() {
       </InfiniteScroll>
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
         {modalChildren === 'EditDelete' && <EditDelete />}
-        {modalChildren === 'DeleteAlert' && <DeleteAlert />}
+        {modalChildren === 'MyAlert' && (
+          <MyAlert title="리뷰 삭제" content="리뷰를 삭제할까요?" />
+        )}
       </Modal>
     </>
   );

@@ -34,10 +34,10 @@ interface ItemProps {
   keywords: Keyword[]; // keywordId, content, type
   commentCount: number;
   onClick?: () => void;
-  tourItemId: number;
+  tourItemId?: number;
   contentTypeId?: number;
   canTextOverflow: boolean;
-  isAuthor: boolean;
+  isAuthor?: boolean;
 }
 
 const Item: React.FC<ItemProps> = (props: ItemProps) => {
@@ -71,7 +71,9 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
   const openModal = (title: string, reviewId: number, e: React.MouseEvent) => {
     e.stopPropagation();
     setTitle(title);
-    setTourItemId(tourItemId);
+    if (tourItemId) {
+      setTourItemId(tourItemId);
+    }
     if (contentTypeId) {
       setContentTypeId(contentTypeId);
     } else {
