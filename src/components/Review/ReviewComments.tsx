@@ -63,43 +63,45 @@ export default function ReviewComments() {
         댓글
         <span className="pl-0.5 font-bold">{commentDataLength}</span>
       </div>
-      {commentDataLength == 0 && (
-        <div className="mb-4 flex flex-col items-center justify-center text-sm text-gray4">
-          <div>댓글이 없습니다. </div>
-          <div>첫 댓글을 작성해보세요!</div>
-        </div>
-      )}
-      <InfiniteScroll
-        pageStart={0}
-        loadMore={() => fetchNextPage()}
-        hasMore={hasNextPage}
-        loader={
-          <div className="loader" key={0}>
-            Loading ...
+      <div className="flex flex-col">
+        {commentDataLength == 0 && (
+          <div className="mb-4 flex flex-col items-center justify-center text-sm text-gray4">
+            <div>댓글이 없습니다. </div>
+            <div>첫 댓글을 작성해보세요!</div>
           </div>
-        }>
-        <div>
-          {reviewComments?.pages.map((group, index) => {
-            {
-              return (
-                <React.Fragment key={index}>
-                  {group?.data.data.comments.content.map((item: any) => (
-                    <CommentItem
-                      key={item.commentId}
-                      commentId={item.commentId}
-                      authorNickname={item.authorNickname}
-                      authorProfileImageUrl={item.authorProfileImageUrl}
-                      createdTime={item.createdTime}
-                      content={item.content}
-                      isAuthor={item.isAuthor}
-                    />
-                  ))}
-                </React.Fragment>
-              );
-            }
-          })}
-        </div>
-      </InfiniteScroll>
+        )}
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={() => fetchNextPage()}
+          hasMore={hasNextPage}
+          loader={
+            <div className="loader" key={0}>
+              Loading ...
+            </div>
+          }>
+          <div>
+            {reviewComments?.pages.map((group, index) => {
+              {
+                return (
+                  <React.Fragment key={index}>
+                    {group?.data.data.comments.content.map((item: any) => (
+                      <CommentItem
+                        key={item.commentId}
+                        commentId={item.commentId}
+                        authorNickname={item.authorNickname}
+                        authorProfileImageUrl={item.authorProfileImageUrl}
+                        createdTime={item.createdTime}
+                        content={item.content}
+                        isAuthor={item.isAuthor}
+                      />
+                    ))}
+                  </React.Fragment>
+                );
+              }
+            })}
+          </div>
+        </InfiniteScroll>
+      </div>
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
         {modalChildren === 'EditDelete' && <EditDelete />}
         {modalChildren === 'MyAlert' && (
