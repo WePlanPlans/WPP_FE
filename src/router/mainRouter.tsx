@@ -5,7 +5,6 @@ import Detail from '@pages/detail/detail.page';
 import ReviewComment from '@pages/reviewComment/reviewComment.page';
 import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
 import MainLayout from './routerLayout';
-import { SelectDate } from '@components/createTrip/SelectDate';
 import { CreateTrip } from '@pages/create/createTrip.page';
 
 const MainRouter = () => {
@@ -19,7 +18,6 @@ const MainRouter = () => {
           <Route path="/reviewPosting/:id" element={<ReviewPosting />} />
           <Route path="/reviewComment/:id" element={<ReviewComment />} />
           <Route path="/create" element={<CreateTrip />} />
-          <Route path="/create/date" element={<SelectDate />} />
         </Route>
       </Routes>
     </>

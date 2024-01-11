@@ -6,7 +6,7 @@ export const CreateTrip = () => {
   const [inputValue, setInputValue] = useState('나의 여정');
   const [showSelectDate, setShowSelectDate] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
@@ -24,7 +24,7 @@ export const CreateTrip = () => {
   return (
     <div>
       <BackHeader />
-      <div className="title1 pb-5">여행 생성하기</div>
+      <div className="title1 mt-2 pb-5">여행 생성하기</div>
       <input
         type="text"
         className="mb-2 h-[54px] w-full rounded-lg border border-zinc-300 p-4 text-black placeholder-gray4"
@@ -34,9 +34,15 @@ export const CreateTrip = () => {
       />
       <input
         type="button"
-        className="h-[54px] w-full cursor-pointer rounded-lg border border-zinc-300 p-4  text-left text-black placeholder-gray4"
-        value="여정 날짜"
+        className="mb-2 h-[54px] w-full cursor-pointer rounded-lg border border-zinc-300 p-4  text-left text-black placeholder-gray4"
+        value="여행 날짜(선택)"
         onClick={handleDateButtonClick}
+      />
+      <input
+        type="button"
+        className="mb-2 h-[54px] w-full cursor-pointer rounded-lg border border-zinc-300 p-4  text-left text-black placeholder-gray4"
+        value="여행 인원(선택)"
+        onClick={() => {}}
       />
     </div>
   );
