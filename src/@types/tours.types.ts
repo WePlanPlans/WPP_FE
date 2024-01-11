@@ -25,6 +25,7 @@ export interface ToursCategoryProps extends ToursListProps {
 }
 
 export interface TourType {
+  contentTypeId?: number;
   id: number;
   title: string;
   liked: boolean;

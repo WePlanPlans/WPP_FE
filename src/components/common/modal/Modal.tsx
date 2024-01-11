@@ -47,6 +47,7 @@ export const getModalStyles = (modalChildren: string) => {
       },
       overlay: {
         backgroundColor: 'rgba(0, 0, 0, 0.25)',
+        zIndex: 1, // 이거 해줘야 kakao-map도 dimmed됨
       },
     };
   } else if (modalChildren === 'DeleteAlert') {
@@ -64,6 +65,7 @@ export const getModalStyles = (modalChildren: string) => {
       },
       overlay: {
         backgroundColor: 'rgba(0, 0, 0, 0.25)',
+        zIndex: 1, // 이거 해줘야 kakao-map도 dimmed됨
       },
     };
   }

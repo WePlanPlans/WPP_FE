@@ -1,7 +1,15 @@
 import {
   AuthEmailInputBox,
+  AuthCurrentPwInputBox,
   AuthPwInputBox,
   AuthPwCheckInputBox,
 } from './AuthInput/AuthInputBox';
+import AuthTitle from './AuthTitle';
 
-export { AuthEmailInputBox, AuthPwInputBox, AuthPwCheckInputBox };
+export {
+  AuthTitle,
+  AuthEmailInputBox,
+  AuthCurrentPwInputBox,
+  AuthPwInputBox,
+  AuthPwCheckInputBox,
+};

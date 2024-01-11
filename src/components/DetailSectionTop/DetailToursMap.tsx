@@ -47,8 +47,9 @@ export default function DetailToursMap({ mapData }: DetailToursMapProps) {
             </p>
           )}
         </div>
-
-        <DownIcon onClick={closeMap} size={17} className="cursor-pointer" />
+        <div className="cursor-pointer" onClick={closeMap}>
+          <DownIcon size={17} />
+        </div>
       </div>
       <div className="flex justify-center">
         <Map
@@ -61,19 +62,6 @@ export default function DetailToursMap({ mapData }: DetailToursMapProps) {
             position={{
               lat: Number(latitude),
               lng: Number(longitude),
-            }}
-            image={{
-              src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png',
-              size: {
-                width: 45,
-                height: 50,
-              },
-              options: {
-                offset: {
-                  x: 18,
-                  y: 50,
-                },
-              },
             }}></MapMarker>
         </Map>
       </div>

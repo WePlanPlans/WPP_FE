@@ -105,7 +105,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
 
   return (
     <>
-      <div className="mb-8 cursor-pointer" onClick={onClick}>
+      <div className="cursor-pointer pb-4" onClick={onClick}>
         <div className=" mb-5 flex items-center">
           {/* {authorProfileImageUrl} */}
           <div className="mr-2">
@@ -172,7 +172,13 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
             {showMoreKeywords &&
               Array.from({ length: Math.ceil(keywords.length / 2) }).map(
                 (_, lineIdx) => (
-                  <div key={lineIdx} className="mb-3 flex gap-2">
+                  <div
+                    key={lineIdx}
+                    className={`flex gap-2 ${
+                      lineIdx === Math.ceil(keywords.length / 2) - 1
+                        ? ''
+                        : ' mb-3'
+                    }`}>
                     {keywords
                       .slice(lineIdx * 2, lineIdx * 2 + 2)
                       .map((keyword, idx) => (
