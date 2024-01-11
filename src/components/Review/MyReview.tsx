@@ -19,6 +19,7 @@ import ReviewItem from '@components/DetailSectionBottom/ReviewItem';
 import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
 import EditDelete from '@components/common/modal/children/EditDelete';
 import MyAlert from '@components/common/modal/children/MyAlert';
+import { alertTypeState } from '@recoil/modal';
 
 export default function MyReview() {
   const [reviewDataLength, setReviewDataLength] = useState<number>(0);
@@ -31,6 +32,8 @@ export default function MyReview() {
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
   const [toastPopUp, setToastPopUp] = useRecoilState(toastPopUpState);
   const modalChildren = useRecoilValue(modalChildrenState);
+  const [alertType] = useRecoilValue(alertTypeState);
+
   const {
     data: myReviews,
     fetchNextPage,
@@ -148,7 +151,7 @@ export default function MyReview() {
       </InfiniteScroll>
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
         {modalChildren === 'EditDelete' && <EditDelete />}
-        {modalChildren === 'MyAlert' && (
+        {modalChildren === 'MyAlert' && alertType === 'DeleteReview' && (
           <MyAlert title="리뷰 삭제" content="리뷰를 삭제할까요?" />
         )}
       </Modal>

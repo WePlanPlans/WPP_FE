@@ -11,6 +11,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import EditDelete from '@components/common/modal/children/EditDelete';
 import MyAlert from '@components/common/modal/children/MyAlert';
 import { commentState } from '@recoil/review';
+import { alertTypeState } from '@recoil/modal';
 
 export default function ReviewComments() {
   const params = useParams();
@@ -21,6 +22,7 @@ export default function ReviewComments() {
   const [commentDataLength, setCommentDataLength] = useState<number>(0);
   const modalChildren = useRecoilValue(modalChildrenState);
   const setComment = useSetRecoilState(commentState);
+  const alertType = useRecoilValue(alertTypeState);
 
   const {
     data: reviewComments,
@@ -46,9 +48,10 @@ export default function ReviewComments() {
   }
 
   const closeModal = () => {
-    setIsModalOpen(false);
     setComment('');
+    setIsModalOpen(false);
   };
+
   useEffect(() => {
     {
       reviewComments?.pages.map((group) => {
@@ -57,6 +60,7 @@ export default function ReviewComments() {
     }
     console.log('reviewComments', reviewComments);
   }, [reviewComments]);
+
   return (
     <>
       <div className="mb-4 text-xs">
@@ -104,8 +108,14 @@ export default function ReviewComments() {
       </div>
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
         {modalChildren === 'EditDelete' && <EditDelete />}
-        {modalChildren === 'MyAlert' && (
+        {modalChildren === 'MyAlert' && alertType === 'DeleteReview' && (
           <MyAlert title="리뷰 삭제" content="리뷰를 삭제할까요?" />
+        )}
+        {modalChildren === 'MyAlert' && alertType === 'LoginComment' && (
+          <MyAlert
+            title="로그인"
+            content="댓글 쓰기 시 로그인이 필요해요. 로그인하시겠어요?"
+          />
         )}
       </Modal>
     </>

@@ -4,6 +4,7 @@ import {
   isModalOpenState,
   titleState,
   modalChildrenState,
+  alertTypeState,
 } from '@recoil/modal';
 import {
   contentState,
@@ -37,7 +38,7 @@ const EditDelete: React.FC = () => {
   const setIsModalOpen = useSetRecoilState(isModalOpenState);
   const setModalChildren = useSetRecoilState(modalChildrenState);
   const setComment = useSetRecoilState(commentState);
-
+  const setAlertType = useSetRecoilState(alertTypeState);
   const queryClient = useQueryClient();
 
   const handleEdit = () => {
@@ -71,6 +72,7 @@ const EditDelete: React.FC = () => {
   const handleDelete = async () => {
     if (title === '내 리뷰') {
       setModalChildren('MyAlert');
+      setAlertType('DeleteReview');
     } else if (title === '내 댓글') {
       await deleteCommentMutate(targetCommentId);
       setIsModalOpen(false);
