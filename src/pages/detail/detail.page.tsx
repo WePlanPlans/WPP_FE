@@ -1,7 +1,7 @@
 import { DetailHeader } from '@components/common/header';
 import DetailSectionTop from '@components/DetailSectionTop/DetailSectionTop';
 import DetailSectionBottom from '@components/DetailSectionBottom/DetailSectionBottom';
-import { DetailTopButton } from '@components/DetailSectionTop';
+// import { DetailTopButton } from '@components/DetailSectionTop';
 
 const DetailTours = () => {
   return (
@@ -9,7 +9,7 @@ const DetailTours = () => {
       <DetailHeader />
       <DetailSectionTop />
       <DetailSectionBottom />
-      <DetailTopButton />
+      {/* <DetailTopButton /> */}
     </>
   );
 };
