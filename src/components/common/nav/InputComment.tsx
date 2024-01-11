@@ -10,14 +10,17 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 interface InputCommentProps {
   classNameName?: string;
 }
+
 interface PostCommentMutationParams {
   comment: string;
   reviewId: number;
 }
+
 interface EditCommentMutationParams {
   comment: string;
   targetCommentId: number;
 }
+
 export const InputComment: React.FC<InputCommentProps> = () => {
   const [comment, setComment] = useRecoilState(commentState);
   const params = useParams();
@@ -28,19 +31,29 @@ export const InputComment: React.FC<InputCommentProps> = () => {
   const targetCommentId = useRecoilValue(targetCommentIdState);
   const queryClient = useQueryClient();
 
-  const { mutate: postCommentMutate } = useMutation({
+  const { mutate: postReviewMutate } = useMutation({
     mutationFn: ({ comment, reviewId }: PostCommentMutationParams) =>
       postComments(comment, reviewId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['reviewComments'] });
+      queryClient.invalidateQueries({
+        queryKey: ['reviewComments'],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['myReviews'],
+      });
     },
     onError: () => console.log('error'),
   });
-  const { mutate: editCommentMutate } = useMutation({
+  const { mutate: editReviewMutate } = useMutation({
     mutationFn: ({ comment, targetCommentId }: EditCommentMutationParams) =>
       putComments(comment, targetCommentId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['reviewComments'] });
+      queryClient.invalidateQueries({
+        queryKey: ['reviewComments'],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['myReviews'],
+      });
     },
     onError: () => console.log('error'),
   });
@@ -52,10 +65,10 @@ export const InputComment: React.FC<InputCommentProps> = () => {
 
   const handleSubmit = async () => {
     if (isModifyingComment) {
-      await editCommentMutate({ comment, targetCommentId });
+      await editReviewMutate({ comment, targetCommentId });
       setIsModifyingComment(false);
     } else {
-      await postCommentMutate({ comment, reviewId });
+      await postReviewMutate({ comment, reviewId });
     }
     setComment('');
   };

@@ -64,7 +64,7 @@ export default function ReviewComments() {
         <span className="pl-0.5 font-bold">{commentDataLength}</span>
       </div>
       {commentDataLength == 0 && (
-        <div className="mb-4 flex flex-col items-center justify-center text-sm text-gray4">
+        <div className="mb-4 flex h-[483px] flex-col items-center justify-center text-sm text-gray4">
           <div>댓글이 없습니다. </div>
           <div>첫 댓글을 작성해보세요!</div>
         </div>
