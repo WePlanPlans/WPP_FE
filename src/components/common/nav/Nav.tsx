@@ -80,7 +80,7 @@ const Nav = () => {
         )}
 
         <div
-          onClick={() => navigate('/login')}
+          onClick={() => navigate('/mypage')}
           className="cursor-pointer flex-col items-center justify-center px-1">
           <div className="flex justify-center">
             <UserIcon />

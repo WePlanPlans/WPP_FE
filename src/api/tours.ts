@@ -26,7 +26,7 @@ export const getDetailTours = async (tourItemId: number) => {
   try {
     const {
       data: { data },
-    } = await client.get(`tours/${tourItemId}`);
+    } = await authClient.get(`tours/${tourItemId}`);
     return data;
   } catch (e) {
     console.error(e);

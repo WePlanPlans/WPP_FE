@@ -7,7 +7,7 @@ const DetailAddSchedule = () => {
   const navigate = useNavigate();
 
   const handleConfirm = () => {
-    navigate('/signin');
+    navigate('/login');
   };
 
   return (

@@ -42,7 +42,7 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
             <p className="overflow-hidden truncate text-clip whitespace-nowrap px-[2px] font-['Pretendard'] text-[16px] font-bold leading-normal text-black">
               {title}
             </p>
-            <div className="ml-[3px] mt-[5px] max-w-[260px]">
+            <div className="ml-[3px] mt-[5px] max-w-[260px] truncate">
               <p className="text-[14px] text-gray6">{tourAddress}</p>
             </div>
           </div>

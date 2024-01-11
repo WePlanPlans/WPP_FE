@@ -47,8 +47,13 @@ const Like = ({ liked, id }: LikeProps) => {
     }
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
     navigate('/login');
+  };
+
+  const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
   };
 
   return (
@@ -70,12 +75,13 @@ const Like = ({ liked, id }: LikeProps) => {
             title={'로그인'}
             message={
               <>
-                관심 여행지 등록 및 삭제를 위해 로그인이 필요합니다.
+                관심 여행지 등록시 로그인이 필요합니다.
                 <br />
                 로그인 하시겠습니까?
               </>
             }
-            onConfirm={handleConfirm}>
+            onConfirm={handleConfirm}
+            onCancel={handleCancel}>
             <div
               onClick={onClickLikeButton}
               className="top-75 h-[24px] w-[24px] cursor-pointer">

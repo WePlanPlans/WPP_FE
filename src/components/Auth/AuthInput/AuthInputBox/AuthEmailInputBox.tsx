@@ -51,7 +51,9 @@ const AuthEmailInputBox = ({
         isInvalid={!!emailError}
       />
 
-      {emailErrorMessage && <ErrorMessage>{emailErrorMessage}</ErrorMessage>}
+      {emailErrorMessage && (
+        <ErrorMessage>{`${emailErrorMessage}`}</ErrorMessage>
+      )}
     </AuthInputWrapper>
   );
 };

@@ -105,7 +105,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
 
   return (
     <>
-      <div className="mb-8 cursor-pointer" onClick={onClick}>
+      <div className="cursor-pointer pb-4" onClick={onClick}>
         <div className=" mb-5 flex items-center">
           {/* {authorProfileImageUrl} */}
           <div className="mr-2">
