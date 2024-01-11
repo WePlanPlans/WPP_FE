@@ -39,7 +39,7 @@ code {
 
 @layer components {
   .btn-base {
-    @apply w-full rounded-lg py-3.5 transition;
+    @apply w-full rounded-lg p-2 transition;
   }
 
   .title1,
@@ -66,6 +66,16 @@ code {
   .headline2,
   .body2 {
     @apply font-bold;
+  }
+
+  [data-state='open'] .rotate-on-open {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+  }
+
+  [data-state='closed'] .rotate-on-open {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
   }
 }
 

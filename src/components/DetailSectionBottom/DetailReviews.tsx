@@ -97,6 +97,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   };
 
   useEffect(() => {
+    console.log('toursReviews', toursReviews);
     {
       toursReviews?.pages.map((group) => {
         setReviewDataLength(group?.data.data.reviewTotalCount);
@@ -115,7 +116,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [alert]);
+  }, [toastPopUp]);
 
   return (
     <>
