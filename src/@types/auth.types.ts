@@ -15,17 +15,31 @@ export interface SignupFormValue extends AuthRequest {
   passwordCheck: string;
 }
 
+export interface EditPassword {
+  currentPw: string;
+  password: string;
+  passwordCheck: string;
+}
+
+export interface EditPasswordProps {
+  password: string;
+}
+
 export interface AuthInputBoxProps {
-  register: UseFormRegister<SignupFormValue>;
+  register: UseFormRegister<any>;
   inputValue: string;
-  resetField: UseFormResetField<SignupFormValue>;
-  errors: FieldErrors<SignupFormValue>;
+  resetField: UseFormResetField<any>;
+  errors: FieldErrors<any>;
 }
 
 export interface AuthEmailInputBoxProps extends AuthInputBoxProps {
-  setError: UseFormSetError<SignupFormValue>;
+  setError: UseFormSetError<any>;
+}
+
+export interface AuthPwInputBoxProps extends AuthInputBoxProps {
+  label?: string;
 }
 
 export interface AuthPwCheckInputBoxProps extends AuthInputBoxProps {
-  getValues: UseFormGetValues<SignupFormValue>;
+  getValues: UseFormGetValues<any>;
 }

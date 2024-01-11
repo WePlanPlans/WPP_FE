@@ -1,3 +1,4 @@
+import { getItem, setItem } from '@utils/localStorageFun';
 import axios from 'axios';
 
 const authClient = axios.create({
@@ -11,7 +12,7 @@ const authClient = axios.create({
 authClient.interceptors.request.use(
   function (config) {
     // 요청보낼 때마다 로컬스토리지가 있으면 엑세스토큰을 넣어서 보냄
-    const accessToken = window.localStorage.getItem('accessToken');
+    const accessToken = getItem('accessToken');
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
@@ -30,7 +31,7 @@ authClient.interceptors.response.use(
     // 엑세스 토큰 만료 / 리프레시 토큰 유효: 엑세스토큰을 재발급해서 응답 보내줌
     if (status === 201) {
       const newAccessToken = data.accessToken;
-      window.localStorage.setItem('accessToken', newAccessToken);
+      setItem('accessToken', newAccessToken);
       return authClient(originRequest);
     }
     return res;

@@ -1,12 +1,13 @@
-import type { AuthInputBoxProps } from '@/@types/auth.types';
+import type { AuthPwInputBoxProps } from '@/@types/auth.types';
 import { AuthInput, AuthInputWrapper, ValidifyCheck } from './AuthInputItem';
 
 const AuthPwInputBox = ({
+  label = '비밀번호',
   register,
   inputValue,
   resetField,
   errors,
-}: AuthInputBoxProps) => {
+}: AuthPwInputBoxProps) => {
   const PwErrorTypes = errors.password?.types;
 
   const checkEng = (value: string) => {
@@ -19,7 +20,7 @@ const AuthPwInputBox = ({
   return (
     <AuthInputWrapper>
       <AuthInput
-        label={'비밀번호'}
+        label={label}
         id="password"
         type="password"
         placeholder={'비밀번호를 입력해주세요'}
