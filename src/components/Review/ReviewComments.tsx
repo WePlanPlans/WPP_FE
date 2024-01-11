@@ -91,6 +91,7 @@ export default function ReviewComments() {
                       authorProfileImageUrl={item.authorProfileImageUrl}
                       createdTime={item.createdTime}
                       content={item.content}
+                      isAuthor={item.isAuthor}
                     />
                   ))}
                 </React.Fragment>
