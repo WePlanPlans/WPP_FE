@@ -1,4 +1,4 @@
-import { getItem, setItem } from '@utils/localStorageFun';
+import { getItem, removeItem, setItem } from '@utils/localStorageFun';
 import axios from 'axios';
 import { postLogout } from './auth';
 
@@ -49,6 +49,7 @@ authClient.interceptors.response.use(
       // TODO 서지수 | 로그아웃 요청
       console.log('401에러 발생 로그인 페이지로 이동시키면 됩니다.');
       postLogout();
+      removeItem('accessToken');
     }
     return Promise.reject(error);
   },
