@@ -42,6 +42,7 @@ const EditPwForm = () => {
       console.error('비밀번호 수정 요청 중 에러 발생', err);
       if (err instanceof AxiosError) {
         if (err.response?.data.status === 404) {
+          resetField('currentPw');
           setError('currentPw', { message: '비밀번호가 올바르지 않습니다.' });
         }
       }
