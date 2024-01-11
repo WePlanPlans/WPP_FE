@@ -6,6 +6,7 @@ interface IconProps {
   className?: string;
   isHalf?: boolean;
   cursor?: string;
+  children?: React.ReactNode;
 }
 
 export const HomeIcon: React.FC<IconProps> = ({
@@ -922,6 +923,83 @@ export const SuccessIcon = () => {
           />
         </g>
       </g>
+    </svg>
+  );
+};
+
+export const EllipseIcon: React.FC<IconProps> = ({ size = 61 }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height="61"
+      viewBox="0 0 61 61"
+      fill="none">
+      <g filter="url(#filter0_d_2507_5177)">
+        <circle cx="28" cy="29.7959" r="24" fill="white" />
+        <circle
+          cx="28"
+          cy="29.7959"
+          r="23.4783"
+          stroke="#F8F8F8"
+          stroke-width="1.04348"
+        />
+      </g>
+      <defs>
+        <filter
+          id="filter0_d_2507_5177"
+          x="0.0347817"
+          y="0.787202"
+          width="60.1044"
+          height="60.1044"
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dx="2.08696" dy="1.04348" />
+          <feGaussianBlur stdDeviation="3.02609" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_2507_5177"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_dropShadow_2507_5177"
+            result="shape"
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+};
+
+export const TopIcon: React.FC<IconProps> = () => {
+  return (
+    <svg
+      width="18"
+      height="10"
+      viewBox="0 0 18 10"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        id="Vector 734 (Stroke)"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M17.0462 8.95185C16.7278 9.30213 16.1857 9.32794 15.8354 9.00951L8.86914 2.67653L1.90286 9.00951C1.55258 9.32794 1.01048 9.30213 0.692049 8.95185C0.373615 8.60157 0.39943 8.05947 0.749708 7.74104L8.86914 0.359741L16.9886 7.74104C17.3388 8.05947 17.3647 8.60157 17.0462 8.95185Z"
+        fill="#888888"
+      />
     </svg>
   );
 };

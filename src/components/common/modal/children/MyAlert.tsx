@@ -10,7 +10,11 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-const DeleteAlert = ({}) => {
+interface MyAlertProps {
+  title: string;
+  content: string;
+}
+const MyAlert: React.FC<MyAlertProps> = ({ title, content }) => {
   const navigate = useNavigate();
   const tourItemId = useRecoilValue(tourItemIdState);
   const targetReviewId = useRecoilValue(targetReviewIdState);
@@ -21,29 +25,43 @@ const DeleteAlert = ({}) => {
   const { mutate: deleteReviewMutate } = useMutation({
     mutationFn: (targetReviewId: number) => deleteReview(targetReviewId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['toursReviews'] });
+      queryClient.invalidateQueries({
+        queryKey: ['toursReviews'],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['myReviews'],
+      });
     },
     onError: () => console.log('error'),
   });
 
-  const handleDeleteButton = async () => {
-    await deleteReviewMutate(targetReviewId);
-    setIsModalOpen(false);
-    setToastPopUp(() => ({
-      isPopUp: true,
-      noun: '리뷰',
-      verb: '삭제',
-    }));
-    if (location.pathname.includes('/reviewComment')) {
-      navigate(`/detail/${tourItemId}`);
+  const handleClickButton = async () => {
+    if (title == '리뷰 삭제') {
+      await deleteReviewMutate(targetReviewId);
+      setIsModalOpen(false);
+      setToastPopUp(() => ({
+        isPopUp: true,
+        noun: '리뷰',
+        verb: '삭제',
+      }));
+      if (location.pathname.includes('/reviewComment')) {
+        if (tourItemId == 0) {
+          navigate('/myPageReview');
+        } else {
+          navigate(`/detail/${tourItemId}`);
+        }
+      }
+    } else if (title == '로그인') {
+      setIsModalOpen(false);
+      navigate(`/login`);
     }
   };
 
   return (
     <div className="flex h-full flex-col justify-between">
-      <div className="mt-4 flex justify-center font-bold">리뷰 삭제</div>
+      <div className="mt-4 flex justify-center font-bold">{title}</div>
       <div className="mb-4 flex justify-center text-sm text-[#888888]">
-        리뷰를 삭제할까요?
+        {content}
       </div>
       <div className="flex gap-3 ">
         <ButtonWhite
@@ -53,12 +71,12 @@ const DeleteAlert = ({}) => {
           className="text-sm">
           취소
         </ButtonWhite>
-        <ButtonPrimary onClick={handleDeleteButton} className="text-sm">
-          삭제
+        <ButtonPrimary onClick={handleClickButton} className="text-sm">
+          확인
         </ButtonPrimary>
       </div>
     </div>
   );
 };
 
-export default DeleteAlert;
+export default MyAlert;

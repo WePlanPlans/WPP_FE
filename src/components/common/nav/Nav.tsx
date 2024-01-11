@@ -44,11 +44,11 @@ const Nav = () => {
 
         {isLoggedIn ? (
           <div
-            onClick={() => navigate('/wishList')}
+            onClick={() => navigate('/wishlist')}
             className="cursor-pointer flex-col items-center justify-center px-2">
             <div className="flex justify-center">
               <HeartIcon
-                fill={isActive('/wishList') ? 'currentColor' : 'none'}
+                fill={isActive('/wishlist') ? 'currentColor' : 'none'}
               />
             </div>
             <p className="caption1 mt-[4px] text-center text-xs/[11px]">
@@ -69,7 +69,7 @@ const Nav = () => {
             <div className="cursor-pointer flex-col items-center justify-center px-2">
               <div className="flex justify-center">
                 <HeartIcon
-                  fill={isActive('/wishList') ? 'currentColor' : 'none'}
+                  fill={isActive('/wishlist') ? 'currentColor' : 'none'}
                 />
               </div>
               <p className="caption1 mt-[4px] text-center text-xs/[11px]">
@@ -83,7 +83,7 @@ const Nav = () => {
           onClick={() => navigate('/mypage')}
           className="cursor-pointer flex-col items-center justify-center px-1">
           <div className="flex justify-center">
-            <UserIcon />
+            <UserIcon fill={isActive('/mypage') ? 'currentColor' : 'none'} />
           </div>
           <p className="caption1 mt-[3px] text-center ">내정보</p>
         </div>
