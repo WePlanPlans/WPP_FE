@@ -70,7 +70,7 @@ const EditDelete: React.FC = () => {
 
   const handleDelete = async () => {
     if (title === '내 리뷰') {
-      setModalChildren('DeleteAlert');
+      setModalChildren('MyAlert');
     } else if (title === '내 댓글') {
       await deleteCommentMutate(targetCommentId);
       setIsModalOpen(false);

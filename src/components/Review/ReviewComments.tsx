@@ -9,7 +9,7 @@ import CommentItem from './CommentItem';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import EditDelete from '@components/common/modal/children/EditDelete';
-import DeleteAlert from '@components/common/modal/children/DeleteAlert';
+import MyAlert from '@components/common/modal/children/MyAlert';
 import { commentState } from '@recoil/review';
 
 export default function ReviewComments() {
@@ -101,7 +101,9 @@ export default function ReviewComments() {
       </InfiniteScroll>
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
         {modalChildren === 'EditDelete' && <EditDelete />}
-        {modalChildren === 'DeleteAlert' && <DeleteAlert />}
+        {modalChildren === 'MyAlert' && (
+          <MyAlert title="리뷰 삭제" content="리뷰를 삭제할까요?" />
+        )}
       </Modal>
     </>
   );
