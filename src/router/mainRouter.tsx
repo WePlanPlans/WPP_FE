@@ -28,8 +28,8 @@ const MainRouter = () => {
           <Route path="/search" element={<Search />} />
           <Route path="/reviewPosting/:id" element={<ReviewPosting />} />
           <Route path="/reviewComment/:id" element={<ReviewComment />} />
+          <Route path="/wishlist" element={<WishList />} />
           <Route path="/myPageReview" element={<MyPageReview />} />
-          <Route path="/wishList" element={<WishList />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signup/success" element={<SignupSuccess />} />
           <Route path="/signup/survey" element={<SignupSurvey />} />
