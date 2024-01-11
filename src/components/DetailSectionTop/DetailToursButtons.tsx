@@ -44,8 +44,8 @@ export default function DetailTourButtons({ reviewData }: reviewProps) {
         <DetailAddSchedule />
         <button
           onClick={handlePostingReivew}
-          className="flex h-[53px] w-1/2 items-center justify-center gap-2 rounded-lg border border-solid border-gray3 p-2">
-          <PenIcon />
+          className="flex h-[53px] w-1/2 items-center justify-center gap-2 rounded-lg border border-solid border-gray3 p-2 pr-4">
+          <PenIcon className="mt-[3px]" />
           <span className="text-sm ">리뷰 쓰기</span>
         </button>
       </div>
