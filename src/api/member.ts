@@ -77,9 +77,20 @@ export const getTours = async (
 };
 
 // 나의 리뷰 조회
-export const getMemberReviews = async () => {
-  const res = await authClient.get(`member/reviews`);
-  return res;
+export const getMemberReviews = async (page?: number, size?: number) => {
+  try {
+    let url = `member/reviews`;
+    if (page !== undefined) {
+      url += `?page=${page}`;
+    }
+    if (size !== undefined) {
+      url += `${page !== undefined ? '&' : '?'}size=${size}`;
+    }
+    const res = await authClient.get(url);
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 // 나의 관심 여행지 삭제
