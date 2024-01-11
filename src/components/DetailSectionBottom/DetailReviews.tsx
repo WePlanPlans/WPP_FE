@@ -166,7 +166,8 @@ export default function DetailReviews({ reviewData }: reviewProps) {
                       onClick={() => handleReviewClick(item)}
                       tourItemId={tourItemId}
                       contentTypeId={contentTypeId}
-                      isReviews={true}
+                      canTextOverflow={true}
+                      isAuthor={item.isAuthor}
                     />
                   ))}
                 </React.Fragment>

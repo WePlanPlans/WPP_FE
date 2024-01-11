@@ -1,14 +1,9 @@
 import { getMemberReviews } from '@api/member';
 import { StarIcon } from '@components/common/icons/Icons';
 import { Modal } from '@components/common/modal';
-import {
-  isModalOpenState,
-  titleState,
-  modalChildrenState,
-} from '@recoil/modal';
+import { isModalOpenState, modalChildrenState } from '@recoil/modal';
 import {
   contentState,
-  //   contentTypeIdState,
   isModifyingReviewState,
   keywordsState,
   ratingState,
@@ -28,16 +23,13 @@ import DeleteAlert from '@components/common/modal/children/DeleteAlert';
 
 export default function MyReview() {
   const [reviewDataLength, setReviewDataLength] = useState<number>(0);
-  //   const { title, contentTypeId } = reviewData;
   const params = useParams();
   const tourItemId = Number(params.id);
   const navigate = useNavigate();
   const setRating = useSetRecoilState(ratingState);
   const setKeywords = useSetRecoilState(keywordsState);
   const setContent = useSetRecoilState(contentState);
-  const setTitle = useSetRecoilState(titleState);
   const setTourItemId = useSetRecoilState(tourItemIdState);
-  //   const setContentTypeId = useSetRecoilState(contentTypeIdState);
   const setTargetReviewId = useSetRecoilState(targetReviewIdState);
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
   const [toastPopUp, setToastPopUp] = useRecoilState(toastPopUpState);
@@ -52,8 +44,8 @@ export default function MyReview() {
     queryFn: ({ pageParam = 0 }) => getMemberReviews(pageParam, 10),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
-      const currentPage = lastPage?.data?.data?.reviewInfos.pageable.pageNumber;
-      const totalPages = lastPage?.data?.data?.reviewInfos.totalPages;
+      const currentPage = lastPage?.data?.data?.pageable.pageNumber;
+      const totalPages = lastPage?.data?.data?.totalPages;
 
       if (currentPage < totalPages - 1) {
         return currentPage + 1;
@@ -72,19 +64,13 @@ export default function MyReview() {
   };
 
   const handlePostingReivew = () => {
-    navigate(`/reviewPosting/${tourItemId}`, {
-      //   state: { title, contentTypeId },
-    });
+    navigate(`/reviewPosting/${tourItemId}`);
   };
 
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
 
   const closeModal = () => {
-    setTitle('');
     setTourItemId(0);
-    // if (contentTypeId) {
-    //   setContentTypeId(0);
-    // }
     setRating(0);
     setKeywords([]);
     setContent('');
@@ -97,7 +83,7 @@ export default function MyReview() {
     console.log('myReviews', myReviews);
     {
       myReviews?.pages.map((group) => {
-        setReviewDataLength(group?.data.data.reviewTotalCount);
+        setReviewDataLength(group?.data.data.totalElements);
       });
     }
   }, [myReviews]);
@@ -149,7 +135,7 @@ export default function MyReview() {
             {
               return (
                 <React.Fragment key={index}>
-                  {group?.data.data.reviewInfos.content.map((item: any) => (
+                  {group?.data.data.content.map((item: any) => (
                     <ReviewItem
                       key={item.reviewId}
                       reviewId={item.reviewId}
@@ -162,8 +148,8 @@ export default function MyReview() {
                       commentCount={item.commentCount}
                       onClick={() => handleReviewClick(item)}
                       tourItemId={tourItemId}
-                      //   contentTypeId={contentTypeId}
-                      isReviews={true}
+                      canTextOverflow={true}
+                      isAuthor={item.isAuthor}
                     />
                   ))}
                 </React.Fragment>

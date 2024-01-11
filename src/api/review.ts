@@ -1,4 +1,5 @@
 import client from './client';
+import authClient from './authClient';
 
 // 리뷰 관련 API
 
@@ -20,8 +21,12 @@ export const deleteReview = async (reviewId: number) => {
 
 // 리뷰작성
 export const postReview = async (reviewData: ReviewRequest) => {
-  const res = await client.post(`reviews`, reviewData);
-  return res;
+  try {
+    const res = await authClient.post(`reviews`, reviewData);
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 // 리뷰댓글조회
