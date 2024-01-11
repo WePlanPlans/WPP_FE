@@ -73,6 +73,8 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     setTitle(title);
     if (tourItemId) {
       setTourItemId(tourItemId);
+    } else {
+      setTourItemId(0);
     }
     if (contentTypeId) {
       setContentTypeId(contentTypeId);
