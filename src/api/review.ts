@@ -43,7 +43,7 @@ export const getReviewComments = async (
     if (size !== undefined) {
       url += `${page !== undefined ? '&' : '?'}size=${size}`;
     }
-    const res = await client.get(url);
+    const res = await authClient.get(url);
     return res;
   } catch (e) {
     console.error(e);
