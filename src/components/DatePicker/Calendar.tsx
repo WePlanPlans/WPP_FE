@@ -85,7 +85,7 @@ const Calendar: React.FC = () => {
     let afterClass = '';
 
     if (isStart || isEnd) {
-      dayClass = 'rounded-full bg-main2 text-white z-10';
+      dayClass = 'rounded-full w-[48px] bg-main2 text-white z-10';
     } else if (isMiddle) {
       dayClass = 'bg-[#DAFBFF] z-0';
       beforeClass = isSecondDayInRange(date)
@@ -140,7 +140,7 @@ const Calendar: React.FC = () => {
     }
 
     return (
-      <div className="m-4">
+      <div className="my-4">
         <div className="headline1 text-left">
           {format(monthDate, 'yyyy년 MM월', { locale: ko })}
         </div>
@@ -156,9 +156,9 @@ const Calendar: React.FC = () => {
     <>
       <div className="title1 mb-7">
         {startDate && endDate
-          ? `${format(startDate, 'MM. dd', { locale: ko })} - ${format(
+          ? `${format(startDate, 'MM.dd', { locale: ko })} - ${format(
               endDate,
-              'MM. dd',
+              'MM.dd',
               { locale: ko },
             )} (${differenceInDays(endDate, startDate)}박 ${
               differenceInDays(endDate, startDate) + 1
