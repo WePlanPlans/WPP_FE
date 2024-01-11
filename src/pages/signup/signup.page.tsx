@@ -48,7 +48,11 @@ const Signup = () => {
 
   return (
     <div className="flex h-[95vh] flex-col">
-      <BackBox />
+      <BackBox
+        backHandler={() => {
+          navigate('/login');
+        }}
+      />
       <AuthTitle
         title={
           <>

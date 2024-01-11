@@ -79,6 +79,9 @@ const SignupInfo = () => {
     <div className="flex h-[95vh] flex-col">
       <BackBox
         showBack
+        backHandler={() => {
+          navigate('/signup/survey');
+        }}
         showSkip
         skipHandler={() => {
           navigate('/');
