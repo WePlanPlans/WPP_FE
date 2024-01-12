@@ -43,7 +43,6 @@ const AuthSurvey = ({ path }: Props) => {
         //   newPrevUserInfo.survey = data;
         //   return newPrevUserInfo;
         // });
-        alert('변경되었습니다.');
         navigate(path);
       }
     } catch (err) {
