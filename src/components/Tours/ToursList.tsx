@@ -6,6 +6,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import { v4 as uuidv4 } from 'uuid';
 import ToursItem from './ToursItem';
 import ToursItemSkeleton from './ToursItemSkeleton';
+import { Spinner } from '@components/common/spinner/Spinner';
 
 const ToursList = ({ selectedRegion }: ToursListProps) => {
   const { fetchNextPage, hasNextPage, data, isLoading, error } =
@@ -47,12 +48,7 @@ const ToursList = ({ selectedRegion }: ToursListProps) => {
       hasMore={hasNextPage}
       loader={
         <div key={uuidv4()} className="flex justify-center">
-          <div
-            className="z-[100] mx-auto h-8 w-8 animate-spin rounded-full border-[3px] border-solid border-current border-t-transparent pt-10 text-[blue-600] dark:text-[#28d8ff]"
-            role="status"
-            aria-label="loading">
-            <div className="sr-only">Loading...</div>
-          </div>
+          <Spinner />
         </div>
       }>
       <div className="no-scrollbar grid min-h-[500px] grid-cols-2 gap-[15px] overflow-y-scroll">
