@@ -9,6 +9,7 @@ import {
 } from '@components/Auth';
 import { BackBox } from '@components/common';
 import SubmitBtn from '@components/common/button/SubmitBtn';
+import { setItem } from '@utils/localStorageFun';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -37,8 +38,7 @@ const Signup = () => {
         password,
       });
       if (res.status === 200) {
-        authClient.defaults.headers.common['Authorization'] =
-          res.data.data.tokenInfo.accessToken;
+        setItem('accessToken', res.data.data.tokenInfo.accessToken);
         navigate('/signup/success');
       }
     } catch (err) {
