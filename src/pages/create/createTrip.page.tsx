@@ -1,18 +1,26 @@
 import BackHeader from '@components/common/header/BackHeader';
 import { useState } from 'react';
 import { SelectDate } from '../../components/createTrip/SelectDate';
-import { CloseIcon } from '@components/common/icons/Icons';
+import {
+  CalendarIcon,
+  DocumentIcon,
+  SearchIcon,
+  UserIcon,
+} from '@components/common/icons/Icons';
+import { ButtonPrimary } from '@components/common/button/Button';
+import { InputField } from '@components/createTrip/InputField';
 
 export const CreateTrip = () => {
-  const [inputValue, setInputValue] = useState('나의 여정');
+  const [title, setTitle] = useState('');
+  const [numOfMembers, setNumOfMembers] = useState(2);
   const [showSelectDate, setShowSelectDate] = useState(false);
 
   const clearInput = () => {
-    setInputValue('');
+    setTitle('');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    setTitle(e.target.value);
   };
 
   const handleDateButtonClick = () => {
@@ -27,38 +35,48 @@ export const CreateTrip = () => {
     return <SelectDate onClose={handleCloseSelectDate} />;
   }
   return (
-    <div>
+    <div className="flex h-[95vh] flex-col">
       <BackHeader />
       <div className="title1 mt-2 pb-5">여행 생성하기</div>
-      <div className="relative mb-3 flex items-center">
-        <input
-          type="text"
-          className="mb-2 h-[54px] w-full rounded-lg border border-zinc-300 p-4 text-black placeholder-gray4 focus:outline-none"
-          placeholder="나의 여정 이름을 입력하세요"
-          value={inputValue}
-          onChange={handleChange}
-          autoFocus
-        />
-        {inputValue && (
-          <div
-            className="absolute right-2 top-1/2 z-10 -translate-y-1/2 transform cursor-pointer rounded-full bg-gray3"
-            onClick={clearInput}>
-            <CloseIcon />
-          </div>
-        )}
-      </div>
-      <input
-        type="button"
-        className="mb-2 h-[54px] w-full cursor-pointer rounded-lg border border-zinc-300 p-4  text-left text-black placeholder-gray4"
-        value="여행 날짜(선택)"
+
+      <InputField
+        icon={DocumentIcon}
+        placeholder="나의 여정"
+        value={title}
+        onChange={handleChange}
+        onClear={clearInput}
+      />
+
+      <InputField
+        icon={UserIcon}
+        type="number"
+        placeholder="인원"
+        value={numOfMembers}
+        onChange={(newValue) => setNumOfMembers(newValue)}
+        minValue={2}
+        maxValue={100}
+      />
+
+      <InputField
+        icon={CalendarIcon}
+        placeholder="여행 날짜(선택)"
         onClick={handleDateButtonClick}
       />
-      <input
-        type="button"
-        className="mb-2 h-[54px] w-full cursor-pointer rounded-lg border border-zinc-300 p-4  text-left text-black placeholder-gray4"
-        value="여행 인원(선택)"
-        onClick={() => {}}
-      />
+
+      <div
+        className="mb-3 flex h-[54px] w-full cursor-pointer items-center rounded-lg border border-solid border-zinc-300 px-[14px] py-3"
+        onClick={() => {}}>
+        <div className="mr-2 flex size-[24px] content-center justify-center">
+          <SearchIcon size={17} />
+        </div>
+        <div className="flex-1 rounded-lg p-2 focus:outline-none">
+          여행지 (선택)
+        </div>
+      </div>
+
+      <div className="mt-auto">
+        <ButtonPrimary onClick={() => {}}>완료</ButtonPrimary>
+      </div>
     </div>
   );
 };
