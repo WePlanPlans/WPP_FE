@@ -94,7 +94,7 @@ export const InputComment: React.FC<InputCommentProps> = () => {
     }
   };
   return (
-    <div className="sticky bottom-0 mt-auto flex flex h-[64px] w-full items-center justify-center border  border-solid border-[#EDEDED] bg-white ">
+    <div className="fixed bottom-0 mt-auto flex flex h-[64px] w-full items-center justify-center border  border-solid border-[#EDEDED] bg-white ">
       <div className="ml-4 mr-4 flex h-[40px] w-full items-center  rounded-md border border-solid border-[#EDEDED]">
         <div className="pl-1 pr-0.5 text-sm font-bold text-[#29ddf6]">ㅣ</div>
         <div className="flex  w-full ">
