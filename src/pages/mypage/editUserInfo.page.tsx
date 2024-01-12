@@ -1,7 +1,7 @@
 import DeleteMemberButton from '@components/Mypage/DeleteMemberButton';
 import UserInfoForm from '@components/Mypage/UserInfoForm';
 import { BackBox } from '@components/common';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const EditUserInfo = () => {
   const navigate = useNavigate();
