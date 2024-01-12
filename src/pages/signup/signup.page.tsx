@@ -1,6 +1,5 @@
 import type { SignupFormValue } from '@/@types/auth.types';
 import { postSignup } from '@api/auth';
-import authClient from '@api/authClient';
 import {
   AuthTitle,
   AuthEmailInputBox,
