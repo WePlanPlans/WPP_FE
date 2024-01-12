@@ -8,7 +8,7 @@ interface TabProps {
 const Tab = ({ lists, contents }: TabProps) => (
   <Tabs.Root className="flex w-full flex-col" defaultValue="tab0">
     <Tabs.List
-      className="border-b-1 flex shrink-0 px-5"
+      className="border-b-1 flex shrink-0"
       aria-label="Manage your account">
       {lists.map((list, index) => {
         return (
@@ -25,7 +25,7 @@ const Tab = ({ lists, contents }: TabProps) => (
       return (
         <Tabs.Content
           key={index}
-          className="grow p-5 outline-none"
+          className="grow py-5 outline-none"
           value={`tab${index}`}>
           {content}
         </Tabs.Content>
