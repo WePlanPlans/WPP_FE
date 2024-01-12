@@ -1,9 +1,8 @@
 import { getItem, removeItem, setItem } from '@utils/localStorageFun';
 import axios from 'axios';
-import { postLogout } from './auth';
 
 const authClient = axios.create({
-  baseURL: import.meta.env.VITE_SERVER_URL,
+  baseURL: `${import.meta.env.VITE_SERVER_URL}api/`,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -38,18 +37,16 @@ authClient.interceptors.response.use(
     return res;
   },
   function (error) {
-    console.error(error);
-
     if (error.response.status === 401) {
       // 응답이 401으로 오는 경우
       // 1. 엑세스 토큰이 없는 경우(엑세스 토큰이 없습니다.)
       // 2. 리프레시 토큰이 만료된 경우(리프레시 토큰이 존재하지 않습니다.)
       // 3. 리프레시 토큰이 없는 경우
       // 전부 비로그인으로 처리합니다.
-      // TODO 서지수 | 로그아웃 요청
       console.log('401에러 발생 로그인 페이지로 이동시키면 됩니다.');
-      postLogout();
-      removeItem('accessToken');
+      if (getItem('accessToken')) {
+        removeItem('accessToken');
+      }
     }
     return Promise.reject(error);
   },
