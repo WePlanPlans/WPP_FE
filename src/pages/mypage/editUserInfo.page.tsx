@@ -1,11 +1,18 @@
 import DeleteMemberButton from '@components/Mypage/DeleteMemberButton';
 import { BackBox } from '@components/common';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const EditUserInfo = () => {
+  const navigate = useNavigate();
   return (
     <>
-      <BackBox showBack showSave saveHandler={() => {}}>
+      <BackBox
+        showBack
+        backHandler={() => {
+          navigate('/mypage');
+        }}
+        showSave
+        saveHandler={() => {}}>
         회원정보 수정
       </BackBox>
       <div className="flex flex-col items-center">

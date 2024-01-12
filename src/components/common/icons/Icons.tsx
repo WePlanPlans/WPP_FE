@@ -268,6 +268,7 @@ export const PenIcon: React.FC<IconProps> = ({
   size = 25,
   color = 'black',
   fill = 'none',
+  className,
 }) => {
   return (
     <svg
@@ -275,6 +276,7 @@ export const PenIcon: React.FC<IconProps> = ({
       height={size}
       viewBox="0 0 21 21"
       fill={fill}
+      className={className}
       xmlns="http://www.w3.org/2000/svg">
       <g id="Group 36684">
         <g id="Group 36683">

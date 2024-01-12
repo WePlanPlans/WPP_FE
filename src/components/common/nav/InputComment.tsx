@@ -2,10 +2,16 @@ import { KeyboardEvent, ChangeEvent } from 'react';
 import { postComments } from '@api/comments';
 import { useParams } from 'react-router-dom';
 import { commentState } from '@recoil/review';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { putComments } from '@api/comments';
 import { isModifyingCommentState, targetCommentIdState } from '@recoil/review';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { getItem } from '@utils/localStorageFun';
+import {
+  isModalOpenState,
+  modalChildrenState,
+  alertTypeState,
+} from '@recoil/modal';
 
 interface InputCommentProps {
   classNameName?: string;
@@ -30,6 +36,9 @@ export const InputComment: React.FC<InputCommentProps> = () => {
   );
   const targetCommentId = useRecoilValue(targetCommentIdState);
   const queryClient = useQueryClient();
+  const setIsModalOpen = useSetRecoilState(isModalOpenState);
+  const setModalChildren = useSetRecoilState(modalChildrenState);
+  const setAlertType = useSetRecoilState(alertTypeState);
 
   const { mutate: postReviewMutate } = useMutation({
     mutationFn: ({ comment, reviewId }: PostCommentMutationParams) =>
@@ -64,13 +73,20 @@ export const InputComment: React.FC<InputCommentProps> = () => {
   };
 
   const handleSubmit = async () => {
-    if (isModifyingComment) {
-      await editReviewMutate({ comment, targetCommentId });
-      setIsModifyingComment(false);
+    const token = getItem('accessToken');
+    if (token) {
+      if (isModifyingComment) {
+        await editReviewMutate({ comment, targetCommentId });
+        setIsModifyingComment(false);
+      } else {
+        await postReviewMutate({ comment, reviewId });
+      }
+      setComment('');
     } else {
-      await postReviewMutate({ comment, reviewId });
+      setModalChildren('MyAlert');
+      setAlertType('LoginComment');
+      setIsModalOpen(true);
     }
-    setComment('');
   };
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {

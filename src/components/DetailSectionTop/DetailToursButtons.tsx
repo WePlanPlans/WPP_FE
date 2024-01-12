@@ -1,11 +1,14 @@
 import DetailAddSchedule from '@components/DetailSectionTop/DetailAddSchedule';
 import { PenIcon } from '@components/common/icons/Icons';
-import { Modal } from '@components/common/modal';
-import MyAlert from '@components/common/modal/children/MyAlert';
-import { isModalOpenState, modalChildrenState } from '@recoil/modal';
+import {
+  isModalOpenState,
+  modalChildrenState,
+  alertTypeState,
+} from '@recoil/modal';
 import { isModifyingReviewState } from '@recoil/review';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
+import { getItem } from '@utils/localStorageFun';
 
 interface reviewProps {
   reviewData: any;
@@ -17,45 +20,35 @@ export default function DetailTourButtons({ reviewData }: reviewProps) {
   const tourItemId = Number(params.id);
   const navigate = useNavigate();
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
-  const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
-  const [modalChildren, setModalChildren] = useRecoilState(modalChildrenState);
+  const setIsModalOpen = useSetRecoilState(isModalOpenState);
+  const setModalChildren = useSetRecoilState(modalChildrenState);
+  const setAlertType = useSetRecoilState(alertTypeState);
 
   const handlePostingReivew = () => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
+    const token = getItem('accessToken');
+    if (token) {
       navigate(`/reviewPosting/${tourItemId}`, {
         state: { title, contentTypeId },
       });
     } else {
+      setModalChildren('MyAlert');
+      setAlertType('LoginReview');
       setIsModifyingReview(false);
-      setModalChildren('EditDelete');
       setIsModalOpen(true);
     }
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
   };
 
   return (
     <>
       <div className="mt-2 flex w-full items-center justify-between gap-3 py-2.5">
         <DetailAddSchedule />
-        <button className="flex h-[53px] w-1/2 items-center justify-center gap-2 rounded-lg border border-solid border-gray3 p-2">
-          <PenIcon />
-          <span className="text-sm" onClick={handlePostingReivew}>
-            리뷰 쓰기
-          </span>
+        <button
+          onClick={handlePostingReivew}
+          className="flex h-[53px] w-1/2 items-center justify-center gap-2 rounded-lg border border-solid border-gray3 p-2 pr-4">
+          <PenIcon className="mt-[3px]" />
+          <span className="text-sm ">리뷰 쓰기</span>
         </button>
       </div>
-      <Modal isOpen={isModalOpen} closeModal={closeModal}>
-        {modalChildren === 'MyAlert' && (
-          <MyAlert
-            title="로그인"
-            content="리뷰 쓰기 시 로그인이 필요해요. 로그인하시겠어요?"
-          />
-        )}
-      </Modal>
     </>
   );
 }

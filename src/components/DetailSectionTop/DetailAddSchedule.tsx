@@ -13,9 +13,9 @@ const DetailAddSchedule = () => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className="flex h-[53px] w-1/2 items-center justify-center gap-2 rounded-lg border border-solid border-gray3 p-2 ">
-          <CalendarIcon className="mb-[5px]" />
-          <span className="text-sm">일정 추가</span>
+        <button className="flex h-[53px] w-1/2 items-center justify-center gap-2 rounded-lg border border-solid border-gray3 p-2 pr-4 ">
+          <CalendarIcon className="mb-[2px]" />
+          <span className="text-sm ">일정 추가</span>
         </button>
       </Dialog.Trigger>
 
