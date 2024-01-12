@@ -1,41 +1,51 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TopIcon } from '@components/common/icons/Icons';
 
-export default function DetailTopButton() {
-  const [showButton, setShowButton] = useState(true);
+export default function DetailTopButton({ parentRef }: any) {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [scrollPosition, setScrollPosition] = useState<number>(0);
+  const [viewportHeight, setViewportHeight] = useState<number>(0);
 
-  const scrollToTop = () => {
-    window.scroll({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
+  const scrollButtonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleShowButton = () => {
-      if (window.scrollY > 400) {
-        setShowButton(true);
-      } else {
-        setShowButton(false);
+    const handleScroll = () => {
+      if (scrollButtonRef.current && parentRef.current) {
+        setViewportHeight(screen.height);
+
+        // 부모 요소의 높이보다 적을 때까지 스크롤 허용
+        if (window.scrollY < parentRef.current.clientHeight - 50) {
+          // 기기 높이의 절반 이상 스크롤 했을 때
+          if (window.scrollY >= viewportHeight / 2) {
+            setIsVisible(true);
+            setScrollPosition(window.scrollY);
+          } else {
+            setIsVisible(false);
+          }
+        }
       }
     };
 
-    window.addEventListener('scroll', handleShowButton);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleShowButton);
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [parentRef, scrollPosition, setScrollPosition]);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    showButton && (
-      <div
-        onClick={scrollToTop}
-        className="scroll__container sticky bottom-3 z-20 flex cursor-pointer items-center justify-end">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md">
-          <TopIcon />
-        </div>
-      </div>
-    )
+    <div
+      ref={scrollButtonRef}
+      className={`absolute right-2 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-white shadow-md transition-opacity duration-500 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
+      }`}
+      onClick={scrollToTop}
+      style={{ top: `${scrollPosition}px` }}>
+      <TopIcon />
+    </div>
   );
 }
