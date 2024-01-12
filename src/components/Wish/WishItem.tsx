@@ -57,7 +57,7 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
                   {(Math.ceil(ratingAverage * 100) / 100).toFixed(1)}
                 </span>
                 <span className="text-xs">
-                  ({reviewCount.toLocaleString()})
+                  ({reviewCount ? reviewCount.toLocaleString() : reviewCount})
                 </span>
               </div>
             </div>
@@ -66,7 +66,7 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
                 <HeartIcon size={14} color="#FF2167" fill="#FF2167" />
               </div>
               <span className="ml-1 mt-[2.8px] text-xs">
-                {likedCount.toLocaleString()}
+                {likedCount ? likedCount.toLocaleString() : likedCount}
               </span>
             </div>
           </div>
