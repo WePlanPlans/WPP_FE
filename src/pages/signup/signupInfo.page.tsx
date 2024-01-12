@@ -1,13 +1,19 @@
 import { getCheckNickname } from '@api/auth';
 import { putMember } from '@api/member';
 import { AuthTitle } from '@components/Auth';
-import { AuthInput } from '@components/Auth/AuthInput/AuthInputBox';
+import {
+  AuthInput,
+  ErrorMessage,
+} from '@components/Auth/AuthInput/AuthInputBox';
 import AuthDropDown from '@components/Auth/SignupInfo/AuthDropDown/AuthDropDown';
 import { BackBox } from '@components/common';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import { CameraIcon } from '@components/common/icons/Icons';
+import { UserInfoState } from '@recoil/Auth.atom';
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
 const SignupInfo = () => {
   const {
@@ -17,6 +23,7 @@ const SignupInfo = () => {
     watch,
     resetField,
     setError,
+    setValue,
     formState: { errors, isValid },
   } = useForm<any>({
     mode: 'onChange',
@@ -26,6 +33,16 @@ const SignupInfo = () => {
   const navigate = useNavigate();
 
   const nicknamePatternValue = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,12}$/;
+
+  const nicknameError = errors.nickname;
+  const nicknameErrorMessage = nicknameError?.message;
+
+  console.log(errors);
+
+  const userInfo = useRecoilValue(UserInfoState);
+  useEffect(() => {
+    setValue('nickname', userInfo?.nickname);
+  }, [userInfo]);
 
   const onNicknameBlur = async () => {
     if (nicknamePatternValue.test(getValues('nickname'))) {
@@ -44,14 +61,14 @@ const SignupInfo = () => {
   };
 
   const onInfoSubmit: SubmitHandler<any> = async (data) => {
-    const {} = data;
+    const { nickname } = data;
 
     try {
       const res = await putMember({
-        nickname: 'zkzkzkzk',
-        profileImageUrl: 'http://hfstdfg.jpg',
-        ageType: 'TWENTIES',
-        genderType: 'MALE',
+        nickname: nickname,
+        profileImageUrl: '',
+        ageType: null,
+        genderType: null,
       });
       if (res.status === 200) {
         navigate('/');
@@ -140,6 +157,9 @@ const SignupInfo = () => {
               resetField={resetField}
               isInvalid={!!errors.nickname}
             />
+            {nicknameErrorMessage && (
+              <ErrorMessage>{`${nicknameErrorMessage}`}</ErrorMessage>
+            )}
           </div>
 
           <div className="flex flex-col gap-6">
