@@ -8,13 +8,13 @@ interface TabProps {
 const Tab = ({ lists, contents }: TabProps) => (
   <Tabs.Root className="flex w-full flex-col" defaultValue="tab0">
     <Tabs.List
-      className="border-b-1 flex shrink-0 px-5"
+      className="border-b-1 flex shrink-0"
       aria-label="Manage your account">
       {lists.map((list, index) => {
         return (
           <Tabs.Trigger
             key={index}
-            className="headline1 flex h-[45px] flex-1 cursor-pointer select-none items-center justify-center bg-white px-5 leading-none outline-none data-[state=active]:shadow-[inset_0_-1px_0_0,0_1px_0_0] data-[state=active]:shadow-current"
+            className="headline1 flex flex-1 cursor-pointer select-none items-center justify-center border-b-2 border-solid border-gray2 py-[8px] leading-none text-gray4 outline-none data-[state=active]:border-b-2 data-[state=active]:border-solid data-[state=active]:border-black data-[state=active]:text-black"
             value={`tab${index}`}>
             {list}
           </Tabs.Trigger>
@@ -25,7 +25,7 @@ const Tab = ({ lists, contents }: TabProps) => (
       return (
         <Tabs.Content
           key={index}
-          className="grow bg-white p-5 outline-none"
+          className="grow py-5 outline-none"
           value={`tab${index}`}>
           {content}
         </Tabs.Content>

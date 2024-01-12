@@ -1,4 +1,4 @@
-import { LeftIcon } from '../icons/Icons';
+import { LeftIcon, ShareIcon } from '../icons/Icons';
 import { ReactNode } from 'react';
 
 interface Props {
@@ -9,6 +9,7 @@ interface Props {
   skipHandler?: VoidFunction;
   showSave?: boolean;
   saveHandler?: VoidFunction;
+  showShare?: boolean;
 }
 
 const BackBox = ({
@@ -19,6 +20,7 @@ const BackBox = ({
   skipHandler,
   showSave,
   saveHandler,
+  showShare,
 }: Props) => {
   const onBackClick = () => {
     backHandler && backHandler();
@@ -50,6 +52,11 @@ const BackBox = ({
           className="headline2 absolute right-0 text-main2"
           onClick={onSaveClick}>
           저장
+        </button>
+      )}
+      {showShare && (
+        <button className="headline2 absolute right-0 text-main2">
+          <ShareIcon />
         </button>
       )}
     </div>
