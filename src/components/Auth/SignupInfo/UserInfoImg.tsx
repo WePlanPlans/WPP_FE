@@ -15,7 +15,7 @@ const UserInfoImg = () => {
     // fileRead.readAsDataURL(file[0]);
   };
   return (
-    <div className="mb-10 w-full">
+    <div className="w-full">
       <label
         htmlFor="profileImage"
         className="relative mx-auto flex h-20 w-20 cursor-pointer justify-center overflow-hidden">

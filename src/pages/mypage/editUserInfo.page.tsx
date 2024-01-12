@@ -1,4 +1,5 @@
 import DeleteMemberButton from '@components/Mypage/DeleteMemberButton';
+import UserInfoForm from '@components/Mypage/UserInfoForm';
 import { BackBox } from '@components/common';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -16,9 +17,7 @@ const EditUserInfo = () => {
         회원정보 수정
       </BackBox>
       <div className="flex flex-col items-center">
-        <Link to="password" className="body4 text-gray4">
-          비밀번호 변경
-        </Link>
+        <UserInfoForm />
         <DeleteMemberButton />
       </div>
     </>

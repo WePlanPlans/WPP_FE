@@ -1,15 +1,15 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import UserInfoImg from './UserInfoImg';
 import { putMember } from '@api/member';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { UserInfoState } from '@recoil/Auth.atom';
 import { useEffect } from 'react';
 import SubmitBtn from '@components/common/button/SubmitBtn';
-import AuthDropDown from './AuthDropDown/AuthDropDown';
-import AuthNicknameInputBox from '../AuthInput/AuthInputBox/AuthNicknameInputBox';
+import UserInfoImg from '@components/Auth/SignupInfo/UserInfoImg';
+import AuthNicknameInputBox from '@components/Auth/AuthInput/AuthInputBox/AuthNicknameInputBox';
+import AuthDropDown from '@components/Auth/SignupInfo/AuthDropDown/AuthDropDown';
 
-const SignupInfoForm = () => {
+const UserInfoForm = () => {
   const {
     register,
     handleSubmit,
@@ -51,8 +51,16 @@ const SignupInfoForm = () => {
   return (
     <form onSubmit={handleSubmit(onInfoSubmit)} className="w-full">
       <div>
-        <div className="mb-10">
+        <div className="mb-4">
           <UserInfoImg />
+        </div>
+        <div className="mb-12 flex flex-col items-center">
+          <div className="body5 mb-2 h-8 rounded-full border border-solid border-gray2 px-3 py-2 text-gray5">
+            email
+          </div>
+          <Link to="password" className="body4 text-gray4">
+            비밀번호 변경
+          </Link>
         </div>
         <AuthNicknameInputBox
           register={register}
@@ -82,7 +90,7 @@ const SignupInfoForm = () => {
   );
 };
 
-export default SignupInfoForm;
+export default UserInfoForm;
 
 const genderArr: SelectOption[] = [
   { id: '1', value: '여' },
