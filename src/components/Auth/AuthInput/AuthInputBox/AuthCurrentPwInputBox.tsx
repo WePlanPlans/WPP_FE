@@ -34,7 +34,7 @@ const AuthCurrentPwInputBox = ({
         isAutoFocus={true}
         placeholder={'현재 비밀번호를 입력해주세요'}
         register={register('currentPw', {
-          required: '현재 ',
+          required: '현재 비밀번호를 입력해주세요. ',
         })}
         blurHandler={onEmailBlur}
         inputValue={inputValue}
