@@ -50,7 +50,7 @@ export const getModalStyles = (modalChildren: string) => {
         zIndex: 1, // 이거 해줘야 kakao-map도 dimmed됨
       },
     };
-  } else if (modalChildren === 'DeleteAlert') {
+  } else if (modalChildren === 'MyAlert') {
     return {
       content: {
         top: '50%',

@@ -28,12 +28,15 @@ const Nav = () => {
     <nav className="sticky bottom-0 z-50 mt-auto flex h-16 items-center justify-center bg-white">
       <div className="flex w-[100%] items-center justify-evenly space-x-4 bg-inherit">
         <div
-          onClick={() => navigate('/')}
+          onClick={() => {
+            navigate('/');
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+          }}
           className="cursor-pointer flex-col items-center justify-center px-2">
           <div className="flex justify-center">
             <HomeIcon fill={isActive('/') ? 'currentColor' : 'none'} />
           </div>
-          <p className="caption1 mt-[3px] pr-[1px] text-center">홈</p>
+          <p className="caption1 mt-[3px] text-center">홈</p>
         </div>
         <div
           onClick={() => navigate('/')}
@@ -44,11 +47,11 @@ const Nav = () => {
 
         {isLoggedIn ? (
           <div
-            onClick={() => navigate('/wishList')}
+            onClick={() => navigate('/wishlist')}
             className="cursor-pointer flex-col items-center justify-center px-2">
             <div className="flex justify-center">
               <HeartIcon
-                fill={isActive('/wishList') ? 'currentColor' : 'none'}
+                fill={isActive('/wishlist') ? 'currentColor' : 'none'}
               />
             </div>
             <p className="caption1 mt-[4px] text-center text-xs/[11px]">
@@ -69,7 +72,7 @@ const Nav = () => {
             <div className="cursor-pointer flex-col items-center justify-center px-2">
               <div className="flex justify-center">
                 <HeartIcon
-                  fill={isActive('/wishList') ? 'currentColor' : 'none'}
+                  fill={isActive('/wishlist') ? 'currentColor' : 'none'}
                 />
               </div>
               <p className="caption1 mt-[4px] text-center text-xs/[11px]">
@@ -83,7 +86,7 @@ const Nav = () => {
           onClick={() => navigate('/mypage')}
           className="cursor-pointer flex-col items-center justify-center px-1">
           <div className="flex justify-center">
-            <UserIcon />
+            <UserIcon fill={isActive('/mypage') ? 'currentColor' : 'none'} />
           </div>
           <p className="caption1 mt-[3px] text-center ">내정보</p>
         </div>

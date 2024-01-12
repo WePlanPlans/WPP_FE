@@ -2,6 +2,7 @@ import { Header } from '@components/common/header';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Nav } from '@components/common/nav';
 import { InputComment } from '@components/common/nav';
+import '../index.css';
 
 const MainLayout = () => {
   const location = useLocation();
@@ -12,6 +13,7 @@ const MainLayout = () => {
     '/detail',
     '/reviewPosting',
     '/reviewComment',
+    '/myPageReview',
     '/info',
     '/survey',
   ];

@@ -1,4 +1,5 @@
 import client from './client';
+import authClient from './authClient';
 
 // 리뷰 관련 API
 
@@ -8,20 +9,24 @@ export const putReview = async (
   reviewId: number,
 ) => {
   const { tourItemId, ...rest } = reviewData;
-  const res = await client.put(`reviews/${reviewId}`, rest);
+  const res = await authClient.put(`reviews/${reviewId}`, rest);
   return res;
 };
 
 // 리뷰삭제
 export const deleteReview = async (reviewId: number) => {
-  const res = await client.delete(`reviews/${reviewId}`);
+  const res = await authClient.delete(`reviews/${reviewId}`);
   return res;
 };
 
 // 리뷰작성
 export const postReview = async (reviewData: ReviewRequest) => {
-  const res = await client.post(`reviews`, reviewData);
-  return res;
+  try {
+    const res = await authClient.post(`reviews`, reviewData);
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 // 리뷰댓글조회
@@ -38,7 +43,7 @@ export const getReviewComments = async (
     if (size !== undefined) {
       url += `${page !== undefined ? '&' : '?'}size=${size}`;
     }
-    const res = await client.get(url);
+    const res = await authClient.get(url);
     return res;
   } catch (e) {
     console.error(e);

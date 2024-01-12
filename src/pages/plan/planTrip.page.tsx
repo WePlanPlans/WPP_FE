@@ -1,5 +1,11 @@
+import PlanSectionTop from '@components/Plan/PlanSectionTop';
+
 const PlanTrip = () => {
-  return <div>여행 계획 페이지</div>;
+  return (
+    <>
+      <PlanSectionTop />
+    </>
+  );
 };
 
 export default PlanTrip;

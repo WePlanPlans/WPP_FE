@@ -23,6 +23,7 @@ export interface EditPassword {
 
 export interface EditPasswordProps {
   password: string;
+  newPassword: string;
 }
 
 export interface AuthInputBoxProps {

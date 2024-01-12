@@ -9,8 +9,9 @@ import CommentItem from './CommentItem';
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import EditDelete from '@components/common/modal/children/EditDelete';
-import DeleteAlert from '@components/common/modal/children/DeleteAlert';
+import MyAlert from '@components/common/modal/children/MyAlert';
 import { commentState } from '@recoil/review';
+import { alertTypeState } from '@recoil/modal';
 
 export default function ReviewComments() {
   const params = useParams();
@@ -21,6 +22,7 @@ export default function ReviewComments() {
   const [commentDataLength, setCommentDataLength] = useState<number>(0);
   const modalChildren = useRecoilValue(modalChildrenState);
   const setComment = useSetRecoilState(commentState);
+  const alertType = useRecoilValue(alertTypeState);
 
   const {
     data: reviewComments,
@@ -46,9 +48,10 @@ export default function ReviewComments() {
   }
 
   const closeModal = () => {
-    setIsModalOpen(false);
     setComment('');
+    setIsModalOpen(false);
   };
+
   useEffect(() => {
     {
       reviewComments?.pages.map((group) => {
@@ -57,51 +60,63 @@ export default function ReviewComments() {
     }
     console.log('reviewComments', reviewComments);
   }, [reviewComments]);
+
   return (
     <>
-      <div className="mb-4 text-xs">
+      <div className="mb-4 text-sm">
         댓글
-        <span className="pl-0.5 font-bold">{commentDataLength}</span>
+        <span className="pl-1 font-bold">{commentDataLength}</span>
       </div>
-      {commentDataLength == 0 && (
-        <div className="mb-4 flex flex-col items-center justify-center text-sm text-gray4">
-          <div>댓글이 없습니다. </div>
-          <div>첫 댓글을 작성해보세요!</div>
-        </div>
-      )}
-      <InfiniteScroll
-        pageStart={0}
-        loadMore={() => fetchNextPage()}
-        hasMore={hasNextPage}
-        loader={
-          <div className="loader" key={0}>
-            Loading ...
+      <div className="flex flex-col">
+        {commentDataLength == 0 && (
+          <div className="mb-4 flex flex-col items-center justify-center text-sm text-gray4">
+            <div>댓글이 없습니다. </div>
+            <div>첫 댓글을 작성해보세요!</div>
           </div>
-        }>
-        <div>
-          {reviewComments?.pages.map((group, index) => {
-            {
-              return (
-                <React.Fragment key={index}>
-                  {group?.data.data.comments.content.map((item: any) => (
-                    <CommentItem
-                      key={item.commentId}
-                      commentId={item.commentId}
-                      authorNickname={item.authorNickname}
-                      authorProfileImageUrl={item.authorProfileImageUrl}
-                      createdTime={item.createdTime}
-                      content={item.content}
-                    />
-                  ))}
-                </React.Fragment>
-              );
-            }
-          })}
-        </div>
-      </InfiniteScroll>
+        )}
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={() => fetchNextPage()}
+          hasMore={hasNextPage}
+          loader={
+            <div className="loader" key={0}>
+              Loading ...
+            </div>
+          }>
+          <div>
+            {reviewComments?.pages.map((group, index) => {
+              {
+                return (
+                  <React.Fragment key={index}>
+                    {group?.data.data.comments.content.map((item: any) => (
+                      <CommentItem
+                        key={item.commentId}
+                        commentId={item.commentId}
+                        authorNickname={item.authorNickname}
+                        authorProfileImageUrl={item.authorProfileImageUrl}
+                        createdTime={item.createdTime}
+                        content={item.content}
+                        isAuthor={item.isAuthor}
+                      />
+                    ))}
+                  </React.Fragment>
+                );
+              }
+            })}
+          </div>
+        </InfiniteScroll>
+      </div>
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
         {modalChildren === 'EditDelete' && <EditDelete />}
-        {modalChildren === 'DeleteAlert' && <DeleteAlert />}
+        {modalChildren === 'MyAlert' && alertType === 'DeleteReview' && (
+          <MyAlert title="리뷰 삭제" content="리뷰를 삭제할까요?" />
+        )}
+        {modalChildren === 'MyAlert' && alertType === 'LoginComment' && (
+          <MyAlert
+            title="로그인"
+            content="댓글 쓰기 시 로그인이 필요해요. 로그인하시겠어요?"
+          />
+        )}
       </Modal>
     </>
   );
