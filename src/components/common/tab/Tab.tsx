@@ -25,7 +25,7 @@ const Tab = ({ lists, contents }: TabProps) => (
       return (
         <Tabs.Content
           key={index}
-          className="grow p-5 px-5 outline-none"
+          className="grow p-5 outline-none"
           value={`tab${index}`}>
           {content}
         </Tabs.Content>
