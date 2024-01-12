@@ -29,9 +29,11 @@ const KakaoLogin = () => {
         survey: null,
       });
       if (signup) {
-        navigate('/signup/success');
-      } else {
+        // signup이 true면 이미 회원가입을 했던 유저
         navigate('/');
+      } else {
+        // signup이 false면 이전에 회원가입을 하지 않았던 유저
+        navigate('/signup/success');
       }
     } else {
       alert('로그인에 실패했습니다. 다시 시도해주세요.');
