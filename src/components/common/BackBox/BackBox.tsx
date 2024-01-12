@@ -1,10 +1,9 @@
-import { useNavigate } from 'react-router-dom';
 import { LeftIcon } from '../icons/Icons';
 import { ReactNode } from 'react';
 
 interface Props {
   showBack?: boolean;
-  // backHandler?: VoidFunction;
+  backHandler?: VoidFunction;
   children?: ReactNode;
   showSkip?: boolean;
   skipHandler?: VoidFunction;
@@ -14,17 +13,15 @@ interface Props {
 
 const BackBox = ({
   showBack,
-  // backHandler,
+  backHandler,
   children,
   showSkip,
   skipHandler,
   showSave,
   saveHandler,
 }: Props) => {
-  const navigate = useNavigate();
-
   const onBackClick = () => {
-    navigate(-1);
+    backHandler && backHandler();
   };
   const onSkipClick = () => {
     skipHandler && skipHandler();
