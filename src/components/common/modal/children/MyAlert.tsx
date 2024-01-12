@@ -5,6 +5,7 @@ import {
   toastPopUpState,
   targetReviewIdState,
   tourItemIdState,
+  commentState,
 } from '@recoil/review';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -21,6 +22,7 @@ const MyAlert: React.FC<MyAlertProps> = ({ title, content }) => {
   const setIsModalOpen = useSetRecoilState(isModalOpenState);
   const setToastPopUp = useSetRecoilState(toastPopUpState);
   const queryClient = useQueryClient();
+  const setComment = useSetRecoilState(commentState);
 
   const { mutate: deleteReviewMutate } = useMutation({
     mutationFn: (targetReviewId: number) => deleteReview(targetReviewId),
@@ -52,23 +54,29 @@ const MyAlert: React.FC<MyAlertProps> = ({ title, content }) => {
         }
       }
     } else if (title == '로그인') {
+      setComment('');
       setIsModalOpen(false);
       navigate(`/login`);
     }
   };
 
+  const closeModal = () => {
+    setComment('');
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="flex h-full flex-col justify-between">
       <div className="mt-4 flex justify-center font-bold">{title}</div>
-      <div className="mb-4 flex justify-center text-sm text-[#888888]">
-        {content}
+      <div className="mb-4 flex flex-col justify-center text-sm text-[#888888]">
+        {content.split('. ').map((sentence, index) => (
+          <div key={index} className="flex justify-center">
+            {sentence}
+          </div>
+        ))}
       </div>
       <div className="flex gap-3 ">
-        <ButtonWhite
-          onClick={() => {
-            setIsModalOpen(false);
-          }}
-          className="text-sm">
+        <ButtonWhite onClick={closeModal} className="text-sm">
           취소
         </ButtonWhite>
         <ButtonPrimary onClick={handleClickButton} className="text-sm">

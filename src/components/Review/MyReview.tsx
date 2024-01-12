@@ -19,6 +19,8 @@ import ReviewItem from '@components/DetailSectionBottom/ReviewItem';
 import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
 import EditDelete from '@components/common/modal/children/EditDelete';
 import MyAlert from '@components/common/modal/children/MyAlert';
+import { alertTypeState } from '@recoil/modal';
+import { PenIcon } from '@components/common/icons/Icons';
 
 export default function MyReview() {
   const [reviewDataLength, setReviewDataLength] = useState<number>(0);
@@ -31,6 +33,8 @@ export default function MyReview() {
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
   const [toastPopUp, setToastPopUp] = useRecoilState(toastPopUpState);
   const modalChildren = useRecoilValue(modalChildrenState);
+  const [alertType] = useRecoilValue(alertTypeState);
+
   const {
     data: myReviews,
     fetchNextPage,
@@ -103,9 +107,16 @@ export default function MyReview() {
         나의 리뷰<span className="pl-1 text-gray4">{reviewDataLength}</span>
       </div>
       {reviewDataLength == 0 && (
-        <div>
-          <div>작성한 리뷰가 없습니다</div>
-          <div>다녀온 여행지의 리뷰를 남겨보세요!</div>
+        <div className="flex h-[500px] flex-col items-center justify-center">
+          <div className="mb-2 flex justify-center">
+            <PenIcon size={50} color="#D7D7D7" />
+          </div>
+          <div className="text-md mb-2 flex justify-center font-bold text-gray4">
+            작성한 리뷰가 없습니다
+          </div>
+          <div className="flex justify-center text-sm text-gray4">
+            다녀온 여행지의 리뷰를 남겨보세요!
+          </div>
         </div>
       )}
       <InfiniteScroll
@@ -148,7 +159,7 @@ export default function MyReview() {
       </InfiniteScroll>
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
         {modalChildren === 'EditDelete' && <EditDelete />}
-        {modalChildren === 'MyAlert' && (
+        {modalChildren === 'MyAlert' && alertType === 'DeleteReview' && (
           <MyAlert title="리뷰 삭제" content="리뷰를 삭제할까요?" />
         )}
       </Modal>
