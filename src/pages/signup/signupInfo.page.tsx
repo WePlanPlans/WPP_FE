@@ -1,5 +1,5 @@
 import { AuthTitle } from '@components/Auth';
-import UserInfoForm from '@components/Auth/SignupInfo/UserInfoForm';
+import SignupInfoForm from '@components/Auth/SignupInfo/SignupInfoForm';
 import { BackBox } from '@components/common';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,7 +27,7 @@ const SignupInfo = () => {
           </>
         }
       />
-      <UserInfoForm />
+      <SignupInfoForm />
     </div>
   );
 };

@@ -9,7 +9,7 @@ import SubmitBtn from '@components/common/button/SubmitBtn';
 import AuthDropDown from './AuthDropDown/AuthDropDown';
 import AuthNicknameInputBox from '../AuthInput/AuthInputBox/AuthNicknameInputBox';
 
-const UserInfoForm = () => {
+const SignupInfoForm = () => {
   const {
     register,
     handleSubmit,
@@ -49,7 +49,7 @@ const UserInfoForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onInfoSubmit)}>
+    <form onSubmit={handleSubmit(onInfoSubmit)} className="w-full">
       <div>
         <UserInfoImg />
         <AuthNicknameInputBox
@@ -80,7 +80,7 @@ const UserInfoForm = () => {
   );
 };
 
-export default UserInfoForm;
+export default SignupInfoForm;
 
 const genderArr: SelectOption[] = [
   { id: '1', value: '여' },
