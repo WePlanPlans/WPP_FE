@@ -77,7 +77,16 @@ const SignupInfo = () => {
 
   return (
     <div className="flex h-[95vh] flex-col">
-      <BackBox showBack showSkip />
+      <BackBox
+        showBack
+        backHandler={() => {
+          navigate('/signup/survey');
+        }}
+        showSkip
+        skipHandler={() => {
+          navigate('/');
+        }}
+      />
       <AuthTitle
         title={
           <>

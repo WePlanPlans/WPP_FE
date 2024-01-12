@@ -1,34 +1,33 @@
-import { useNavigate } from 'react-router-dom';
 import { LeftIcon } from '../icons/Icons';
 import { ReactNode } from 'react';
 
 interface Props {
   showBack?: boolean;
-  // backHandler?: VoidFunction;
+  backHandler?: VoidFunction;
   children?: ReactNode;
   showSkip?: boolean;
   skipHandler?: VoidFunction;
   showSave?: boolean;
+  saveHandler?: VoidFunction;
 }
 
 const BackBox = ({
   showBack,
-  // backHandler,
+  backHandler,
   children,
   showSkip,
   skipHandler,
   showSave,
+  saveHandler,
 }: Props) => {
-  const navigate = useNavigate();
-
   const onBackClick = () => {
-    navigate(-1);
+    backHandler && backHandler();
   };
   const onSkipClick = () => {
     skipHandler && skipHandler();
   };
   const onSaveClick = () => {
-    console.log('저장 버튼 클릭');
+    saveHandler && saveHandler();
   };
 
   return (
