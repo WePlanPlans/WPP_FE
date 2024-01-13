@@ -1,4 +1,4 @@
-import { KeyboardEvent, ChangeEvent, useEffect } from 'react';
+import { KeyboardEvent, ChangeEvent } from 'react';
 import { postComments } from '@api/comments';
 import { useParams } from 'react-router-dom';
 import { commentState } from '@recoil/review';
