@@ -8,7 +8,7 @@ import {
 import { isModifyingReviewState } from '@recoil/review';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { getItem } from '@utils/localStorageFun';
+import { getMember } from '@api/member';
 
 interface reviewProps {
   reviewData: any;
@@ -24,13 +24,16 @@ export default function DetailTourButtons({ reviewData }: reviewProps) {
   const setModalChildren = useSetRecoilState(modalChildrenState);
   const setAlertType = useSetRecoilState(alertTypeState);
 
-  const handlePostingReivew = () => {
-    const token = getItem('accessToken');
-    if (token) {
-      navigate(`/reviewPosting/${tourItemId}`, {
-        state: { title, contentTypeId },
-      });
-    } else {
+  const handlePostingReivew = async () => {
+    try {
+      const res = await getMember();
+      if (res.data.status === 200) {
+        navigate(`/reviewPosting/${tourItemId}`, {
+          state: { title, contentTypeId },
+        });
+      }
+    } catch (err) {
+      console.error(err);
       setModalChildren('MyAlert');
       setAlertType('LoginReview');
       setIsModifyingReview(false);
