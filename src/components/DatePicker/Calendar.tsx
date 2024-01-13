@@ -14,11 +14,15 @@ import {
 import { ko } from 'date-fns/locale';
 import 'tailwindcss/tailwind.css';
 
+interface CalendarProps {
+  onDateSelect: (startDate: Date | null, endDate: Date | null) => void;
+}
+
 const CALENDAR_LENGTH = 42;
 const DAY_OF_WEEK = 7;
 const DAY_LIST = ['일', '월', '화', '수', '목', '금', '토'];
 
-const Calendar: React.FC = () => {
+const Calendar: React.FC<CalendarProps> = ({ onDateSelect }) => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const currentDate = new Date();
@@ -29,6 +33,11 @@ const Calendar: React.FC = () => {
     addMonths(currentDate, 3),
   ]);
   const calendarRef = useRef<HTMLDivElement>(null);
+
+  // 날짜 변경될 때 콜백함수
+  useEffect(() => {
+    onDateSelect(startDate, endDate);
+  }, [startDate, endDate, onDateSelect]);
 
   const handleScroll = () => {
     const { scrollTop, scrollHeight, clientHeight } = calendarRef.current!;
@@ -166,7 +175,7 @@ const Calendar: React.FC = () => {
           : '날짜를 선택해주세요.'}
       </div>
 
-      <div ref={calendarRef} className="scrollbar-hide h-screen overflow-auto">
+      <div ref={calendarRef} className="h-screen overflow-auto scrollbar-hide">
         {visibleMonths.map((month, idx) => (
           <div key={idx}>{renderCalendar(month)}</div>
         ))}

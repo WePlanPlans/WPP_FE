@@ -3,76 +3,106 @@ import { useState } from 'react';
 import { SelectDate } from '../../components/createTrip/SelectDate';
 import {
   CalendarIcon,
-  DocumentIcon,
+  CloseIcon,
   SearchIcon,
   UserIcon,
 } from '@components/common/icons/Icons';
 import { ButtonPrimary } from '@components/common/button/Button';
 import { InputField } from '@components/createTrip/InputField';
+import { SelectDestination } from '@components/createTrip/SelectDestination';
 
 export const CreateTrip = () => {
   const [title, setTitle] = useState('');
   const [numOfMembers, setNumOfMembers] = useState(2);
   const [showSelectDate, setShowSelectDate] = useState(false);
+  const [showSelectDestination, setShowSelectDestination] = useState(false);
 
-  const clearInput = () => {
-    setTitle('');
+  const handleIncrease = () => {
+    setNumOfMembers((prevNum) => prevNum + 1);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-
-  const handleDateButtonClick = () => {
-    setShowSelectDate(true);
-  };
-
-  const handleCloseSelectDate = () => {
-    setShowSelectDate(false);
+  const handleDecrease = () => {
+    setNumOfMembers((prevNum) => Math.max(prevNum - 1, 2));
   };
 
   if (showSelectDate) {
-    return <SelectDate onClose={handleCloseSelectDate} />;
+    return (
+      <SelectDate
+        onClose={() => {
+          setShowSelectDate(false);
+        }}
+      />
+    );
+  }
+  if (showSelectDestination) {
+    return (
+      <SelectDestination
+        onClose={() => {
+          setShowSelectDestination(false);
+        }}
+      />
+    );
   }
   return (
     <div className="flex h-[95vh] flex-col">
       <BackHeader />
       <div className="title1 mt-2 pb-5">여행 생성하기</div>
 
-      <InputField
-        icon={DocumentIcon}
-        placeholder="나의 여정"
-        value={title}
-        onChange={handleChange}
-        onClear={clearInput}
-      />
+      <InputField icon={CalendarIcon}>
+        <input
+          type="text"
+          className="flex-1 p-2 focus:outline-none"
+          placeholder="나의 여정"
+          value={title}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+          autoFocus
+        />
+        {title && (
+          <div
+            className="ml-auto cursor-pointer rounded-full bg-gray3"
+            onClick={() => {
+              setTitle('');
+            }}>
+            <CloseIcon />
+          </div>
+        )}
+      </InputField>
 
-      <InputField
-        icon={UserIcon}
-        type="number"
-        placeholder="인원"
-        value={numOfMembers}
-        onChange={(newValue) => setNumOfMembers(newValue)}
-        minValue={2}
-        maxValue={100}
-      />
+      <InputField icon={UserIcon}>
+        <div className="flex-1 p-2">{numOfMembers}명</div>
+        <div className="ml-auto flex">
+          <button
+            className="ml-2 flex size-[24px] items-center justify-center rounded-full bg-gray3 text-white"
+            onClick={handleDecrease}>
+            -
+          </button>
+          <button
+            className="ml-2 flex size-[24px] items-center justify-center rounded-full bg-gray3 text-white"
+            onClick={handleIncrease}>
+            +
+          </button>
+        </div>
+      </InputField>
 
       <InputField
         icon={CalendarIcon}
-        placeholder="여행 날짜(선택)"
-        onClick={handleDateButtonClick}
-      />
+        onClick={() => {
+          setShowSelectDate(true);
+        }}
+        isClickable>
+        <div className="p-2">여행 날짜 (선택)</div>
+      </InputField>
 
-      <div
-        className="mb-3 flex h-[54px] w-full cursor-pointer items-center rounded-lg border border-solid border-zinc-300 px-[14px] py-3"
-        onClick={() => {}}>
-        <div className="mr-2 flex size-[24px] content-center justify-center">
-          <SearchIcon size={17} />
-        </div>
-        <div className="flex-1 rounded-lg p-2 focus:outline-none">
-          여행지 (선택)
-        </div>
-      </div>
+      <InputField
+        icon={SearchIcon}
+        onClick={() => {
+          setShowSelectDestination(true);
+        }}
+        isClickable>
+        <div className="p-2">여행지 (선택)</div>
+      </InputField>
 
       <div className="mt-auto">
         <ButtonPrimary onClick={() => {}}>완료</ButtonPrimary>
