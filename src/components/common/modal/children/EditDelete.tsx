@@ -16,7 +16,7 @@ import {
   targetCommentIdState,
   targetReviewIdState,
   tourItemIdState,
-  inputFocusState,
+  // inputFocusState,
 } from '@recoil/review';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
