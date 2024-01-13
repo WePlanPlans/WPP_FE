@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const client = axios.create({
-  baseURL: import.meta.env.VITE_SERVER_URL,
+  baseURL: `${import.meta.env.VITE_SERVER_URL}api/`,
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: false,
+  withCredentials: true,
 });
 
 export default client;

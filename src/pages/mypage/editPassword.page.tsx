@@ -1,10 +1,18 @@
 import EditPwForm from '@components/Mypage/EditPassword/EditPwForm';
 import { BackBox } from '@components/common';
+import { useNavigate } from 'react-router-dom';
 
 const EditPassword = () => {
+  const navigate = useNavigate();
   return (
     <>
-      <BackBox showBack>비밀번호 변경</BackBox>
+      <BackBox
+        showBack
+        backHandler={() => {
+          navigate('/mypage');
+        }}>
+        비밀번호 변경
+      </BackBox>
       <EditPwForm />
     </>
   );

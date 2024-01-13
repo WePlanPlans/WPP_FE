@@ -1,34 +1,35 @@
-import { useNavigate } from 'react-router-dom';
-import { LeftIcon } from '../icons/Icons';
+import { LeftIcon, ShareIcon } from '../icons/Icons';
 import { ReactNode } from 'react';
 
 interface Props {
   showBack?: boolean;
-  // backHandler?: VoidFunction;
+  backHandler?: VoidFunction;
   children?: ReactNode;
   showSkip?: boolean;
   skipHandler?: VoidFunction;
   showSave?: boolean;
+  saveHandler?: VoidFunction;
+  showShare?: boolean;
 }
 
 const BackBox = ({
   showBack,
-  // backHandler,
+  backHandler,
   children,
   showSkip,
   skipHandler,
   showSave,
+  saveHandler,
+  showShare,
 }: Props) => {
-  const navigate = useNavigate();
-
   const onBackClick = () => {
-    navigate(-1);
+    backHandler && backHandler();
   };
   const onSkipClick = () => {
     skipHandler && skipHandler();
   };
   const onSaveClick = () => {
-    console.log('저장 버튼 클릭');
+    saveHandler && saveHandler();
   };
 
   return (
@@ -51,6 +52,11 @@ const BackBox = ({
           className="headline2 absolute right-0 text-main2"
           onClick={onSaveClick}>
           저장
+        </button>
+      )}
+      {showShare && (
+        <button className="headline2 absolute right-0 text-main2">
+          <ShareIcon />
         </button>
       )}
     </div>
