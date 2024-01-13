@@ -16,6 +16,7 @@ import {
   targetCommentIdState,
   targetReviewIdState,
   tourItemIdState,
+  // inputFocusState,
 } from '@recoil/review';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -39,6 +40,7 @@ const EditDelete: React.FC = () => {
   const setModalChildren = useSetRecoilState(modalChildrenState);
   const setComment = useSetRecoilState(commentState);
   const setAlertType = useSetRecoilState(alertTypeState);
+  // const setInputFocus = useSetRecoilState(inputFocusState);
   const queryClient = useQueryClient();
 
   const handleEdit = () => {
@@ -58,6 +60,7 @@ const EditDelete: React.FC = () => {
     } else if (title == '내 댓글') {
       setIsModifyingComment(true);
       setIsModalOpen(false);
+      // setInputFocus(true);
     }
   };
 

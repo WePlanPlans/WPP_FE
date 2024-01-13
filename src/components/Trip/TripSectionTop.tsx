@@ -1,4 +1,5 @@
 import Tab from '@components/common/tab/Tab';
+import TripPreference from './TripPreference';
 
 const TripSectionTop = () => {
   return (
@@ -6,7 +7,7 @@ const TripSectionTop = () => {
       <div className="my-1">여정 생성 완료 페이지</div>
       <Tab
         lists={['우리의 여행취향', '우리의 관심목록']}
-        contents={[<div>우리의 여행취향</div>, <div>우리의 관심목록</div>]}
+        contents={[<TripPreference />, <div>우리의 관심목록</div>]}
       />
     </div>
   );
