@@ -1,8 +1,8 @@
 interface MemberRequest {
   nickname: string;
   profileImageUrl: string;
-  ageType: string;
-  genderType: string;
+  ageType: string | null;
+  genderType: string | null;
 }
 
 interface SelectOption {
@@ -22,7 +22,7 @@ interface MemberInfo {
   // | 'ABOVE_FIFTIES'
   // | 'DEFATULT'
   genderType: string | null;
-  // 'MALE' | 'FEMALE' | 'NON_BINARY' | 'DEFATULT';
+  // 'MALE' | 'FEMALE' | 'NON_BINARY' | 'DEFAULT';
   survey: Survey | null;
 }
 
