@@ -16,6 +16,7 @@ import {
 import { MouseEvent, useState } from 'react';
 import { getEmoji } from '@utils/utils';
 import { getStarFill } from '@utils/getStarFill';
+import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
 
 interface Keyword {
   keywordId: number;
@@ -33,16 +34,17 @@ interface ItemProps {
   keywords: Keyword[]; // keywordId, content, type
   commentCount: number;
   onClick?: () => void;
-  tourItemId: number;
+  tourItemId?: number;
   contentTypeId?: number;
-  isReviews: boolean;
+  canTextOverflow: boolean;
+  isAuthor?: boolean;
 }
 
 const Item: React.FC<ItemProps> = (props: ItemProps) => {
   const {
     reviewId,
     authorNickname,
-    // authorProfileImageUrl,
+    authorProfileImageUrl,
     rating,
     createdTime,
     content,
@@ -51,7 +53,8 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
     onClick,
     tourItemId,
     contentTypeId,
-    isReviews,
+    canTextOverflow,
+    isAuthor,
   } = props;
   const [_, setIsModalOpen] = useRecoilState(isModalOpenState);
 
@@ -68,7 +71,11 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
   const openModal = (title: string, reviewId: number, e: React.MouseEvent) => {
     e.stopPropagation();
     setTitle(title);
-    setTourItemId(tourItemId);
+    if (tourItemId) {
+      setTourItemId(tourItemId);
+    } else {
+      setTourItemId(0);
+    }
     if (contentTypeId) {
       setContentTypeId(contentTypeId);
     } else {
@@ -104,21 +111,25 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
   };
 
   return (
-    <>
-      <div className="cursor-pointer pb-4" onClick={onClick}>
-        <div className=" mb-5 flex items-center">
-          {/* {authorProfileImageUrl} */}
-          <div className="mr-2">
+    <div className="cursor-pointer pb-6" onClick={onClick}>
+      <div className=" mb-5 flex items-center">
+        <div className="mr-2">
+          {!(
+            authorProfileImageUrl === 'http://asiduheimage.jpg' ||
+            authorProfileImageUrl === null
+          ) ? (
             <img
-              src={
-                'https://img.freepik.com/free-photo/portrait-of-a-cute-little-girl-in-a-blue-hat-3d-rendering_1142-38897.jpg?w=740&t=st=1704099517~exp=1704100117~hmac=49bf38020d3b7a61618f4db96fa5fdfa20a7c263be7f73b9987054b12f9d5027'
-              }
+              src={authorProfileImageUrl}
               alt="유저 프로필"
-              className="w-12 rounded-full"
+              className="h-[60px] w-[60px] rounded-full"
             />
-          </div>
-          <div className=" mr-2 flex flex-col gap-1">
-            <div className="font-bold">{authorNickname}</div>
+          ) : (
+            <NullUser />
+          )}
+        </div>
+        <div className=" mr-2 flex flex-col gap-1">
+          <div className="font-bold">{authorNickname}</div>
+          <div className="flex gap-2">
             <div className="flex">
               {Array.from({ length: 5 }, (_, index) => (
                 <StarIcon
@@ -130,76 +141,79 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
                 />
               ))}
             </div>
+            <div className="text-sm text-gray4">
+              {formatCreatedTime(createdTime)}
+            </div>
           </div>
-          <div className="mb-0.5 mt-auto text-sm text-gray4">
-            {formatCreatedTime(createdTime)}
-          </div>
+        </div>
+
+        {isAuthor && (
           <div
             className="ml-auto cursor-pointer"
             onClick={(e) => openModal('내 리뷰', reviewId, e)}>
             <MoreIcon fill="#888888" color="none" />
           </div>
-        </div>
-        {isReviews ? (
-          <div className="mb-4 max-h-12 overflow-hidden text-gray7">
-            {content.length > 75 ? `${content.slice(0, 75)}...` : content}
-          </div>
-        ) : (
-          <div className="mb-4 text-gray7">{content}</div>
         )}
+      </div>
+      {canTextOverflow ? (
+        <div className="mb-4 ml-1 max-h-12 text-gray7">
+          {content.length > 55 ? `${content.slice(0, 55)}...` : content}
+        </div>
+      ) : (
+        <div className="mb-4 text-gray7">{content}</div>
+      )}
 
-        <div className="flex ">
-          <div className="flex gap-2">
-            {!showMoreKeywords &&
-              keywords.slice(0, 2).map((keyword, idx) => (
-                <div
-                  key={idx}
-                  className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6">
-                  {getEmoji(keyword.content)} {keyword.content}
-                </div>
-              ))}
-            {keywords.length > 2 && !showMoreKeywords && (
+      <div className="flex items-center ">
+        <div className="flex gap-2">
+          {!showMoreKeywords &&
+            keywords.slice(0, 2).map((keyword, idx) => (
               <div
-                className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6"
-                onClick={(e) => {
-                  handleClickPlusButton(e);
-                }}>
-                +{keywords.length - 2}
+                key={idx}
+                className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6">
+                {getEmoji(keyword.content)} {keyword.content}
               </div>
+            ))}
+          {keywords.length > 2 && !showMoreKeywords && (
+            <div
+              className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6"
+              onClick={(e) => {
+                handleClickPlusButton(e);
+              }}>
+              +{keywords.length - 2}
+            </div>
+          )}
+        </div>
+        <div>
+          {showMoreKeywords &&
+            Array.from({ length: Math.ceil(keywords.length / 2) }).map(
+              (_, lineIdx) => (
+                <div
+                  key={lineIdx}
+                  className={`flex gap-2 ${
+                    lineIdx === Math.ceil(keywords.length / 2) - 1
+                      ? ''
+                      : ' mb-3'
+                  }`}>
+                  {keywords
+                    .slice(lineIdx * 2, lineIdx * 2 + 2)
+                    .map((keyword, idx) => (
+                      <div
+                        key={idx}
+                        className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6">
+                        {getEmoji(keyword.content)} {keyword.content}
+                      </div>
+                    ))}
+                </div>
+              ),
             )}
-          </div>
-          <div>
-            {showMoreKeywords &&
-              Array.from({ length: Math.ceil(keywords.length / 2) }).map(
-                (_, lineIdx) => (
-                  <div
-                    key={lineIdx}
-                    className={`flex gap-2 ${
-                      lineIdx === Math.ceil(keywords.length / 2) - 1
-                        ? ''
-                        : ' mb-3'
-                    }`}>
-                    {keywords
-                      .slice(lineIdx * 2, lineIdx * 2 + 2)
-                      .map((keyword, idx) => (
-                        <div
-                          key={idx}
-                          className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6">
-                          {getEmoji(keyword.content)} {keyword.content}
-                        </div>
-                      ))}
-                  </div>
-                ),
-              )}
-          </div>
+        </div>
 
-          <div className="ml-auto mr-2 flex ">
-            <ChatIcon size={20} color="#5E5E5E" />
-            <div className="ml-1 text-gray5">{commentCount}</div>
-          </div>
+        <div className="ml-auto mr-2 flex ">
+          <ChatIcon size={20} color="#5E5E5E" />
+          <div className="ml-1 text-gray5">{commentCount}</div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

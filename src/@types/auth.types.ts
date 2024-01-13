@@ -23,6 +23,7 @@ export interface EditPassword {
 
 export interface EditPasswordProps {
   password: string;
+  newPassword: string;
 }
 
 export interface AuthInputBoxProps {
@@ -42,4 +43,9 @@ export interface AuthPwInputBoxProps extends AuthInputBoxProps {
 
 export interface AuthPwCheckInputBoxProps extends AuthInputBoxProps {
   getValues: UseFormGetValues<any>;
+}
+
+export interface AuthNicknameInputBoxProps extends AuthInputBoxProps {
+  getValues: UseFormGetValues<any>;
+  setError: UseFormSetError<any>;
 }

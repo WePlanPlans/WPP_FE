@@ -4,6 +4,7 @@ import {
   isModalOpenState,
   titleState,
   modalChildrenState,
+  alertTypeState,
 } from '@recoil/modal';
 import {
   contentState,
@@ -15,6 +16,7 @@ import {
   targetCommentIdState,
   targetReviewIdState,
   tourItemIdState,
+  // inputFocusState,
 } from '@recoil/review';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -37,7 +39,8 @@ const EditDelete: React.FC = () => {
   const setIsModalOpen = useSetRecoilState(isModalOpenState);
   const setModalChildren = useSetRecoilState(modalChildrenState);
   const setComment = useSetRecoilState(commentState);
-
+  const setAlertType = useSetRecoilState(alertTypeState);
+  // const setInputFocus = useSetRecoilState(inputFocusState);
   const queryClient = useQueryClient();
 
   const handleEdit = () => {
@@ -57,6 +60,7 @@ const EditDelete: React.FC = () => {
     } else if (title == '내 댓글') {
       setIsModifyingComment(true);
       setIsModalOpen(false);
+      // setInputFocus(true);
     }
   };
 
@@ -70,7 +74,8 @@ const EditDelete: React.FC = () => {
 
   const handleDelete = async () => {
     if (title === '내 리뷰') {
-      setModalChildren('DeleteAlert');
+      setModalChildren('MyAlert');
+      setAlertType('DeleteReview');
     } else if (title === '내 댓글') {
       await deleteCommentMutate(targetCommentId);
       setIsModalOpen(false);

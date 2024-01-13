@@ -24,7 +24,9 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import ReviewItem from './ReviewItem';
 import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
 import EditDelete from '@components/common/modal/children/EditDelete';
-import DeleteAlert from '@components/common/modal/children/DeleteAlert';
+import MyAlert from '@components/common/modal/children/MyAlert';
+import { alertTypeState } from '@recoil/modal';
+
 interface reviewProps {
   reviewData: any;
 }
@@ -45,6 +47,8 @@ export default function DetailReviews({ reviewData }: reviewProps) {
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
   const [toastPopUp, setToastPopUp] = useRecoilState(toastPopUpState);
   const modalChildren = useRecoilValue(modalChildrenState);
+  const alertType = useRecoilValue(alertTypeState);
+
   const {
     data: toursReviews,
     fetchNextPage,
@@ -128,7 +132,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
       </div>
       {reviewDataLength == 0 && (
         <div
-          className="flex cursor-pointer flex-col items-center justify-center"
+          className="flex cursor-pointer flex-col items-center justify-center pb-10"
           onClick={handlePostingReivew}>
           <div className="mb-2 flex">
             {Array.from({ length: 5 }, (_, index) => (
@@ -166,7 +170,8 @@ export default function DetailReviews({ reviewData }: reviewProps) {
                       onClick={() => handleReviewClick(item)}
                       tourItemId={tourItemId}
                       contentTypeId={contentTypeId}
-                      isReviews={true}
+                      canTextOverflow={true}
+                      isAuthor={item.isAuthor}
                     />
                   ))}
                 </React.Fragment>
@@ -177,7 +182,15 @@ export default function DetailReviews({ reviewData }: reviewProps) {
       </InfiniteScroll>
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
         {modalChildren === 'EditDelete' && <EditDelete />}
-        {modalChildren === 'DeleteAlert' && <DeleteAlert />}
+        {modalChildren === 'MyAlert' && alertType === 'DeleteReview' && (
+          <MyAlert title="리뷰 삭제" content="리뷰를 삭제할까요?" />
+        )}
+        {modalChildren === 'MyAlert' && alertType === 'LoginReview' && (
+          <MyAlert
+            title="로그인"
+            content="리뷰 쓰기 시 로그인이 필요해요. 로그인하시겠어요?"
+          />
+        )}
       </Modal>
     </>
   );

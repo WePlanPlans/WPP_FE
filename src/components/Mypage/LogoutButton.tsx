@@ -1,4 +1,5 @@
 import { postLogout } from '@api/auth';
+import Alert from '@components/common/alert/Alert';
 import { UserInfoState } from '@recoil/Auth.atom';
 import { removeItem } from '@utils/localStorageFun';
 import { useSetRecoilState } from 'recoil';
@@ -7,6 +8,10 @@ const LogoutButton = () => {
   const setUserInfo = useSetRecoilState(UserInfoState);
 
   const onLogoutClick = async (e: any) => {
+    e.stopPropagation();
+  };
+
+  const handleConfirm = async (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     try {
       const res = await postLogout();
@@ -19,10 +24,20 @@ const LogoutButton = () => {
     }
   };
 
+  const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+  };
+
   return (
-    <button onClick={onLogoutClick} className="caption2 text-gray4">
-      로그아웃
-    </button>
+    <Alert
+      title="로그아웃"
+      message="로그아웃 하시겠어요?"
+      onConfirm={handleConfirm}
+      onCancel={handleCancel}>
+      <button onClick={onLogoutClick} className="caption2 text-gray4">
+        로그아웃
+      </button>
+    </Alert>
   );
 };
 

@@ -14,3 +14,8 @@ export const modalChildrenState = atom({
   key: 'modalChildrenState',
   default: '',
 });
+
+export const alertTypeState = atom({
+  key: 'alertTypeState',
+  default: '',
+});

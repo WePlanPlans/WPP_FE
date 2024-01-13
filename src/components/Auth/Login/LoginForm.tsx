@@ -38,7 +38,6 @@ const LoginForm = () => {
       if (res.data.status === 200) {
         setItem('accessToken', res.data.data.tokenInfo.accessToken);
         // setUserInfo(res.data.data.memberDto);
-        // TODO 서지수 | 로그인 후 어디로 갈지 물어보고 수정
         navigate('/');
       }
     } catch (err) {
