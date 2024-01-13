@@ -9,6 +9,20 @@ import {
   calculatePercentageRemain,
 } from '@utils/calculatePercentage';
 
+interface RatioBarParams {
+  value: number;
+  total: number;
+  color: string;
+  label1: string;
+  label2: string;
+}
+
+interface PercentageParams {
+  value: number;
+  total: number;
+  color: string;
+}
+
 const TripPreferenceButton: React.FC = () => {
   return (
     <button className="mb-[17.5px] mt-[20px] flex w-[335px] items-center rounded-full bg-white px-6 py-4 text-sm">
@@ -19,6 +33,58 @@ const TripPreferenceButton: React.FC = () => {
     </button>
   );
 };
+
+const RatioBar = ({ value, total, color, label1, label2 }: RatioBarParams) => {
+  const width =
+    value >= total - value
+      ? Math.round((175 * value) / total)
+      : Math.round((175 * (total - value)) / total);
+  return (
+    <div className="mb-1 flex items-center text-sm">
+      {value >= total - value ? (
+        <>
+          <div className={`w-[65px] font-bold text-${color}`}>{label1}</div>
+          <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
+            <div style={{ width }} className={`rounded-full bg-${color}`}></div>
+          </div>
+          <div className="ml-auto text-gray6">{label2}</div>
+        </>
+      ) : (
+        <>
+          <div className={`w-[65px] text-gray6`}>{label1}</div>
+          <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
+            <div
+              style={{ width }}
+              className={`ml-auto rounded-full bg-${color}`}></div>
+          </div>
+          <div className={`text-${color} ml-auto font-bold`}>{label2}</div>
+        </>
+      )}
+    </div>
+  );
+};
+
+const Percentage = ({ value, total, color }: PercentageParams) => (
+  <div className="flex justify-between text-gray6">
+    {value >= total - value ? (
+      <>
+        <div className={`font-bold text-${color}`}>
+          {calculatePercentage(value, total)}%
+        </div>
+        <div className="text-gray6">
+          {calculatePercentageRemain(value, total)}%
+        </div>
+      </>
+    ) : (
+      <>
+        <div className="text-gray6">{calculatePercentage(value, total)}%</div>
+        <div className={`font-bold text-${color}`}>
+          {calculatePercentageRemain(value, total)}%
+        </div>
+      </>
+    )}
+  </div>
+);
 
 const TripPreference: React.FC = () => {
   const params = useParams();
@@ -76,253 +142,62 @@ const TripPreference: React.FC = () => {
         <div>
           <div className="mb-4 h-[104px] w-[335px] rounded-xl bg-white px-4 py-4">
             <div className="text-md mb-3 font-bold">계획성</div>
-            <div className="mb-1 flex items-center text-sm">
-              {A[0] >= A[1] ? (
-                <>
-                  <div className="w-[65px] font-bold text-sub2">철저하게</div>
-                  <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
-                    <div
-                      className={` w-[${
-                        (A[0] / (A[0] + A[1])) * 175
-                      }px] rounded-full bg-sub2`}></div>
-                  </div>
-                  <div className="ml-auto text-gray6">여유롭게</div>
-                </>
-              ) : (
-                <>
-                  <div className="w-[65px] text-gray6">철저하게</div>
-                  <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
-                    <div
-                      className={`ml-auto w-[${
-                        (A[1] / (A[0] + A[1])) * 175
-                      }px] rounded-full bg-sub2`}></div>
-                  </div>
-                  <div className="ml-auto font-bold text-sub2">여유롭게</div>
-                </>
-              )}
-            </div>
-            <div className="flex justify-between text-gray6">
-              {A[0] >= A[1] ? (
-                <>
-                  <div className="font-bold text-sub2">
-                    {calculatePercentage(A[0], A[1])}%
-                  </div>
-                  <div className="text-gray6">
-                    {calculatePercentageRemain(A[0], A[1])}%
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="text-gray6">
-                    {calculatePercentage(A[0], A[1])}%
-                  </div>
-                  <div className="font-bold text-sub2">
-                    {calculatePercentageRemain(A[0], A[1])}%
-                  </div>
-                </>
-              )}
-            </div>
+            <RatioBar
+              value={A[0]}
+              total={A[1]}
+              color="sub2"
+              label1="철저하게"
+              label2="여유롭게"
+            />
+            <Percentage value={A[0]} total={A[1]} color="sub2" />
           </div>
 
           <div className="mb-4 h-[104px] w-[335px] rounded-xl bg-white px-4 py-4">
             <div className="text-md mb-3 font-bold">활동시간</div>
-            <div className="mb-1 flex items-center text-sm">
-              {B[0] >= B[1] ? (
-                <>
-                  <div className="w-[65px] font-bold text-main2">아침형</div>
-                  <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
-                    <div
-                      className={` w-[${
-                        (B[0] / (B[0] + B[1])) * 175
-                      }px] rounded-full bg-main2`}></div>
-                  </div>
-
-                  <div className="ml-auto text-gray6">저녁형</div>
-                </>
-              ) : (
-                <>
-                  <div className="w-[65px] text-gray6">아침형</div>
-                  <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
-                    <div
-                      className={`ml-auto w-[${
-                        (B[1] / (B[0] + B[1])) * 175
-                      }px] rounded-full bg-main2`}></div>
-                  </div>
-                  <div className="ml-auto font-bold text-main2">저녁형</div>
-                </>
-              )}
-            </div>
-            <div className="flex justify-between text-gray6">
-              {B[0] >= B[1] ? (
-                <>
-                  <div className="font-bold text-main2">
-                    {calculatePercentage(B[0], B[1])}%
-                  </div>
-                  <div className="text-gray6">
-                    {calculatePercentageRemain(B[0], B[1])}%
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="text-gray6">
-                    {calculatePercentage(B[0], B[1])}%
-                  </div>
-                  <div className="font-bold text-main2">
-                    {calculatePercentageRemain(B[0], B[1])}%
-                  </div>
-                </>
-              )}
-            </div>
+            <RatioBar
+              value={B[0]}
+              total={B[1]}
+              color="main2"
+              label1="아침형"
+              label2="저녁형"
+            />
+            <Percentage value={B[0]} total={B[1]} color="main2" />
           </div>
 
           <div className="mb-4 h-[104px] w-[335px] rounded-xl bg-white px-4 py-4">
             <div className="text-md mb-3 font-bold">숙소</div>
-            <div className="mb-1 flex items-center text-sm">
-              {C[0] >= C[1] ? (
-                <>
-                  <div className="text-purple w-[65px] font-bold">분위기</div>
-                  <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
-                    <div
-                      className={` w-[${
-                        (C[0] / (C[0] + C[1])) * 175
-                      }px] bg-purple rounded-full`}></div>
-                  </div>
-                  <div className="ml-auto text-gray6">가격</div>
-                </>
-              ) : (
-                <>
-                  <div className="w-[65px] text-gray6">분위기</div>
-                  <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
-                    <div
-                      className={`ml-auto w-[${
-                        (C[1] / (C[0] + C[1])) * 175
-                      }px] bg-purple rounded-full`}></div>
-                  </div>
-                  <div className="text-purple ml-auto font-bold">가격</div>
-                </>
-              )}
-            </div>
-            <div className="flex justify-between text-gray6">
-              {C[0] >= C[1] ? (
-                <>
-                  <div className="text-purple font-bold">
-                    {calculatePercentage(C[0], C[1])}%
-                  </div>
-                  <div className="text-gray6">
-                    {calculatePercentageRemain(C[0], C[1])}%
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="text-gray6">
-                    {calculatePercentage(C[0], C[1])}%
-                  </div>
-                  <div className="text-purple font-bold">
-                    {calculatePercentageRemain(C[0], C[1])}%
-                  </div>
-                </>
-              )}
-            </div>
+            <RatioBar
+              value={C[0]}
+              total={C[1]}
+              color="purple"
+              label1="분위기"
+              label2="가격"
+            />
+            <Percentage value={C[0]} total={C[1]} color="purple" />
           </div>
 
           <div className="mb-4 h-[104px] w-[335px] rounded-xl bg-white px-4 py-4">
             <div className="text-md mb-3 font-bold">음식</div>
-            <div className="mb-1 flex items-center text-sm">
-              {D[0] >= D[1] ? (
-                <>
-                  <div className="text-orange w-[65px] font-bold">노포</div>
-                  <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
-                    <div
-                      className={` w-[${
-                        (D[0] / (D[0] + D[1])) * 175
-                      }px] bg-orange rounded-full`}></div>
-                  </div>
-                  <div className="ml-auto text-gray6">인테리어</div>
-                </>
-              ) : (
-                <>
-                  <div className="w-[65px] text-gray6">노포</div>
-                  <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
-                    <div
-                      className={`ml-auto w-[${
-                        (D[1] / (D[0] + D[1])) * 175
-                      }px] bg-orange rounded-full`}></div>
-                  </div>
-                  <div className="text-orange ml-auto font-bold">인테리어</div>
-                </>
-              )}
-            </div>
-            <div className="flex justify-between text-gray6">
-              {D[0] >= D[1] ? (
-                <>
-                  <div className="text-orange font-bold">
-                    {calculatePercentage(D[0], D[1])}%
-                  </div>
-                  <div className="text-gray6">
-                    {calculatePercentageRemain(D[0], D[1])}%
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="text-gray6">
-                    {calculatePercentage(D[0], D[1])}%
-                  </div>
-                  <div className="text-orange font-bold">
-                    {calculatePercentageRemain(D[0], D[1])}%
-                  </div>
-                </>
-              )}
-            </div>
+            <RatioBar
+              value={D[0]}
+              total={D[1]}
+              color="orange"
+              label1="노포"
+              label2="인테리어"
+            />
+            <Percentage value={D[0]} total={D[1]} color="orange" />
           </div>
 
           <div className="mb-4 h-[104px] w-[335px] rounded-xl bg-white px-4 py-4">
             <div className="text-md mb-3 font-bold">관광지</div>
-            <div className="mb-1 flex items-center text-sm">
-              {E[0] >= E[1] ? (
-                <>
-                  <div className="text-green w-[65px] font-bold">액티비티</div>
-                  <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
-                    <div
-                      className={` w-[${
-                        (E[0] / (E[0] + E[1])) * 175
-                      }px] bg-green rounded-full`}></div>
-                  </div>
-                  <div className="ml-auto text-gray6">휴양</div>
-                </>
-              ) : (
-                <>
-                  <div className="w-[65px] text-gray6">액티비티</div>
-                  <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
-                    <div
-                      className={`ml-auto w-[${
-                        (E[1] / (E[0] + E[1])) * 175
-                      }px] bg-green rounded-full`}></div>
-                  </div>
-                  <div className="text-green ml-auto font-bold ">휴양</div>
-                </>
-              )}
-            </div>
-            <div className="flex justify-between text-gray6">
-              {E[0] >= E[1] ? (
-                <>
-                  <div className="text-green font-bold">
-                    {calculatePercentage(E[0], E[1])}%
-                  </div>
-                  <div className="text-gray6">
-                    {calculatePercentageRemain(E[0], E[1])}%
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="text-gray6">
-                    {calculatePercentage(E[0], E[1])}%
-                  </div>
-                  <div className="text-green font-bold">
-                    {calculatePercentageRemain(E[0], E[1])}%
-                  </div>
-                </>
-              )}
-            </div>
+            <RatioBar
+              value={E[0]}
+              total={E[1]}
+              color="green"
+              label1="액티비티"
+              label2="휴양"
+            />
+            <Percentage value={E[0]} total={E[1]} color="green" />
           </div>
         </div>
       )}
