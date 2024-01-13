@@ -1,15 +1,19 @@
+import { ButtonPrimary } from '@components/common/button/Button';
 import BackHeader from '@components/common/header/BackHeader';
-import { useState } from 'react';
-import { SelectDate } from '../../components/createTrip/SelectDate';
 import {
   CalendarIcon,
   CloseIcon,
   SearchIcon,
   UserIcon,
 } from '@components/common/icons/Icons';
-import { ButtonPrimary } from '@components/common/button/Button';
 import { InputField } from '@components/createTrip/InputField';
 import { SelectDestination } from '@components/createTrip/SelectDestination';
+import { tripDateState } from '@recoil/tripDate';
+import { format } from 'date-fns';
+import { ko } from 'date-fns/locale';
+import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { SelectDate } from '../../components/createTrip/SelectDate';
 
 export const CreateTrip = () => {
   const [title, setTitle] = useState('');
@@ -24,6 +28,16 @@ export const CreateTrip = () => {
   const handleDecrease = () => {
     setNumOfMembers((prevNum) => Math.max(prevNum - 1, 2));
   };
+
+  const tripDate = useRecoilValue(tripDateState);
+  const formattedTripDate =
+    tripDate.startDate && tripDate.endDate
+      ? `${format(tripDate.startDate, 'MM.dd', { locale: ko })} - ${format(
+          tripDate.endDate,
+          'MM.dd',
+          { locale: ko },
+        )}`
+      : '여행 날짜(선택)';
 
   if (showSelectDate) {
     return (
@@ -92,7 +106,7 @@ export const CreateTrip = () => {
           setShowSelectDate(true);
         }}
         isClickable>
-        <div className="p-2">여행 날짜 (선택)</div>
+        <div className="p-2">{formattedTripDate}</div>
       </InputField>
 
       <InputField

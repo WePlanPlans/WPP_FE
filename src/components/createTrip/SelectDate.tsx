@@ -1,16 +1,18 @@
-import { ButtonPrimary } from '@components/common/button/Button';
 import Calendar from '@components/DatePicker/Calendar';
+import { ButtonPrimary } from '@components/common/button/Button';
 import { BackIcon } from '@components/common/icons/Icons';
+import { tripDateState } from '@recoil/tripDate';
+import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 
-export const SelectDate = ({
-  onClose,
-  // onDatesSelected,
-}: {
-  onClose: () => void;
-  // onDatesSelected: (startDate: Date | null, endDate: Date | null) => void;
-}) => {
-  const handleDateSelect = (startDate: Date | null, endDate: Date | null) => {
-    // onDatesSelected(startDate, endDate);
+export const SelectDate = ({ onClose }: { onClose: () => void }) => {
+  const [, setTripDate] = useRecoilState(tripDateState);
+  const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(null);
+  const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
+
+  const handleComplete = () => {
+    setTripDate({ startDate: selectedStartDate, endDate: selectedEndDate });
+    onClose();
   };
 
   return (
@@ -18,9 +20,14 @@ export const SelectDate = ({
       <header className="mb-5 w-full bg-white">
         <BackIcon onClick={onClose} />
       </header>
-      <Calendar onDateSelect={handleDateSelect} />
+      <Calendar
+        onDateSelect={(startDate, endDate) => {
+          setSelectedStartDate(startDate);
+          setSelectedEndDate(endDate);
+        }}
+      />
       <div className="mt-auto">
-        <ButtonPrimary onClick={onClose}>완료</ButtonPrimary>
+        <ButtonPrimary onClick={handleComplete}>완료</ButtonPrimary>
       </div>
     </div>
   );

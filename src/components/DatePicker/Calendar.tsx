@@ -1,30 +1,32 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
+  addDays,
+  addMonths,
+  differenceInDays,
   format,
   getDaysInMonth,
-  addMonths,
-  startOfMonth,
-  isWithinInterval,
-  setDate,
   isSameDay,
-  differenceInDays,
-  addDays,
+  isWithinInterval,
+  startOfMonth,
   subDays,
 } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import 'tailwindcss/tailwind.css';
 
-interface CalendarProps {
-  onDateSelect: (startDate: Date | null, endDate: Date | null) => void;
-}
-
 const CALENDAR_LENGTH = 42;
-const DAY_OF_WEEK = 7;
+// const DAY_OF_WEEK = 7;
 const DAY_LIST = ['일', '월', '화', '수', '목', '금', '토'];
 
-const Calendar: React.FC<CalendarProps> = ({ onDateSelect }) => {
+const Calendar: React.FC<{
+  onDateSelect: (startDate: Date | null, endDate: Date | null) => void;
+}> = ({ onDateSelect }) => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
+
+  useEffect(() => {
+    onDateSelect(startDate, endDate);
+  }, [startDate, endDate, onDateSelect]);
+
   const currentDate = new Date();
   const [visibleMonths, setVisibleMonths] = useState<Date[]>([
     currentDate,
