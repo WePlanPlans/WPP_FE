@@ -83,3 +83,8 @@ export const toastPopUpState = atom({
     verb: '',
   },
 });
+
+export const inputFocusState = atom({
+  key: 'inputFocusState',
+  default: false,
+});

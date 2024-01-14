@@ -1,5 +1,11 @@
+import TripSectionTop from '@components/Trip/TripSectionTop';
+
 const Trip = () => {
-  return <div>여정 생성 완료 페이지</div>;
+  return (
+    <>
+      <TripSectionTop />
+    </>
+  );
 };
 
 export default Trip;

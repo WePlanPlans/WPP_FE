@@ -65,7 +65,7 @@ const SearchInput = () => {
         />
         {inputValue && (
           <div
-            className="absolute right-2 top-1/2 -translate-y-1/2 transform cursor-pointer"
+            className="absolute right-2 top-1/2 -translate-y-1/2 transform cursor-pointer rounded-full bg-gray3"
             onClick={clearInput}>
             <CloseIcon />
           </div>
