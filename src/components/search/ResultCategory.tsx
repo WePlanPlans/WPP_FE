@@ -1,7 +1,7 @@
 import { ButtonWhite } from '@components/common/button/Button';
-import { ResultItem } from './ResultItem';
 import { TourType } from '@/@types/tours.types';
 import { InfiniteQueryObserverResult } from '@tanstack/react-query';
+import { ResultItem } from './ResultItem';
 
 interface ResultCategoryProps {
   data: TourType[];

@@ -104,6 +104,7 @@ export default function ReviewComments() {
               }
             })}
           </div>
+          <div className="h-[70px]"></div>
         </InfiniteScroll>
       </div>
       <Modal isOpen={isModalOpen} closeModal={closeModal}>

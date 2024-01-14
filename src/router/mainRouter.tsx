@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import MainLayout from './routerLayout';
 import Main from '@pages/main/main.page';
 import { Search } from '@pages/search/search.page';
 import Detail from '@pages/detail/detail.page';
@@ -17,6 +16,8 @@ import {
   Mypage,
 } from '@pages/mypage';
 import useGetUserInfo from '@hooks/useGetUserInfo';
+import MainLayout from './routerLayout';
+import { CreateTrip } from '@pages/create/createTrip.page';
 
 const MainRouter = () => {
   useGetUserInfo();
@@ -29,6 +30,7 @@ const MainRouter = () => {
           <Route path="/search" element={<Search />} />
           <Route path="/reviewPosting/:id" element={<ReviewPosting />} />
           <Route path="/reviewComment/:id" element={<ReviewComment />} />
+          <Route path="/create" element={<CreateTrip />} />
           <Route path="/wishlist" element={<WishList />} />
           <Route path="/mytrip" element={<MyTripPage />} />
           <Route path="/myPageReview" element={<MyPageReview />} />

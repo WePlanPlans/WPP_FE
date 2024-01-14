@@ -44,3 +44,8 @@ export interface AuthPwInputBoxProps extends AuthInputBoxProps {
 export interface AuthPwCheckInputBoxProps extends AuthInputBoxProps {
   getValues: UseFormGetValues<any>;
 }
+
+export interface AuthNicknameInputBoxProps extends AuthInputBoxProps {
+  getValues: UseFormGetValues<any>;
+  setError: UseFormSetError<any>;
+}
