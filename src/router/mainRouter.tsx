@@ -5,6 +5,7 @@ import Detail from '@pages/detail/detail.page';
 import ReviewComment from '@pages/reviewComment/reviewComment.page';
 import ReviewPosting from '@pages/reviewPosting/reviewPosting.page';
 import WishList from '@pages/wishList/wishList.page';
+import MyTripPage from '@pages/myTrip/myTrip.page';
 import MyPageReview from '@pages/myPageReview/myPageReview.page';
 import { Signup, SignupSuccess, SignupSurvey, SignupInfo } from '@pages/signup';
 import { Login, LoginKakao } from '@pages/login';
@@ -31,6 +32,7 @@ const MainRouter = () => {
           <Route path="/reviewComment/:id" element={<ReviewComment />} />
           <Route path="/create" element={<CreateTrip />} />
           <Route path="/wishlist" element={<WishList />} />
+          <Route path="/mytrip" element={<MyTripPage />} />
           <Route path="/myPageReview" element={<MyPageReview />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signup/success" element={<SignupSuccess />} />
