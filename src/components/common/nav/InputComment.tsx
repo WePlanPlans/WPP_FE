@@ -10,12 +10,12 @@ import {
   // inputFocusState,
 } from '@recoil/review';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { getItem } from '@utils/localStorageFun';
 import {
   isModalOpenState,
   modalChildrenState,
   alertTypeState,
 } from '@recoil/modal';
+import { getMember } from '@api/member';
 
 interface InputCommentProps {
   classNameName?: string;
@@ -79,22 +79,26 @@ export const InputComment: React.FC<InputCommentProps> = () => {
   };
 
   const handleSubmit = async () => {
-    const token = getItem('accessToken');
-    if (token) {
-      if (isModifyingComment) {
-        await editReviewMutate({ comment, targetCommentId });
-        setIsModifyingComment(false);
-        // setInputFocus(false);
-      } else {
-        await postReviewMutate({ comment, reviewId });
+    try {
+      const res = await getMember();
+      if (res.data.status === 200) {
+        if (isModifyingComment) {
+          await editReviewMutate({ comment, targetCommentId });
+          setIsModifyingComment(false);
+          // setInputFocus(false);
+        } else {
+          await postReviewMutate({ comment, reviewId });
+        }
+        setComment('');
       }
-      setComment('');
-    } else {
+    } catch (err) {
+      console.error(err);
       setModalChildren('MyAlert');
       setAlertType('LoginComment');
       setIsModalOpen(true);
     }
   };
+
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       handleSubmit();
