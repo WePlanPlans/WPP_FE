@@ -1,4 +1,5 @@
 import Tab from '@components/common/tab/Tab';
+import TripPreference from './TripPreference';
 import TripInfo from './TripInfo';
 import { BackBox } from '@components/common';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +21,7 @@ const TripSectionTop = () => {
       <PlanTripButton />
       <Tab
         lists={['우리의 여행취향', '우리의 관심목록']}
-        contents={[<div>우리의 여행취향</div>, <div>우리의 관심목록</div>]}
+        contents={[<TripPreference />, <div>우리의 관심목록</div>]}
       />
     </div>
   );
