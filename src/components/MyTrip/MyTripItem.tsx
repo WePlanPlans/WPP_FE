@@ -1,4 +1,3 @@
-import { MyTripType } from '@/@types/trips.types';
 import { MoreIcon } from '@components/common/icons/Icons';
 
 interface MyTripItemProps {
@@ -16,6 +15,7 @@ const MyTripItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
   } = myTripList;
 
   const ACTIVE_TRIP = '여행 중';
+  const COMPLETED_TRIP = '여행 후';
 
   return (
     <div className="relative cursor-pointer pb-4">
@@ -33,12 +33,20 @@ const MyTripItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
         <div className="ml-[10px] flex flex-col items-start justify-between gap-[15px]">
           <div className="max-w-[300px]">
             <div
-              className={`inline-flex  ${
-                tripStatus === ACTIVE_TRIP ? 'bg-cyan-400' : 'border-cyan-400'
-              } h-[22px] items-center justify-center gap-[8px] rounded-2xl border border-solid border-cyan-400  px-[8px] py-[10px] pt-[11px]`}>
+              className={`inline-flex ${
+                tripStatus === ACTIVE_TRIP
+                  ? 'border-cyan-400 bg-cyan-400 '
+                  : tripStatus === COMPLETED_TRIP
+                    ? 'border-none bg-gray-200'
+                    : 'border-cyan-400 border-cyan-400 '
+              } h-[22px] items-center justify-center gap-[8px] rounded-2xl border border-solid px-[8px] py-[10px] pt-[11px]`}>
               <span
                 className={`text-xs font-semibold ${
-                  tripStatus === ACTIVE_TRIP ? 'text-white' : 'text-cyan-400'
+                  tripStatus === ACTIVE_TRIP
+                    ? 'text-white'
+                    : tripStatus === COMPLETED_TRIP
+                      ? 'text-gray4'
+                      : 'text-cyan-400'
                 }`}>
                 {tripStatus}
               </span>

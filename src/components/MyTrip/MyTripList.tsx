@@ -1,5 +1,4 @@
 import React from 'react';
-import { MyTripType } from '@/@types/trips.types';
 import InfiniteScroll from 'react-infinite-scroller';
 import { v4 as uuidv4 } from 'uuid';
 import ToursItemSkeleton from '@components/Tours/ToursItemSkeleton';
