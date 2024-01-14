@@ -9,16 +9,20 @@ import {
 import { InputField } from '@components/createTrip/InputField';
 import { SelectDestination } from '@components/createTrip/SelectDestination';
 import { tripDateState } from '@recoil/tripDate';
-import { format } from 'date-fns';
-import { ko } from 'date-fns/locale';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { SelectDate } from '../../components/createTrip/SelectDate';
 import { postTrips } from '@api/trips';
+import useCounter from '@hooks/useCounter';
+import { formatDate } from '@utils/formatDate';
 
 export const CreateTrip = () => {
   const [title, setTitle] = useState('');
-  const [numOfMembers, setNumOfMembers] = useState(2);
+  const [numOfMembers, increaseNumOfMembers, decreaseNumOfMembers] = useCounter(
+    2,
+    2,
+    12,
+  ); // (기본값, 최솟값, 최댓값)
   const [showSelectDate, setShowSelectDate] = useState(false);
   const [showSelectDestination, setShowSelectDestination] = useState(false);
 
@@ -33,29 +37,24 @@ export const CreateTrip = () => {
         endDate: tripDate.endDate
           ? tripDate.endDate.toISOString().split('T')[0]
           : null,
+        area: null,
+        subarea: null,
       };
 
       const response = await postTrips(tripRequestData);
       console.log('전송 완료: ', response);
-      // 리코일 초기화
     } catch (error) {
       console.error('전송 실패: ', error);
     }
   };
 
-  const handleIncrease = () => {
-    setNumOfMembers((prevNum) => prevNum + 1);
-  };
-
-  const handleDecrease = () => {
-    setNumOfMembers((prevNum) => Math.max(prevNum - 1, 2));
-  };
-
   const tripDate = useRecoilValue(tripDateState);
   const formattedTripDate =
     tripDate.startDate && tripDate.endDate
-      ? `${format(tripDate.startDate, 'MM.dd', { locale: ko })} - 
-      ${format(tripDate.endDate, 'MM.dd', { locale: ko })}`
+      ? `${formatDate(tripDate.startDate, 'MM.dd')} - ${formatDate(
+          tripDate.endDate,
+          'MM.dd',
+        )}`
       : '여행 날짜(선택)';
 
   if (showSelectDate) {
@@ -108,12 +107,12 @@ export const CreateTrip = () => {
         <div className="ml-auto flex">
           <button
             className="ml-2 flex size-[24px] items-center justify-center rounded-full bg-gray3 text-white"
-            onClick={handleDecrease}>
+            onClick={decreaseNumOfMembers}>
             -
           </button>
           <button
             className="ml-2 flex size-[24px] items-center justify-center rounded-full bg-gray3 text-white"
-            onClick={handleIncrease}>
+            onClick={increaseNumOfMembers}>
             +
           </button>
         </div>
