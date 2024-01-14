@@ -425,7 +425,7 @@ export const PlusIcon: React.FC<IconProps> = ({
         stroke={color}
         strokeWidth="1.5"
         strokeLinecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
       <path
         d="M10.7534 7.17908L10.7534 14.707"
