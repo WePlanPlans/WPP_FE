@@ -17,8 +17,10 @@ import useCounter from '@hooks/useCounter';
 import { formatDate } from '@utils/formatDate';
 import { useQuery } from '@tanstack/react-query';
 import { getMemberTrips } from '@api/member';
+import { useNavigate } from 'react-router-dom';
 
 export const CreateTrip = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [numOfMembers, increaseNumOfMembers, decreaseNumOfMembers] = useCounter(
     2,
@@ -53,6 +55,8 @@ export const CreateTrip = () => {
 
       const response = await postTrips(tripRequestData);
       console.log('전송 완료: ', response);
+      const tripId = response.data.data.tripId;
+      navigate('/trip/' + tripId);
     } catch (error) {
       console.error('전송 실패: ', error);
     }
