@@ -1,4 +1,4 @@
-export interface TripRequest {
+interface TripRequest {
   tripName: string;
   numberOfPeople: number;
   startDate: string;
@@ -7,7 +7,7 @@ export interface TripRequest {
   subarea: string;
 }
 
-export interface MyTripType {
+interface MyTripType {
   tripId: number;
   tripName: string;
   startDate: string;
