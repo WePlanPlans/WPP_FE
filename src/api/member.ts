@@ -44,9 +44,13 @@ export const deleteMember = async () => {
 };
 
 // 나의 여정 조회
-export const getMemberTrips = async () => {
-  const res = await authClient.get(`member/trips`);
-  return res;
+export const getMemberTrips = async (page = 0, size = 10) => {
+  try {
+    const res = await authClient.get(`trips?&page=${page}&size=${size}`);
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 // 나의 관심 여행지 조회
