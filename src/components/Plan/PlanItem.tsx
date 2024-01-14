@@ -19,6 +19,7 @@ import {
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import { PlusIcon } from '@components/common/icons/Icons';
 import { useNavigate } from 'react-router-dom';
+import TripMap from './TripMap';
 
 const tripId = 1;
 const visitDate = '2024-01-03';
@@ -37,6 +38,10 @@ const PlanItem = () => {
 
   if (tripInfo != null) {
     console.log(tripInfo);
+  }
+  
+  if (tripPath != null) {
+    console.log(tripPath);
   }
   
   const socketConnect = () => {
@@ -86,6 +91,7 @@ const PlanItem = () => {
   }, []);
   return (
     <>
+    {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
       <SubmitBtn onClick={() => navigate('./place')}>
         <div className="flex items-center justify-center gap-[5px]">
           <PlusIcon color="white" />

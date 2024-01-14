@@ -34,6 +34,21 @@ export type subItemRes = {
   } | null;
 };
 
+export type subPath = {
+  fromSeqNum: number;
+  toSeqNum: number;
+  fromLongitude: string;
+  fromLatitude: string;
+  toLongitude: string;
+  toLatitude: string;
+  transportation: string;
+  pathInfo: {
+    price: number;
+    totalDistance: number;
+    totalTime: number;
+  }
+};
+
 export type subPathRes = {
   status: number;
   message: string;
