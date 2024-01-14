@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { getMemberTours } from '@api/member';
 import WishCategory from './WishCategory';
 import WishList from './WishList';
 import NoDataMessage from '@components/common/noData/NoDataMessage';
+import { getMemberTours } from '@api/member';
 import { HeartIcon } from '@components/common/icons/Icons';
 
 const Wish = () => {

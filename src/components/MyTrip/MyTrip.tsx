@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { getMemberTrips } from '@api/member';
-import NoDataMessage from '@components/common/noData/NoDataMessage';
 import MyTripList from './MyTripList';
+import NoDataMessage from '@components/common/noData/NoDataMessage';
+import { getMemberTrips } from '@api/member';
 import { PenIcon } from '@components/common/icons/Icons';
 
 const MyTrip = () => {
@@ -33,10 +33,11 @@ const MyTrip = () => {
   }
 
   return (
-    <div className="mt-3 min-h-[100vh]">
-      <div className=" mb-6 bg-white py-0.5">
-        <h1 className="title2 pt-3">나의 여정</h1>
+    <div className="mt-3 min-h-[100vh] ">
+      <div className=" sticky top-0 z-[105] bg-white py-[15px]">
+        <h1 className="title2">나의 여정</h1>
       </div>
+
       {data?.pages[0].data.content.length > 0 ? (
         <MyTripList
           myTripsData={data || { pages: [] }}
