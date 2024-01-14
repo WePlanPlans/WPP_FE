@@ -93,4 +93,5 @@ export type SocketContextType = {
   tripPath: subPathRes | null;
   tripMember: subMemberRes | null;
   tripBudget: subBudgetRes | null;
+  callBackPub: (callback: () => void) => void;
 };

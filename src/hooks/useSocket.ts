@@ -5,7 +5,6 @@ import {
   subPath,
   subMember,
   subBudget,
-  pubEnterMember,
 } from '@api/socket';
 import {
   subInfoRes,
@@ -24,17 +23,21 @@ export const socketContext = createContext<SocketContextType>({
   tripPath: null,
   tripMember: null,
   tripBudget: null,
+  callBackPub: () => {},
 });
 
-const tripId = '1';
-const visitDate = '2024-01-03';
-
-export const useSocket = () => {
+export const useSocket = (tripId: string, visitDate: string) => {
   const [tripInfo, setTripInfo] = useState<subInfoRes | null>(null);
   const [tripItem, setTripItem] = useState<subItemRes | null>(null);
   const [tripPath, setTripPath] = useState<subPathRes | null>(null);
   const [tripMember, setTripMember] = useState<subMemberRes | null>(null);
   const [tripBudget, setTripBudget] = useState<subBudgetRes | null>(null);
+
+  let socketCallback: (() => void) | null = null;
+
+  const callBackPub = (callback: () => void): void => {
+    socketCallback = callback;
+  };
 
   const socketConnect = () => {
     socketClient.onConnect = () => {
@@ -67,17 +70,10 @@ export const useSocket = () => {
           setTripBudget(res);
         }
       });
-      const memberId = {
-        memberId: 1,
-      };
 
-      pubEnterMember(memberId, visitDate);
-
-      console.log(tripInfo);
-      console.log(tripItem);
-      console.log(tripPath);
-      console.log(tripMember);
-      console.log(tripBudget);
+      if (socketCallback) {
+        socketCallback();
+      }
     };
 
     socketClient.activate();
@@ -92,5 +88,20 @@ export const useSocket = () => {
     };
   }, []);
 
-  return { tripInfo, tripItem, tripPath, tripMember, tripBudget };
+  return { tripInfo, tripItem, tripPath, tripMember, tripBudget, callBackPub };
 };
+
+// // 콜백들을 저장할 배열
+// let socketCallbacks = [];
+
+// // 콜백을 배열에 추가하는 함수
+// const callBackPub = (callback) => {
+//   socketCallbacks.push(callback);
+// };
+
+// // 모든 콜백을 실행하는 함수
+// const executeCallbacks = () => {
+//   socketCallbacks.forEach(callback => {
+//     callback();
+//   });
+// };

@@ -4,21 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import PlanItemBox from './PlanItemBox';
 import { useContext } from 'react';
 import { socketContext } from '@hooks/useSocket';
-import { pubEnterMember } from '@api/socket';
 
-const memberId = {
-  memberId: 1,
-};
-const visitDate = '2024-01-04';
+
+const tripId = '1';
 
 const PlanItem = () => {
   const navigate = useNavigate();
   const { tripItem } = useContext(socketContext);
-
-  // console.log(tripItem);
-
-  // pubEnterMember(memberId, visitDate);
-  // console.log('펍후', tripItem);
 
   return (
     <>
