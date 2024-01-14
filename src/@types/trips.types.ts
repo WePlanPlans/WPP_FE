@@ -6,3 +6,13 @@ interface TripRequest {
   area: string;
   subarea: string;
 }
+
+interface MyTripType {
+  tripId: number;
+  tripName: string;
+  startDate: string;
+  endDate: string;
+  numberOfTripMembers: number;
+  tripStatus: string;
+  tripThumbnailUrl: string;
+}
