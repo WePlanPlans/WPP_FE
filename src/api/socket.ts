@@ -6,7 +6,7 @@ export const socketClient = new StompJs.Client({
 
 // 소켓 구독
 // 여정 기본 정보
-export const subInfo = (tripId: number, subInfoMessage: subInfoMessage) => {
+export const subInfo = (tripId: string, subInfoMessage: subInfoMessage) => {
   socketClient.subscribe(`/sub/${tripId}/info`, (message) => {
     const res = JSON.parse(message.body);
     subInfoMessage(res);
@@ -15,7 +15,7 @@ export const subInfo = (tripId: number, subInfoMessage: subInfoMessage) => {
 
 // 방문 날짜별 여정 여행 아이템 정보
 export const subItem = (
-  tripId: number,
+  tripId: string,
   visitDate: string,
   subItemMessage: subItemMessage,
 ) => {
@@ -27,7 +27,7 @@ export const subItem = (
 
 // 방문 날짜별 여정 경로 정보
 export const subPath = (
-  tripId: number,
+  tripId: string,
   visitDate: string,
   subPathMessage: subPathMessage,
 ) => {
@@ -39,7 +39,7 @@ export const subPath = (
 
 // 연결된 멤버 정보
 export const subMember = (
-  tripId: number,
+  tripId: string,
   subMemberMessage: subMemberMessage,
 ) => {
   socketClient.subscribe(`/sub/${tripId}/connectedMember`, (message) => {
@@ -50,7 +50,7 @@ export const subMember = (
 
 // 목표 경비, 실제 발생 비용
 export const subBudget = (
-  tripId: number,
+  tripId: string,
   subBudgetMessage: subBudgetMessage,
 ) => {
   socketClient.subscribe(`/sub/${tripId}/budget`, (message) => {
@@ -61,7 +61,7 @@ export const subBudget = (
 
 // 소켓 전송
 // 여정 기본 정보 변경 이벤트 발생시
-export const pubInfo = (pubInfo: pubInfo, tripId: number) => {
+export const pubInfo = (pubInfo: pubInfo, tripId: string) => {
   socketClient.publish({
     destination: `/pub/trips/${tripId}/info`,
     body: JSON.stringify(pubInfo),
@@ -71,7 +71,7 @@ export const pubInfo = (pubInfo: pubInfo, tripId: number) => {
 // 여정에 여행 아이템 추가 이벤트 발생시
 export const pubAddTripItem = (
   pubAddTripItem: pubAddTripItem,
-  tripId: number,
+  tripId: string,
 ) => {
   socketClient.publish({
     destination: `/pub/trips/${tripId}/addTripItems`,
@@ -82,7 +82,7 @@ export const pubAddTripItem = (
 // 여행 아이템 예상 가격 업데이트 이벤트 발생시
 export const pubUpdatePrice = (
   pubUpdatePrice: pubUpdatePrice,
-  tripItemId: number,
+  tripItemId: string,
 ) => {
   socketClient.publish({
     destination: `/pub/tripItems/${tripItemId}/updatePrice`,
@@ -93,7 +93,7 @@ export const pubUpdatePrice = (
 // 여행 아이템 방문 순서 변경 이벤트 발생시
 export const pubUpdateTripItem = (
   pubUpdateTripItem: pubUpdateTripItem,
-  tripId: number,
+  tripId: string,
 ) => {
   socketClient.publish({
     destination: `/pub/trips/${tripId}/updateTripItemOrder`,
@@ -131,7 +131,7 @@ export const pubDeleteItem = (tripItemId: number) => {
 };
 
 // 멤버 여정 페이지로 입장 이벤트 발생시
-export const pubConnectMember = (pubMember: pubMember, tripId: number) => {
+export const pubConnectMember = (pubMember: pubMember, tripId: string) => {
   socketClient.publish({
     destination: `/pub/trips/${tripId}/connectMember`,
     body: JSON.stringify(pubMember),
@@ -139,7 +139,7 @@ export const pubConnectMember = (pubMember: pubMember, tripId: number) => {
 };
 
 // 멤버 여정 페이지 퇴장 이벤트 발생시
-export const pubDisconnectMember = (pubMember: pubMember, tripId: number) => {
+export const pubDisconnectMember = (pubMember: pubMember, tripId: string) => {
   socketClient.publish({
     destination: `/pub/trips/${tripId}/disconnectMember`,
     body: JSON.stringify(pubMember),
@@ -147,7 +147,7 @@ export const pubDisconnectMember = (pubMember: pubMember, tripId: number) => {
 };
 
 // 여정 편집 페이지 입장 이벤트 발생시(모든 sub 다받음)
-export const pubEnterMember = (pubMember: pubMember, tripId: number) => {
+export const pubEnterMember = (pubMember: pubMember, tripId: string) => {
   socketClient.publish({
     destination: `/pub/trips/${tripId}/enterMember`,
     body: JSON.stringify(pubMember),
@@ -157,7 +157,7 @@ export const pubEnterMember = (pubMember: pubMember, tripId: number) => {
 // 날짜별 여행 아이템 & 경로 조회
 export const pubGetPathAndItems = (
   pubGetPathAndItems: pubVisitDate,
-  tripId: number,
+  tripId: string,
 ) => {
   socketClient.publish({
     destination: `/pub/trips/${tripId}/getPathAndItems`,
