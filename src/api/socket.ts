@@ -6,37 +6,56 @@ export const socketClient = new StompJs.Client({
 
 // 소켓 구독
 // 여정 기본 정보
-export const subInfo = (tripId: number) => {
+export const subInfo = (tripId: number, subInfoMessage: subInfoMessage) => {
   socketClient.subscribe(`/sub/${tripId}/info`, (message) => {
-    console.log(`기본정보 변경 이벤트:`, message.body);
+    const res = JSON.parse(message.body);
+    subInfoMessage(res);
   });
 };
 
 // 방문 날짜별 여정 여행 아이템 정보
-export const subItem = (tripId: number, visitDate: string) => {
+export const subItem = (
+  tripId: number,
+  visitDate: string,
+  subItemMessage: subItemMessage,
+) => {
   socketClient.subscribe(`/sub/${tripId}/tripItems/${visitDate}`, (message) => {
-    console.log(`방문날짜별 여정 여행 아이템 정보:`, message.body);
+    const res = JSON.parse(message.body);
+    subItemMessage(res);
   });
 };
 
 // 방문 날짜별 여정 경로 정보
-export const subPath = (tripId: number, visitDate: string) => {
+export const subPath = (
+  tripId: number,
+  visitDate: string,
+  subPathMessage: subPathMessage,
+) => {
   socketClient.subscribe(`/sub/${tripId}/path/${visitDate}`, (message) => {
-    console.log(`방문날짜별 여정경로 정보:`, message.body);
+    const res = JSON.parse(message.body);
+    subPathMessage(res);
   });
 };
 
 // 연결된 멤버 정보
-export const subMember = (tripId: number) => {
+export const subMember = (
+  tripId: number,
+  subMemberMessage: subMemberMessage,
+) => {
   socketClient.subscribe(`/sub/${tripId}/connectedMember`, (message) => {
-    console.log(`연결된 멤버 정보  :`, message.body);
+    const res = JSON.parse(message.body);
+    subMemberMessage(res);
   });
 };
 
 // 목표 경비, 실제 발생 비용
-export const subBudget = (tripId: number) => {
+export const subBudget = (
+  tripId: number,
+  subBudgetMessage: subBudgetMessage,
+) => {
   socketClient.subscribe(`/sub/${tripId}/budget`, (message) => {
-    console.log(`목표 경비, 실제 발생 비용:`, message.body);
+    const res = JSON.parse(message.body);
+    subBudgetMessage(res);
   });
 };
 
