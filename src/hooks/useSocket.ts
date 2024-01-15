@@ -6,6 +6,7 @@ import {
   subMember,
   subBudget,
   pubEnterMember,
+  pubGetPathAndItems,
 } from '@api/socket';
 import {
   subInfoRes,
@@ -71,7 +72,8 @@ export const useSocket = () => {
         memberId: 1,
       };
 
-      pubEnterMember(memberId, visitDate);
+      pubEnterMember(memberId, '1');
+      pubGetPathAndItems({ visitDate: '2024-01-04' }, '1');
 
       console.log(tripInfo);
       console.log(tripItem);

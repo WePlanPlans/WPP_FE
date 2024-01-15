@@ -5,25 +5,14 @@ import TripMap from './TripMap';
 import PlanItemBox from './PlanItemBox';
 import { useContext } from 'react';
 import { socketContext } from '@hooks/useSocket';
-import { pubEnterMember } from '@api/socket';
-
-const memberId = {
-  memberId: 1,
-};
-const visitDate = '2024-01-04';
 
 const PlanItem = () => {
   const navigate = useNavigate();
   const { tripItem, tripPath } = useContext(socketContext);
 
-  // console.log(tripItem);
-
-  // pubEnterMember(memberId, visitDate);
-  // console.log('펍후', tripItem);
-
   return (
     <>
-    {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
+      {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
       <div className="flex flex-col gap-[5px]">
         {tripItem?.data?.tripItems.map((item) => (
           <PlanItemBox key={item.tripItemId} item={item} />
