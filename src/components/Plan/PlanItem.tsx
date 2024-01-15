@@ -4,13 +4,24 @@ import { useNavigate } from 'react-router-dom';
 import PlanItemBox from './PlanItemBox';
 import { useContext } from 'react';
 import { socketContext } from '@hooks/useSocket';
-
-
-const tripId = '1';
+import { pubEnterMember } from '@api/socket';
+import { useEffect } from 'react';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import { tripIdState, memberIdState } from '@recoil/socket';
 
 const PlanItem = () => {
   const navigate = useNavigate();
-  const { tripItem } = useContext(socketContext);
+  const tripId = useRecoilValue(tripIdState);
+  const pubMember = useRecoilValue(memberIdState);
+  const { callBackPub, tripItem } = useContext(socketContext);
+
+  if (!pubMember || !tripId) {
+    return <div>에러</div>;
+  }
+
+  useEffect(() => {
+    callBackPub(() => pubEnterMember(pubMember, tripId));
+  }, []);
 
   return (
     <>

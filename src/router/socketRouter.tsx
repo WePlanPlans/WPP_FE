@@ -6,27 +6,20 @@ import PlanPlaceSearch from '@pages/plan/planPlaceSearch.page';
 import Trip from '@pages/trip/trip.page';
 import MainLayout from './routerLayout';
 import { useParams } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { tripIdState } from '@recoil/socket';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import { tripIdState, visitDateState } from '@recoil/socket';
 import { useEffect } from 'react';
 
 const SocketRoutes = () => {
-  const { id: tripId } = useParams();
-  const [currentTripId, setCurrentTripId] = useRecoilState(tripIdState);
+  const tripId = useRecoilValue(tripIdState);
+  const visitDate = useRecoilValue(visitDateState);
 
-  useEffect(() => {
-    if (tripId) {
-      setCurrentTripId(tripId);
-    }
-  }, [tripId]);
-
-  const visitDate = null;
+  if (!tripId || !visitDate) {
+    return <div>에러</div>;
+  }
 
   return (
-    <socketContext.Provider
-      value={
-        currentTripId && visitDate ? useSocket(currentTripId, visitDate) : null
-      }>
+    <socketContext.Provider value={useSocket(tripId, visitDate?.visitDate)}>
       <Routes>
         <Route path="/plan" element={<PlanTrip />} />
         <Route path="/plan/place" element={<PlanPlaceTrip />} />
