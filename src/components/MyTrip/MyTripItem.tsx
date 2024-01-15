@@ -42,8 +42,7 @@ const MyTripItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
       <SwipeableListItem trailingActions={trailingActions()}>
         <div
           className="relative mb-[10px] cursor-pointer"
-          // 아이템 클릭시 이동 위치
-          onClick={() => navigate('/')}>
+          onClick={() => navigate(`/trip/${tripId}`)}>
           <div className="flex min-h-[72px]">
             <div>
               <img

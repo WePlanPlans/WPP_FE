@@ -15,8 +15,7 @@ const MyTripIngItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
   return (
     <div
       className="relative flex h-16 w-full cursor-pointer items-center rounded-lg border border-solid border-cyan-400 px-3"
-      // 아이템 클릭시 이동 위치
-      onClick={() => navigate('/')}>
+      onClick={() => navigate(`/trip/${tripId}`)}>
       <div className="flex">
         <div>
           <img
