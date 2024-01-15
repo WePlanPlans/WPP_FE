@@ -50,7 +50,9 @@ const UserInfoForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onInfoSubmit)} className="w-full">
+    <form
+      onSubmit={handleSubmit(onInfoSubmit)}
+      className="flex h-[85vh] w-full flex-col justify-between">
       <div>
         <div className="mb-4 mt-6">
           <UserInfoImg
@@ -80,11 +82,17 @@ const UserInfoForm = () => {
             label="성별"
             text={'성별을 선택해주세요.'}
             options={genderArr}
+            name={'genderType'}
+            register={register}
+            setValue={setValue}
           />
           <AuthDropDown
             label="연령대"
             text={'연령대를 선택해주세요.'}
             options={ageArr}
+            name={'ageType'}
+            register={register}
+            setValue={setValue}
           />
         </div>
       </div>
