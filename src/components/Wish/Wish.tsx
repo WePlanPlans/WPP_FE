@@ -45,7 +45,7 @@ const Wish = () => {
   return (
     <div className="mt-3 min-h-[100vh]">
       <div className="sticky top-0 z-[105] bg-white py-0.5">
-        <h1 className="title2 pt-3">나의 관심 여행지</h1>
+        <h1 className="title2 pt-3">나의 관심 목록</h1>
         <WishCategory onCategoryClick={handleCategoryClick} />
       </div>
 
@@ -59,7 +59,7 @@ const Wish = () => {
         />
       ) : (
         <NoDataMessage
-          message1="저장된 관심 여행지가 없습니다."
+          message1="저장된 관심 목록이 없습니다."
           message2="가고 싶은 장소를 저장해보세요!"
           icon={<HeartIcon size={44} fill="#EDEDED" color="#EDEDED" />}
         />

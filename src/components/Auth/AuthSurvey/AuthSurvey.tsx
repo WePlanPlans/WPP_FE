@@ -16,9 +16,8 @@ const AuthSurvey = ({ path }: Props) => {
   const {
     register,
     handleSubmit,
-    watch,
     setValue,
-    formState: { isDirty },
+    formState: { isDirty, isValid },
   } = useForm<Survey>();
   const navigate = useNavigate();
   const [userInfo, _] = useRecoilState(UserInfoState);
@@ -72,9 +71,7 @@ const AuthSurvey = ({ path }: Props) => {
           </fieldset>
         ))}
       </div>
-      <SubmitBtn isActive={isDirty && Object.keys(watch()).length !== 0}>
-        완료
-      </SubmitBtn>
+      <SubmitBtn isActive={isDirty && isValid}>완료</SubmitBtn>
     </form>
   );
 };
