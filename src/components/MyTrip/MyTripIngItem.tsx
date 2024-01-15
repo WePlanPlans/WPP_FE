@@ -11,7 +11,6 @@ const MyTripIngItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
 
   const navigate = useNavigate();
   const tripDuration = calculateTripDuration(startDate, endDate);
-  console.log(tripId);
 
   return (
     <div
