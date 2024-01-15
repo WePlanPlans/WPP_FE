@@ -44,7 +44,7 @@ export const deleteMember = async () => {
 };
 
 // 나의 여정 조회
-export const getMemberTrips = async (page?: number, size?: number) => {
+export const getMemberTrips = async (page = 0, size = 10) => {
   try {
     const res = await authClient.get(`trips?&page=${page}&size=${size}`);
     return res.data;

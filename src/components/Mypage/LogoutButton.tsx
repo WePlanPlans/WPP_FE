@@ -2,9 +2,11 @@ import { postLogout } from '@api/auth';
 import Alert from '@components/common/alert/Alert';
 import { UserInfoState } from '@recoil/Auth.atom';
 import { removeItem } from '@utils/localStorageFun';
+import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
 const LogoutButton = () => {
+  const navigate = useNavigate();
   const setUserInfo = useSetRecoilState(UserInfoState);
 
   const onLogoutClick = async (e: any) => {
@@ -18,6 +20,7 @@ const LogoutButton = () => {
       if (res.data === 'LOGOUT!') {
         setUserInfo(null);
         removeItem('accessToken');
+        navigate('/');
       }
     } catch (err) {
       console.error(err);

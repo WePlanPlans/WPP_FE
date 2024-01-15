@@ -8,6 +8,7 @@ import {
 } from '@components/Auth';
 import { BackBox } from '@components/common';
 import SubmitBtn from '@components/common/button/SubmitBtn';
+import { CheckboxIcon } from '@components/common/icons/Icons';
 import { setItem } from '@utils/localStorageFun';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -84,6 +85,34 @@ const Signup = () => {
         />
 
         <div className="mt-auto">
+          <input
+            type="checkbox"
+            id="termsAgreement"
+            className="hidden"
+            {...register('checkbox', { required: true })}
+          />
+          <label
+            htmlFor="termsAgreement"
+            className="mb-2 flex items-start gap-2.5">
+            <div className="checked:text-main2">
+              <CheckboxIcon fill={watch('checkbox') ? '#29DDF6' : '#D7D7D7'} />
+            </div>
+            <p className="body6 leading-5 text-gray4">
+              <a href="/" className="underline underline-offset-2">
+                위플랜플랜스 이용약관
+              </a>
+              ,{' '}
+              <a href="/" className="underline underline-offset-2">
+                개인정보 수집 및 이용
+              </a>
+              ,{' '}
+              <a href="/" className="underline underline-offset-2">
+                개인정보 제공 내용
+              </a>
+              을 확인 하였으며,{' '}
+              <strong className="font-semibold">동의합니다.</strong>
+            </p>
+          </label>
           <SubmitBtn isActive={isValid}>완료</SubmitBtn>
         </div>
       </form>
