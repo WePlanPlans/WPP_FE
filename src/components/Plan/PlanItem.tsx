@@ -1,14 +1,28 @@
 import SubmitBtn from '@components/common/button/SubmitBtn';
-import { PlusIcon, CarIcon, BusIcon } from '@components/common/icons/Icons';
+import { PlusIcon } from '@components/common/icons/Icons';
 import { useNavigate } from 'react-router-dom';
 import TripMap from './TripMap';
 import PlanItemBox from './PlanItemBox';
 import { useContext } from 'react';
 import { socketContext } from '@hooks/useSocket';
+import { pubEnterMember } from '@api/socket';
+import { useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
+import { tripIdState, memberIdState } from '@recoil/socket';
 
 const PlanItem = () => {
   const navigate = useNavigate();
-  const { tripItem, tripPath } = useContext(socketContext);
+  const tripId = useRecoilValue(tripIdState);
+  const pubMember = useRecoilValue(memberIdState);
+  const { callBackPub, tripItem, tripPath } = useContext(socketContext);
+
+  if (!pubMember || !tripId) {
+    return <div>에러</div>;
+  }
+
+  useEffect(() => {
+    callBackPub(() => pubEnterMember(pubMember, tripId));
+  }, []);
 
   return (
     <>
