@@ -3,13 +3,12 @@ import { Map, MapMarker, Polyline, useKakaoLoader } from 'react-kakao-maps-sdk';
 
 const VITE_KAKAO_MAP_API_KEY = import.meta.env.VITE_KAKAO_MAP_API_KEY;
 
-
 const TripMap = ({ paths }: { paths: subPath[] }) => {
   const firstPath = paths[0];
   const latitude = firstPath?.fromLatitude;
   const longitude = firstPath?.fromLongitude;
 
-  const defaultPosition = {lat: Number(latitude), lng: Number(longitude)};
+  const defaultPosition = { lat: Number(latitude), lng: Number(longitude) };
 
   const getCenterPosition = () => {
     if (paths.length === 0) {
@@ -19,14 +18,14 @@ const TripMap = ({ paths }: { paths: subPath[] }) => {
     let totalLat = 0;
     let totalLng = 0;
 
-    paths.forEach(path => {
+    paths.forEach((path) => {
       totalLat += Number(path.fromLatitude);
       totalLng += Number(path.fromLongitude);
     });
 
     return {
       lat: totalLat / paths.length,
-      lng: totalLng / paths.length
+      lng: totalLng / paths.length,
     };
   };
 
@@ -35,7 +34,7 @@ const TripMap = ({ paths }: { paths: subPath[] }) => {
   const [_] = useKakaoLoader({
     appkey: VITE_KAKAO_MAP_API_KEY,
   });
-  
+
   const MapStyle = {
     width: '100%',
     height: '180px',
@@ -44,40 +43,56 @@ const TripMap = ({ paths }: { paths: subPath[] }) => {
     transition: 'height 0.3s ease-in-out',
   };
 
-   const polylinePath = paths.map(path => ({
+  // polylinePath를 생성하는 로직
+  const polylinePath = paths.map((path) => ({
     lat: Number(path.fromLatitude),
     lng: Number(path.fromLongitude),
   }));
 
+  // 마지막 경로의 toLatitude와 toLongitude 추가
+  if (paths.length > 0) {
+    const lastPath = paths[paths.length - 1];
+    polylinePath.push({
+      lat: Number(lastPath.toLatitude),
+      lng: Number(lastPath.toLongitude),
+    });
+  }
+
   return (
-   <div className="flex justify-center">
+    <div className="flex justify-center">
       <Map
         key={VITE_KAKAO_MAP_API_KEY}
         center={centerPosition}
         style={MapStyle}
-        level={20}
+        level={10}
         className="relative rounded-lg object-fill">
         {paths.map((path, index) => (
           <div key={index}>
-          <MapMarker
-            key={index}
-            position={{
-              lat: Number(path.fromLatitude),
-              lng: Number(path.fromLongitude),
-            }}
-          />
-          <Polyline
-          path={polylinePath}
-          strokeWeight={2}
-          strokeColor={'black'} 
-          strokeOpacity={0.1} 
-          strokeStyle={'longdash'} 
-          />
+            <MapMarker
+              position={{
+                lat: Number(path.fromLatitude),
+                lng: Number(path.fromLongitude),
+              }}
+            />
+            <MapMarker
+              position={{
+                lat: Number(path.toLatitude),
+                lng: Number(path.toLongitude),
+              }}
+            />
+            <Polyline
+              path={polylinePath}
+              strokeWeight={2}
+              strokeColor={'black'}
+              strokeOpacity={0.5}
+              strokeStyle={'longdash'}
+            />
           </div>
         ))}
+        <button>범위 재설정하기</button>
       </Map>
     </div>
-  )
-}
+  );
+};
 
-export default TripMap
+export default TripMap;
