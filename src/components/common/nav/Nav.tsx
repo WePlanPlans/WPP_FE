@@ -1,5 +1,11 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CalendarIcon, HeartIcon, HomeIcon, UserIcon } from '../icons/Icons';
+import {
+  CalendarIcon,
+  CalendarIcon2,
+  HeartIcon,
+  HomeIcon,
+  UserIcon,
+} from '../icons/Icons';
 import { useEffect, useState } from 'react';
 import Alert from '../alert/Alert';
 
@@ -38,12 +44,37 @@ const Nav = () => {
           </div>
           <p className="caption1 mt-[3px] text-center">홈</p>
         </div>
-        <div
-          onClick={() => navigate('/')}
-          className="cursor-pointer flex-col items-center justify-center px-2">
-          <CalendarIcon />
-          <p className="caption1 mt-[5px] text-center text-xs/[11px]">일정</p>
-        </div>
+
+        {isLoggedIn ? (
+          <div
+            onClick={() => navigate('/mytrip')}
+            className="cursor-pointer flex-col items-center justify-center px-2">
+            <div className="flex justify-center">
+              {isActive('/mytrip') ? <CalendarIcon2 /> : <CalendarIcon />}
+            </div>
+            <p className="caption1 mt-[4px] text-center text-xs/[11px]">여정</p>
+          </div>
+        ) : (
+          <Alert
+            title={'로그인'}
+            message={
+              <>
+                나의 여정 조회를 위해 로그인이 필요합니다.
+                <br />
+                로그인 하시겠습니까?
+              </>
+            }
+            onConfirm={handleConfirm}>
+            <div className="cursor-pointer flex-col items-center justify-center px-2">
+              <div className="flex justify-center">
+                <CalendarIcon fill={isActive('/mytrip') ? '#1E1E1E' : 'none'} />
+              </div>
+              <p className="caption1 mt-[4px] text-center text-xs/[11px]">
+                여정
+              </p>
+            </div>
+          </Alert>
+        )}
 
         {isLoggedIn ? (
           <div

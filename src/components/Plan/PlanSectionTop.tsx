@@ -7,6 +7,7 @@ import PlanItem from './PlanItem';
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();
+
   return (
     <div className="min-h-screen">
       <BackBox
@@ -22,6 +23,7 @@ const PlanSectionTop = () => {
         lists={['Day1', 'Day2', 'Day3']}
         contents={[<div>Day1</div>, <div>Day2</div>, <div>Day3</div>]}
       />
+
       <PlanItem />
     </div>
   );

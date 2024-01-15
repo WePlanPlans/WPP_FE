@@ -20,18 +20,20 @@ export type subItemRes = {
   data: {
     tripId: number;
     visitDate: string;
-    tripItems: {
-      tripItemId: number;
-      tourItemId: number;
-      name: string;
-      thumbnailUrl: string;
-      category: string;
-      transportation: string;
-      seqNum: number;
-      visitDate: string;
-      price: number;
-    }[];
+    tripItems: TripItem[];
   } | null;
+};
+
+export type TripItem = {
+  tripItemId: number;
+  tourItemId: number;
+  name: string;
+  thumbnailUrl: string;
+  category: string;
+  transportation: string;
+  seqNum: number;
+  visitDate: string;
+  price: number;
 };
 
 export type subPathRes = {
@@ -83,4 +85,13 @@ export type subBudgetRes = {
     budget: number;
     calculatedPrice: number;
   } | null;
+};
+
+export type SocketContextType = {
+  tripInfo: subInfoRes | null;
+  tripItem: subItemRes | null;
+  tripPath: subPathRes | null;
+  tripMember: subMemberRes | null;
+  tripBudget: subBudgetRes | null;
+  callBackPub: (callback: () => void) => void;
 };
