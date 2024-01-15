@@ -28,10 +28,10 @@ const KakaoLogin = () => {
         genderType: gender,
         survey: null,
       });
-      if (signup) {
+      if (signup === 'true') {
         // signup이 true면 이미 회원가입을 했던 유저
         navigate('/');
-      } else {
+      } else if (signup === 'false') {
         // signup이 false면 이전에 회원가입을 하지 않았던 유저
         navigate('/signup/success');
       }
