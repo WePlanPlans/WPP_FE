@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { calculateTripDuration } from '@utils/calculateTripDuration';
 import { deleteTrips } from '@api/trips';
 import { UserIcon } from '@components/common/icons/Icons';
-
 import {
   SwipeableList,
   SwipeableListItem,
@@ -10,6 +10,7 @@ import {
   TrailingActions,
 } from 'react-swipeable-list';
 import 'react-swipeable-list/dist/styles.css';
+
 interface MyTripItemProps {
   myTripList: MyTripType;
 }
@@ -25,11 +26,23 @@ const MyTripItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
   } = myTripList;
 
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
   const tripDuration = calculateTripDuration(startDate, endDate);
+
+  const { mutate: deleteMyTripMutate } = useMutation({
+    mutationFn: (tripId: number) => deleteTrips(tripId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['myTrips'] });
+    },
+    onError: () => console.log('error'),
+  });
 
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction destructive={true} onClick={() => deleteTrips(tripId)}>
+      <SwipeAction
+        destructive={true}
+        onClick={() => deleteMyTripMutate(tripId)}>
         <div className="flex min-h-[72px] min-w-[64px] items-center justify-center bg-gray3">
           <span className="text-xs font-semibold text-white">삭제</span>
         </div>
