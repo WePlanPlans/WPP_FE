@@ -18,7 +18,7 @@ const DeleteMemberButton = () => {
         alert('회원 탈퇴되었습니다. 감사합니다.');
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

@@ -29,10 +29,12 @@ export const putMemberPassword = async (pwDataa: EditPasswordProps) => {
 };
 
 // 프로필 이미지 업로드
-export const postMember = async (imgData: any) => {
-  authClient.defaults.headers.post['Content-Type'] = 'multipart/form-data';
-  const res = await authClient.post(`member`, imgData);
-  authClient.defaults.headers.post['Content-Type'] = 'application/json';
+export const postMember = async (formData: FormData) => {
+  const res = await authClient.post(`member`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 
   return res;
 };

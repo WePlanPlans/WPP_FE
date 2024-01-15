@@ -28,6 +28,7 @@ const SignupInfoForm = () => {
   const userInfo = useRecoilValue(UserInfoState);
   useEffect(() => {
     setValue('nickname', userInfo?.nickname);
+    setValue('profileImageUrl', userInfo?.profileImageUrl);
   }, [userInfo]);
 
   const onInfoSubmit: SubmitHandler<any> = async (data) => {
@@ -52,7 +53,11 @@ const SignupInfoForm = () => {
     <form onSubmit={handleSubmit(onInfoSubmit)} className="w-full">
       <div>
         <div className="mb-10">
-          <UserInfoImg />
+          <UserInfoImg
+            register={register}
+            setValue={setValue}
+            inputValue={watch('profileImageUrl')}
+          />
         </div>
         <AuthNicknameInputBox
           register={register}
