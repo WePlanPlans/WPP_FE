@@ -1,4 +1,5 @@
 import client from './client';
+import authClient from './authClient';
 
 // 여정 관련 API
 
@@ -22,7 +23,7 @@ export const deleteTrips = async (tripId: number) => {
 
 // 여정 생성
 export const postTrips = async (tripsData: TripRequest) => {
-  const res = await client.post(`trips`, tripsData);
+  const res = await authClient.post(`trips`, tripsData);
   return res;
 };
 
