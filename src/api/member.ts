@@ -44,10 +44,13 @@ export const deleteMember = async () => {
 };
 
 // 나의 여정 조회
-export const getMemberTrips = async (page?: number, size?: number) => {
+export const getMemberTrips = async () => {
   try {
-    const res = await authClient.get(`trips?&page=${page}&size=${size}`);
-    return res.data;
+    const {
+      data: { data },
+    } = await authClient.get(`trips`);
+
+    return data;
   } catch (e) {
     console.error(e);
   }
