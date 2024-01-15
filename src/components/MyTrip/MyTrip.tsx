@@ -34,7 +34,7 @@ const MyTrip = () => {
       <div className="pb-[15px]">
         <h1 className="text-2xl font-bold text-black ">나의 여정</h1>
       </div>
-      {data ? (
+      {data.length > 0 ? (
         <>
           <MyTripIngList myTripsData={ingTrips} />
           <MyTripBeforeList myTripsData={beforeTrips} />
@@ -42,8 +42,8 @@ const MyTrip = () => {
         </>
       ) : (
         <NoDataMessage
-          message1="저장된 관심 목록이 없습니다."
-          message2="가고 싶은 장소를 저장해보세요!"
+          message1="저장된 여정 목록이 없습니다."
+          message2="새로운 여행을 계획해보세요!"
           icon={<PenIcon size={44} fill="#EDEDED" color="#EDEDED" />}
         />
       )}
