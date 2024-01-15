@@ -1,50 +1,45 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
-import MyTripList from './MyTripList';
+import { useQuery } from '@tanstack/react-query';
 import NoDataMessage from '@components/common/noData/NoDataMessage';
 import { getMemberTrips } from '@api/member';
 import { PenIcon } from '@components/common/icons/Icons';
 
-const MyTrip = () => {
-  const { fetchNextPage, hasNextPage, data, isLoading, error } =
-    useInfiniteQuery({
-      queryKey: ['wishList'],
-      queryFn: ({ pageParam = 0 }) => getMemberTrips(pageParam, 10),
-      initialPageParam: 0,
-      getNextPageParam: (lastPage) => {
-        if (
-          lastPage &&
-          lastPage.data &&
-          lastPage.data &&
-          lastPage.data.pageable
-        ) {
-          const currentPage = lastPage.data.pageable.pageNumber;
-          const totalPages = lastPage.data.totalPages;
+import MyTripIngList from './MyTripIngList';
+import MyTripBeforeList from './MyTripBeforeList';
+import MyTripAfterList from './MyTripAfterList';
 
-          if (currentPage < totalPages - 1) {
-            return currentPage + 1;
-          }
-        }
-        return undefined;
-      },
-    });
+interface MyTripProps {
+  myTripsData: MyTripType[];
+  isLoading: boolean;
+}
+
+// 나의 여정 컴포넌트
+const MyTrip = () => {
+  const { data, error } = useQuery({
+    queryKey: ['myTrips'],
+    queryFn: () => getMemberTrips(),
+  });
 
   if (error) {
     return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
   }
 
-  return (
-    <div className="mt-3 min-h-[100vh] ">
-      <div className=" sticky top-0 z-[105] bg-white py-[15px]">
-        <h1 className="title2">나의 여정</h1>
-      </div>
+  if (!data) {
+    return <div>Loading...</div>;
+  }
 
-      {data?.pages[0].data.content.length > 0 ? (
-        <MyTripList
-          myTripsData={data || { pages: [] }}
-          fetchNextPage={fetchNextPage}
-          hasNextPage={hasNextPage}
-          isLoading={isLoading}
-        />
+  const { ingTrips, beforeTrips, afterTrips } = classifyTrips(data);
+
+  return (
+    <div className="mt-3 min-h-[100vh]">
+      <div className="pb-[15px]">
+        <h1 className="text-2xl font-bold text-black ">나의 여정</h1>
+      </div>
+      {data ? (
+        <>
+          <MyTripIngList myTripsData={ingTrips} />
+          <MyTripBeforeList myTripsData={beforeTrips} />
+          <MyTripAfterList myTripsData={afterTrips} />
+        </>
       ) : (
         <NoDataMessage
           message1="저장된 관심 여행지가 없습니다."
@@ -54,6 +49,26 @@ const MyTrip = () => {
       )}
     </div>
   );
+};
+
+const classifyTrips = (data: MyTripProps['myTripsData']) => {
+  if (!data) {
+    return {
+      ingTrips: [],
+      beforeTrips: [],
+      afterTrips: [],
+    };
+  }
+
+  const ingTrips = data.filter((trip) => trip.tripStatus === '여행중');
+  const beforeTrips = data.filter((trip) => trip.tripStatus === '여행전');
+  const afterTrips = data.filter((trip) => trip.tripStatus === '여행완료');
+
+  return {
+    ingTrips,
+    beforeTrips,
+    afterTrips,
+  };
 };
 
 export default MyTrip;
