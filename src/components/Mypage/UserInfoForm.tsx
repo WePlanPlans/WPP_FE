@@ -28,15 +28,16 @@ const UserInfoForm = () => {
   const userInfo = useRecoilValue(UserInfoState);
   useEffect(() => {
     setValue('nickname', userInfo?.nickname);
+    setValue('profileImageUrl', userInfo?.profileImageUrl);
   }, [userInfo]);
 
   const onInfoSubmit: SubmitHandler<any> = async (data) => {
-    const { nickname } = data;
+    const { nickname, profileImageUrl } = data;
 
     try {
       const res = await putMember({
         nickname: nickname,
-        profileImageUrl: '',
+        profileImageUrl: profileImageUrl,
         ageType: null,
         genderType: null,
       });
@@ -51,8 +52,12 @@ const UserInfoForm = () => {
   return (
     <form onSubmit={handleSubmit(onInfoSubmit)} className="w-full">
       <div>
-        <div className="mb-4">
-          <UserInfoImg />
+        <div className="mb-4 mt-6">
+          <UserInfoImg
+            register={register}
+            setValue={setValue}
+            inputValue={watch('profileImageUrl')}
+          />
         </div>
         <div className="mb-12 flex flex-col items-center">
           <div className="body5 mb-2 h-8 rounded-full border border-solid border-gray2 px-3 py-2 text-gray5">

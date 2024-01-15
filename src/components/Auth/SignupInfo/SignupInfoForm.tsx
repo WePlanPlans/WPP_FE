@@ -32,12 +32,12 @@ const SignupInfoForm = () => {
   }, [userInfo]);
 
   const onInfoSubmit: SubmitHandler<any> = async (data) => {
-    const { nickname } = data;
+    const { nickname, profileImageUrl } = data;
 
     try {
       const res = await putMember({
         nickname: nickname,
-        profileImageUrl: '',
+        profileImageUrl: profileImageUrl,
         ageType: null,
         genderType: null,
       });
