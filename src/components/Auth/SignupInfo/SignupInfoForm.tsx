@@ -4,7 +4,7 @@ import { putMember } from '@api/member';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { UserInfoState } from '@recoil/Auth.atom';
-import { SetStateAction, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import AuthDropDown from './AuthDropDown/AuthDropDown';
 import AuthNicknameInputBox from '../AuthInput/AuthInputBox/AuthNicknameInputBox';
@@ -18,7 +18,7 @@ const SignupInfoForm = () => {
     resetField,
     setError,
     setValue,
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isValid },
   } = useForm<any>({
     mode: 'onChange',
     criteriaMode: 'all',

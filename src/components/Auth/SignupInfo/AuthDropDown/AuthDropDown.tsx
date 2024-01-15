@@ -1,12 +1,7 @@
-import { useState } from 'react';
 import AuthDropDownOption from './AuthDropDownOption';
 import * as Select from '@radix-ui/react-select';
 import { DownIcon } from '@components/common/icons/Icons';
-import {
-  UseFormRegister,
-  UseFormRegisterReturn,
-  UseFormSetValue,
-} from 'react-hook-form';
+import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 
 interface Props {
   label: string;
