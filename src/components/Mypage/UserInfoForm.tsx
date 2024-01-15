@@ -56,7 +56,7 @@ const UserInfoForm = () => {
         </div>
         <div className="mb-12 flex flex-col items-center">
           <div className="body5 mb-2 h-8 rounded-full border border-solid border-gray2 px-3 py-2 text-gray5">
-            email
+            {userInfo?.email}
           </div>
           <Link to="password" className="body4 text-gray4">
             비밀번호 변경
