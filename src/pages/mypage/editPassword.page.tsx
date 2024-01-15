@@ -9,7 +9,7 @@ const EditPassword = () => {
       <BackBox
         showBack
         backHandler={() => {
-          navigate('/mypage');
+          navigate('/mypage/info');
         }}>
         비밀번호 변경
       </BackBox>
