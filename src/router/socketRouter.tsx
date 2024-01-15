@@ -5,10 +5,8 @@ import PlanPlaceTrip from '@pages/plan/planPlaceTrip.page';
 import PlanPlaceSearch from '@pages/plan/planPlaceSearch.page';
 import Trip from '@pages/trip/trip.page';
 import MainLayout from './routerLayout';
-import { useParams } from 'react-router-dom';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { tripIdState, visitDateState } from '@recoil/socket';
-import { useEffect } from 'react';
 
 const SocketRoutes = () => {
   const tripId = useRecoilValue(tripIdState);
