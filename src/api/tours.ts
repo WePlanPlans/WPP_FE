@@ -33,7 +33,7 @@ export const getDetailTours = async (tourItemId: number) => {
   }
 };
 
-// 관심 여행지 등록
+// 관심 목록 등록
 export const postLikedTours = async (options: { id: number }) => {
   try {
     const { id } = options;
@@ -48,7 +48,7 @@ export const postLikedTours = async (options: { id: number }) => {
   }
 };
 
-// 관심 여행지 삭제
+// 관심 목록 삭제
 export const deleteLikedTours = async (options: { id: number }) => {
   try {
     const { id } = options;

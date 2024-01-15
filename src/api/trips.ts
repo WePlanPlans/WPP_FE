@@ -40,13 +40,13 @@ export const getTripsLike = async (
   return res;
 };
 
-// 우리의 관심 여행지 등록
+// 우리의 관심 목록 등록
 export const postTripsLike = async (tripId: number, tourItemIds: number[]) => {
   const res = await client.post(`trips/${tripId}/tripLikedTours`, tourItemIds);
   return res;
 };
 
-// 우리의 관심 여행지 좋아요/싫어요
+// 우리의 관심 목록 좋아요/싫어요
 export const postTripsLikeHate = async (
   tripId: number,
   tourId: number,

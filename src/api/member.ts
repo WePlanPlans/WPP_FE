@@ -53,7 +53,7 @@ export const getMemberTrips = async (page = 0, size = 10) => {
   }
 };
 
-// 나의 관심 여행지 조회
+// 나의 관심 목록 조회
 export const getMemberTours = async (page?: number, size?: number) => {
   try {
     const res = await authClient.get(`member/tours?&page=${page}&size=${size}`);
@@ -97,7 +97,7 @@ export const getMemberReviews = async (page?: number, size?: number) => {
   }
 };
 
-// 나의 관심 여행지 삭제
+// 나의 관심 목록 삭제
 // export const deleteMemberTours = async (tourItemId: number) => {
 //   const res = await authClient.delete(`member/tours/${tourItemId}`);
 //   return res;
