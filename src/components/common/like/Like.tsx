@@ -75,7 +75,7 @@ const Like = ({ liked, id }: LikeProps) => {
             title={'로그인'}
             message={
               <>
-                관심 여행지 등록시 로그인이 필요합니다.
+                관심 목록 등록시 로그인이 필요합니다.
                 <br />
                 로그인 하시겠습니까?
               </>
