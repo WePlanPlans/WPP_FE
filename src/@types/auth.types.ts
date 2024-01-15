@@ -13,6 +13,7 @@ export interface AuthRequest {
 
 export interface SignupFormValue extends AuthRequest {
   passwordCheck: string;
+  checkbox: boolean;
 }
 
 export interface EditPassword {
