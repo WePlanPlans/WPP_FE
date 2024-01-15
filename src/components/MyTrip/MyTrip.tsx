@@ -47,7 +47,7 @@ const MyTrip = () => {
         />
       ) : (
         <NoDataMessage
-          message1="저장된 관심 여행지가 없습니다."
+          message1="저장된 관심 목록이 없습니다."
           message2="가고 싶은 장소를 저장해보세요!"
           icon={<PenIcon size={44} fill="#EDEDED" color="#EDEDED" />}
         />
