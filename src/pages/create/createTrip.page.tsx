@@ -3,6 +3,7 @@ import BackHeader from '@components/common/header/BackHeader';
 import {
   CalendarIcon,
   CloseIcon,
+  CounterIcon,
   SearchIcon,
   UserIcon,
 } from '@components/common/icons/Icons';
@@ -124,17 +125,17 @@ export const CreateTrip = () => {
 
       <InputField icon={UserIcon}>
         <div className="flex-1 p-2">인원</div>
-        <div className="ml-auto flex">
+        <div className="ml-auto flex items-center justify-center">
           <button
-            className="ml-2 flex size-[24px] items-center justify-center rounded-full text-gray3"
+            className="flex size-[24px] items-center justify-center rounded-full text-gray3"
             onClick={decreaseNumOfMembers}>
-            -
+            <CounterIcon minus />
           </button>
-          <div className="flex-1 p-2">{numOfMembers}명</div>
+          <div className="flex-1 px-4">{numOfMembers}</div>
           <button
-            className="ml-2 flex size-[24px] items-center justify-center rounded-full text-white"
+            className="flex size-[24px] items-center justify-center rounded-full text-white"
             onClick={increaseNumOfMembers}>
-            +
+            <CounterIcon plus />
           </button>
         </div>
       </InputField>

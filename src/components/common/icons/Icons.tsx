@@ -1240,34 +1240,49 @@ export const CheckboxIcon: React.FC<IconProps> = ({
   );
 };
 
-export const CounterIcon: React.FC<IconProps> = ({
-  size = 10,
-  color = 'gray3',
-  fill = 'gray3',
-}) => {
+export const CounterIcon: React.FC<
+  IconProps & { plus?: boolean; minus?: boolean }
+> = ({ size = 12, fill = '#D7D7D7', plus, minus }) => {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 21 21"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg">
-      <g id="Group 36817">
-        <rect
-          id="container"
-          x="0.378906"
-          y="0.464844"
-          width="20"
-          height="20"
-          rx="2"
-          fill={fill}
-        />
-        <path
-          id="icon"
-          d="M8.15636 15.6866L3.71191 11.2422L5.26747 9.68663L8.15636 12.5755L15.4897 5.24219L17.0452 6.79774L8.15636 15.6866Z"
-          fill={color}
-        />
-      </g>
-    </svg>
+    <>
+      {plus && (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width={size}
+          viewBox="0 0 13 12"
+          fill={fill}>
+          <path
+            d="M1.58229 6.00781H11.5823"
+            stroke="#D7D7D7"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M6.58229 1.00781V11.0078"
+            stroke="#D7D7D7"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      )}
+      {minus && (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width={size}
+          height={size / 6.5}
+          viewBox="0 0 13 2"
+          fill="none">
+          <path
+            d="M1.5359 1.00781H11.5359"
+            stroke="#D7D7D7"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      )}
+    </>
   );
 };
