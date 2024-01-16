@@ -130,7 +130,7 @@ const TripPreference: React.FC = () => {
   }
 
   return (
-    <div className=" mb-[-20px] ml-[-40px] mr-[-40px] mt-[-20px] flex flex-col items-center bg-gray1  ">
+    <div className=" mb-[-20px] ml-[-20px] mr-[-20px] mt-[-20px] flex flex-col items-center bg-gray1  ">
       <TripPreferenceButton />
       <div className="mb-[20px] ml-auto mr-[40px] flex items-center text-sm ">
         <div>n명 참여</div>

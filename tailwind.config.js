@@ -23,4 +23,9 @@ export default {
     },
   },
   plugins: [require('tailwind-scrollbar-hide')],
+  safelist: [
+    {
+      pattern: /(bg|text|border|sub2|orange|purple|green)-/,
+    },
+  ],
 };
