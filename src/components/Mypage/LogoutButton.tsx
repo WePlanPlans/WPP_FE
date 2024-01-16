@@ -9,7 +9,7 @@ const LogoutButton = () => {
   const navigate = useNavigate();
   const setUserInfo = useSetRecoilState(UserInfoState);
 
-  const onLogoutClick = async (e: any) => {
+  const onLogoutClick = async (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
   };
 
