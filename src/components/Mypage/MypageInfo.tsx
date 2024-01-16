@@ -22,7 +22,7 @@ const MypageInfo = () => {
             src={
               userInfo?.profileImageUrl
                 ? userInfo.profileImageUrl
-                : 'http://k.kakaocdn.net/dn/1G9kp/btsAot8liOn/8CWudi3uy07rvFNUkk3ER0/img_110x110.jpg'
+                : 'https://elasticbeanstalk-ap-northeast-2-077853585725.s3.ap-northeast-2.amazonaws.com/static/387fde04-f7d4-443d-88e1-b678ab5e079ddefaultProfileImg.svg'
             }
           />
         </div>
