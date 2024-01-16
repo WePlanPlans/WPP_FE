@@ -124,9 +124,13 @@ export const pubUpdateVisitDate = (
 };
 
 // 여행 아이템 삭제 이벤트 발생시
-export const pubDeleteItem = (tripItemId: number) => {
+export const pubDeleteItem = (
+  pubDeleteItem: pubDeleteItem,
+  tripItemId: number,
+) => {
   socketClient.publish({
     destination: `/pub/tripItems/${tripItemId}/deleteItem`,
+    body: JSON.stringify(pubDeleteItem),
   });
 };
 
@@ -156,11 +160,29 @@ export const pubEnterMember = (pubMember: pubMember, tripId: string) => {
 
 // 날짜별 여행 아이템 & 경로 조회
 export const pubGetPathAndItems = (
-  pubGetPathAndItems: pubVisitDate,
+  pubGetPathAndItems: pubGetPathAndItems,
   tripId: string,
 ) => {
   socketClient.publish({
     destination: `/pub/trips/${tripId}/getPathAndItems`,
     body: JSON.stringify(pubGetPathAndItems),
+  });
+};
+
+// 접속중인 멤버 정보 조회
+export const pubGetConnectedMember = (tripId: string) => {
+  socketClient.publish({
+    destination: `/pub/trips/${tripId}/getConnectedMember`,
+  });
+};
+
+// 목표 경비(예산) 변경시
+export const pubUpdateBudget = (
+  pubUpdateBudget: pubUpdateBudget,
+  tripId: string,
+) => {
+  socketClient.publish({
+    destination: `/pub/trips/${tripId}/updateBudget`,
+    body: JSON.stringify(pubUpdateBudget),
   });
 };
