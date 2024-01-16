@@ -7,22 +7,30 @@ const TripBudget = () => {
   const { tripBudget } = useContext(socketContext);
   const budget = tripBudget?.data;
 
-  const [targetBudget, setTargetBudget] = useState(budget?.budget || 0); // 예시 목표 경비
-  const [currentSpending, setCurrentSpending] = useState(
-    budget?.calculatedPrice || 0,
-  ); // 초기 사용 경비
+  const [targetBudget, setTargetBudget] = useState(0); // 예시 목표 경비
+  const [currentSpending, setCurrentSpending] = useState(0); // 초기 사용 경비
 
   // 프로그레스 바 값 계산
-  const progress =
+  // 프로그레스 바 값 계산
+  const progress = Math.min(
     currentSpending && targetBudget
       ? (currentSpending / targetBudget) * 100
-      : 0;
+      : 0,
+    100,
+  );
 
   useEffect(() => {
     // 경비 수정 모달 추가 예정
     const timer = setTimeout(() => setCurrentSpending(3000), 300);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (budget) {
+      setTargetBudget(budget.budget || 0);
+      setCurrentSpending(budget.calculatedPrice || 0);
+    }
+  }, [budget]);
 
   // 목표 경비 설정 함수
   const handleSetTargetBudget = (newTargetBudget: number) => {
@@ -34,7 +42,7 @@ const TripBudget = () => {
       <div className="caption1 mb-[2px]">사용 경비</div>
       <div className="flex items-center">
         <span className="title2 mr-[2px]">
-          {currentSpending.toLocaleString()}
+          {budget?.calculatedPrice.toLocaleString()}
         </span>
         <span className="body1">원</span>
       </div>
@@ -61,7 +69,7 @@ const TripBudget = () => {
           </button>
         </div>
         <div>
-          <span>{targetBudget.toLocaleString()}</span>
+          <span>{budget?.budget.toLocaleString()}</span>
           <span>원</span>
         </div>
       </div>
