@@ -1239,3 +1239,35 @@ export const CheckboxIcon: React.FC<IconProps> = ({
     </svg>
   );
 };
+
+export const CounterIcon: React.FC<IconProps> = ({
+  size = 10,
+  color = 'gray3',
+  fill = 'gray3',
+}) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 21 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <g id="Group 36817">
+        <rect
+          id="container"
+          x="0.378906"
+          y="0.464844"
+          width="20"
+          height="20"
+          rx="2"
+          fill={fill}
+        />
+        <path
+          id="icon"
+          d="M8.15636 15.6866L3.71191 11.2422L5.26747 9.68663L8.15636 12.5755L15.4897 5.24219L17.0452 6.79774L8.15636 15.6866Z"
+          fill={color}
+        />
+      </g>
+    </svg>
+  );
+};

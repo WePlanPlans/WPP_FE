@@ -42,7 +42,6 @@ export const CreateTrip = () => {
   if (isError) {
     return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
   }
-  console.log(data);
   const MY_TRIP_NUMBER = data?.length + 1;
   const defaultTitle = `나의 여정 ${MY_TRIP_NUMBER}`;
 
@@ -124,15 +123,16 @@ export const CreateTrip = () => {
       </InputField>
 
       <InputField icon={UserIcon}>
-        <div className="flex-1 p-2">{numOfMembers}명</div>
+        <div className="flex-1 p-2">인원</div>
         <div className="ml-auto flex">
           <button
-            className="ml-2 flex size-[24px] items-center justify-center rounded-full bg-gray3 text-white"
+            className="ml-2 flex size-[24px] items-center justify-center rounded-full text-gray3"
             onClick={decreaseNumOfMembers}>
             -
           </button>
+          <div className="flex-1 p-2">{numOfMembers}명</div>
           <button
-            className="ml-2 flex size-[24px] items-center justify-center rounded-full bg-gray3 text-white"
+            className="ml-2 flex size-[24px] items-center justify-center rounded-full text-white"
             onClick={increaseNumOfMembers}>
             +
           </button>
