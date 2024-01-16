@@ -66,18 +66,18 @@ const MyTripItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
             </div>
             <div className="ml-[10px] flex w-full flex-col items-start justify-between  ">
               <div className="mt-[1px] ">
-                <div className="truncate text-[15px] text-base font-bold text-black">
+                <div className="truncate text-[15px] text-base font-semibold text-stone-900">
                   {tripName}
                 </div>
-                <div className="text-sm font-medium tracking-tight text-zinc-500">
-                  {startDate.replace(/-/g, '.')} ~{' '}
+                <div className="text-sm font-normal text-zinc-500">
+                  {startDate.replace(/-/g, '.')} -{' '}
                   {endDate.replace(/-/g, '.').split('2024.')} ({tripDuration})
                 </div>
               </div>
 
               <div className="mb-[5px] flex text-xs font-normal text-zinc-500">
-                <UserIcon size={13} fill="gray4" />
-                <span className="ml-[4px]">{numberOfPeople}명과 공유중</span>
+                <UserIcon size={13} fill="#888" color="none" />
+                <span>{numberOfPeople}명과 공유중</span>
               </div>
             </div>
           </div>
