@@ -1,9 +1,9 @@
-import { subPath } from '@/@types/service';
+import { Paths } from '@/@types/service';
 import { Map, MapMarker, Polyline, useKakaoLoader } from 'react-kakao-maps-sdk';
 
 const VITE_KAKAO_MAP_API_KEY = import.meta.env.VITE_KAKAO_MAP_API_KEY;
 
-const TripMap = ({ paths }: { paths: subPath[] }) => {
+const TripMap = ({ paths }: { paths: Paths[] }) => {
   const firstPath = paths[0];
   const latitude = firstPath?.fromLatitude;
   const longitude = firstPath?.fromLongitude;
