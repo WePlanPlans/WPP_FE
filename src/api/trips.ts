@@ -17,8 +17,13 @@ export const putTrips = async (tripId: number, tripsData: TripRequest) => {
 
 // 여정 탈퇴
 export const deleteTrips = async (tripId: number) => {
-  const res = await client.delete(`trips/${tripId}`);
-  return res;
+  try {
+    const res = await authClient.delete(`trips/${tripId}`);
+
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 // 여정 생성
