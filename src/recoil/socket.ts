@@ -7,7 +7,7 @@ export const tripIdState = atom<string | null>({
 
 export const visitDateState = atom<{ visitDate: string } | null>({
   key: 'visitDateState',
-  default: { visitDate: '2024-01-03' },
+  default: { visitDate: '2024-01-05' },
 });
 
 export const memberIdState = atom<{ memberId: number } | null>({
