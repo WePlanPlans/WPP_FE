@@ -89,7 +89,6 @@ const TripMap = ({ paths }: { paths: subPath[] }) => {
             />
           </div>
         ))}
-        <button>범위 재설정하기</button>
       </Map>
     </div>
   );
