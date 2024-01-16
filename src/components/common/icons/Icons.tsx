@@ -1123,7 +1123,7 @@ export const ShareIcon: React.FC<ChackIconProps> = ({
 };
 
 export const PlanIcon: React.FC<IconProps> = ({
-  size = 20,
+  size = 24,
   color = 'black',
   fill = 'none',
 }) => {

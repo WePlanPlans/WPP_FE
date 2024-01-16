@@ -49,6 +49,9 @@ const Calendar: React.FC<{
   };
 
   const handleDateClick = (date: Date) => {
+    // if (startDate && !endDate) {
+    //   setEndDate(startDate);
+    // } else
     if (startDate && !endDate && date < startDate) {
       setEndDate(startDate);
       setStartDate(date);
@@ -98,7 +101,7 @@ const Calendar: React.FC<{
     let afterClass = '';
 
     if (isStart) {
-      dayClass = 'rounded-full w-[40px] bg-main2 text-white z-10';
+      dayClass = 'rounded-full size-[40px] bg-main2 text-white z-10';
       afterClass = endDate
         ? 'after:content-[""] after:absolute after:left-[50%] after:top-[4px] after:w-[32px] after:h-[40px] after:bg-[#DAFBFF] after:z-[1]'
         : '';
@@ -107,7 +110,7 @@ const Calendar: React.FC<{
       beforeClass =
         'before:content-[""] before:absolute before:right-[50%] before:top-[4px] before:w-[32px] before:h-[40px] before:bg-[#DAFBFF] before:z-[1]';
     } else if (isMiddle) {
-      dayClass = 'bg-[#DAFBFF]';
+      dayClass = 'bg-[#DAFBFF]  w-full';
     }
 
     const onClick = () => handleDateClick(date);
@@ -118,7 +121,7 @@ const Calendar: React.FC<{
         className={`relative flex h-[48px] cursor-pointer items-center justify-center ${beforeClass} ${afterClass}`}
         onClick={onClick}>
         <div
-          className={`flex h-[40px] w-full items-center justify-center ${dayClass}`}>
+          className={`flex h-[40px] items-center justify-center ${dayClass}`}>
           {day}
         </div>
       </div>
@@ -145,7 +148,7 @@ const Calendar: React.FC<{
     }
 
     return (
-      <div className="my-4">
+      <div className="mb-4">
         <div className="headline1 text-left">
           {format(monthDate, 'yyyy년 MM월', { locale: ko })}
         </div>
@@ -159,16 +162,18 @@ const Calendar: React.FC<{
 
   return (
     <>
-      <div className="title1 mb-7">
-        {startDate && endDate
-          ? `${format(startDate, 'MM.dd', { locale: ko })} - ${format(
-              endDate,
-              'MM.dd',
-              { locale: ko },
-            )} (${differenceInDays(endDate, startDate)}박 ${
-              differenceInDays(endDate, startDate) + 1
-            }일)`
-          : '날짜를 선택해주세요.'}
+      <div className="title2 mb-7">
+        {startDate && !endDate
+          ? `${format(startDate, 'MM.dd', { locale: ko })}`
+          : startDate && endDate
+            ? `${format(startDate, 'MM.dd', { locale: ko })} - ${format(
+                endDate,
+                'MM.dd',
+                { locale: ko },
+              )} (${differenceInDays(endDate, startDate)}박 ${
+                differenceInDays(endDate, startDate) + 1
+              }일)`
+            : '날짜를 선택해주세요.'}
       </div>
 
       <div ref={calendarRef} className="h-screen overflow-auto scrollbar-hide">

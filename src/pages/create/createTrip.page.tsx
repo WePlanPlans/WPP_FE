@@ -4,6 +4,7 @@ import {
   CalendarIcon,
   CloseIcon,
   CounterIcon,
+  PlanIcon,
   SearchIcon,
   UserIcon,
 } from '@components/common/icons/Icons';
@@ -72,11 +73,13 @@ export const CreateTrip = () => {
 
   const formattedTripDate =
     tripDate.startDate && tripDate.endDate
-      ? `${formatDate(tripDate.startDate, 'MM.dd')} - ${formatDate(
-          tripDate.endDate,
-          'MM.dd',
-        )}`
-      : '여행 날짜(선택)';
+      ? tripDate.startDate === tripDate.endDate
+        ? formatDate(tripDate.startDate, 'yyyy. MM. dd')
+        : `${formatDate(tripDate.startDate, 'yyyy. MM. dd')} - ${formatDate(
+            tripDate.endDate,
+            'MM. dd',
+          )}`
+      : '여행 날짜 (선택)';
 
   if (showSelectDate) {
     return (
@@ -101,7 +104,7 @@ export const CreateTrip = () => {
       <BackHeader />
       <div className="title1 mt-2 pb-5">여행 생성하기</div>
 
-      <InputField icon={CalendarIcon}>
+      <InputField icon={PlanIcon}>
         <input
           type="text"
           className="flex-1 p-2 focus:outline-none"
@@ -126,11 +129,13 @@ export const CreateTrip = () => {
       <InputField icon={UserIcon}>
         <div className="flex-1 p-2">인원</div>
         <div className="ml-auto flex items-center justify-center">
-          <button
-            className="flex size-[24px] items-center justify-center rounded-full text-gray3"
-            onClick={decreaseNumOfMembers}>
-            <CounterIcon minus />
-          </button>
+          {numOfMembers !== 1 && (
+            <button
+              className="flex size-[24px] items-center justify-center rounded-full text-gray3"
+              onClick={decreaseNumOfMembers}>
+              <CounterIcon minus />
+            </button>
+          )}
           <div className="flex-1 px-4">{numOfMembers}</div>
           <button
             className="flex size-[24px] items-center justify-center rounded-full text-white"
