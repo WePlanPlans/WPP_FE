@@ -18,24 +18,32 @@ import { formatDate } from '@utils/formatDate';
 import { useQuery } from '@tanstack/react-query';
 import { getMemberTrips } from '@api/member';
 import { useNavigate } from 'react-router-dom';
+import { Spinner } from '@components/common/spinner/Spinner';
 
 export const CreateTrip = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [numOfMembers, increaseNumOfMembers, decreaseNumOfMembers] = useCounter(
-    2,
-    2,
-    12,
-  ); // (기본값, 최솟값, 최댓값)
+    1,
+    1,
+  );
   const [showSelectDate, setShowSelectDate] = useState(false);
   const [showSelectDestination, setShowSelectDestination] = useState(false);
+  const tripDate = useRecoilValue(tripDateState);
 
-  const { data } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['myTrips'],
     queryFn: () => getMemberTrips(),
   });
 
-  const MY_TRIP_NUMBER = data?.data.numberOfElements + 1;
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (isError) {
+    return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
+  }
+  console.log(data);
+  const MY_TRIP_NUMBER = data?.length + 1;
   const defaultTitle = `나의 여정 ${MY_TRIP_NUMBER}`;
 
   const handleSubmit = async () => {
@@ -62,7 +70,6 @@ export const CreateTrip = () => {
     }
   };
 
-  const tripDate = useRecoilValue(tripDateState);
   const formattedTripDate =
     tripDate.startDate && tripDate.endDate
       ? `${formatDate(tripDate.startDate, 'MM.dd')} - ${formatDate(
