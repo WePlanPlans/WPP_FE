@@ -1,6 +1,8 @@
 import { getCheckNickname } from '@api/auth';
 import { AuthInputWrapper, AuthInput, ErrorMessage } from './AuthInputItem';
 import type { AuthNicknameInputBoxProps } from '@/@types/auth.types';
+import { useRecoilValue } from 'recoil';
+import { UserInfoState } from '@recoil/Auth.atom';
 
 const AuthNicknameInputBox = ({
   register,
@@ -15,8 +17,13 @@ const AuthNicknameInputBox = ({
   const nicknameError = errors.nickname;
   const nicknameErrorMessage = nicknameError?.message;
 
+  const userInfo = useRecoilValue(UserInfoState);
+
   const onNicknameBlur = async () => {
-    if (nicknamePatternValue.test(getValues('nickname'))) {
+    if (
+      nicknamePatternValue.test(getValues('nickname')) &&
+      userInfo?.nickname !== inputValue
+    ) {
       try {
         const res = await getCheckNickname(getValues('nickname'));
         if (res.status === 200) {

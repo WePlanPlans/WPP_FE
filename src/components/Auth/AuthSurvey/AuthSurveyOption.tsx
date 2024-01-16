@@ -40,7 +40,9 @@ const AuthSurveyOption = ({ content, name, register }: Props) => {
         type="radio"
         id={content}
         className={`hidden peer/${content.replace(' ', '')}`}
-        {...register(name)}
+        {...register(name, {
+          required: true,
+        })}
         value={content}
       />
       <label

@@ -11,8 +11,6 @@ const KakaoLogin = () => {
   const [searchParams, _] = useSearchParams();
   const nickname = searchParams.get('nickname');
   const email = searchParams.get('email');
-  const gender = searchParams.get('gender');
-  const age_range = searchParams.get('age_range');
   const accessToken = searchParams.get('token');
   const profile_image = searchParams.get('profile_image');
   const signup = searchParams.get('signup');
@@ -24,14 +22,14 @@ const KakaoLogin = () => {
         nickname: nickname!,
         email: email!,
         profileImageUrl: profile_image,
-        ageType: age_range,
-        genderType: gender,
+        ageType: null,
+        genderType: null,
         survey: null,
       });
-      if (signup) {
+      if (signup === 'true') {
         // signup이 true면 이미 회원가입을 했던 유저
         navigate('/');
-      } else {
+      } else if (signup === 'false') {
         // signup이 false면 이전에 회원가입을 하지 않았던 유저
         navigate('/signup/success');
       }

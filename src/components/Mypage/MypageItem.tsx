@@ -14,9 +14,7 @@ const MypageItem = ({ link, children }: Props) => {
 
   const handleConfirm = async (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    if (getItem('accessToken')) {
-      navigate(link);
-    }
+    navigate('/login');
   };
 
   const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
