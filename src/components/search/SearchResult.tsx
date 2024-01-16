@@ -85,16 +85,7 @@ export const SearchResult = ({
           />
         ))}
       </div>
-      {/* {searchResults ? (
-        <ResultCategory
-          data={searchResults}
-          category={selectedCategory}
-          fetchNextPage={hasNextPage ? fetchNextPage : null}
-          hasNextPage={hasNextPage}
-        />
-      ) : (
-        <div className="mt-3 text-center text-gray3">검색결과가 없습니다.</div>
-      )} */}
+
       {noResults ? (
         <div className="my-10 text-center text-gray3">검색결과가 없습니다.</div>
       ) : (
