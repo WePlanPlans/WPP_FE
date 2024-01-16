@@ -31,6 +31,9 @@ const MyTrip = () => {
 
   return (
     <div className="mt-3 min-h-[100vh]">
+      <div className="pb-[15px]">
+        <h1 className="text-2xl font-bold text-black ">나의 여정</h1>
+      </div>
       {data.length > 0 ? (
         <>
           <MyTripIngList myTripsData={ingTrips} />

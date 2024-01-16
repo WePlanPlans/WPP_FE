@@ -35,7 +35,7 @@ export const CreateTrip = () => {
     queryFn: () => getMemberTrips(),
   });
 
-  const MY_TRIP_NUMBER = data?.data.numberOfElements + 1;
+  const MY_TRIP_NUMBER = data?.numberOfElements + 1;
   const defaultTitle = `나의 여정 ${MY_TRIP_NUMBER}`;
 
   const handleSubmit = async () => {
