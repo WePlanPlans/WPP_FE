@@ -20,13 +20,13 @@ type subItemMessage = (response: {
   data: {
     tripId: number;
     visitDate: string;
+    transportation: 'CAR' | 'PUBLIC_TRANSPORTATION';
     tripItems: {
       tripItemId: number;
       tourItemId: number;
       name: string;
       thumbnailUrl: string;
       category: string;
-      transportation: string;
       seqNum: number;
       visitDate: string;
       price: number;
@@ -40,6 +40,7 @@ type subPathMessage = (response: {
   data: {
     tripId: number;
     visitDate: string;
+    transportation: 'CAR' | 'PUBLIC_TRANSPORTATION';
     paths: {
       fromTripItemId: number;
       toTripItemId: number;
@@ -49,7 +50,6 @@ type subPathMessage = (response: {
       fromLatitude: string;
       toLongitude: string;
       toLatitude: string;
-      transportation: 'CAR' | 'PUBLIC_TRANSPORTATION';
       pathInfo: {
         price: number;
         totalDistance: number;
@@ -120,7 +120,6 @@ interface pubUpdateTripItem {
 }
 
 interface pubUpdateTransportation {
-  tripId: number;
   visitDate: string;
   transportation: 'CAR' | 'PUBLIC_TRANSPORTATION';
 }
