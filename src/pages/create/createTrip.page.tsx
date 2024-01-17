@@ -3,11 +3,11 @@ import BackHeader from '@components/common/header/BackHeader';
 import {
   CalendarIcon,
   CloseIcon,
-  SearchIcon,
+  CounterIcon,
+  PlanIcon,
   UserIcon,
 } from '@components/common/icons/Icons';
 import { InputField } from '@components/createTrip/InputField';
-import { SelectDestination } from '@components/createTrip/SelectDestination';
 import { tripDateState } from '@recoil/tripDate';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -18,24 +18,30 @@ import { formatDate } from '@utils/formatDate';
 import { useQuery } from '@tanstack/react-query';
 import { getMemberTrips } from '@api/member';
 import { useNavigate } from 'react-router-dom';
+import { Spinner } from '@components/common/spinner/Spinner';
 
 export const CreateTrip = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [numOfMembers, increaseNumOfMembers, decreaseNumOfMembers] = useCounter(
-    2,
-    2,
-    12,
-  ); // (기본값, 최솟값, 최댓값)
+    1,
+    1,
+  );
   const [showSelectDate, setShowSelectDate] = useState(false);
-  const [showSelectDestination, setShowSelectDestination] = useState(false);
+  const tripDate = useRecoilValue(tripDateState);
 
-  const { data } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['myTrips'],
     queryFn: () => getMemberTrips(),
   });
 
-  const MY_TRIP_NUMBER = data?.numberOfElements + 1;
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (isError) {
+    return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
+  }
+  const MY_TRIP_NUMBER = data?.length + 1;
   const defaultTitle = `나의 여정 ${MY_TRIP_NUMBER}`;
 
   const handleSubmit = async () => {
@@ -62,14 +68,15 @@ export const CreateTrip = () => {
     }
   };
 
-  const tripDate = useRecoilValue(tripDateState);
   const formattedTripDate =
     tripDate.startDate && tripDate.endDate
-      ? `${formatDate(tripDate.startDate, 'MM.dd')} - ${formatDate(
-          tripDate.endDate,
-          'MM.dd',
-        )}`
-      : '여행 날짜(선택)';
+      ? tripDate.startDate === tripDate.endDate
+        ? formatDate(tripDate.startDate, 'yyyy. MM. dd')
+        : `${formatDate(tripDate.startDate, 'yyyy. MM. dd')} - ${formatDate(
+            tripDate.endDate,
+            'MM. dd',
+          )}`
+      : '여행 날짜 (선택)';
 
   if (showSelectDate) {
     return (
@@ -80,21 +87,12 @@ export const CreateTrip = () => {
       />
     );
   }
-  if (showSelectDestination) {
-    return (
-      <SelectDestination
-        onClose={() => {
-          setShowSelectDestination(false);
-        }}
-      />
-    );
-  }
   return (
     <div className="flex h-[95vh] flex-col">
       <BackHeader />
       <div className="title1 mt-2 pb-5">여행 생성하기</div>
 
-      <InputField icon={CalendarIcon}>
+      <InputField icon={PlanIcon}>
         <input
           type="text"
           className="flex-1 p-2 focus:outline-none"
@@ -117,17 +115,20 @@ export const CreateTrip = () => {
       </InputField>
 
       <InputField icon={UserIcon}>
-        <div className="flex-1 p-2">{numOfMembers}명</div>
-        <div className="ml-auto flex">
+        <div className="flex-1 p-2">인원</div>
+        <div className="ml-auto flex items-center justify-center">
+          {numOfMembers !== 1 && (
+            <button
+              className="flex size-[24px] items-center justify-center rounded-full text-gray3"
+              onClick={decreaseNumOfMembers}>
+              <CounterIcon minus />
+            </button>
+          )}
+          <div className="flex-1 px-4">{numOfMembers}</div>
           <button
-            className="ml-2 flex size-[24px] items-center justify-center rounded-full bg-gray3 text-white"
-            onClick={decreaseNumOfMembers}>
-            -
-          </button>
-          <button
-            className="ml-2 flex size-[24px] items-center justify-center rounded-full bg-gray3 text-white"
+            className="flex size-[24px] items-center justify-center rounded-full text-white"
             onClick={increaseNumOfMembers}>
-            +
+            <CounterIcon plus />
           </button>
         </div>
       </InputField>
@@ -139,15 +140,6 @@ export const CreateTrip = () => {
         }}
         isClickable>
         <div className="p-2">{formattedTripDate}</div>
-      </InputField>
-
-      <InputField
-        icon={SearchIcon}
-        onClick={() => {
-          setShowSelectDestination(true);
-        }}
-        isClickable>
-        <div className="p-2">여행지 (선택)</div>
       </InputField>
 
       <div className="mt-auto">
