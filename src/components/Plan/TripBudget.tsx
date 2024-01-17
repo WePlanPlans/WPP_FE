@@ -10,7 +10,12 @@ const TripBudget = () => {
   const [targetBudget, setTargetBudget] = useState(0); // 예시 목표 경비
   const [currentSpending, setCurrentSpending] = useState(0); // 초기 사용 경비
 
-  // 프로그레스 바 값 계산
+  useEffect(() => {
+    if (budget) {
+      setTargetBudget(budget.budget || 0);
+      setCurrentSpending(budget.calculatedPrice || 0);
+    }
+  }, [budget]);
   // 프로그레스 바 값 계산
   const progress = Math.min(
     currentSpending && targetBudget
@@ -18,19 +23,11 @@ const TripBudget = () => {
       : 0,
     100,
   );
-
   useEffect(() => {
     // 경비 수정 모달 추가 예정
-    const timer = setTimeout(() => setCurrentSpending(3000), 300);
+    const timer = setTimeout(() => setCurrentSpending(100000), 300);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    if (budget) {
-      setTargetBudget(budget.budget || 0);
-      setCurrentSpending(budget.calculatedPrice || 0);
-    }
-  }, [budget]);
 
   // 목표 경비 설정 함수
   const handleSetTargetBudget = (newTargetBudget: number) => {
@@ -54,8 +51,12 @@ const TripBudget = () => {
         }}
         value={progress}>
         <Progress.Indicator
-          className="ease-[cubic-bezier(0.65, 0, 0.35, 1)] h-full w-full bg-main2 transition-transform duration-[660ms]"
-          style={{ transform: `translateX(-${100 - progress}%)` }}
+          className={`ease-[cubic-bezier(0.65, 0, 0.35, 1)] h-full w-full ${
+            progress >= 100 ? 'bg-sub2' : 'bg-main2'
+          } transition-transform duration-[660ms]`}
+          style={{
+            transform: `translateX(${progress >= 100 ? 0 : -100 + progress}%)`,
+          }}
         />
       </Progress.Root>
 
