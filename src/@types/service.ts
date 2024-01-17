@@ -8,8 +8,6 @@ export type subInfoRes = {
     numberOfPeople: number;
     tripName: string;
     tripStatus: string;
-    area: string;
-    subarea: string;
     budget: number;
   } | null;
 };
@@ -121,4 +119,4 @@ export type TripItem = {
   seqNum: number;
   visitDate: string;
   price: number;
-} | null;
+};
