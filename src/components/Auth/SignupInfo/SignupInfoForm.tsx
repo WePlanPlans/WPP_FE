@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import AuthDropDown from './AuthDropDown/AuthDropDown';
 import AuthNicknameInputBox from '../AuthInput/AuthInputBox/AuthNicknameInputBox';
+import { ageArr, genderArr } from '@utils/authSelectOptions';
 
 const SignupInfoForm = () => {
   const {
@@ -23,8 +24,6 @@ const SignupInfoForm = () => {
     mode: 'onChange',
     criteriaMode: 'all',
   });
-  // const [genderType, setGenderType] = useState<string | null>(null);
-  // const [ageType, setAgeType] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
@@ -43,8 +42,8 @@ const SignupInfoForm = () => {
       const res = await putMember({
         nickname: nickname,
         profileImageUrl: profileImageUrl,
-        genderType: genderType,
-        ageType: ageType,
+        ageType: ageType === '' ? null : ageType,
+        genderType: genderType === '' ? null : genderType,
       });
       if (res.status === 200) {
         navigate('/');
@@ -77,19 +76,15 @@ const SignupInfoForm = () => {
         <div className="flex flex-col gap-6">
           <AuthDropDown
             label="성별"
-            text={'성별을 선택해주세요.'}
             options={genderArr}
             name={'genderType'}
             register={register}
-            setValue={setValue}
           />
           <AuthDropDown
             label="연령대"
-            text={'연령대를 선택해주세요.'}
             options={ageArr}
             name={'ageType'}
             register={register}
-            setValue={setValue}
           />
         </div>
       </div>
@@ -101,17 +96,3 @@ const SignupInfoForm = () => {
 };
 
 export default SignupInfoForm;
-
-const genderArr: SelectOption[] = [
-  { id: 'FEMALE', value: '여' },
-  { id: 'MALE', value: '남' },
-  { id: 'NON_BINARY', value: '기타' },
-];
-
-const ageArr: SelectOption[] = [
-  { id: 'TEENAGER', value: '10대' },
-  { id: 'TWENTIES', value: '20대' },
-  { id: 'THIRTIES', value: '30대' },
-  { id: 'FOURTIES', value: '40대' },
-  { id: 'ABOVE_FIFTIES', value: '50대 이상' },
-];
