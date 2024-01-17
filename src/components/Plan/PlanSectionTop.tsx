@@ -36,7 +36,7 @@ const PlanSectionTop = () => {
   if (startDate && endDate) {
     ({ DayArr, DateArr } = calculateDayAndDate(startDate, endDate));
   }
-  
+
   return (
     <div className="min-h-screen">
       <BackBox
@@ -50,8 +50,8 @@ const PlanSectionTop = () => {
       <TripBudget />
       <Tab
         lists={DayArr}
-        contents={DateArr.map((date) => (
-          <PlanItem key={date} date={date} />
+        contents={DateArr.map((date, index) => (
+          <PlanItem key={date} date={date} day={DayArr[index]} />
         ))}
       />
     </div>

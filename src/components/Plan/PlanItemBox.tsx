@@ -11,9 +11,15 @@ type PlanItemBoxProps = {
   item: TripItem[];
   paths: Paths[];
   transportation: string;
+  day: string;
 };
 
-const PlanItemBox = ({ item, paths, transportation }: PlanItemBoxProps) => {
+const PlanItemBox = ({
+  item,
+  paths,
+  transportation,
+  day,
+}: PlanItemBoxProps) => {
   if (!item || !paths) {
     return <div>Missing data</div>;
   }
@@ -23,7 +29,7 @@ const PlanItemBox = ({ item, paths, transportation }: PlanItemBoxProps) => {
   return (
     <>
       <div>
-        <div className="text-left text-sm font-semibold ">DAY 1</div>
+        <div className="text-left text-sm font-semibold ">{day}</div>
         {item.map((item, index) => (
           <div key={item.tripItemId} className="flex">
             <div className="relative ml-[5px] mr-[17px] flex h-[87.5px] items-center">
