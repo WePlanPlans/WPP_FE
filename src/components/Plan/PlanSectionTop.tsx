@@ -27,8 +27,6 @@ const PlanSectionTop = () => {
     callBackPub(() => pubEnterMember(pubMember, tripId));
   }, []);
 
-  console.log(tripInfo);
-
   let DayArr: string[] = [];
   let DateArr: string[] = [];
 
@@ -38,8 +36,6 @@ const PlanSectionTop = () => {
   if (startDate && endDate) {
     ({ DayArr, DateArr } = calculateDayAndDate(startDate, endDate));
   }
-
-  console.log(DateArr);
 
   return (
     <div className="min-h-screen">

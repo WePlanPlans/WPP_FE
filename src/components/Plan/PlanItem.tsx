@@ -25,7 +25,7 @@ const PlanItem = (date: any) => {
     if (visitDate && tripId) {
       callBackPub(() => pubGetPathAndItems(visitDate, tripId));
     }
-  }, [visitDate, tripId]);
+  }, [visitDate]);
 
   return (
     <>

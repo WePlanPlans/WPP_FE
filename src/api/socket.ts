@@ -163,7 +163,6 @@ export const pubGetPathAndItems = (
   pubGetPathAndItems: pubGetPathAndItems,
   tripId: string,
 ) => {
-  console.log('펍내부',pubGetPathAndItems);
   socketClient.publish({
     destination: `/pub/trips/${tripId}/getPathAndItems`,
     body: JSON.stringify(pubGetPathAndItems),
