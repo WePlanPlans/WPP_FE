@@ -1,5 +1,5 @@
 import { ButtonWhite } from '@components/common/button/Button';
-import { MoreIcon, CarIcon, BusIcon } from '@components/common/icons/Icons';
+import { PlusIcon, CarIcon, BusIcon } from '@components/common/icons/Icons';
 import { useNavigate } from 'react-router-dom';
 import TripMap from './TripMap';
 import PlanItemBox from './PlanItemBox';
@@ -30,17 +30,19 @@ const PlanItem = (date: any) => {
   const handleTranspo = (
     transportation: 'CAR' | 'PUBLIC_TRANSPORTATION',
     visitDate: string,
-    tripId: number,
+    tripId: string,
   ) => {
-    callBackPub(() =>
-      pubUpdateTransportation(
-        {
-          visitDate: visitDate,
-          transportation: transportation,
-        },
-        tripId,
-      ),
-    );
+    if (transportation !== transpo) {
+      callBackPub(() =>
+        pubUpdateTransportation(
+          {
+            visitDate: visitDate,
+            transportation: transportation,
+          },
+          tripId,
+        ),
+      );
+    }
   };
 
   const transpo = tripItem?.data?.transportation || '';
@@ -52,7 +54,9 @@ const PlanItem = (date: any) => {
       <div className="mb-[31px] mt-[31px] flex items-center justify-between">
         <div className="flex  items-center justify-center">
           <div
-            onClick={handleTranspo}
+            onClick={() =>
+              handleTranspo('CAR', visitDate?.visitDate || '', tripId || '')
+            }
             className="flex h-[32px] w-[32px] cursor-pointer items-center justify-center rounded-l-md border border-solid border-gray3">
             <CarIcon
               size={19}
@@ -60,7 +64,13 @@ const PlanItem = (date: any) => {
             />
           </div>
           <div
-            onClick={handleTranspo}
+            onClick={() =>
+              handleTranspo(
+                'PUBLIC_TRANSPORTATION',
+                visitDate?.visitDate || '',
+                tripId || '',
+              )
+            }
             className="pointer-cursor -ml-[1px] flex h-[32px] w-[32px] cursor-pointer items-center justify-center rounded-r-md border border-solid border-gray3">
             <BusIcon
               size={19}
@@ -86,9 +96,9 @@ const PlanItem = (date: any) => {
         <ButtonWhite
           onClick={() => navigate('./place')}
           className="h-[40px] w-full">
-          <div className=" flex items-center justify-center gap-[5px] font-bold text-gray4">
-            <MoreIcon className="text-gray4" />
-            장소 추가하기
+          <div className="flex items-center justify-center gap-[5px] font-bold text-gray4">
+            <PlusIcon size={15} color="#888" />
+            <div className="mt-[1px]">장소 추가하기</div>
           </div>
         </ButtonWhite>
       </div>

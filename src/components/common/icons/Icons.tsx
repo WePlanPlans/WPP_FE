@@ -483,30 +483,19 @@ export const PlusIcon: React.FC<IconProps> = ({
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
-      viewBox="0 0 21 21"
+      viewBox="0 0 14 14"
       fill={fill}>
-      <rect
-        x="2.42017"
-        y="2.60938"
-        width="16.6667"
-        height="16.6667"
-        rx="8.33333"
-        stroke={color}
-        strokeWidth="1.5"
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M7.00073 0.31644C7.34591 0.31644 7.62573 0.596262 7.62573 0.94144V12.6805C7.62573 13.0257 7.34591 13.3055 7.00073 13.3055C6.65555 13.3055 6.37573 13.0257 6.37573 12.6805V0.94144C6.37573 0.596262 6.65555 0.31644 7.00073 0.31644Z"
+        fill={color}
       />
       <path
-        d="M6.98962 10.9434L14.5176 10.9434"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M10.7534 7.17908L10.7534 14.707"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M13.4953 6.81091C13.4953 7.15609 13.2154 7.43591 12.8703 7.43591L1.13121 7.43591C0.786037 7.43591 0.506215 7.15609 0.506215 6.81091C0.506215 6.46573 0.786037 6.18591 1.13121 6.18591L12.8703 6.18591C13.2154 6.18591 13.4953 6.46574 13.4953 6.81091Z"
+        fill={color}
       />
     </svg>
   );

@@ -33,7 +33,7 @@ const PlanItemBox = ({ item, paths, transportation }: PlanItemBoxProps) => {
                   {item.name}
                   <PenIcon size={14} className="cursor-pointer" />
                 </div>
-                <div className="mt-[3px] flex h-fit w-fit items-center justify-center gap-2 rounded-[3px] bg-[#ededed] p-[4px] text-[11px] text-black">
+                <div className="mt-[3px] flex h-fit w-fit items-center justify-center gap-2 rounded-[3px] bg-[#ededed] p-[4px] text-center text-[11px] text-black">
                   {item.category}
                 </div>
                 <div className="mt-[15px] text-sm font-bold text-black">
@@ -49,16 +49,18 @@ const PlanItemBox = ({ item, paths, transportation }: PlanItemBoxProps) => {
                     key={uuidv4()}
                     className="mb-[8px] mt-[8px] flex h-10 w-full items-center justify-center rounded-lg border border-solid border-[#ededed] bg-white">
                     <div className="flex w-full items-center justify-center text-center text-[11px] text-black">
-                      <div className="mb-[1px] mr-[7.5px] flex h-[24px] w-[24px] items-center justify-center rounded-xl bg-[#F3F4F5]">
+                      <div className="mr-[7.5px] flex h-[24px] w-[24px] items-center justify-center rounded-xl bg-[#F3F4F5]">
                         {transportation === 'CAR' ? (
                           <CarIcon size={16} />
                         ) : transportation === 'PUBLIC_TRANSPORTATION' ? (
                           <BusIcon size={16} />
                         ) : null}
                       </div>
-                      {(path.pathInfo.totalDistance / 1000).toFixed(2)}km,{' '}
-                      {path.pathInfo.totalTime}분,{' '}
-                      {path.pathInfo.price.toLocaleString()}원
+                      <div className="mt-[3px]">
+                        {(path.pathInfo.totalDistance / 1000).toFixed(2)}km,{' '}
+                        {path.pathInfo.totalTime}분,{' '}
+                        {path.pathInfo.price.toLocaleString()}원
+                      </div>
                     </div>
                   </div>
                 ))}
