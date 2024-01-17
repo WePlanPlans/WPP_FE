@@ -80,9 +80,9 @@ const PlanItem = (date: any) => {
             />
           </div>
         </div>
-        <div className="flex h-8 w-[46px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#f0f0f0] p-2 text-sm font-medium text-gray4">
+        <button className="flex h-8 w-[46px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#f0f0f0] p-2 text-sm font-medium text-gray4">
           편집
-        </div>
+        </button>
       </div>
 
       <div className="flex flex-col gap-[5px]">
