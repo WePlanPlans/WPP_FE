@@ -1,10 +1,10 @@
 interface TripRequest {
   tripName: string;
   numberOfPeople: number;
-  startDate: string;
-  endDate: string;
-  area: string;
-  subarea: string;
+  startDate: string | null;
+  endDate: string | null;
+  area: string | null;
+  subarea: string | null;
 }
 
 interface MyTripType {
@@ -12,7 +12,9 @@ interface MyTripType {
   tripName: string;
   startDate: string;
   endDate: string;
-  numberOfTripMembers: number;
+  numberOfPeople: number;
   tripStatus: string;
   tripThumbnailUrl: string;
+  area: string;
+  subArea: string;
 }

@@ -1,13 +1,14 @@
 import { AuthTitle } from '@components/Auth';
 import SignupInfoForm from '@components/Auth/SignupInfo/SignupInfoForm';
 import { BackBox } from '@components/common';
+import { ProgressBarIcon } from '@components/common/icons/Icons';
 import { useNavigate } from 'react-router-dom';
 
 const SignupInfo = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex h-[95vh] flex-col">
+    <div className="relative flex h-[95vh] flex-col">
       <BackBox
         showBack
         backHandler={() => {
@@ -18,6 +19,9 @@ const SignupInfo = () => {
           navigate('/');
         }}
       />
+      <div className="absolute right-0 top-12">
+        <ProgressBarIcon full />
+      </div>
       <AuthTitle
         title={
           <>

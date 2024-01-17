@@ -36,6 +36,7 @@
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.21.1",
     "react-scroll": "^1.9.0",
+    "react-swipeable-list": "^1.9.3",
     "recoil": "^0.7.7",
     "sockjs": "^0.3.24",
     "sockjs-client": "^1.6.1",

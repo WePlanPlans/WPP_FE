@@ -29,10 +29,12 @@ export const putMemberPassword = async (pwDataa: EditPasswordProps) => {
 };
 
 // 프로필 이미지 업로드
-export const postMember = async (imgData: any) => {
-  authClient.defaults.headers.post['Content-Type'] = 'multipart/form-data';
-  const res = await authClient.post(`member`, imgData);
-  authClient.defaults.headers.post['Content-Type'] = 'application/json';
+export const postMember = async (formData: FormData) => {
+  const res = await authClient.post(`member`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 
   return res;
 };
@@ -44,16 +46,19 @@ export const deleteMember = async () => {
 };
 
 // 나의 여정 조회
-export const getMemberTrips = async (page?: number, size?: number) => {
+export const getMemberTrips = async () => {
   try {
-    const res = await authClient.get(`trips?&page=${page}&size=${size}`);
-    return res.data;
+    const {
+      data: { data },
+    } = await authClient.get(`trips`);
+
+    return data;
   } catch (e) {
     console.error(e);
   }
 };
 
-// 나의 관심 여행지 조회
+// 나의 관심 목록 조회
 export const getMemberTours = async (page?: number, size?: number) => {
   try {
     const res = await authClient.get(`member/tours?&page=${page}&size=${size}`);
@@ -97,7 +102,7 @@ export const getMemberReviews = async (page?: number, size?: number) => {
   }
 };
 
-// 나의 관심 여행지 삭제
+// 나의 관심 목록 삭제
 // export const deleteMemberTours = async (tourItemId: number) => {
 //   const res = await authClient.delete(`member/tours/${tourItemId}`);
 //   return res;

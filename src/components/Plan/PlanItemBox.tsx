@@ -6,6 +6,10 @@ type PlanItemBoxProps = {
 };
 
 const PlanItemBox = ({ item }: PlanItemBoxProps) => {
+  if (!item) {
+    return <div>error...</div>;
+  }
+
   return (
     <>
       <div>

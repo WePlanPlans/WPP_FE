@@ -28,15 +28,16 @@ const UserInfoForm = () => {
   const userInfo = useRecoilValue(UserInfoState);
   useEffect(() => {
     setValue('nickname', userInfo?.nickname);
+    setValue('profileImageUrl', userInfo?.profileImageUrl);
   }, [userInfo]);
 
   const onInfoSubmit: SubmitHandler<any> = async (data) => {
-    const { nickname } = data;
+    const { nickname, profileImageUrl } = data;
 
     try {
       const res = await putMember({
         nickname: nickname,
-        profileImageUrl: '',
+        profileImageUrl: profileImageUrl,
         ageType: null,
         genderType: null,
       });
@@ -49,14 +50,20 @@ const UserInfoForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onInfoSubmit)} className="w-full">
+    <form
+      onSubmit={handleSubmit(onInfoSubmit)}
+      className="flex h-[85vh] w-full flex-col justify-between">
       <div>
-        <div className="mb-4">
-          <UserInfoImg />
+        <div className="mb-4 mt-6">
+          <UserInfoImg
+            register={register}
+            setValue={setValue}
+            inputValue={watch('profileImageUrl')}
+          />
         </div>
         <div className="mb-12 flex flex-col items-center">
           <div className="body5 mb-2 h-8 rounded-full border border-solid border-gray2 px-3 py-2 text-gray5">
-            email
+            {userInfo?.email}
           </div>
           <Link to="password" className="body4 text-gray4">
             비밀번호 변경
@@ -75,11 +82,17 @@ const UserInfoForm = () => {
             label="성별"
             text={'성별을 선택해주세요.'}
             options={genderArr}
+            name={'genderType'}
+            register={register}
+            setValue={setValue}
           />
           <AuthDropDown
             label="연령대"
             text={'연령대를 선택해주세요.'}
             options={ageArr}
+            name={'ageType'}
+            register={register}
+            setValue={setValue}
           />
         </div>
       </div>

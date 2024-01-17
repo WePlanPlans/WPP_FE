@@ -9,33 +9,65 @@ import {
 import { InputField } from '@components/createTrip/InputField';
 import { SelectDestination } from '@components/createTrip/SelectDestination';
 import { tripDateState } from '@recoil/tripDate';
-import { format } from 'date-fns';
-import { ko } from 'date-fns/locale';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { SelectDate } from '../../components/createTrip/SelectDate';
+import { postTrips } from '@api/trips';
+import useCounter from '@hooks/useCounter';
+import { formatDate } from '@utils/formatDate';
+import { useQuery } from '@tanstack/react-query';
+import { getMemberTrips } from '@api/member';
+import { useNavigate } from 'react-router-dom';
 
 export const CreateTrip = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState('');
-  const [numOfMembers, setNumOfMembers] = useState(2);
+  const [numOfMembers, increaseNumOfMembers, decreaseNumOfMembers] = useCounter(
+    2,
+    2,
+    12,
+  ); // (기본값, 최솟값, 최댓값)
   const [showSelectDate, setShowSelectDate] = useState(false);
   const [showSelectDestination, setShowSelectDestination] = useState(false);
 
-  const handleIncrease = () => {
-    setNumOfMembers((prevNum) => prevNum + 1);
-  };
+  const { data } = useQuery({
+    queryKey: ['myTrips'],
+    queryFn: () => getMemberTrips(),
+  });
 
-  const handleDecrease = () => {
-    setNumOfMembers((prevNum) => Math.max(prevNum - 1, 2));
+  const MY_TRIP_NUMBER = data?.numberOfElements + 1;
+  const defaultTitle = `나의 여정 ${MY_TRIP_NUMBER}`;
+
+  const handleSubmit = async () => {
+    try {
+      const tripRequestData = {
+        tripName: title || defaultTitle,
+        numberOfPeople: numOfMembers,
+        startDate: tripDate.startDate
+          ? tripDate.startDate.toISOString().split('T')[0]
+          : null,
+        endDate: tripDate.endDate
+          ? tripDate.endDate.toISOString().split('T')[0]
+          : null,
+        area: null,
+        subarea: null,
+      };
+
+      const response = await postTrips(tripRequestData);
+      console.log('전송 완료: ', response);
+      const tripId = response.data.data.tripId;
+      navigate('/trip/' + tripId);
+    } catch (error) {
+      console.error('전송 실패: ', error);
+    }
   };
 
   const tripDate = useRecoilValue(tripDateState);
   const formattedTripDate =
     tripDate.startDate && tripDate.endDate
-      ? `${format(tripDate.startDate, 'MM.dd', { locale: ko })} - ${format(
+      ? `${formatDate(tripDate.startDate, 'MM.dd')} - ${formatDate(
           tripDate.endDate,
           'MM.dd',
-          { locale: ko },
         )}`
       : '여행 날짜(선택)';
 
@@ -66,7 +98,7 @@ export const CreateTrip = () => {
         <input
           type="text"
           className="flex-1 p-2 focus:outline-none"
-          placeholder="나의 여정"
+          placeholder={defaultTitle}
           value={title}
           onChange={(e) => {
             setTitle(e.target.value);
@@ -89,12 +121,12 @@ export const CreateTrip = () => {
         <div className="ml-auto flex">
           <button
             className="ml-2 flex size-[24px] items-center justify-center rounded-full bg-gray3 text-white"
-            onClick={handleDecrease}>
+            onClick={decreaseNumOfMembers}>
             -
           </button>
           <button
             className="ml-2 flex size-[24px] items-center justify-center rounded-full bg-gray3 text-white"
-            onClick={handleIncrease}>
+            onClick={increaseNumOfMembers}>
             +
           </button>
         </div>
@@ -119,7 +151,7 @@ export const CreateTrip = () => {
       </InputField>
 
       <div className="mt-auto">
-        <ButtonPrimary onClick={() => {}}>완료</ButtonPrimary>
+        <ButtonPrimary onClick={handleSubmit}>완료</ButtonPrimary>
       </div>
     </div>
   );

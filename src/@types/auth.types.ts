@@ -1,9 +1,10 @@
-import {
+import type {
   FieldErrors,
   UseFormGetValues,
   UseFormRegister,
   UseFormResetField,
   UseFormSetError,
+  UseFormSetValue,
 } from 'react-hook-form';
 
 export interface AuthRequest {
@@ -13,6 +14,7 @@ export interface AuthRequest {
 
 export interface SignupFormValue extends AuthRequest {
   passwordCheck: string;
+  checkbox: boolean;
 }
 
 export interface EditPassword {
@@ -48,4 +50,10 @@ export interface AuthPwCheckInputBoxProps extends AuthInputBoxProps {
 export interface AuthNicknameInputBoxProps extends AuthInputBoxProps {
   getValues: UseFormGetValues<any>;
   setError: UseFormSetError<any>;
+}
+
+export interface AuthImgProps {
+  register: UseFormRegister<any>;
+  inputValue: string;
+  setValue: UseFormSetValue<any>;
 }

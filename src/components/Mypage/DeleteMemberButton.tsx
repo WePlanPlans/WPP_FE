@@ -18,7 +18,7 @@ const DeleteMemberButton = () => {
         alert('회원 탈퇴되었습니다. 감사합니다.');
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -31,7 +31,7 @@ const DeleteMemberButton = () => {
       message="정말 탈퇴하시겠어요?"
       onConfirm={handleConfirm}
       onCancel={handleCancel}>
-      <button className="body5 text-gray4">회원 탈퇴</button>
+      <button className="body5 mt-3 text-gray4">회원 탈퇴</button>
     </Alert>
   );
 };

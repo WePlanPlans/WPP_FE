@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  addDays,
   addMonths,
   differenceInDays,
   format,
@@ -8,13 +7,11 @@ import {
   isSameDay,
   isWithinInterval,
   startOfMonth,
-  subDays,
 } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import 'tailwindcss/tailwind.css';
 
 const CALENDAR_LENGTH = 42;
-// const DAY_OF_WEEK = 7;
 const DAY_LIST = ['일', '월', '화', '수', '목', '금', '토'];
 
 const Calendar: React.FC<{
@@ -52,7 +49,10 @@ const Calendar: React.FC<{
   };
 
   const handleDateClick = (date: Date) => {
-    if (!startDate || (startDate && endDate)) {
+    if (startDate && !endDate && date < startDate) {
+      setEndDate(startDate);
+      setStartDate(date);
+    } else if (!startDate || (startDate && endDate)) {
       setStartDate(date);
       setEndDate(null);
     } else if (date > startDate) {
@@ -78,7 +78,9 @@ const Calendar: React.FC<{
 
   const renderDayLabels = () => {
     return DAY_LIST.map((dayLabel, index) => (
-      <div key={index} className="mt-4 text-center font-bold">
+      <div
+        key={index}
+        className="flex h-[48px] items-center justify-center text-center">
         {dayLabel}
       </div>
     ));
@@ -95,16 +97,17 @@ const Calendar: React.FC<{
     let beforeClass = '';
     let afterClass = '';
 
-    if (isStart || isEnd) {
-      dayClass = 'rounded-full w-[48px] bg-main2 text-white z-10';
+    if (isStart) {
+      dayClass = 'rounded-full w-[40px] bg-main2 text-white z-10';
+      afterClass = endDate
+        ? 'after:content-[""] after:absolute after:left-[50%] after:top-[4px] after:w-[32px] after:h-[40px] after:bg-[#DAFBFF] after:z-[1]'
+        : '';
+    } else if (isEnd) {
+      dayClass = 'rounded-full w-[40px] bg-main2 text-white z-10';
+      beforeClass =
+        'before:content-[""] before:absolute before:right-[50%] before:top-[4px] before:w-[32px] before:h-[40px] before:bg-[#DAFBFF] before:z-[1]';
     } else if (isMiddle) {
-      dayClass = 'bg-[#DAFBFF] z-0';
-      beforeClass = isSecondDayInRange(date)
-        ? 'before:content-[""] before:absolute before:left-[-50%] before:top-0 before:w-1/2 before:h-full before:bg-[#DAFBFF]'
-        : '';
-      afterClass = isSecondLastDayInRange(date)
-        ? 'after:content-[""] after:absolute after:right-[-50%] after:top-0 after:w-1/2 after:h-full after:bg-[#DAFBFF]'
-        : '';
+      dayClass = 'bg-[#DAFBFF]';
     }
 
     const onClick = () => handleDateClick(date);
@@ -112,23 +115,14 @@ const Calendar: React.FC<{
     return (
       <div
         key={day}
-        className={`relative flex h-[48px] cursor-pointer items-center justify-center p-2 ${dayClass} ${beforeClass} ${afterClass}`}
+        className={`relative flex h-[48px] cursor-pointer items-center justify-center ${beforeClass} ${afterClass}`}
         onClick={onClick}>
-        {day}
+        <div
+          className={`flex h-[40px] w-full items-center justify-center ${dayClass}`}>
+          {day}
+        </div>
       </div>
     );
-  };
-
-  const isSecondDayInRange = (date: Date) => {
-    if (!startDate || !endDate) return false;
-    const nextDay = addDays(startDate, 1);
-    return isSameDay(date, nextDay);
-  };
-
-  const isSecondLastDayInRange = (date: Date) => {
-    if (!startDate || !endDate) return false;
-    const prevDay = subDays(endDate, 1);
-    return isSameDay(date, prevDay);
   };
 
   const renderCalendar = (monthDate: Date) => {

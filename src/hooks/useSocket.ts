@@ -33,10 +33,13 @@ export const useSocket = (tripId: string, visitDate: string) => {
   const [tripMember, setTripMember] = useState<subMemberRes | null>(null);
   const [tripBudget, setTripBudget] = useState<subBudgetRes | null>(null);
 
-  let socketCallback: (() => void) | null = null;
+  const [socketCallback, setSocketCallback] = useState<(() => void) | null>(
+    null,
+  );
 
   const callBackPub = (callback: () => void): void => {
-    socketCallback = callback;
+    setSocketCallback(() => callback);
+    console.log('소켓커넥트외부', socketCallback);
   };
 
   const socketConnect = () => {
@@ -47,9 +50,13 @@ export const useSocket = (tripId: string, visitDate: string) => {
         }
       });
 
+      console.log('sub외부', visitDate);
+
       subItem(tripId, visitDate, (res) => {
+        console.log('sub내부', visitDate);
         if (res) {
           setTripItem(res);
+          console.log('상태변경실행');
         }
       });
 
@@ -73,6 +80,7 @@ export const useSocket = (tripId: string, visitDate: string) => {
 
       if (socketCallback) {
         socketCallback();
+        console.log('소켓커넥트내부', socketCallback);
       }
     };
 
@@ -82,11 +90,14 @@ export const useSocket = (tripId: string, visitDate: string) => {
 
   useEffect(() => {
     socketConnect();
+
     return () => {
       socketClient.deactivate();
-      console.log('소켓연결해제');
+      console.log('소켓해제');
     };
-  }, []);
+  }, [tripId, visitDate, socketCallback]);
+
+  console.log(tripItem);
 
   return { tripInfo, tripItem, tripPath, tripMember, tripBudget, callBackPub };
 };

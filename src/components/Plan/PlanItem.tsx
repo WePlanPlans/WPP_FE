@@ -1,34 +1,43 @@
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import { PlusIcon } from '@components/common/icons/Icons';
 import { useNavigate } from 'react-router-dom';
+import TripMap from './TripMap';
 import PlanItemBox from './PlanItemBox';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { socketContext } from '@hooks/useSocket';
-import { pubEnterMember } from '@api/socket';
-import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { visitDateState } from '@recoil/socket';
+import { pubGetPathAndItems } from '@api/socket';
+import { tripIdState } from '@recoil/socket';
 import { useRecoilValue } from 'recoil';
-import { tripIdState, memberIdState } from '@recoil/socket';
 
-const PlanItem = () => {
+const PlanItem = (date: any) => {
   const navigate = useNavigate();
   const tripId = useRecoilValue(tripIdState);
-  const pubMember = useRecoilValue(memberIdState);
-  const { callBackPub, tripItem } = useContext(socketContext);
-
-  if (!pubMember || !tripId) {
-    return <div>에러</div>;
-  }
+  const [visitDate, setVisitDate] = useRecoilState(visitDateState);
+  const { tripItem, tripPath, callBackPub } = useContext(socketContext);
 
   useEffect(() => {
-    callBackPub(() => pubEnterMember(pubMember, tripId));
-  }, []);
+    setVisitDate({ visitDate: date.date });
+  }, [date.date]);
+
+  useEffect(() => {
+    if (visitDate && tripId) {
+      callBackPub(() => pubGetPathAndItems(visitDate, tripId));
+    }
+  }, [visitDate, tripId]);
 
   return (
     <>
+      {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
       <div className="flex flex-col gap-[5px]">
-        {tripItem?.data?.tripItems.map((item) => (
-          <PlanItemBox key={item.tripItemId} item={item} />
-        ))}
+        {tripItem?.data?.tripItems ? (
+          tripItem.data.tripItems.map((item) => (
+            <PlanItemBox key={item.tripItemId} item={item} />
+          ))
+        ) : (
+          <div>여행 항목 정보가 없습니다.</div>
+        )}
       </div>
       <SubmitBtn onClick={() => navigate('./place')}>
         <div className="flex items-center justify-center gap-[5px]">
