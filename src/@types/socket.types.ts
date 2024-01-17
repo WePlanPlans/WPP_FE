@@ -8,8 +8,6 @@ type subInfoMessage = (message: {
     numberOfPeople: number;
     tripName: string;
     tripStatus: string;
-    area: string;
-    subarea: string;
     budget: number;
   } | null;
 }) => void;
@@ -93,8 +91,6 @@ interface pubInfo {
   endDate: string;
   numberOfPeople: number;
   tripName: string;
-  area: string;
-  subarea: string;
   budget: number;
 }
 

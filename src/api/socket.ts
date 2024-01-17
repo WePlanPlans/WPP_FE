@@ -104,7 +104,7 @@ export const pubUpdateTripItem = (
 // 여행 날짜별 교통 수단 변경 이벤트 발생시 (01/16 업데이트)
 export const pubUpdateTransportation = (
   pubUpdateTransportation: pubUpdateTransportation,
-  trips: number,
+  trips: string,
 ) => {
   socketClient.publish({
     destination: `/pub/trips/${trips}/updateTransportation`,
@@ -163,6 +163,7 @@ export const pubGetPathAndItems = (
   pubGetPathAndItems: pubGetPathAndItems,
   tripId: string,
 ) => {
+  console.log('펍내부',pubGetPathAndItems);
   socketClient.publish({
     destination: `/pub/trips/${tripId}/getPathAndItems`,
     body: JSON.stringify(pubGetPathAndItems),

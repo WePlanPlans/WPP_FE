@@ -1,43 +1,107 @@
-import SubmitBtn from '@components/common/button/SubmitBtn';
-import { PlusIcon } from '@components/common/icons/Icons';
+import { ButtonWhite } from '@components/common/button/Button';
+import { PlusIcon, CarIcon, BusIcon } from '@components/common/icons/Icons';
 import { useNavigate } from 'react-router-dom';
 import TripMap from './TripMap';
 import PlanItemBox from './PlanItemBox';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { socketContext } from '@hooks/useSocket';
-import { pubEnterMember } from '@api/socket';
-import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { visitDateState } from '@recoil/socket';
+import { pubGetPathAndItems, pubUpdateTransportation } from '@api/socket';
+import { tripIdState } from '@recoil/socket';
 import { useRecoilValue } from 'recoil';
-import { tripIdState, memberIdState } from '@recoil/socket';
 
-const PlanItem = () => {
+const PlanItem = (date: any) => {
   const navigate = useNavigate();
   const tripId = useRecoilValue(tripIdState);
-  const pubMember = useRecoilValue(memberIdState);
-  const { callBackPub, tripItem, tripPath } = useContext(socketContext);
-
-  if (!pubMember || !tripId) {
-    return <div>에러</div>;
-  }
+  const [visitDate, setVisitDate] = useRecoilState(visitDateState);
+  const { tripItem, tripPath, callBackPub } = useContext(socketContext);
 
   useEffect(() => {
-    callBackPub(() => pubEnterMember(pubMember, tripId));
-  }, []);
+    setVisitDate({ visitDate: date.date });
+  }, [date.date]);
+
+  useEffect(() => {
+    if (visitDate && tripId) {
+      callBackPub(() => pubGetPathAndItems(visitDate, tripId));
+    }
+  }, [visitDate]);
+
+  const handleTranspo = (
+    transportation: 'CAR' | 'PUBLIC_TRANSPORTATION',
+    visitDate: string,
+    tripId: string,
+  ) => {
+    if (transportation !== transpo) {
+      callBackPub(() =>
+        pubUpdateTransportation(
+          {
+            visitDate: visitDate,
+            transportation: transportation,
+          },
+          tripId,
+        ),
+      );
+    }
+  };
+
+  const transpo = tripItem?.data?.transportation || '';
 
   return (
     <>
       {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
-      <div className="flex flex-col gap-[5px]">
-        {tripItem?.data?.tripItems.map((item) => (
-          <PlanItemBox key={item.tripItemId} item={item} />
-        ))}
-      </div>
-      <SubmitBtn onClick={() => navigate('./place')}>
-        <div className="flex items-center justify-center gap-[5px]">
-          <PlusIcon color="white" />
-          장소 추가
+
+      <div className="mb-[31px] mt-[31px] flex items-center justify-between">
+        <div className="flex  items-center justify-center">
+          <div
+            onClick={() =>
+              handleTranspo('CAR', visitDate?.visitDate || '', tripId || '')
+            }
+            className="flex h-[32px] w-[32px] cursor-pointer items-center justify-center rounded-l-md border border-solid border-gray3">
+            <CarIcon
+              size={19}
+              color={transpo === 'CAR' ? '#000000' : '#d7d7d7'}
+            />
+          </div>
+          <div
+            onClick={() =>
+              handleTranspo(
+                'PUBLIC_TRANSPORTATION',
+                visitDate?.visitDate || '',
+                tripId || '',
+              )
+            }
+            className="pointer-cursor -ml-[1px] flex h-[32px] w-[32px] cursor-pointer items-center justify-center rounded-r-md border border-solid border-gray3">
+            <BusIcon
+              size={19}
+              color={
+                transpo === 'PUBLIC_TRANSPORTATION' ? '#000000' : '#d7d7d7'
+              }
+            />
+          </div>
         </div>
-      </SubmitBtn>
+        <button className="flex h-8 w-[46px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#f0f0f0] p-2 text-sm font-medium text-gray4">
+          편집
+        </button>
+      </div>
+
+      <div className="flex flex-col gap-[5px]">
+        <PlanItemBox
+          item={tripItem?.data?.tripItems || []}
+          paths={tripPath?.data?.paths || []}
+          transportation={transpo}
+        />
+      </div>
+      <div className="mt-[18px]">
+        <ButtonWhite
+          onClick={() => navigate('./place')}
+          className="h-[40px] w-full">
+          <div className="flex items-center justify-center gap-[5px] font-bold text-gray4">
+            <PlusIcon size={15} color="#888" />
+            <div className="mt-[1px]">장소 추가하기</div>
+          </div>
+        </ButtonWhite>
+      </div>
     </>
   );
 };
