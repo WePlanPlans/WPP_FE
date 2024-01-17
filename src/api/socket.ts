@@ -101,13 +101,13 @@ export const pubUpdateTripItem = (
   });
 };
 
-// 여행 아이템 방문 교통 수단 변경 이벤트 발생시
+// 여행 날짜별 교통 수단 변경 이벤트 발생시 (01/16 업데이트)
 export const pubUpdateTransportation = (
   pubUpdateTransportation: pubUpdateTransportation,
-  tripItemId: number,
+  trips: string,
 ) => {
   socketClient.publish({
-    destination: `/pub/tripItems/${tripItemId}/updateTransportation`,
+    destination: `/pub/trips/${trips}/updateTransportation`,
     body: JSON.stringify(pubUpdateTransportation),
   });
 };
@@ -163,6 +163,7 @@ export const pubGetPathAndItems = (
   pubGetPathAndItems: pubGetPathAndItems,
   tripId: string,
 ) => {
+  console.log('펍내부',pubGetPathAndItems);
   socketClient.publish({
     destination: `/pub/trips/${tripId}/getPathAndItems`,
     body: JSON.stringify(pubGetPathAndItems),

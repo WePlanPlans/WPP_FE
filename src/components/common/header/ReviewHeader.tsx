@@ -24,7 +24,6 @@ export default function ReviewHeader() {
         <BackIcon />
       </div>
       <div className="flex-grow pr-9 text-center text-sm font-bold">
-
         리뷰 쓰기
       </div>
     </header>

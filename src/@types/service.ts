@@ -8,8 +8,6 @@ export type subInfoRes = {
     numberOfPeople: number;
     tripName: string;
     tripStatus: string;
-    area: string;
-    subarea: string;
     budget: number;
   } | null;
 };
@@ -20,20 +18,34 @@ export type subItemRes = {
   data: {
     tripId: number;
     visitDate: string;
-    tripItems: TripItem[];
+    transportation: 'CAR' | 'PUBLIC_TRANSPORTATION';
+    tripItems: {
+      tripItemId: number;
+      tourItemId: number;
+      name: string;
+      thumbnailUrl: string;
+      category: string;
+      seqNum: number;
+      visitDate: string;
+      price: number;
+    }[];
   } | null;
 };
 
-export type TripItem = {
-  tripItemId: number;
-  tourItemId: number;
-  name: string;
-  thumbnailUrl: string;
-  category: string;
-  transportation: string;
-  seqNum: number;
-  visitDate: string;
-  price: number;
+export type Paths = {
+  fromTripItemId: number;
+  toTripItemId: number;
+  fromSeqNum: number;
+  toSeqNum: number;
+  fromLongitude: string;
+  fromLatitude: string;
+  toLongitude: string;
+  toLatitude: string;
+  pathInfo: {
+    price: number;
+    totalDistance: number;
+    totalTime: number;
+  };
 };
 
 export type subPathRes = {
@@ -42,14 +54,16 @@ export type subPathRes = {
   data: {
     tripId: number;
     visitDate: string;
+    transportation: 'CAR' | 'PUBLIC_TRANSPORTATION';
     paths: {
+      fromTripItemId: number;
+      toTripItemId: number;
       fromSeqNum: number;
       toSeqNum: number;
       fromLongitude: string;
       fromLatitude: string;
       toLongitude: string;
       toLatitude: string;
-      transportation: string;
       pathInfo: {
         price: number;
         totalDistance: number;
@@ -94,4 +108,15 @@ export type SocketContextType = {
   tripMember: subMemberRes | null;
   tripBudget: subBudgetRes | null;
   callBackPub: (callback: () => void) => void;
+};
+
+export type TripItem = {
+  tripItemId: number;
+  tourItemId: number;
+  name: string;
+  thumbnailUrl: string;
+  category: string;
+  seqNum: number;
+  visitDate: string;
+  price: number;
 };
