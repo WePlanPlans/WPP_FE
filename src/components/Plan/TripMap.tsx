@@ -1,4 +1,5 @@
 import { Paths } from '@/@types/service';
+import { useEffect, useRef } from 'react';
 import { Map, MapMarker, Polyline, useKakaoLoader } from 'react-kakao-maps-sdk';
 
 const VITE_KAKAO_MAP_API_KEY = import.meta.env.VITE_KAKAO_MAP_API_KEY;
@@ -7,6 +8,11 @@ const TripMap = ({ paths }: { paths: Paths[] }) => {
   const firstPath = paths[0];
   const latitude = firstPath?.fromLatitude;
   const longitude = firstPath?.fromLongitude;
+
+  // Kakao Maps SDK 로드 상태
+  const [_] = useKakaoLoader({
+    appkey: VITE_KAKAO_MAP_API_KEY,
+  });
 
   const defaultPosition = { lat: Number(latitude), lng: Number(longitude) };
 
@@ -31,10 +37,6 @@ const TripMap = ({ paths }: { paths: Paths[] }) => {
 
   const centerPosition = getCenterPosition();
 
-  const [_] = useKakaoLoader({
-    appkey: VITE_KAKAO_MAP_API_KEY,
-  });
-
   const MapStyle = {
     width: '100%',
     height: '180px',
@@ -58,14 +60,43 @@ const TripMap = ({ paths }: { paths: Paths[] }) => {
     });
   }
 
+  const mapRef = useRef<kakao.maps.Map | null>(null);
+
+  // 지도 범위 재설정 함수
+  const setBounds = () => {
+    if (mapRef.current) {
+      const bounds = new kakao.maps.LatLngBounds();
+      paths.forEach((path) => {
+        bounds.extend(
+          new kakao.maps.LatLng(
+            Number(path.fromLatitude),
+            Number(path.fromLongitude),
+          ),
+        );
+        bounds.extend(
+          new kakao.maps.LatLng(
+            Number(path.toLatitude),
+            Number(path.toLongitude),
+          ),
+        );
+      });
+      mapRef.current.setBounds(bounds);
+    }
+  };
+
+  useEffect(() => {
+    setBounds();
+  }, [paths]);
+
   return (
-    <div className="flex justify-center">
+    <div className="flex flex-col justify-center">
       <Map
         key={VITE_KAKAO_MAP_API_KEY}
         center={centerPosition}
         style={MapStyle}
         level={10}
-        className="relative rounded-lg object-fill">
+        className="relative rounded-lg object-fill"
+        ref={mapRef}>
         {paths.map((path, index) => (
           <div key={index}>
             <MapMarker

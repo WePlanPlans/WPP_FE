@@ -36,7 +36,7 @@ const PlanSectionTop = () => {
   if (startDate && endDate) {
     ({ DayArr, DateArr } = calculateDayAndDate(startDate, endDate));
   }
-
+  
   return (
     <div className="min-h-screen">
       <BackBox

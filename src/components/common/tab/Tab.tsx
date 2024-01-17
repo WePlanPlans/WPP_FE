@@ -8,7 +8,7 @@ interface TabProps {
 const Tab = ({ lists, contents }: TabProps) => (
   <Tabs.Root className="flex w-full flex-col" defaultValue="tab0">
     <Tabs.List
-      className="border-b-1 flex shrink-0"
+      className="border-b-1 no-scrollbar flex shrink-0 overflow-x-scroll"
       aria-label="Manage your account">
       {lists.map((list, index) => {
         return (
