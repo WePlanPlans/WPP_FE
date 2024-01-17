@@ -13,9 +13,12 @@ const TripSectionTop = () => {
     <div className="min-h-screen">
       <BackBox
         showBack={true}
-        showShare={true}
         backHandler={() => {
           navigate(-1);
+        }}
+        showShare={true}
+        shareHandler={() => {
+          navigate('share');
         }}
       />
       <TripInfo />

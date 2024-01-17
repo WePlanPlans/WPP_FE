@@ -7,6 +7,7 @@ import Trip from '@pages/trip/trip.page';
 import MainLayout from './routerLayout';
 import { useRecoilValue } from 'recoil';
 import { tripIdState, visitDateState } from '@recoil/socket';
+import Share from '@pages/share/share.page';
 
 const SocketRoutes = () => {
   const tripId = useRecoilValue(tripIdState);
@@ -31,6 +32,7 @@ const SocketRouter = () => {
     <Routes>
       <Route path="/trip" element={<MainLayout />}>
         <Route path=":id" element={<Trip />} />
+        <Route path=":id/share" element={<Share />} />
         <Route path=":id/*" element={<SocketRoutes />} />
       </Route>
     </Routes>
