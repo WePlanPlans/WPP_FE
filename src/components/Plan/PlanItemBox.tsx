@@ -1,6 +1,7 @@
 import { PenIcon, CarIcon, BusIcon } from '@components/common/icons/Icons';
 import { TripItem, Paths } from '@/@types/service';
 import { v4 as uuidv4 } from 'uuid';
+import React from 'react';
 
 type PlanItemBoxProps = {
   item: TripItem[];
@@ -19,10 +20,8 @@ const PlanItemBox = ({ item, paths, transportation }: PlanItemBoxProps) => {
     <>
       <div>
         {item.map((item, index) => (
-          <>
-            <div
-              key={item.tripItemId}
-              className="flex h-[87.5px] w-full rounded-lg border border-solid border-[#ededed] bg-white">
+          <React.Fragment key={item.tripItemId}>
+            <div className="flex h-[87.5px] w-full rounded-lg border border-solid border-[#ededed] bg-white">
               <img
                 className="h-[87px] w-[93px] rounded-bl-lg rounded-tl-lg "
                 src={item.thumbnailUrl}
@@ -64,7 +63,7 @@ const PlanItemBox = ({ item, paths, transportation }: PlanItemBoxProps) => {
                     </div>
                   </div>
                 ))}
-          </>
+          </React.Fragment>
         ))}
       </div>
     </>
