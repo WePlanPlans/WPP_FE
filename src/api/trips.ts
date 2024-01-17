@@ -76,7 +76,7 @@ export const getTripsjoin = async (tripId: number) => {
 };
 
 // 여정 참여
-export const postTripsjoin = async (tripId: number, joinCode: number) => {
+export const postTripsjoin = async (tripId: number, joinCode: string) => {
   const res = await client.post(`trips/${tripId}/join`, { joinCode });
   return res;
 };
