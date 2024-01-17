@@ -7,6 +7,7 @@ import {
 } from '@components/Auth';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import { AxiosError } from 'axios';
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ const EditPwForm = () => {
     watch,
     resetField,
     setError,
+    trigger,
     formState: { errors, isValid },
   } = useForm<EditPassword>({
     mode: 'onChange',
@@ -25,6 +27,14 @@ const EditPwForm = () => {
   });
 
   const navigate = useNavigate();
+
+  const password = watch('password');
+  const passwordCheck = watch('passwordCheck');
+  useEffect(() => {
+    if (passwordCheck) {
+      trigger('passwordCheck');
+    }
+  }, [password, trigger]);
 
   const onEditPwSubmit: SubmitHandler<EditPassword> = async (data) => {
     const { currentPw, password } = data;

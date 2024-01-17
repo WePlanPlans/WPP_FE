@@ -10,6 +10,7 @@ import { BackBox } from '@components/common';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import { CheckboxIcon } from '@components/common/icons/Icons';
 import { setItem } from '@utils/localStorageFun';
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,6 +22,7 @@ const Signup = () => {
     watch,
     resetField,
     setError,
+    trigger,
     formState: { errors, isValid },
   } = useForm<SignupFormValue>({
     mode: 'onChange',
@@ -28,6 +30,14 @@ const Signup = () => {
   });
 
   const navigate = useNavigate();
+
+  const password = watch('password');
+  const passwordCheck = watch('passwordCheck');
+  useEffect(() => {
+    if (passwordCheck) {
+      trigger('passwordCheck');
+    }
+  }, [password, trigger]);
 
   const onSignupSubmit: SubmitHandler<SignupFormValue> = async (data) => {
     const { email, password } = data;
