@@ -121,4 +121,4 @@ export type TripItem = {
   seqNum: number;
   visitDate: string;
   price: number;
-} | null;
+};
