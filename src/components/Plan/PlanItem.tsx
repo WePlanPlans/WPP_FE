@@ -27,8 +27,20 @@ const PlanItem = (date: any) => {
     }
   }, [visitDate]);
 
-  const handleTranspo = () => {
-    callBackPub(() => pubUpdateTransportation(visitDate, tripId));
+  const handleTranspo = (
+    transportation: 'CAR' | 'PUBLIC_TRANSPORTATION',
+    visitDate: string,
+    tripId: number,
+  ) => {
+    callBackPub(() =>
+      pubUpdateTransportation(
+        {
+          visitDate: visitDate,
+          transportation: transportation,
+        },
+        tripId,
+      ),
+    );
   };
 
   const transpo = tripItem?.data?.transportation || '';
