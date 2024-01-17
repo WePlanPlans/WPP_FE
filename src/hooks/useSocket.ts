@@ -49,13 +49,9 @@ export const useSocket = (tripId: string, visitDate: string) => {
         }
       });
 
-      console.log('sub외부', visitDate);
-
       subItem(tripId, visitDate, (res) => {
-        console.log('sub내부', visitDate);
         if (res) {
           setTripItem(res);
-          console.log('상태변경실행');
         }
       });
 
@@ -79,7 +75,6 @@ export const useSocket = (tripId: string, visitDate: string) => {
 
       if (socketCallback) {
         socketCallback();
-        console.log('소켓커넥트내부', socketCallback);
       }
     };
 
