@@ -1123,7 +1123,7 @@ export const ShareIcon: React.FC<ChackIconProps> = ({
 };
 
 export const PlanIcon: React.FC<IconProps> = ({
-  size = 20,
+  size = 24,
   color = 'black',
   fill = 'none',
 }) => {
@@ -1259,5 +1259,52 @@ export const CheckboxIcon: React.FC<IconProps> = ({
         />
       </g>
     </svg>
+  );
+};
+
+export const CounterIcon: React.FC<
+  IconProps & { plus?: boolean; minus?: boolean }
+> = ({ size = 12, fill = '#D7D7D7', plus, minus }) => {
+  return (
+    <>
+      {plus && (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width={size}
+          viewBox="0 0 13 12"
+          fill={fill}>
+          <path
+            d="M1.58229 6.00781H11.5823"
+            stroke="#D7D7D7"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M6.58229 1.00781V11.0078"
+            stroke="#D7D7D7"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      )}
+      {minus && (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width={size}
+          height={size / 6.5}
+          viewBox="0 0 13 2"
+          fill="none">
+          <path
+            d="M1.5359 1.00781H11.5359"
+            stroke="#D7D7D7"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      )}
+    </>
   );
 };

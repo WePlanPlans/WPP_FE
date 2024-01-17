@@ -11,14 +11,18 @@ export const SelectDate = ({ onClose }: { onClose: () => void }) => {
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(null);
 
   const handleComplete = () => {
-    setTripDate({ startDate: selectedStartDate, endDate: selectedEndDate });
+    const endDate = selectedEndDate ? selectedEndDate : selectedStartDate;
+    setTripDate({ startDate: selectedStartDate, endDate });
     onClose();
   };
 
   return (
     <div className="flex h-[95vh] flex-col">
-      <header className="mb-5 w-full bg-white">
-        <BackIcon onClick={onClose} />
+      <header className="relative mb-7 flex w-full items-center justify-center bg-white text-center">
+        <div className="absolute left-0">
+          <BackIcon onClick={onClose} />
+        </div>
+        <div className="headline2 ">날짜 선택</div>
       </header>
       <Calendar
         onDateSelect={(startDate, endDate) => {
