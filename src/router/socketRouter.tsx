@@ -11,7 +11,6 @@ import { tripIdState, visitDateState } from '@recoil/socket';
 const SocketRoutes = () => {
   const tripId = useRecoilValue(tripIdState);
   const visitDate = useRecoilValue(visitDateState);
-
   if (!tripId || !visitDate) {
     return <div>에러</div>;
   }
