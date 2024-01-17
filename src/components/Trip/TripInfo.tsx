@@ -18,9 +18,6 @@ const TripInfo = () => {
             </span>
           </div>
         </div>
-        <button className="body4 rounded-[8px] bg-[#F0F0F0] px-[10px] py-[8px] text-gray4">
-          편집
-        </button>
       </div>
       <span className="body1 text-gray4">
         {trip?.startDate} ~ {trip?.endDate}

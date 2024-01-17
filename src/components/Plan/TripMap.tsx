@@ -41,7 +41,6 @@ const TripMap = ({ paths }: { paths: Paths[] }) => {
     width: '100%',
     height: '180px',
     marginTop: '15px',
-    marginBottom: '15px',
     transition: 'height 0.3s ease-in-out',
   };
 
