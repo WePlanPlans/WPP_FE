@@ -1,6 +1,7 @@
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import { PlusIcon } from '@components/common/icons/Icons';
 import { useNavigate } from 'react-router-dom';
+import TripMap from './TripMap';
 import PlanItemBox from './PlanItemBox';
 import { useContext } from 'react';
 import { socketContext } from '@hooks/useSocket';
@@ -13,7 +14,7 @@ const PlanItem = () => {
   const navigate = useNavigate();
   const tripId = useRecoilValue(tripIdState);
   const pubMember = useRecoilValue(memberIdState);
-  const { callBackPub, tripItem } = useContext(socketContext);
+  const { callBackPub, tripItem, tripPath } = useContext(socketContext);
 
   if (!pubMember || !tripId) {
     return <div>에러</div>;
@@ -25,6 +26,7 @@ const PlanItem = () => {
 
   return (
     <>
+      {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
       <div className="flex flex-col gap-[5px]">
         {tripItem?.data?.tripItems.map((item) => (
           <PlanItemBox key={item.tripItemId} item={item} />

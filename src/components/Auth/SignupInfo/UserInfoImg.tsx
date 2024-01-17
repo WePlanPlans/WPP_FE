@@ -28,7 +28,7 @@ const UserInfoImg = ({ register, setValue, inputValue }: AuthImgProps) => {
         <img
           className="rounded-full"
           src={
-            inputValue !== null
+            inputValue
               ? inputValue
               : 'https://elasticbeanstalk-ap-northeast-2-077853585725.s3.ap-northeast-2.amazonaws.com/static/387fde04-f7d4-443d-88e1-b678ab5e079ddefaultProfileImg.svg'
           }

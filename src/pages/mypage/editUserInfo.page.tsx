@@ -12,8 +12,9 @@ const EditUserInfo = () => {
         backHandler={() => {
           navigate('/mypage');
         }}
-        showSave
-        saveHandler={() => {}}>
+        // showSave
+        // saveHandler={() => {}}
+      >
         회원정보 수정
       </BackBox>
       <div className="flex flex-col items-center">

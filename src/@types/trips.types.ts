@@ -12,7 +12,9 @@ interface MyTripType {
   tripName: string;
   startDate: string;
   endDate: string;
-  numberOfTripMembers: number;
+  numberOfPeople: number;
   tripStatus: string;
   tripThumbnailUrl: string;
+  area: string;
+  subArea: string;
 }
