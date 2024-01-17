@@ -68,3 +68,13 @@ export const getTripsSurvey = async (tripId: number) => {
   const res = await client.get(`trips/${tripId}/survey`);
   return res;
 };
+// 우리의 여행취향 참여/미참여 회원 조회
+export const getTripsSurveyMembers = async (tripId: number) => {
+  const res = await client.get(`trips/${tripId}/survey/members`);
+  return res;
+};
+// 여정을 공유하고 있는 회원 조회
+export const getTripsMembers = async (tripId: number) => {
+  const res = await client.get(`trips/${tripId}/members`);
+  return res;
+};

@@ -8,6 +8,8 @@ import {
   calculatePercentage,
   calculatePercentageRemain,
 } from '@utils/calculatePercentage';
+import { useSetRecoilState } from 'recoil';
+import { modalChildrenState, isModalOpenState } from '@recoil/modal';
 
 interface RatioBarParams {
   value: number;
@@ -94,6 +96,8 @@ const TripPreference: React.FC = () => {
   const [C, setC] = useState<[number, number]>([0, 0]);
   const [D, setD] = useState<[number, number]>([0, 0]);
   const [E, setE] = useState<[number, number]>([0, 0]);
+  const setModalChildren = useSetRecoilState(modalChildrenState);
+  const setIsModalOpen = useSetRecoilState(isModalOpenState);
 
   const { data: tripPreference, isLoading } = useQuery({
     queryKey: ['tripPreference', tripId],
@@ -129,10 +133,17 @@ const TripPreference: React.FC = () => {
     return <div>Loading...</div>;
   }
 
+  const handleButtonClick = () => {
+    setModalChildren('TripSurveyMember');
+    setIsModalOpen(true);
+  };
+
   return (
     <div className=" mb-[-20px] ml-[-20px] mr-[-20px] mt-[-20px] flex flex-col items-center bg-gray1  ">
       <TripPreferenceButton />
-      <div className="mb-[20px] ml-auto mr-[40px] flex items-center text-sm ">
+      <div
+        onClick={handleButtonClick}
+        className="mb-[20px] ml-auto mr-[40px] flex cursor-pointer items-center text-sm ">
         <div>n명 참여</div>
         <div className="mt-0.5">
           <MoreIcon size={20} color="none" fill="#888888" />
