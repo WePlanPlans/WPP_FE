@@ -39,7 +39,6 @@ export const useSocket = (tripId: string, visitDate: string) => {
 
   const callBackPub = (callback: () => void): void => {
     setSocketCallback(() => callback);
-    console.log('소켓커넥트외부', socketCallback);
   };
 
   const socketConnect = () => {
@@ -85,7 +84,6 @@ export const useSocket = (tripId: string, visitDate: string) => {
     };
 
     socketClient.activate();
-    console.log('소켓연결');
   };
 
   useEffect(() => {
@@ -93,26 +91,8 @@ export const useSocket = (tripId: string, visitDate: string) => {
 
     return () => {
       socketClient.deactivate();
-      console.log('소켓해제');
     };
   }, [tripId, visitDate, socketCallback]);
 
-  console.log(tripItem);
-
   return { tripInfo, tripItem, tripPath, tripMember, tripBudget, callBackPub };
 };
-
-// // 콜백들을 저장할 배열
-// let socketCallbacks = [];
-
-// // 콜백을 배열에 추가하는 함수
-// const callBackPub = (callback) => {
-//   socketCallbacks.push(callback);
-// };
-
-// // 모든 콜백을 실행하는 함수
-// const executeCallbacks = () => {
-//   socketCallbacks.forEach(callback => {
-//     callback();
-//   });
-// };
