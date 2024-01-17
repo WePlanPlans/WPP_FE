@@ -16,6 +16,7 @@ const TripBudget = () => {
       setCurrentSpending(budget.calculatedPrice || 0);
     }
   }, [budget]);
+
   // 프로그레스 바 값 계산
   const progress = Math.min(
     currentSpending && targetBudget
@@ -23,11 +24,6 @@ const TripBudget = () => {
       : 0,
     100,
   );
-  useEffect(() => {
-    // 경비 수정 모달 추가 예정
-    const timer = setTimeout(() => setCurrentSpending(100000), 300);
-    return () => clearTimeout(timer);
-  }, []);
 
   // 목표 경비 설정 함수
   const handleSetTargetBudget = (newTargetBudget: number) => {
