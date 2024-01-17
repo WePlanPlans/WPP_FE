@@ -3,14 +3,13 @@ import ToursCategoryItem from '@components/Tours/ToursCategoryItem';
 import { useEffect, useState } from 'react';
 import { Spinner } from '@components/common/spinner/Spinner';
 import { getMemberTours } from '@api/member';
-import WishList from '@components/Wish/WishList';
 
 export const OurLikedList = () => {
   const categories = ['전체', '숙소', '식당', '관광지'];
 
-  const [selectedContentTypeId, setSelectedContentTypeId] = useState<
-    null | number
-  >(null);
+  // const [selectedContentTypeId, setSelectedContentTypeId] = useState<
+  //   null | number
+  // >(null);
 
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
   useEffect(() => {
@@ -26,32 +25,36 @@ export const OurLikedList = () => {
   // }, [searchWord]);
   // console.log();
 
-  const { fetchNextPage, hasNextPage, data, isLoading, isError } =
-    useInfiniteQuery({
-      queryKey: ['wishList'],
-      queryFn: ({ pageParam = 0 }) => getMemberTours(pageParam, 10),
-      initialPageParam: 0,
-      getNextPageParam: (lastPage) => {
-        if (
-          lastPage &&
-          lastPage.data &&
-          lastPage.data &&
-          lastPage.data.pageable
-        ) {
-          const currentPage = lastPage.data.pageable.pageNumber;
-          const totalPages = lastPage.data.totalPages;
+  const {
+    // fetchNextPage, hasNextPage,
+    data,
+    isLoading,
+    isError,
+  } = useInfiniteQuery({
+    queryKey: ['wishList'],
+    queryFn: ({ pageParam = 0 }) => getMemberTours(pageParam, 10),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => {
+      if (
+        lastPage &&
+        lastPage.data &&
+        lastPage.data &&
+        lastPage.data.pageable
+      ) {
+        const currentPage = lastPage.data.pageable.pageNumber;
+        const totalPages = lastPage.data.totalPages;
 
-          if (currentPage < totalPages - 1) {
-            return currentPage + 1;
-          }
+        if (currentPage < totalPages - 1) {
+          return currentPage + 1;
         }
-        return undefined;
-      },
-    });
+      }
+      return undefined;
+    },
+  });
 
-  const handleCategoryClick = (contentTypeId: number | null) => {
-    setSelectedContentTypeId(contentTypeId);
-  };
+  // const handleCategoryClick = (contentTypeId: number | null) => {
+  //   setSelectedContentTypeId(contentTypeId);
+  // };
 
   if (isLoading) {
     return <Spinner />;

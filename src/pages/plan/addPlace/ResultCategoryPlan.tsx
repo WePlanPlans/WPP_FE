@@ -1,7 +1,8 @@
-import { ButtonPrimary, ButtonWhite } from '@components/common/button/Button';
+import { ButtonWhite } from '@components/common/button/Button';
 import { TourType } from '@/@types/tours.types';
 import { InfiniteQueryObserverResult } from '@tanstack/react-query';
 import { ResultItemPlan } from './ResultItem';
+import AddToListButton from './AddtoListBtn';
 
 interface ResultCategoryProps {
   data: TourType[];
@@ -17,7 +18,6 @@ export const ResultCategoryPlan = ({
   hasNextPage,
   isFetchingNextPage,
 }: ResultCategoryProps) => {
-  // console.log('hasNextPage', hasNextPage);
   return (
     <>
       <h2 className="headline2 my-2.5">ResultCategoryPlan</h2>
@@ -38,7 +38,9 @@ export const ResultCategoryPlan = ({
         <div className="mt-3 text-center text-gray3"></div>
       )}
       <div className="sticky bottom-0 bg-white py-[20px]">
-        <ButtonPrimary>추가하기</ButtonPrimary>
+        <div className="sticky bottom-0 bg-white py-[20px]">
+          <AddToListButton />
+        </div>
       </div>
     </>
   );
