@@ -5,11 +5,9 @@ import {
   CloseIcon,
   CounterIcon,
   PlanIcon,
-  SearchIcon,
   UserIcon,
 } from '@components/common/icons/Icons';
 import { InputField } from '@components/createTrip/InputField';
-import { SelectDestination } from '@components/createTrip/SelectDestination';
 import { tripDateState } from '@recoil/tripDate';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -30,7 +28,6 @@ export const CreateTrip = () => {
     1,
   );
   const [showSelectDate, setShowSelectDate] = useState(false);
-  const [showSelectDestination, setShowSelectDestination] = useState(false);
   const tripDate = useRecoilValue(tripDateState);
 
   const { data, isLoading, isError } = useQuery({
@@ -90,15 +87,6 @@ export const CreateTrip = () => {
       />
     );
   }
-  if (showSelectDestination) {
-    return (
-      <SelectDestination
-        onClose={() => {
-          setShowSelectDestination(false);
-        }}
-      />
-    );
-  }
   return (
     <div className="flex h-[95vh] flex-col">
       <BackHeader />
@@ -152,15 +140,6 @@ export const CreateTrip = () => {
         }}
         isClickable>
         <div className="p-2">{formattedTripDate}</div>
-      </InputField>
-
-      <InputField
-        icon={SearchIcon}
-        onClick={() => {
-          setShowSelectDestination(true);
-        }}
-        isClickable>
-        <div className="p-2">여행지 (선택)</div>
       </InputField>
 
       <div className="mt-auto">

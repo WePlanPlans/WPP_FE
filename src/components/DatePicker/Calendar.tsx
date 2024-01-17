@@ -49,9 +49,6 @@ const Calendar: React.FC<{
   };
 
   const handleDateClick = (date: Date) => {
-    // if (startDate && !endDate) {
-    //   setEndDate(startDate);
-    // } else
     if (startDate && !endDate && date < startDate) {
       setEndDate(startDate);
       setStartDate(date);
