@@ -1,8 +1,6 @@
-import { getTripsSurveyMembers } from '@api/trips';
-import { useQuery } from '@tanstack/react-query';
-import { tripIdState } from '@recoil/socket';
-import { useRecoilValue } from 'recoil';
 import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
+import { useRecoilValue } from 'recoil';
+import { participantsState } from '@recoil/trip';
 
 interface ParticipantStatusProps {
   status: string;
@@ -32,25 +30,22 @@ const ParticipantList: React.FC<{ infos: any[] }> = ({ infos }) => (
 export const ParticipantStatus: React.FC<ParticipantStatusProps> = ({
   status,
 }) => {
-  const tripId = Number(useRecoilValue(tripIdState));
-
-  const { data: tripsSurveyMembers } = useQuery({
-    queryKey: ['tripsSurveyMembers', tripId],
-    queryFn: () => getTripsSurveyMembers(tripId),
-  });
-
-  const participants =
-    status === '참여'
-      ? tripsSurveyMembers?.data?.data?.tripSurveySetMemberInfos
-      : tripsSurveyMembers?.data?.data?.nonTripSurveySetMemberInfos;
+  const participants = useRecoilValue(participantsState);
 
   return (
     <div className="flex flex-col">
       <div className="mb-4 ml-auto mr-2 text-xs text-gray5">
-        {participants &&
-          `${participants.length}명 ${status === '참여' ? '참여' : '미참여'}`}
+        {status == '참여' ? (
+          <>{participants?.tripSurveyMemberCount}명 참여</>
+        ) : (
+          <>{participants?.nonTripSurveySetMemberInfos?.length}명 미참여</>
+        )}
       </div>
-      {participants && <ParticipantList infos={participants} />}
+      {status == '참여' ? (
+        <ParticipantList infos={participants?.tripSurveySetMemberInfos} />
+      ) : (
+        <ParticipantList infos={participants?.nonTripSurveySetMemberInfos} />
+      )}
     </div>
   );
 };
