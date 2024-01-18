@@ -31,6 +31,7 @@ interface ourTripType {
   notPrefer: boolean;
   preferTotalCount: number;
   notPreferTotalCount: number;
+  title: string;
 }
 
 interface ThumbsProps {
