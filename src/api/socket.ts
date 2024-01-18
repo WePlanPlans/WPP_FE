@@ -2,6 +2,8 @@ import * as StompJs from '@stomp/stompjs';
 
 export const socketClient = new StompJs.Client({
   brokerURL: import.meta.env.VITE_SOCKET_URL,
+  heartbeatIncoming: 1000,
+  heartbeatOutgoing: 1000,
 });
 
 // 소켓 구독

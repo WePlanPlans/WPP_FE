@@ -59,6 +59,8 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
 
   const transpo = tripItem?.data?.transportation || '';
 
+  console.log(tripItem);
+
   return (
     <>
       {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
