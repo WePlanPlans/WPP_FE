@@ -1,28 +1,66 @@
 import { PenIcon, DragAndDropIcon } from '@components/common/icons/Icons';
-import { TripItem, Paths } from '@/@types/service';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { useState } from 'react';
+import { TripItem } from '@/@types/service';
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DropResult,
+} from 'react-beautiful-dnd';
+import { useState, useEffect } from 'react';
+import { pubUpdateTripItem } from '@api/socket';
+import { useContext } from 'react';
+import { socketContext } from '@hooks/useSocket';
+import { pubUpdateTripItemReq } from '@/@types/service';
 
 type PlanItemBoxProps = {
   item: TripItem[];
-  paths: Paths[];
   day: string;
+  visitDate: string;
+  tripId: string;
 };
 
-const PlanEditItemBox = ({ item, paths, day }: PlanItemBoxProps) => {
-  if (!item || !paths) {
+const PlanEditItemBox = ({
+  item,
+  day,
+  visitDate,
+  tripId,
+}: PlanItemBoxProps) => {
+  if (!item) {
     return <div>Missing data</div>;
   }
 
-  const [items, setItems] = useState(item);
+  const { callBackPub } = useContext(socketContext);
 
-  const onDragEnd = (result: any) => {
+  const [items, setItems] = useState(item);
+  const [newData, setNewData] = useState<pubUpdateTripItemReq | null>(null);
+
+  const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
     const reorderedItems = Array.from(items);
     const [relocatedItem] = reorderedItems.splice(result.source.index, 1);
     reorderedItems.splice(result.destination.index, 0, relocatedItem);
     setItems(reorderedItems);
+
+    const tripItemOrder = reorderedItems.map((item, index) => ({
+      tripItemId: item.tripItemId,
+      seqNum: index + 1,
+    }));
+
+    setNewData({
+      visitDate: visitDate,
+      tripItemOrder,
+    });
+
+    console.log(newData);
   };
+
+  useEffect(() => {
+    if (newData && tripId) {
+      callBackPub(() => pubUpdateTripItem(newData, tripId));
+    }
+  }, [newData]);
+
+  console.log(newData);
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>

@@ -108,8 +108,9 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
         {isEdit ? (
           <PlanEditItemBox
             item={tripItem?.data?.tripItems || []}
-            paths={tripPath?.data?.paths || []}
             day={day}
+            visitDate={visitDate?.visitDate || ''}
+            tripId={tripId || ''}
           />
         ) : (
           <PlanItemBox
