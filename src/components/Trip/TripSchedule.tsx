@@ -1,9 +1,10 @@
 import { UserIcon } from '@components/common/icons/Icons';
+import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
 
 export const TripSchedule = () => {
   return (
     <>
-      <hr className="mb-6 mt-3 border-solid border-gray2" />
+      <hr className="my-3 border-solid border-gray2" />
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <div className="title1 mb-[10px] mr-1">강릉 여행 일정</div>
