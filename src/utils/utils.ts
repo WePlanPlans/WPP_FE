@@ -26,3 +26,26 @@ export const getEmoji = (content: string) => {
   };
   return emojiMap[content] || '🌟';
 };
+
+export function calculateDayAndDate(startDate: string, endDate: string) {
+  let start = new Date(startDate);
+  const end = new Date(endDate);
+  const differenceInDays: number =
+    (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24);
+
+  const DayArr = Array.from(
+    { length: Math.ceil(differenceInDays) + 1 },
+    (_, i) => `DAY ${i + 1}`,
+  );
+  const DateArr = [];
+
+  while (start <= end) {
+    DateArr.push(start.toISOString().split('T')[0]);
+    start = new Date(start.setDate(start.getDate() + 1));
+  }
+
+  return {
+    DayArr,
+    DateArr,
+  };
+}

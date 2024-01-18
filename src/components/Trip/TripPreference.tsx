@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { getTripsSurvey } from '@api/trips';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
-import { MoreIcon } from '@components/common/icons/Icons';
-import { RightIcon } from '@components/common/icons/Icons';
+import { MoreIcon, RightIcon, HeartIcon } from '@components/common/icons/Icons';
 import {
   calculatePercentage,
   calculatePercentageRemain,
 } from '@utils/calculatePercentage';
-
+import { modalChildrenState, isModalOpenState } from '@recoil/modal';
+import { getTripsSurveyMembers } from '@api/trips';
+import { tripIdState } from '@recoil/socket';
+import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
+import { participantsState } from '@recoil/trip';
 interface RatioBarParams {
   value: number;
   total: number;
@@ -26,7 +28,12 @@ interface PercentageParams {
 const TripPreferenceButton: React.FC = () => {
   return (
     <button className="mb-[17.5px] mt-[20px] flex w-[335px] items-center rounded-full bg-white px-6 py-4 text-sm">
-      <div className="text-gray6">내 여행 취향 설정하러 가기</div>
+      <div className="flex items-center text-gray6">
+        <div>
+          <HeartIcon fill="#888888" color="#888888" size={20} />
+        </div>
+        <p className="ml-1.5">내 여행 취향 설정하러 가기</p>
+      </div>
       <div className="ml-auto">
         <RightIcon fill="#5E5E5E" />
       </div>
@@ -87,13 +94,25 @@ const Percentage = ({ value, total, color }: PercentageParams) => (
 );
 
 const TripPreference: React.FC = () => {
-  const params = useParams();
-  const tripId = Number(params.id);
   const [A, setA] = useState<[number, number]>([0, 0]);
   const [B, setB] = useState<[number, number]>([0, 0]);
   const [C, setC] = useState<[number, number]>([0, 0]);
   const [D, setD] = useState<[number, number]>([0, 0]);
   const [E, setE] = useState<[number, number]>([0, 0]);
+  const setModalChildren = useSetRecoilState(modalChildrenState);
+  const setIsModalOpen = useSetRecoilState(isModalOpenState);
+  const tripId = Number(useRecoilValue(tripIdState));
+  const [participants, setParticipants] = useRecoilState(participantsState);
+
+  const { data: tripsSurveyMembers } = useQuery({
+    queryKey: ['tripsSurveyMembers', tripId],
+    queryFn: () => getTripsSurveyMembers(tripId),
+  });
+
+  useEffect(() => {
+    const participants = tripsSurveyMembers?.data?.data;
+    setParticipants(participants);
+  }, [tripsSurveyMembers]);
 
   const { data: tripPreference, isLoading } = useQuery({
     queryKey: ['tripPreference', tripId],
@@ -129,11 +148,20 @@ const TripPreference: React.FC = () => {
     return <div>Loading...</div>;
   }
 
+  const handleButtonClick = () => {
+    setModalChildren('TripSurveyMember');
+    setIsModalOpen(true);
+  };
+
   return (
-    <div className=" mb-[-20px] ml-[-40px] mr-[-40px] mt-[-20px] flex flex-col items-center bg-gray1  ">
+    <div className=" m-[-20px] flex flex-col items-center bg-gray1 pb-[20px]  ">
       <TripPreferenceButton />
-      <div className="mb-[20px] ml-auto mr-[40px] flex items-center text-sm ">
-        <div>n명 참여</div>
+      <div
+        onClick={handleButtonClick}
+        className="mb-[20px] ml-auto mr-[40px] flex cursor-pointer items-center text-sm ">
+        <div className="text-gray6">
+          {participants?.tripSurveyMemberCount}명 참여
+        </div>
         <div className="mt-0.5">
           <MoreIcon size={20} color="none" fill="#888888" />
         </div>

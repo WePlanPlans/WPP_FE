@@ -38,21 +38,21 @@ const DetailAddSchedule = () => {
                     className="h-[52px] w-[52px] flex-shrink-0 flex-grow-0 rounded-lg object-cover"
                   />
                   <div className="relative flex flex-shrink-0 flex-grow-0 flex-col items-start justify-start gap-2">
-                    <p className="w-[270.04px] flex-shrink-0 flex-grow-0 text-left text-base font-bold text-[#1e1e1e]">
+                    <div className="w-[270.04px] flex-shrink-0 flex-grow-0 text-left text-base font-bold text-[#1e1e1e]">
                       강릉 속초 여행
-                    </p>
-                    <p className="h-[17px] w-[270.04px] flex-shrink-0 flex-grow-0 text-left text-sm font-medium text-[#888]">
+                    </div>
+                    <div className="h-[17px] w-[270.04px] flex-shrink-0 flex-grow-0 text-left text-sm font-medium text-[#888]">
                       2023.12.20 - 12.22 (3박 4일)
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div className="flex items-start justify-start gap-1">
               <div className="relative flex h-10 flex-shrink-0 flex-grow-0 items-center justify-center gap-1 rounded-[168px] border-[1.25px] border-solid border-[#29ddf6] px-8 py-2">
-                <p className="flex-shrink-0 flex-grow-0 text-left text-sm font-medium text-[#29ddf6]">
+                <div className="flex-shrink-0 flex-grow-0 text-left text-sm font-medium text-[#29ddf6]">
                   Day 1
-                </p>
+                </div>
               </div>
             </div>
           </Dialog.Description>
