@@ -35,14 +35,14 @@ export const postTrips = async (tripsData: TripRequest) => {
 // 우리의 관심목록 조회
 export const getTripsLike = async (
   tripId: number,
-  category: number,
   page: number,
   size: number,
 ) => {
-  const res = await client.get(
-    `trips/${tripId}/tripLikedTours?category=${category}&page=${page}$size=${size}`,
+  const res = await authClient.get(
+    `trips/${tripId}/tripLikedTours?page=${page}&size=${size}`,
   );
-  return res;
+
+  return res.data;
 };
 
 // 우리의 관심 목록 등록
@@ -56,9 +56,10 @@ export const postTripsLikeHate = async (
   tripId: number,
   tourId: number,
   prefer: boolean,
+  notPrefer: boolean,
 ) => {
-  const res = await client.post(
-    `trips/${tripId}/tripLikedTours/${tourId}?prefer=${prefer}`,
+  const res = await authClient.post(
+    `trips/${tripId}/tripLikedTours/${tourId}?prefer=${prefer}&notPrefer=${notPrefer}`,
   );
   return res;
 };
