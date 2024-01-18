@@ -1,4 +1,4 @@
-import TripInfo from '@components/Trip/TripInfo';
+import TripRealtimeEditor from '@components/Trip/TripRealtimeEditor';
 import { BackBox } from '@components/common';
 import { useNavigate } from 'react-router-dom';
 import TripBudget from './TripBudget';
@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { tripIdState, memberIdState } from '@recoil/socket';
 import { calculateDayAndDate } from '@utils/utils';
+import { TripSchedule } from '@components/Trip/TripSchedule';
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const PlanSectionTop = () => {
   if (startDate && endDate) {
     ({ DayArr, DateArr } = calculateDayAndDate(startDate, endDate));
   }
-  
+
   return (
     <div className="min-h-screen">
       <BackBox
@@ -46,7 +47,8 @@ const PlanSectionTop = () => {
           navigate(-1);
         }}
       />
-      <TripInfo />
+      <TripRealtimeEditor />
+      <TripSchedule />
       <TripBudget />
       <Tab
         lists={DayArr}

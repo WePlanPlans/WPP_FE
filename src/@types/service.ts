@@ -78,15 +78,11 @@ export type subMemberRes = {
   message: string;
   data: {
     tripId: number;
-    connectedMembers: {
-      memberId: number;
-      name: string;
-      thumbnailUrl: string;
-    }[];
     tripMembers: {
       memberId: number;
       name: string;
       thumbnailUrl: string;
+      connected: boolean;
     }[];
     numberOfPeople: number;
   } | null;
