@@ -59,8 +59,6 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
 
   const transpo = tripItem?.data?.transportation || '';
 
-  console.log(tripItem);
-
   return (
     <>
       {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
@@ -100,6 +98,7 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
         )}
 
         <button
+          type="button"
           onClick={handleEdit}
           className="flex h-8 w-[46px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#f0f0f0] p-2 text-sm font-medium text-gray4">
           {isEdit ? '완료' : '편집'}
@@ -125,16 +124,7 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
       </div>
       <div className="mt-[18px]">
         {isEdit ? (
-          <div className="flex w-full justify-center">
-            <div className="flex h-14">
-              <div className="flex w-[206px] items-center justify-center gap-2 bg-gray3 p-2 font-bold text-white">
-                삭제하기
-              </div>
-              <div className="flex w-[206px] items-center justify-center gap-2 bg-main2 p-2 font-bold text-white">
-                날짜 이동
-              </div>
-            </div>
-          </div>
+          ''
         ) : (
           <ButtonWhite
             onClick={() => navigate('./place')}

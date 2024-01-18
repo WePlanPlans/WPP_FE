@@ -137,6 +137,7 @@ export const pubDeleteItem = (
     destination: `/pub/tripItems/${tripItemId}/deleteItem`,
     body: JSON.stringify(pubDeleteItem),
   });
+  console.log(pubDeleteItem);
 };
 
 // 멤버 여정 페이지로 입장 이벤트 발생시

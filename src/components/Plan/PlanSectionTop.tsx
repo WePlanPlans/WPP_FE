@@ -8,7 +8,8 @@ import { socketContext } from '@hooks/useSocket';
 import { useContext } from 'react';
 import { pubEnterMember } from '@api/socket';
 import { useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import { dayState, dateState } from '@recoil/plan';
 import { tripIdState, memberIdState } from '@recoil/socket';
 import { calculateDayAndDate } from '@utils/utils';
 
@@ -16,6 +17,8 @@ const PlanSectionTop = () => {
   const navigate = useNavigate();
   const tripId = useRecoilValue(tripIdState);
   const pubMember = useRecoilValue(memberIdState);
+  const [_, setDay] = useRecoilState(dayState);
+  const [date, setDate] = useRecoilState(dateState);
 
   if (!pubMember || !tripId) {
     return <div>에러</div>;
@@ -36,6 +39,11 @@ const PlanSectionTop = () => {
   if (startDate && endDate) {
     ({ DayArr, DateArr } = calculateDayAndDate(startDate, endDate));
   }
+
+  useEffect(() => {
+    setDay(DayArr);
+    setDate(DateArr);
+  }, [startDate, endDate]);
 
   return (
     <div className="min-h-screen">
