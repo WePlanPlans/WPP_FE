@@ -14,8 +14,9 @@ export default function DetailTopButton() {
       setVisible(false);
     }
   }, [getReviewCount]);
-
-  const scrollToTop = () => {
+  
+  const scrollToTop = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
