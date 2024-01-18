@@ -12,8 +12,8 @@ const Accordion: React.FC<AccordionProps> = ({ title, content }) => {
       <accordion.Item value="item-1">
         <accordion.Header className="flex">
           {title}
-          <accordion.Trigger className="ml-auto">
-            <DownIcon size={17} className="rotate-on-open" />
+          <accordion.Trigger>
+            <DownIcon size={17} className="rotate-on-open ml-1" />
           </accordion.Trigger>
         </accordion.Header>
         <accordion.Content>{content}</accordion.Content>
