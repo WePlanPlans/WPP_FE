@@ -1,18 +1,16 @@
-import { PlanIcon, RightIcon } from '@components/common/icons/Icons';
+import { PlanColorIcon, RightIcon } from '@components/common/icons/Icons';
 
 const PlanTripButton = () => {
   return (
-
     <button className="body3 mb-10 mt-6 flex w-full items-center justify-between rounded-[8px] bg-[#F3F4F5] px-[15px] py-[15px] text-gray7 text-main1">
       <div className="flex items-center justify-start ">
-        <div>
-          <PlanIcon />
+        <div className="pt-0.5">
+          <PlanColorIcon />
         </div>
-        <p className="ml-1.5 text-gray5">여행 계획하기</p>
+        <p className="ml-2 text-[15px] text-gray5">여행 계획하기</p>
       </div>
-      <div>
+      <div className="pt-0.5">
         <RightIcon fill="#888888" />
-
       </div>
     </button>
   );
