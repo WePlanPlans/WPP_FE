@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-scroll';
+import { useSetRecoilState } from 'recoil';
+import { reviewCountState } from '@recoil/review';
+
 interface ReviewData {
   ratingAverage: number;
   reviewTotalCount: number;
@@ -13,6 +16,7 @@ export default function DetailToursRating({
   reviewData,
 }: DetailToursRatingProps) {
   const { reviewTotalCount, ratingAverage } = reviewData;
+  const setReviewCount = useSetRecoilState(reviewCountState);
 
   const STAR_IDX_ARR = ['1', '2', '3', '4', '5'];
   const [ratedStarArr, setRatedStarArr] = useState([0, 0, 0, 0, 0]);
@@ -32,6 +36,7 @@ export default function DetailToursRating({
 
   useEffect(() => {
     setRatedStarArr(calculateRates(ratingAverage));
+    setReviewCount(reviewTotalCount);
   }, []);
 
   return (
