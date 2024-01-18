@@ -35,17 +35,16 @@ const Alert: FC<AlertProps> = ({
         <Dialog.Description
           className={`${
             content ? 'w-[80%] text-left' : 'text-center text-[15px]'
-          } mt-[10px] leading-normal`}>
+          } mt-[10px] font-bold leading-normal`}>
           <p
             className={` ${
               content && 'title3 text-left'
-            }: 'mb-[16px] font-bold' text-[#062139] `}>
+            } mb-[16px] font-bold text-[#062139] `}>
             {title}
           </p>
           <p className="font-medium text-[#888]">{message}</p>
         </Dialog.Description>
         {content}
-
         <div className="mt-[25px] flex justify-center gap-[13px]">
           <Dialog.Close asChild>
             <button
