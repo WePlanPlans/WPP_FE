@@ -92,8 +92,8 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
                 </div>
               </div>
 
-              <div className="max-w-[200px] truncate">
-                <p className="text-[14px] text-gray4">
+              <div className="max-w-[200px] ">
+                <p className="truncate text-[14px] text-gray4">
                   {tourAddress ? tourAddress : '주소를 제공하지 않고 있어요'}
                 </p>
               </div>
