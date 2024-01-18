@@ -6,9 +6,10 @@ import { Modal } from '@components/common/modal';
 import { useQuery } from '@tanstack/react-query';
 import { getTripsMembers } from '@api/trips';
 import { tripIdState } from '@recoil/socket';
-import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
+// import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
 import { DownIcon } from '@components/common/icons/Icons';
 import { useState } from 'react';
+import { UserIcon } from '@components/common/icons/Icons';
 
 const ShareList = () => {
   const tripId = Number(useRecoilValue(tripIdState));
@@ -35,7 +36,13 @@ const ShareList = () => {
                   className="h-[32px] w-[32px] rounded-full"
                 />
               ) : (
-                <NullUser className="h-[32px] w-[32px]" />
+                <div
+                  className={
+                    'flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[#EDEDED]'
+                  }>
+                  <UserIcon size={20} color="white" fill="white" />
+                </div>
+                // <NullUser className="h-[32px] w-[32px]" />
               )}
               <div className="ml-3">{member.nickname}</div>
             </div>
@@ -81,7 +88,13 @@ const TripInfo = () => {
                     className="h-[32px] w-[32px] rounded-full border-2 border-solid border-white"
                   />
                 ) : (
-                  <NullUser className="h-[32px] w-[32px] border-2 border-solid border-white" />
+                  <div
+                    className={
+                      'flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[#EDEDED]'
+                    }>
+                    <UserIcon size={20} color="white" fill="white" />
+                  </div>
+                  // <NullUser className="h-[32px] w-[32px] border-2 border-solid border-white" />
                 )}
               </div>
             ))}
