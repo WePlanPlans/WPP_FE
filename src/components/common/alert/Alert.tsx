@@ -8,6 +8,8 @@ interface AlertProps {
   onCancel?: (() => void) | ((e: React.MouseEvent<HTMLElement>) => void);
   children: ReactNode;
   content?: ReactNode;
+  closeOnConfirm?: boolean;
+  isCheck?: number | null;
 }
 
 const Alert: FC<AlertProps> = ({
@@ -17,10 +19,13 @@ const Alert: FC<AlertProps> = ({
   onCancel,
   children,
   content,
+  closeOnConfirm = false,
+  isCheck = true,
 }) => (
   <Dialog.Root>
-    <Dialog.Trigger asChild>{children}</Dialog.Trigger>
-
+    <Dialog.Trigger asChild disabled={!isCheck}>
+      {children}
+    </Dialog.Trigger>
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 z-[120] h-[100%] bg-black opacity-70" />
       <Dialog.Content
@@ -49,11 +54,21 @@ const Alert: FC<AlertProps> = ({
               취소
             </button>
           </Dialog.Close>
-          <button
-            onClick={onConfirm}
-            className="btn-base h-[48px] w-[134px] bg-main2 p-[8px] text-[15px] font-bold text-white">
-            확인
-          </button>
+          {closeOnConfirm ? (
+            <Dialog.Close asChild>
+              <button
+                onClick={onConfirm}
+                className="btn-base h-[48px] w-[134px] bg-main2 p-[8px] text-[15px] font-bold text-white">
+                확인
+              </button>
+            </Dialog.Close>
+          ) : (
+            <button
+              onClick={onConfirm}
+              className="btn-base h-[48px] w-[134px] bg-main2 p-[8px] text-[15px] font-bold text-white">
+              확인
+            </button>
+          )}
         </div>
       </Dialog.Content>
     </Dialog.Portal>

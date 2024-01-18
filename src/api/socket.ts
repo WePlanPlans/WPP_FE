@@ -2,6 +2,8 @@ import * as StompJs from '@stomp/stompjs';
 
 export const socketClient = new StompJs.Client({
   brokerURL: import.meta.env.VITE_SOCKET_URL,
+  heartbeatIncoming: 1000,
+  heartbeatOutgoing: 1000,
 });
 
 // 소켓 구독
@@ -99,6 +101,9 @@ export const pubUpdateTripItem = (
     destination: `/pub/trips/${tripId}/updateTripItemOrder`,
     body: JSON.stringify(pubUpdateTripItem),
   });
+
+  console.log(pubUpdateTripItem);
+  console.log('펍실행');
 };
 
 // 여행 날짜별 교통 수단 변경 이벤트 발생시 (01/16 업데이트)
@@ -132,6 +137,7 @@ export const pubDeleteItem = (
     destination: `/pub/tripItems/${tripItemId}/deleteItem`,
     body: JSON.stringify(pubDeleteItem),
   });
+  console.log(pubDeleteItem);
 };
 
 // 멤버 여정 페이지로 입장 이벤트 발생시
@@ -163,7 +169,6 @@ export const pubGetPathAndItems = (
   pubGetPathAndItems: pubGetPathAndItems,
   tripId: string,
 ) => {
-  console.log('펍내부',pubGetPathAndItems);
   socketClient.publish({
     destination: `/pub/trips/${tripId}/getPathAndItems`,
     body: JSON.stringify(pubGetPathAndItems),

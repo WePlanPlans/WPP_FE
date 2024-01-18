@@ -35,7 +35,7 @@ export function calculateDayAndDate(startDate: string, endDate: string) {
 
   const DayArr = Array.from(
     { length: Math.ceil(differenceInDays) + 1 },
-    (_, i) => `Day${i + 1}`,
+    (_, i) => `DAY ${i + 1}`,
   );
   const DateArr = [];
 
