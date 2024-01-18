@@ -17,6 +17,7 @@ const TripRealtimeEditor = () => {
 
   const { callBackPub, tripMember } = useContext(socketContext);
 
+  console.log('pubMember', pubMember);
   useEffect(() => {
     callBackPub(() => pubConnectMember(pubMember, tripId));
     return () => {
@@ -27,7 +28,7 @@ const TripRealtimeEditor = () => {
   const tripMemberData = tripMember?.data;
 
   return (
-    <div className="my-5 flex items-center gap-5 ">
+    <div className="my-5">
       <Swiper
         slidesPerView={5}
         onSlideChange={() => console.log('slide change')}

@@ -140,6 +140,7 @@ export const pubConnectMember = (pubMember: pubMember, tripId: string) => {
     destination: `/pub/trips/${tripId}/connectMember`,
     body: JSON.stringify(pubMember),
   });
+  console.log('펍실행', pubMember);
 };
 
 // 멤버 여정 페이지 퇴장 이벤트 발생시
@@ -163,7 +164,7 @@ export const pubGetPathAndItems = (
   pubGetPathAndItems: pubGetPathAndItems,
   tripId: string,
 ) => {
-  console.log('펍내부',pubGetPathAndItems);
+  console.log('펍내부', pubGetPathAndItems);
   socketClient.publish({
     destination: `/pub/trips/${tripId}/getPathAndItems`,
     body: JSON.stringify(pubGetPathAndItems),
