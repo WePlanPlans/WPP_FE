@@ -1,6 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { PaperIcon } from '@components/common/icons/Icons';
-import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { dayState, dateState } from '@recoil/plan';
 import { pubUpdateVisitDate } from '@api/socket';

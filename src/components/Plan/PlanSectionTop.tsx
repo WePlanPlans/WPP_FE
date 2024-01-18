@@ -17,8 +17,8 @@ const PlanSectionTop = () => {
   const navigate = useNavigate();
   const tripId = useRecoilValue(tripIdState);
   const pubMember = useRecoilValue(memberIdState);
-  const [_, setDay] = useRecoilState(dayState);
-  const [date, setDate] = useRecoilState(dateState);
+  const [, setDay] = useRecoilState(dayState);
+  const [, setDate] = useRecoilState(dateState);
 
   if (!pubMember || !tripId) {
     return <div>에러</div>;
