@@ -1,6 +1,16 @@
 import { Paths } from '@/@types/service';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Map, MapMarker, Polyline, useKakaoLoader } from 'react-kakao-maps-sdk';
+import FirstMarker from '@/assets/images/FirstMarker.png';
+import FirstSelectedMarker from '@/assets/images/FirstSelectedMarker.png';
+import SecondMarker from '@/assets/images/SecondMarker.png';
+import ThirdMarker from '@/assets/images/ThirdMarker.png';
+import FourthMarker from '@/assets/images/FourthMarker.png';
+import FifthMarker from '@/assets/images/FifthMarker.png';
+import SecondSelectedMarker from '@/assets/images/SecondSelectedMarker.png';
+import ThirdSelectedMarker from '@/assets/images/ThirdSelectedMarker.png';
+import FourthSelectedMarker from '@/assets/images/FourthSelectedMarker.png';
+import FifthSelectedMarker from '@/assets/images/FifthSelectedMarker.png';
 
 const VITE_KAKAO_MAP_API_KEY = import.meta.env.VITE_KAKAO_MAP_API_KEY;
 
@@ -87,6 +97,44 @@ const TripMap = ({ paths }: { paths: Paths[] }) => {
     setBounds();
   }, [paths]);
 
+  // 선택된 마커의 인덱스를 추적하기 위한 상태
+  const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
+
+  // ...
+
+  // 마커를 클릭할 때 호출되는 함수
+  const handleMarkerClick = (index: number) => {
+    setSelectedMarker(index);
+  };
+
+  // 각 마커에 대한 이미지를 렌더링하는 함수
+  const renderMarkerImage = (index: number, isSelected: boolean) => {
+    let svgComponent;
+    switch (index % 5) {
+      case 0:
+        svgComponent = isSelected ? FirstSelectedMarker : FirstMarker;
+        break;
+      case 1:
+        svgComponent = isSelected ? SecondSelectedMarker : SecondMarker;
+        break;
+      case 2:
+        svgComponent = isSelected ? ThirdSelectedMarker : ThirdMarker;
+        break;
+      case 3:
+        svgComponent = isSelected ? FourthSelectedMarker : FourthMarker;
+        break;
+      case 4:
+        svgComponent = isSelected ? FifthSelectedMarker : FifthMarker;
+        break;
+      default:
+        // 기본 마커가 필요한 경우 기본 마커 이미지 URL을 제공합니다.
+        return 'default_marker_image_url';
+    }
+    return svgComponent;
+  };
+
+  // ... TripMap 컴포넌트 및 나머지 코드
+
   return (
     <div className="flex flex-col justify-center">
       <Map
@@ -103,11 +151,27 @@ const TripMap = ({ paths }: { paths: Paths[] }) => {
                 lat: Number(path.fromLatitude),
                 lng: Number(path.fromLongitude),
               }}
+              onClick={() => handleMarkerClick(index)}
+              image={{
+                src: renderMarkerImage(index, selectedMarker === index),
+                size: {
+                  width: 33,
+                  height: 33,
+                },
+              }}
             />
             <MapMarker
               position={{
                 lat: Number(path.toLatitude),
                 lng: Number(path.toLongitude),
+              }}
+              onClick={() => handleMarkerClick(index)}
+              image={{
+                src: renderMarkerImage(index, selectedMarker === index),
+                size: {
+                  width: 33,
+                  height: 33,
+                },
               }}
             />
             <Polyline

@@ -120,3 +120,11 @@ export type TripItem = {
   visitDate: string;
   price: number;
 };
+
+export interface pubUpdateTripItemReq {
+  visitDate: string;
+  tripItemOrder: {
+    tripItemId: number;
+    seqNum: number;
+  }[];
+}
