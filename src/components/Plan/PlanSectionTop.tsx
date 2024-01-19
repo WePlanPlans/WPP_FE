@@ -1,4 +1,4 @@
-import TripInfo from '@components/Trip/TripInfo';
+import TripRealtimeEditor from '@components/Trip/TripRealtimeEditor';
 import { BackBox } from '@components/common';
 import { useNavigate } from 'react-router-dom';
 import TripBudget from './TripBudget';
@@ -11,20 +11,25 @@ import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { tripIdState, memberIdState } from '@recoil/socket';
 import { calculateDayAndDate } from '@utils/utils';
+import { TripSchedule } from '@components/Trip/TripSchedule';
+import { getItem } from '@utils/localStorageFun';
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();
   const tripId = useRecoilValue(tripIdState);
-  const pubMember = useRecoilValue(memberIdState);
+  const token = getItem('accessToken');
+  const pubMember = { token: token || '' };
 
-  if (!pubMember || !tripId) {
-    return <div>에러</div>;
-  }
+  // if (!pubMember.token || !tripId) {
+  //   return <div>에러</div>;
+  // }
 
   const { callBackPub, tripInfo } = useContext(socketContext);
 
   useEffect(() => {
-    callBackPub(() => pubEnterMember(pubMember, tripId));
+    if (pubMember && tripId) {
+      callBackPub(() => pubEnterMember(pubMember, tripId));
+    }
   }, []);
 
   let DayArr: string[] = [];
@@ -36,7 +41,7 @@ const PlanSectionTop = () => {
   if (startDate && endDate) {
     ({ DayArr, DateArr } = calculateDayAndDate(startDate, endDate));
   }
-  
+
   return (
     <div className="min-h-screen">
       <BackBox
@@ -46,7 +51,8 @@ const PlanSectionTop = () => {
           navigate(-1);
         }}
       />
-      <TripInfo />
+      <TripRealtimeEditor />
+      <TripSchedule />
       <TripBudget />
       <Tab
         lists={DayArr}

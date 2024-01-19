@@ -62,15 +62,11 @@ type subMemberMessage = (response: {
   message: string;
   data: {
     tripId: number;
-    connectedMembers: {
-      memberId: number;
-      name: string;
-      thumbnailUrl: string;
-    }[];
     tripMembers: {
       memberId: number;
       name: string;
       thumbnailUrl: string;
+      connected: boolean;
     }[];
     numberOfPeople: number;
   };
@@ -132,7 +128,7 @@ interface pubDeleteItem {
 }
 
 interface pubMember {
-  memberId: number;
+  token: string;
 }
 
 interface pubGetPathAndItems {
