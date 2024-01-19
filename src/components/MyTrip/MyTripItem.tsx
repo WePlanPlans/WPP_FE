@@ -59,7 +59,7 @@ const MyTripItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
           <div className="flex min-h-[72px]">
             <div>
               <img
-                className="rounded-1 h-[72px] min-h-[72px] w-[72px] rounded-[16px] object-cover"
+                className="rounded-1 h-[72px] min-h-[72px] min-w-[72px] rounded-[16px] object-cover"
                 src={tripThumbnailUrl}
                 alt="여행지 이미지"
               />

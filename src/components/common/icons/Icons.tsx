@@ -1327,11 +1327,11 @@ export const ThumbsUp: React.FC<IconProps> = ({
         clipRule="evenodd"
         d="M4.03223 13.5191V7.08203H5.03223V13.5191H4.03223Z"
         fill={fill}
-       />
+      />
     </svg>
   );
 };
-  
+
 export const ThumbsDown: React.FC<IconProps> = ({
   size = 16,
   fill = '#1E1E1E',
@@ -1358,7 +1358,7 @@ export const ThumbsDown: React.FC<IconProps> = ({
     </svg>
   );
 };
-  
+
 export const NewIcon: React.FC<IconProps> = ({
   size = 11,
   fill = '#1E1E1E',
@@ -1549,7 +1549,6 @@ export const DragAndDropIcon: React.FC<IconProps> = ({}) => {
   );
 };
 
-        
 export const PaperIcon: React.FC<IconProps> = ({}) => {
   return (
     <svg
