@@ -1,10 +1,20 @@
 import { postTripsjoin } from '@api/trips';
 import { BackBox } from '@components/common';
-import { useState } from 'react';
+import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const shareCode = () => {
   const navigate = useNavigate();
+  const { tripAuthority, TripId } = useGetTripsAuthority();
+
+  useEffect(() => {
+    if (tripAuthority === 'WRITE' && TripId) {
+      alert('이미 편집 가능한 여정입니다.');
+      navigate(`/trip/${TripId}`);
+    }
+  }, [tripAuthority, TripId]);
+
   const [inputCode, setInputCode] = useState<string>('');
   const [showError, setShowError] = useState<boolean>(false);
 
@@ -13,9 +23,9 @@ const shareCode = () => {
     if (changeValue.length <= 5) {
       setInputCode(e.target.value);
     }
-    if (changeValue.length === 5) {
+    if (changeValue.length === 5 && TripId) {
       try {
-        const res = await postTripsjoin(27, changeValue);
+        const res = await postTripsjoin(TripId, changeValue);
         console.log(res);
       } catch (err) {
         setShowError(true);
