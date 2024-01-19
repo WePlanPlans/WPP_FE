@@ -11,7 +11,7 @@ const shareCode = () => {
   useEffect(() => {
     if (tripAuthority === 'WRITE' && TripId) {
       alert('이미 편집 가능한 여정입니다.');
-      navigate(`/trip/${TripId}`);
+      navigate(`/trip/${TripId}`, { replace: true });
     }
   }, [tripAuthority, TripId]);
 
@@ -25,8 +25,10 @@ const shareCode = () => {
     }
     if (changeValue.length === 5 && TripId) {
       try {
-        const res = await postTripsjoin(TripId, changeValue);
-        console.log(res);
+        const { data } = await postTripsjoin(TripId, changeValue);
+        if (data.status === 200) {
+          navigate(`/trip/${TripId}`, { replace: true });
+        }
       } catch (err) {
         setShowError(true);
         setInputCode('');

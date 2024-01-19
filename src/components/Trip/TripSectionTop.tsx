@@ -6,15 +6,25 @@ import { useNavigate } from 'react-router-dom';
 import PlanTripButton from './PlanTripButton';
 import { LikedToursList } from './LikedToursList';
 import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
+import { useEffect, useState } from 'react';
+import IsEditableModal from '@components/Share/IsEditableModal';
 
 const TripSectionTop = () => {
   const navigate = useNavigate();
   const { tripAuthority } = useGetTripsAuthority();
+  const [isEditable, setIsEditable] = useState<boolean>(false);
 
-  console.log(tripAuthority);
+  useEffect(() => {
+    if (tripAuthority !== null) {
+      if (tripAuthority !== 'WRITE') {
+        setIsEditable(true);
+      }
+    }
+  }, [tripAuthority]);
 
   return (
     <div className="min-h-screen">
+      <IsEditableModal isEditable={isEditable} setIsEditable={setIsEditable} />
       <BackBox
         showBack={true}
         backHandler={() => {
