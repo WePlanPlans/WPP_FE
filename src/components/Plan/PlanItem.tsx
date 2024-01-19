@@ -4,45 +4,37 @@ import { useNavigate } from 'react-router-dom';
 import TripMap from './TripMap';
 import PlanItemBox from './PlanItemBox';
 import PlanEditItemBox from './PlanEditItemBox';
-import { useContext, useEffect, useState, useRef } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { socketContext } from '@hooks/useSocket';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { visitDateState } from '@recoil/socket';
 import { pubGetPathAndItems, pubUpdateTransportation } from '@api/socket';
 import { tripIdState } from '@recoil/socket';
 import { tapState } from '@recoil/plan';
+import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
 
 type PlanItemProps = {
   date: string;
   day: string;
-  isMount: boolean;
 };
 
-const PlanItem: React.FC<PlanItemProps> = ({ date, day, isMount }) => {
+const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
   const navigate = useNavigate();
+  const { tripAuthority } = useGetTripsAuthority();
   const [isEdit, SetIsEdit] = useState(false);
-
   const tripId = useRecoilValue(tripIdState);
   const tap = useRecoilValue(tapState);
-
   const [visitDate, setVisitDate] = useRecoilState(visitDateState);
   const { tripItem, tripPath, callBackPub } = useContext(socketContext);
 
   useEffect(() => {
-    if (isMount) {
+    if (tap) {
       setVisitDate({ visitDate: date });
       if (date && tripId) {
         callBackPub(() => pubGetPathAndItems({ visitDate: date }, tripId));
-        console.log('pubGetPathAndItems', tap);
       }
     }
   }, [tap]);
-
-  // useEffect(() => {
-  //   if (date && tripId) {
-  //     callBackPub(() => pubGetPathAndItems({ visitDate: date }, tripId));
-  //   }
-  // }, [tap]);
 
   const handleEdit = () => {
     SetIsEdit((prev) => !prev);
@@ -68,13 +60,12 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day, isMount }) => {
 
   const transpo = tripItem?.data?.transportation || '';
 
-  // console.log(tripItem?.data?.tripItems.sort((a, b) => a.seqNum - b.seqNum));
   return (
     <>
       {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
 
       <div className="mb-[31px] mt-[31px] flex items-center justify-between">
-        {isEdit ? (
+        {tripAuthority !== 'WRITE' || isEdit ? (
           <div />
         ) : (
           <div className="flex items-center justify-center">
@@ -100,12 +91,16 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day, isMount }) => {
             </div>
           </div>
         )}
-        <button
-          type="button"
-          onClick={handleEdit}
-          className="flex h-8 w-[46px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#f0f0f0] p-2 text-sm font-medium text-gray4">
-          {isEdit ? '완료' : '편집'}
-        </button>
+        {tripAuthority !== 'WRITE' ? (
+          ''
+        ) : (
+          <button
+            type="button"
+            onClick={handleEdit}
+            className="flex h-8 w-[46px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#f0f0f0] p-2 text-sm font-medium text-gray4">
+            {isEdit ? '완료' : '편집'}
+          </button>
+        )}
       </div>
 
       <div className="flex flex-col gap-[5px]">
@@ -125,10 +120,11 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day, isMount }) => {
           />
         )}
       </div>
-      <div className="mt-[18px]">
-        {isEdit ? (
-          ''
-        ) : (
+
+      {tripAuthority !== 'WRITE' || isEdit ? (
+        <div className="mt-[18px]" />
+      ) : (
+        <div className="my-[18px]">
           <ButtonWhite
             onClick={() => navigate('./place')}
             className="h-[40px] w-full">
@@ -137,8 +133,8 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day, isMount }) => {
               <div className="mt-[1px]">장소 추가하기</div>
             </div>
           </ButtonWhite>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 };
