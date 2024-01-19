@@ -40,3 +40,13 @@ interface ThumbsProps {
   prefer: boolean;
   notPrefer: boolean;
 }
+  
+interface AuthorityType {
+  status: number;
+  message: string;
+  data: {
+    memberId: number;
+    tripAuthority: string;
+    TripId: number;
+  };
+}
