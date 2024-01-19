@@ -1,16 +1,7 @@
 import { Paths } from '@/@types/service';
 import { useEffect, useRef, useState } from 'react';
 import { Map, MapMarker, Polyline, useKakaoLoader } from 'react-kakao-maps-sdk';
-import FirstMarker from '@/assets/images/FirstMarker.png';
-import FirstSelectedMarker from '@/assets/images/FirstSelectedMarker.png';
-import SecondMarker from '@/assets/images/SecondMarker.png';
-import ThirdMarker from '@/assets/images/ThirdMarker.png';
-import FourthMarker from '@/assets/images/FourthMarker.png';
-import FifthMarker from '@/assets/images/FifthMarker.png';
-import SecondSelectedMarker from '@/assets/images/SecondSelectedMarker.png';
-import ThirdSelectedMarker from '@/assets/images/ThirdSelectedMarker.png';
-import FourthSelectedMarker from '@/assets/images/FourthSelectedMarker.png';
-import FifthSelectedMarker from '@/assets/images/FifthSelectedMarker.png';
+import { getColor } from '@utils/getColor';
 
 const VITE_KAKAO_MAP_API_KEY = import.meta.env.VITE_KAKAO_MAP_API_KEY;
 
@@ -104,30 +95,38 @@ const TripMap = ({ paths }: { paths: Paths[] }) => {
     setSelectedMarker(index);
   };
 
-  // 각 마커에 대한 이미지를 렌더링하는 함수
-  const renderMarkerImage = (index: number, isSelected: boolean) => {
-    let svgComponent;
-    switch (index % 5) {
-      case 0:
-        svgComponent = isSelected ? FirstSelectedMarker : FirstMarker;
-        break;
-      case 1:
-        svgComponent = isSelected ? SecondSelectedMarker : SecondMarker;
-        break;
-      case 2:
-        svgComponent = isSelected ? ThirdSelectedMarker : ThirdMarker;
-        break;
-      case 3:
-        svgComponent = isSelected ? FourthSelectedMarker : FourthMarker;
-        break;
-      case 4:
-        svgComponent = isSelected ? FifthSelectedMarker : FifthMarker;
-        break;
-      default:
-        // 기본 마커
-        return 'default_marker_image_url';
+  // SVG 문자열을 Data URI로 변환하는 함수
+  const getSequenceIconUrl = (number: number) => {
+    if (selectedMarker === number + 1) {
+      return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(
+        SequenceMarker(number),
+      )}`;
     }
-    return svgComponent;
+    const svgString = encodeURIComponent(`
+    <svg width="24" height="24" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="10.5" cy="10.5" r="10" fill="${getColor(number)}" />
+      <text x="10.5" y="15" text-anchor="middle" fill="white" font-size="12" font-weight="bold">${number}</text>
+    </svg>
+  `);
+    return `data:image/svg+xml;charset=UTF-8,${svgString}`;
+  };
+
+  const SequenceMarker = (number: number) => {
+    const fillColor = getColor(number);
+
+    return `
+    <svg xmlns="http://www.w3.org/2000/svg" width="41" height="49" viewBox="0 0 41 49" fill="none">
+      <g filter="url(#filter0_d_2972_16425)">
+        <path d="M20.2773 40.1372C28.2773 32.2684 36.2773 25.2224 36.2773 16.5307C36.2773 7.83898 29.1139 0.792969 20.2773 0.792969C11.4408 0.792969 4.27734 7.83898 4.27734 16.5307C4.27734 25.2224 12.2773 32.2684 20.2773 40.1372Z" fill="${fillColor}"/>
+        <path d="M32.5203 16.6923C32.5203 23.4539 27.0389 28.9353 20.2772 28.9353C13.5156 28.9353 8.03418 23.4539 8.03418 16.6923C8.03418 9.93062 13.5156 4.44922 20.2772 4.44922C27.0389 4.44922 32.5203 9.93062 32.5203 16.6923Z" fill="${fillColor}"/>
+        <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="white" fontweight="bold">${number}</text>
+      </g>
+      <defs>
+        <filter id="filter0_d_2972_16425" x="0.277344" y="0.792969" width="40" height="47.3438" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+        </filter>
+      </defs>
+    </svg>
+  `;
   };
 
   return (
@@ -136,39 +135,42 @@ const TripMap = ({ paths }: { paths: Paths[] }) => {
         key={VITE_KAKAO_MAP_API_KEY}
         center={centerPosition}
         style={MapStyle}
-        level={10}
+        level={4}
         className="relative object-fill"
         ref={mapRef}>
         {paths.map((path, index) => (
-          <div key={index}>
+          <div key={path.toSeqNum}>
             <MapMarker
               position={{
                 lat: Number(path.fromLatitude),
                 lng: Number(path.fromLongitude),
               }}
-              onClick={() => handleMarkerClick(index)}
+              onClick={() => handleMarkerClick(path.toSeqNum)}
               image={{
-                src: renderMarkerImage(index, selectedMarker === index),
+                src: getSequenceIconUrl(path.toSeqNum - 1),
                 size: {
-                  width: 33,
-                  height: 33,
+                  width: 24,
+                  height: 24,
                 },
               }}
             />
-            <MapMarker
-              position={{
-                lat: Number(path.toLatitude),
-                lng: Number(path.toLongitude),
-              }}
-              onClick={() => handleMarkerClick(index)}
-              image={{
-                src: renderMarkerImage(index, selectedMarker === index),
-                size: {
-                  width: 33,
-                  height: 33,
-                },
-              }}
-            />
+            {/* 마지막 항목인 경우, 목적지 위치에 마커 추가 */}
+            {index === paths.length - 1 && (
+              <MapMarker
+                position={{
+                  lat: Number(path.toLatitude),
+                  lng: Number(path.toLongitude),
+                }}
+                onClick={() => handleMarkerClick(path.toSeqNum + 1)} // 마지막 seqNum을 위한 +1
+                image={{
+                  src: getSequenceIconUrl(path.toSeqNum),
+                  size: {
+                    width: 24,
+                    height: 24,
+                  },
+                }}
+              />
+            )}
             <Polyline
               path={polylinePath}
               strokeWeight={2}

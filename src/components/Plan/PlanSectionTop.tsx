@@ -13,7 +13,6 @@ import { dayState, dateState } from '@recoil/plan';
 import { tripIdState, memberIdState } from '@recoil/socket';
 import { calculateDayAndDate } from '@utils/utils';
 import { TripSchedule } from '@components/Trip/TripSchedule';
-import { getItem } from '@utils/localStorageFun';
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();
