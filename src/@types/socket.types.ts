@@ -117,13 +117,13 @@ interface pubUpdateTransportation {
 }
 
 interface pubVisitDate {
-  tripId: number;
+  tripId: string;
   oldVisitDate: string;
   newVisitDate: string;
 }
 
 interface pubDeleteItem {
-  tripId: number;
+  tripId: string;
   visitDate: string;
 }
 
