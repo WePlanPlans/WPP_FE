@@ -70,13 +70,13 @@ export const getTripsSurvey = async (tripId: number) => {
 };
 
 // 여정 참여 코드 조회
-export const getTripsjoin = async (tripId: number) => {
+export const getTripsjoin = async (tripId: string) => {
   const res = await authClient.get(`trips/${tripId}/join`);
   return res;
 };
 
 // 여정 참여
 export const postTripsjoin = async (tripId: number, joinCode: string) => {
-  const res = await client.post(`trips/${tripId}/join`, { joinCode });
+  const res = await authClient.post(`trips/${tripId}/join`, { joinCode });
   return res;
 };

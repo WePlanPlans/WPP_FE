@@ -2,25 +2,33 @@ import { getTripsjoin } from '@api/trips';
 import CopyBox from '@components/Share/CopyBox';
 import { BackBox } from '@components/common';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Share = () => {
   const navigate = useNavigate();
   const [joinCode, setJoinCode] = useState<string | null>(null);
+  const params = useParams();
+  const tripId = params.id;
 
   useEffect(() => {
     const getTripCode = async () => {
-      try {
-        const { data } = await getTripsjoin(27);
-        if (data.status === 200) {
-          setJoinCode(data.data);
+      if (tripId) {
+        try {
+          const { data } = await getTripsjoin(tripId);
+          if (data.status === 200) {
+            setJoinCode(data.data);
+          }
+        } catch (err) {
+          console.error('편집 참여 코드 요청 중 에러 발생', err);
         }
-      } catch (err) {
-        console.error(err);
       }
     };
     getTripCode();
   }, []);
+
+  const url = window.location.href;
+  const shareUrl = url.replace('/share', '');
+
   return (
     <div className="min-h-[90vh]">
       <BackBox
@@ -34,7 +42,7 @@ const Share = () => {
         <CopyBox
           title="링크"
           subTitle="링크를 복사해서 여행 계획을 공유해보세요."
-          copyValue="adsfgsgfhdsfghjgfdaesdfghcjvhgf"
+          copyValue={shareUrl}
         />
         {joinCode && (
           <CopyBox
