@@ -12,9 +12,7 @@ const Tab = ({ lists, contents }: TabProps) => {
 
   const handleTabChange = (value: string) => {
     const tabIndex = value.replace('tab', '');
-    if (tabIndex !== '') {
-      setTapState(tabIndex);
-    }
+    setTapState(tabIndex);
   };
 
   let isDayTab = false;

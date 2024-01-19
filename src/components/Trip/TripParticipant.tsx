@@ -1,6 +1,7 @@
-import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
+// import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
 import { useRecoilValue } from 'recoil';
 import { participantsState } from '@recoil/trip';
+import { UserIcon } from '@components/common/icons/Icons';
 
 interface ParticipantStatusProps {
   status: string;
@@ -19,7 +20,13 @@ const ParticipantList: React.FC<{ infos: any[] }> = ({ infos }) => (
             className="h-[32px] w-[32px] rounded-full"
           />
         ) : (
-          <NullUser className="h-[32px] w-[32px]" />
+          <div
+            className={
+              'flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[#EDEDED]'
+            }>
+            <UserIcon size={20} color="white" fill="white" />
+          </div>
+          // <NullUser className="h-[32px] w-[32px]" />
         )}
         <div className="ml-3">{info.nickname}</div>
       </div>

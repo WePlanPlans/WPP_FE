@@ -7,7 +7,6 @@ import { useContext } from 'react';
 import { socketContext } from '@hooks/useSocket';
 import { useState, useEffect } from 'react';
 import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
-import { v4 as uuidv4 } from 'uuid';
 
 interface PlanMoveItemProps {
   isCheck: number | null;
@@ -95,9 +94,8 @@ const PlanMoveItem: React.FC<PlanMoveItemProps> = ({
                     <div className="flex flex-shrink-0 flex-grow-0 flex-col items-start justify-start">
                       <div className="flex h-[52px] w-[375px] flex-shrink-0 flex-grow-0 flex-col justify-start gap-4 bg-white px-5 py-3">
                         {day.map((day, index) => (
-                          <Dialog.Close asChild>
+                          <Dialog.Close asChild key={day}>
                             <button
-                              key={uuidv4()}
                               onClick={() => handleMoveItem(date[index])}
                               className="relative flex flex-shrink-0 flex-grow-0 justify-start gap-2">
                               <PaperIcon />

@@ -32,7 +32,9 @@ const TripPreferenceButton: React.FC = () => {
         <div>
           <HeartIcon fill="#888888" color="#888888" size={20} />
         </div>
-        <p className="ml-1.5">내 여행 취향 설정하러 가기</p>
+        <p className="ml-1.5 text-[14px] text-main1">
+          내 여행 취향 설정하러 가기
+        </p>
       </div>
       <div className="ml-auto">
         <RightIcon fill="#5E5E5E" />
