@@ -1,4 +1,10 @@
-import { ThumbsUp, ThumbsDown, StarIcon } from '@components/common/icons/Icons';
+import {
+  ThumbsUp,
+  ThumbsDown,
+  ClickThumbsUp,
+  ClickThumbsDown,
+  StarIcon,
+} from '@components/common/icons/Icons';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { postTripsLikeHate } from '@api/trips';
 import { useNavigate } from 'react-router-dom';
@@ -106,7 +112,7 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
               <button
                 onClick={onClickThumbsUpButton}
                 className="mr-[4px] flex min-h-[24px] min-w-[46px] items-center justify-center rounded border border-solid border-gray-400 px-[8px] py-[1px] opacity-80">
-                {prefer ? <ThumbsUp /> : <ThumbsUp />}
+                {prefer ? <ClickThumbsUp /> : <ThumbsUp />}
                 <span className="pl-[2px] text-[14px] text-gray7">
                   {preferTotalCount}
                 </span>
@@ -114,7 +120,7 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
               <button
                 onClick={onClickThumbsDownButton}
                 className="flex min-h-[24px] min-w-[46px] items-center justify-center rounded border border-solid  border-gray-400  px-[8px] py-[1px] opacity-80">
-                {notPrefer ? <ThumbsDown /> : <ThumbsDown />}
+                {notPrefer ? <ClickThumbsDown /> : <ThumbsDown />}
                 <span className="pl-[2px] text-[14px] text-gray7">
                   {notPreferTotalCount}
                 </span>
