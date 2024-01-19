@@ -22,7 +22,7 @@ const ShareList = () => {
   return (
     <>
       <hr className="my-3 border-solid border-gray2" />
-      <div>
+      <div className="max-h-[115px] overflow-y-auto">
         {members.map((member: any, index: number) => {
           return (
             <div
