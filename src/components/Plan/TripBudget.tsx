@@ -41,11 +41,11 @@ const TripBudget = () => {
 
   return (
     <>
-      <div className="my-4">
+      <div className={`${!budget?.budget ? 'pb-[55px]' : 'pb-[25px]'} my-4}`}>
         <div className="caption1 mb-[2px]">사용 경비</div>
         <div className="flex items-center">
           <span className="title2 mr-[2px]">
-            {budget?.calculatedPrice.toLocaleString()}
+            {budget?.calculatedPrice.toLocaleString() ?? '-'}
           </span>
           <span className="body1">원</span>
         </div>
@@ -79,6 +79,32 @@ const TripBudget = () => {
               children={
                 <button className="text-gray3">
                   <SettingIcons color="#D9D9D9" />
+                  {!budget?.budget && (
+                    <div className="h-[31.2px] w-[141px]">
+                      <div className="h-[27.16px] w-[141px]">
+                        <div className="relative left-[-80px] top-8 flex h-[27.16px] w-[141px] items-center justify-center gap-[0.8043220639228821px] rounded-lg bg-[#062139] px-3 py-[7px]">
+                          <div className="h-3.5 w-[129.36px]">
+                            <span className="caption1 w-[129.36px] text-center text-white">
+                              목표 경비를 입력해보세요!
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <svg
+                        width={12}
+                        height={7}
+                        viewBox="0 0 12 7"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="relative left-[-15.8px] top-0"
+                        preserveAspectRatio="xMidYMid meet">
+                        <path
+                          d="M5.94048 0.136719L11.4521 6.20375L0.428827 6.20375L5.94048 0.136719Z"
+                          fill="#062139"
+                        />
+                      </svg>
+                    </div>
+                  )}
                 </button>
               }
               content={
@@ -104,7 +130,7 @@ const TripBudget = () => {
             />
           </div>
           <div>
-            <span>{budget?.budget.toLocaleString()}</span>
+            <span>{budget?.budget.toLocaleString() ?? '- '}</span>
             <span>원</span>
           </div>
         </div>
