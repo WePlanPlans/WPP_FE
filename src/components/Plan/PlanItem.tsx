@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import TripMap from './TripMap';
 import PlanItemBox from './PlanItemBox';
 import PlanEditItemBox from './PlanEditItemBox';
-import { useContext, useEffect, useState, useRef } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { socketContext } from '@hooks/useSocket';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { visitDateState } from '@recoil/socket';
@@ -27,6 +27,7 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day, isMount }) => {
 
   const [visitDate, setVisitDate] = useRecoilState(visitDateState);
   const { tripItem, tripPath, callBackPub } = useContext(socketContext);
+  console.log(visitDate);
 
   useEffect(() => {
     if (isMount) {
