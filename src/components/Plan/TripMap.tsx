@@ -100,8 +100,6 @@ const TripMap = ({ paths }: { paths: Paths[] }) => {
   // 선택된 마커의 인덱스를 추적하기 위한 상태
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
 
-  // ...
-
   // 마커를 클릭할 때 호출되는 함수
   const handleMarkerClick = (index: number) => {
     setSelectedMarker(index);
@@ -127,13 +125,11 @@ const TripMap = ({ paths }: { paths: Paths[] }) => {
         svgComponent = isSelected ? FifthSelectedMarker : FifthMarker;
         break;
       default:
-        // 기본 마커가 필요한 경우 기본 마커 이미지 URL을 제공합니다.
+        // 기본 마커
         return 'default_marker_image_url';
     }
     return svgComponent;
   };
-
-  // ... TripMap 컴포넌트 및 나머지 코드
 
   return (
     <div className="flex flex-col justify-center">
