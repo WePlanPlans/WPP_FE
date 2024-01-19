@@ -10,7 +10,7 @@ export const visitDateState = atom<{ visitDate: string } | null>({
   default: { visitDate: '2024-01-03' },
 });
 
-export const memberIdState = atom<{ memberId: number } | null>({
+export const memberIdState = atom<{ token: number | null }>({
   key: 'memberIdState',
-  default: { memberId: 1 },
+  default: { token: null },
 });

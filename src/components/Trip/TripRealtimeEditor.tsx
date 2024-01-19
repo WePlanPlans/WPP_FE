@@ -1,38 +1,50 @@
 import { useRecoilValue } from 'recoil';
-import { tripIdState, memberIdState } from '@recoil/socket';
-import { useEffect } from 'react';
+import { tripIdState } from '@recoil/socket';
+import { useEffect, useState } from 'react';
 import { socketContext } from '@hooks/useSocket';
 import { useContext } from 'react';
 import { pubConnectMember, pubDisconnectMember } from '@api/socket';
 import { UserIcon } from '@components/common/icons/Icons';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
+import { getItem } from '@utils/localStorageFun';
 
 const TripRealtimeEditor = () => {
   const tripId = useRecoilValue(tripIdState);
-  const pubMember = useRecoilValue(memberIdState);
-  if (!pubMember || !tripId) {
-    return <div>에러</div>;
-  }
-
   const { callBackPub, tripMember } = useContext(socketContext);
+  const [token, setToken] = useState('');
+  const [pubMember, setPubMember] = useState({ token: '' });
 
-  console.log('pubMember', pubMember);
   useEffect(() => {
-    callBackPub(() => pubConnectMember(pubMember, tripId));
-    return () => {
-      callBackPub(() => pubDisconnectMember(pubMember, tripId));
-    };
+    const accessToken = getItem('accessToken');
+    if (accessToken) {
+      setToken(accessToken);
+    }
   }, []);
 
-  const tripMemberData = tripMember?.data;
+  useEffect(() => {
+    setPubMember({ token: token || '' });
+  }, [token]);
 
+  useEffect(() => {
+    if (pubMember && tripId) {
+      callBackPub(() => {
+        pubConnectMember(pubMember, tripId);
+      });
+      return () => {
+        callBackPub(() => pubDisconnectMember(pubMember, tripId));
+      };
+    }
+  }, [pubMember]);
+
+  const tripMemberData = tripMember?.data;
+  useEffect(() => {
+    console.log('tripMemberData', tripMemberData);
+  }, [tripMemberData]);
   return (
     <div className="my-5">
       <Swiper
         slidesPerView={5}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
         navigation={true}
         modules={[Navigation]}
         className="flex w-[375px] items-center justify-center">

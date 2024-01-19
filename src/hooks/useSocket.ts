@@ -63,6 +63,7 @@ export const useSocket = (tripId: string, visitDate: string) => {
 
       subMember(tripId, (res) => {
         if (res) {
+          // console.log('subMemberRes', res);
           setTripMember(res);
         }
       });

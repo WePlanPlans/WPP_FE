@@ -128,7 +128,7 @@ interface pubDeleteItem {
 }
 
 interface pubMember {
-  memberId: number;
+  token: string;
 }
 
 interface pubGetPathAndItems {

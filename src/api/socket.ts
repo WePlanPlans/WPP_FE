@@ -140,7 +140,6 @@ export const pubConnectMember = (pubMember: pubMember, tripId: string) => {
     destination: `/pub/trips/${tripId}/connectMember`,
     body: JSON.stringify(pubMember),
   });
-  console.log('펍실행', pubMember);
 };
 
 // 멤버 여정 페이지 퇴장 이벤트 발생시
