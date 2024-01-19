@@ -84,3 +84,9 @@ export const getTripsMembers = async (tripId: number) => {
   const res = await client.get(`trips/${tripId}/members`);
   return res;
 };
+
+// 편집권한 조회
+export const getTripsAuthority = async (tripId: string) => {
+  const res = await authClient.get(`trips/${tripId}/authority`);
+  return res;
+};
