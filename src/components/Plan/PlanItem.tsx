@@ -24,7 +24,6 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
   const [isEdit, SetIsEdit] = useState(false);
   const tripId = useRecoilValue(tripIdState);
   const tap = useRecoilValue(tapState);
-
   const [visitDate, setVisitDate] = useRecoilState(visitDateState);
   const { tripItem, tripPath, callBackPub } = useContext(socketContext);
 
@@ -121,10 +120,11 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
           />
         )}
       </div>
-      <div className="mt-[18px]">
-        {tripAuthority !== 'WRITE' || isEdit ? (
-          ''
-        ) : (
+
+      {tripAuthority !== 'WRITE' || isEdit ? (
+        <div className="mt-[18px]" />
+      ) : (
+        <div className="my-[18px]">
           <ButtonWhite
             onClick={() => navigate('./place')}
             className="h-[40px] w-full">
@@ -133,8 +133,8 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
               <div className="mt-[1px]">장소 추가하기</div>
             </div>
           </ButtonWhite>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 };

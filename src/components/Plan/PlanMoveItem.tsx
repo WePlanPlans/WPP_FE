@@ -7,7 +7,6 @@ import { useContext } from 'react';
 import { socketContext } from '@hooks/useSocket';
 import { useState, useEffect } from 'react';
 import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
-import { v4 as uuidv4 } from 'uuid';
 
 interface PlanMoveItemProps {
   isCheck: number | null;

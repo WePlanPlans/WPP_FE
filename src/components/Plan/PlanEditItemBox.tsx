@@ -106,7 +106,7 @@ const PlanEditItemBox = ({
         <Droppable droppableId="droppableId">
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
-              <div className="text-left text-sm font-semibold ">{day}</div>
+              <div className="text-left text-sm font-semibold">{day}</div>
               {items.map((item, index) => (
                 <Draggable
                   key={item.tripItemId.toString()}
@@ -160,8 +160,8 @@ const PlanEditItemBox = ({
           )}
         </Droppable>
       </DragDropContext>
-      <div className="flex w-full justify-center">
-        <div className="flex h-14">
+      <div className="justify-cente fixed bottom-0 left-0 right-0 z-10 flex">
+        <div className="mx-auto flex h-14 max-w-md">
           <Alert
             title={'여행지 삭제'}
             message={<>선택한 장소를 삭제하시겠습니까?</>}
