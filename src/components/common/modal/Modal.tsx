@@ -43,8 +43,8 @@ export const getModalStyles = (modalChildren: string) => {
         maxWidth: '412px',
         width: '100%',
         height: '186px',
-        borderTopLeftRadius: '2rem',
-        borderTopRightRadius: '2rem',
+        borderTopLeftRadius: '16px',
+        borderTopRightRadius: '16px',
       },
       overlay: {
         backgroundColor: 'rgba(0, 0, 0, 0.25)',
@@ -62,7 +62,27 @@ export const getModalStyles = (modalChildren: string) => {
         transform: 'translate(-50%, -50%)',
         width: '309px',
         height: '192px',
-        borderRadius: '2rem',
+        borderRadius: '16px',
+      },
+      overlay: {
+        backgroundColor: 'rgba(0, 0, 0, 0.25)',
+        zIndex: 1, // 이거 해줘야 kakao-map도 dimmed됨
+      },
+    };
+  } else if (modalChildren === 'TripSurveyMember') {
+    return {
+      content: {
+        top: 'auto',
+        left: '50%',
+        right: 'auto',
+        bottom: '0',
+        marginRight: '-50%',
+        transform: 'translate(-50%, 0)',
+        maxWidth: '412px',
+        width: '100%',
+        height: '280px',
+        borderTopLeftRadius: '16px',
+        borderTopRightRadius: '16px',
       },
       overlay: {
         backgroundColor: 'rgba(0, 0, 0, 0.25)',

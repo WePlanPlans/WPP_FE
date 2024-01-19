@@ -5,9 +5,13 @@ import { BackBox } from '@components/common';
 import { useNavigate } from 'react-router-dom';
 import PlanTripButton from './PlanTripButton';
 import { LikedToursList } from './LikedToursList';
+import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
 
 const TripSectionTop = () => {
   const navigate = useNavigate();
+  const { tripAuthority } = useGetTripsAuthority();
+
+  console.log(tripAuthority);
 
   return (
     <div className="min-h-screen">

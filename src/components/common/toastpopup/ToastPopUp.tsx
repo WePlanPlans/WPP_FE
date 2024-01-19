@@ -21,9 +21,11 @@ const ToastPopUp: React.FC<ToastPopUpProps> = ({ noun, verb }) => {
     return () => clearTimeout(timeout);
   }, []);
 
-  if (noun === '일정') {
-    setParticle('이');
-  }
+  useEffect(() => {
+    if (noun === '일정' || noun === '날짜 이동') {
+      setParticle('이');
+    }
+  }, [noun]);
 
   return (
     <div
@@ -44,11 +46,12 @@ const ToastPopUp: React.FC<ToastPopUpProps> = ({ noun, verb }) => {
         transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
         opacity: visible ? 1 : 0,
         zIndex: 1, // 이거 해줘야 kakao-map도 dimmed됨
+        marginTop: '56px',
       }}>
       <CircleCheckIcon fill="#29DDF6" className="mr-2" />
       <p>
         {noun}
-        {particle} {verb}되었습니다
+        {particle} {verb}되었습니다.
       </p>
     </div>
   );

@@ -35,19 +35,25 @@ export const postTrips = async (tripsData: TripRequest) => {
 // 우리의 관심목록 조회
 export const getTripsLike = async (
   tripId: number,
-  category: number,
   page: number,
   size: number,
 ) => {
-  const res = await client.get(
-    `trips/${tripId}/tripLikedTours?category=${category}&page=${page}$size=${size}`,
+  const res = await authClient.get(
+    `trips/${tripId}/tripLikedTours?page=${page}&size=${size}`,
   );
-  return res;
+
+  return res.data;
 };
 
 // 우리의 관심 목록 등록
 export const postTripsLike = async (tripId: number, tourItemIds: number[]) => {
-  const res = await client.post(`trips/${tripId}/tripLikedTours`, tourItemIds);
+  const requestBody = {
+    tourItemIds: tourItemIds,
+  };
+  const res = await authClient.post(
+    `trips/${tripId}/tripLikedTours`,
+    requestBody,
+  );
   return res;
 };
 
@@ -56,9 +62,10 @@ export const postTripsLikeHate = async (
   tripId: number,
   tourId: number,
   prefer: boolean,
+  notPrefer: boolean,
 ) => {
-  const res = await client.post(
-    `trips/${tripId}/tripLikedTours/${tourId}?prefer=${prefer}`,
+  const res = await authClient.post(
+    `trips/${tripId}/tripLikedTours/${tourId}?prefer=${prefer}&notPrefer=${notPrefer}`,
   );
   return res;
 };
@@ -66,6 +73,22 @@ export const postTripsLikeHate = async (
 // 우리의 여행취향 조회
 export const getTripsSurvey = async (tripId: number) => {
   const res = await client.get(`trips/${tripId}/survey`);
+  return res;
+};
+// 우리의 여행취향 참여/미참여 회원 조회
+export const getTripsSurveyMembers = async (tripId: number) => {
+  const res = await client.get(`trips/${tripId}/survey/members`);
+  return res;
+};
+// 여정을 공유하고 있는 회원 조회
+export const getTripsMembers = async (tripId: number) => {
+  const res = await client.get(`trips/${tripId}/members`);
+  return res;
+};
+
+// 편집권한 조회
+export const getTripsAuthority = async (tripId: string) => {
+  const res = await authClient.get(`trips/${tripId}/authority`);
   return res;
 };
 
