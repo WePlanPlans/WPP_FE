@@ -1,4 +1,6 @@
 import * as Tabs from '@radix-ui/react-tabs';
+import { useRecoilState } from 'recoil';
+import { tapState } from '@recoil/plan';
 
 interface TabProps {
   lists: string[];
@@ -6,6 +8,15 @@ interface TabProps {
 }
 
 const Tab = ({ lists, contents }: TabProps) => {
+  const [, setTapState] = useRecoilState(tapState);
+
+  const handleTabChange = (value: string) => {
+    const tabIndex = value.replace('tab', '');
+    if (tabIndex !== '') {
+      setTapState(tabIndex);
+    }
+  };
+
   let isDayTab = false;
 
   lists.forEach((list) => {
@@ -15,9 +26,12 @@ const Tab = ({ lists, contents }: TabProps) => {
   });
 
   return (
-    <Tabs.Root className="flex w-full flex-col" defaultValue="tab0">
+    <Tabs.Root
+      className="flex w-full flex-col"
+      defaultValue="tab0"
+      onValueChange={handleTabChange}>
       <Tabs.List
-        className="border-b-1 no-scrollbar flex w-full shrink-0 overflow-x-scroll"
+        className="border-b-1 no-scrollbar flex shrink-0 overflow-x-scroll"
         aria-label="Manage your account">
         {lists.map((list, index) => {
           return (
