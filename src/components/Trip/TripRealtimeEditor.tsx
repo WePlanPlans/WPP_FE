@@ -26,16 +26,16 @@ const TripRealtimeEditor = () => {
     setPubMember({ token: token || '' });
   }, [token]);
 
-  useEffect(() => {
-    if (pubMember && tripId) {
-      callBackPub(() => {
-        pubConnectMember(pubMember, tripId);
-      });
-      return () => {
-        callBackPub(() => pubDisconnectMember(pubMember, tripId));
-      };
-    }
-  }, [pubMember]);
+  // useEffect(() => {
+  //   if (pubMember && tripId) {
+  //     callBackPub(() => {
+  //       pubConnectMember(pubMember, tripId);
+  //     });
+  //     return () => {
+  //       callBackPub(() => pubDisconnectMember(pubMember, tripId));
+  //     };
+  //   }
+  // }, [pubMember]);
 
   const tripMemberData = tripMember?.data;
   useEffect(() => {
