@@ -41,7 +41,7 @@ const LoginForm = () => {
         setItem('accessToken', res.data.data.tokenInfo.accessToken);
         // setUserInfo(res.data.data.memberDto);
         if (state) {
-          navigate(`${state.prevPath}/code`);
+          navigate(state.prevPath);
         } else {
           navigate('/');
         }

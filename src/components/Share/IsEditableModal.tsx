@@ -16,7 +16,7 @@ const IsEditableModal = ({ isEditable, setIsEditable }: Props) => {
   const isLogin = getItem('accessToken');
 
   const handleConfirm = () => {
-    navigate('/login', { state: { prevPath: pathname } });
+    navigate('/login', { state: { prevPath: `${pathname}/code` } });
   };
 
   return (
