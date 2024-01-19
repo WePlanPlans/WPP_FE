@@ -1,5 +1,4 @@
 import { UserIcon } from '@components/common/icons/Icons';
-import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
 
 export const TripSchedule = () => {
   return (
