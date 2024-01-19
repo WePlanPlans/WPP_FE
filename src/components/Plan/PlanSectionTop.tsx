@@ -1,4 +1,4 @@
-import TripInfo from '@components/Trip/TripInfo';
+import TripRealtimeEditor from '@components/Trip/TripRealtimeEditor';
 import { BackBox } from '@components/common';
 import { useNavigate } from 'react-router-dom';
 import TripBudget from './TripBudget';
@@ -12,20 +12,25 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { dayState, dateState } from '@recoil/plan';
 import { tripIdState, memberIdState } from '@recoil/socket';
 import { calculateDayAndDate } from '@utils/utils';
+import { TripSchedule } from '@components/Trip/TripSchedule';
+import { getItem } from '@utils/localStorageFun';
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();
   const [isMount, setIsMount] = useState(false);
   const tripId = useRecoilValue(tripIdState);
+
   const pubMember = useRecoilValue(memberIdState);
   const [, setDay] = useRecoilState(dayState);
   const [, setDate] = useRecoilState(dateState);
 
-  console.log(isMount);
+
+
 
   if (!pubMember || !tripId) {
     return <div>에러</div>;
   }
+
 
   useEffect(() => {
     setIsMount(true);
@@ -61,7 +66,8 @@ const PlanSectionTop = () => {
           navigate(-1);
         }}
       />
-      <TripInfo />
+      <TripRealtimeEditor />
+      <TripSchedule />
       <TripBudget />
       <Tab
         lists={DayArr}

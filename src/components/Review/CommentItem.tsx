@@ -57,7 +57,7 @@ const CommentItem: React.FC<ItemProps> = (props: ItemProps) => {
   return (
     <div className="mb-4 border-t border-solid border-gray-300 pt-4">
       <div className=" flex items-center">
-        <div className="mr-2">
+        <div className="mr-4">
           {!(
             authorProfileImageUrl === 'http://asiduheimage.jpg' ||
             authorProfileImageUrl === null
@@ -65,7 +65,7 @@ const CommentItem: React.FC<ItemProps> = (props: ItemProps) => {
             <img
               src={authorProfileImageUrl}
               alt="유저 프로필"
-              className="w-[60px]rounded-full h-[60px]"
+              className="h-[60px] w-[60px] rounded-full"
             />
           ) : (
             <NullUser />
@@ -85,7 +85,7 @@ const CommentItem: React.FC<ItemProps> = (props: ItemProps) => {
           </div>
         )}
       </div>
-      <div className="ml-14 w-[275px] pl-3 text-sm text-gray7">{content}</div>
+      <div className="ml-16 w-[275px] pl-3 text-sm text-gray7">{content}</div>
     </div>
   );
 };
