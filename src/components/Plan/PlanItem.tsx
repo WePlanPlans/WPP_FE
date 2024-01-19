@@ -15,10 +15,9 @@ import { tapState } from '@recoil/plan';
 type PlanItemProps = {
   date: string;
   day: string;
-  isMount: boolean;
 };
 
-const PlanItem: React.FC<PlanItemProps> = ({ date, day, isMount }) => {
+const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
   const navigate = useNavigate();
   const [isEdit, SetIsEdit] = useState(false);
 
@@ -29,20 +28,13 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day, isMount }) => {
   const { tripItem, tripPath, callBackPub } = useContext(socketContext);
 
   useEffect(() => {
-    if (isMount) {
+    if (tap) {
       setVisitDate({ visitDate: date });
       if (date && tripId) {
         callBackPub(() => pubGetPathAndItems({ visitDate: date }, tripId));
-        console.log('pubGetPathAndItems', tap);
       }
     }
   }, [tap]);
-
-  // useEffect(() => {
-  //   if (date && tripId) {
-  //     callBackPub(() => pubGetPathAndItems({ visitDate: date }, tripId));
-  //   }
-  // }, [tap]);
 
   const handleEdit = () => {
     SetIsEdit((prev) => !prev);
@@ -68,7 +60,6 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day, isMount }) => {
 
   const transpo = tripItem?.data?.transportation || '';
 
-  // console.log(tripItem?.data?.tripItems.sort((a, b) => a.seqNum - b.seqNum));
   return (
     <>
       {tripPath && <TripMap paths={tripPath.data?.paths || []} />}

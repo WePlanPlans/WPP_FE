@@ -7,7 +7,7 @@ import PlanItem from './PlanItem';
 import { socketContext } from '@hooks/useSocket';
 import { useContext } from 'react';
 import { pubEnterMember } from '@api/socket';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { dayState, dateState } from '@recoil/plan';
 import { tripIdState, memberIdState } from '@recoil/socket';
@@ -15,21 +15,14 @@ import { calculateDayAndDate } from '@utils/utils';
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();
-  const [isMount, setIsMount] = useState(false);
   const tripId = useRecoilValue(tripIdState);
   const pubMember = useRecoilValue(memberIdState);
   const [, setDay] = useRecoilState(dayState);
   const [, setDate] = useRecoilState(dateState);
 
-  console.log(isMount);
-
   if (!pubMember || !tripId) {
     return <div>에러</div>;
   }
-
-  useEffect(() => {
-    setIsMount(true);
-  }, []);
 
   const { callBackPub, tripInfo } = useContext(socketContext);
 
@@ -66,12 +59,7 @@ const PlanSectionTop = () => {
       <Tab
         lists={DayArr}
         contents={DateArr.map((date, index) => (
-          <PlanItem
-            key={date}
-            date={date}
-            day={DayArr[index]}
-            isMount={isMount}
-          />
+          <PlanItem key={date} date={date} day={DayArr[index]} />
         ))}
       />
     </div>
