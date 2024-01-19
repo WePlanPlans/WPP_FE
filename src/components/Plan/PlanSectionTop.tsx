@@ -51,9 +51,12 @@ const PlanSectionTop = () => {
     <div className="min-h-screen">
       <BackBox
         showBack={true}
-        showShare={true}
         backHandler={() => {
           navigate(-1);
+        }}
+        showShare={true}
+        shareHandler={() => {
+          navigate(`/trip/${tripId}/share`);
         }}
       />
       <TripRealtimeEditor />
