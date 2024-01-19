@@ -50,7 +50,6 @@ const TripMap = ({ paths }: { paths: Paths[] }) => {
   const MapStyle = {
     width: '100%',
     height: '180px',
-    marginTop: '15px',
     transition: 'height 0.3s ease-in-out',
   };
 
@@ -132,13 +131,13 @@ const TripMap = ({ paths }: { paths: Paths[] }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center">
+    <div className="mx-[-20px] flex flex-col justify-center">
       <Map
         key={VITE_KAKAO_MAP_API_KEY}
         center={centerPosition}
         style={MapStyle}
         level={10}
-        className="relative rounded-lg object-fill"
+        className="relative object-fill"
         ref={mapRef}>
         {paths.map((path, index) => (
           <div key={index}>

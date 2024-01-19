@@ -33,7 +33,7 @@ export const ParticipantStatus: React.FC<ParticipantStatusProps> = ({
   const participants = useRecoilValue(participantsState);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col pt-5">
       <div className="mb-4 ml-auto mr-2 text-xs text-gray5">
         {status == '참여' ? (
           <>{participants?.tripSurveyMemberCount}명 참여</>

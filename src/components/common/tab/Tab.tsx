@@ -50,7 +50,7 @@ const Tab = ({ lists, contents }: TabProps) => {
         return (
           <Tabs.Content
             key={index}
-            className="grow py-5 outline-none"
+            className="grow outline-none"
             value={`tab${index}`}>
             {content}
           </Tabs.Content>
