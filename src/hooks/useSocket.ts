@@ -83,6 +83,7 @@ export const useSocket = (tripId: string, visitDate: string) => {
 
   useEffect(() => {
     socketConnect();
+    console.log('소켓연결');
 
     return () => {
       socketClient.deactivate();
