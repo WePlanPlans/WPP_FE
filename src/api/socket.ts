@@ -102,8 +102,7 @@ export const pubUpdateTripItem = (
     body: JSON.stringify(pubUpdateTripItem),
   });
 
-  console.log(pubUpdateTripItem);
-  console.log('펍실행');
+  console.log('데이터', pubUpdateTripItem);
 };
 
 // 여행 날짜별 교통 수단 변경 이벤트 발생시 (01/16 업데이트)
@@ -157,10 +156,9 @@ export const pubDisconnectMember = (pubMember: pubMember, tripId: string) => {
 };
 
 // 여정 편집 페이지 입장 이벤트 발생시(모든 sub 다받음)
-export const pubEnterMember = (pubMember: pubMember, tripId: string) => {
+export const pubEnterMember = (tripId: string) => {
   socketClient.publish({
     destination: `/pub/trips/${tripId}/enterMember`,
-    body: JSON.stringify(pubMember),
   });
 };
 

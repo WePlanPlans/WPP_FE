@@ -88,3 +88,8 @@ export const inputFocusState = atom({
   key: 'inputFocusState',
   default: false,
 });
+
+export const reviewCountState = atom({
+  key: 'reviewCountState',
+  default: 0,
+});

@@ -59,8 +59,6 @@ const PlanEditItemBox = ({
       visitDate: visitDate,
       tripItemOrder,
     });
-
-    console.log(newData);
   };
 
   useEffect(() => {
