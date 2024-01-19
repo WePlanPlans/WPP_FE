@@ -106,7 +106,7 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
               <button
                 onClick={onClickThumbsUpButton}
                 className="mr-[4px] flex min-h-[24px] min-w-[46px] items-center justify-center rounded border border-solid border-gray-400 px-[8px] py-[1px] opacity-80">
-                {prefer ? <ThumbsUp fill="#29DDF6" /> : <ThumbsUp />}
+                {prefer ? <ThumbsUp /> : <ThumbsUp />}
                 <span className="pl-[2px] text-[14px] text-gray7">
                   {preferTotalCount}
                 </span>
@@ -114,7 +114,7 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
               <button
                 onClick={onClickThumbsDownButton}
                 className="flex min-h-[24px] min-w-[46px] items-center justify-center rounded border border-solid  border-gray-400  px-[8px] py-[1px] opacity-80">
-                {notPrefer ? <ThumbsDown fill="#29DDF6" /> : <ThumbsDown />}
+                {notPrefer ? <ThumbsDown /> : <ThumbsDown />}
                 <span className="pl-[2px] text-[14px] text-gray7">
                   {notPreferTotalCount}
                 </span>
