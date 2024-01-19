@@ -18,3 +18,13 @@ interface MyTripType {
   area: string;
   subArea: string;
 }
+
+interface AuthorityType {
+  status: number;
+  message: string;
+  data: {
+    memberId: number;
+    tripAuthority: string;
+    TripId: number;
+  };
+}
