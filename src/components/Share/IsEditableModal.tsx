@@ -1,7 +1,7 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { EditStarIcon } from '@components/common/icons/Icons';
 import Alert from '@components/common/alert/Alert';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getItem } from '@utils/localStorageFun';
 
 interface Props {
@@ -11,19 +11,18 @@ interface Props {
 
 const IsEditableModal = ({ isEditable, setIsEditable }: Props) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
   const isLogin = getItem('accessToken');
 
   const handleConfirm = () => {
-    navigate('/login');
+    navigate('/login', { state: { prevPath: pathname } });
   };
 
   return (
     <Dialog.Root open={isEditable} onOpenChange={setIsEditable} modal>
-      <Dialog.Trigger />
-
       <Dialog.Portal>
         <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 z-10 bg-black opacity-70" />
-
         <Dialog.Content className="data-[state=open]:animate-contentShow fixed bottom-0 left-[50%] z-10 flex w-[412px] translate-x-[-50%] flex-col items-center rounded-t-2xl bg-white px-5 pb-8 pt-9">
           <Dialog.Title className="title3 pb-2.5 text-center text-gray7">
             편집 참여 코드를 입력하시면
