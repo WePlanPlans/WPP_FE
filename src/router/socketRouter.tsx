@@ -19,9 +19,9 @@ const SocketRoutes = () => {
   return (
     <socketContext.Provider value={useSocket(tripId, visitDate?.visitDate)}>
       <Routes>
-        <Route path="/plan" element={<PlanTrip />} />
-        <Route path="/plan/place" element={<PlanAddPlace />} />
-        <Route path="/plan/place/search" element={<PlanPlaceSearch />} />
+        <Route path="/" element={<PlanTrip />} />
+        <Route path="/place" element={<PlanAddPlace />} />
+        <Route path="/place/search" element={<PlanPlaceSearch />} />
       </Routes>
     </socketContext.Provider>
   );
@@ -33,7 +33,7 @@ const SocketRouter = () => {
       <Route path="/trip" element={<MainLayout />}>
         <Route path=":id" element={<Trip />} />
         <Route path=":id/add" element={<AddOurList />} />
-        <Route path=":id/*" element={<SocketRoutes />} />
+        <Route path=":id/plan/*" element={<SocketRoutes />} />
       </Route>
     </Routes>
   );
