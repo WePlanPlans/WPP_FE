@@ -7,8 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 const Share = () => {
   const navigate = useNavigate();
   const [joinCode, setJoinCode] = useState<string | null>(null);
-  const params = useParams();
-  const tripId = params.id;
+  const { id: tripId } = useParams();
 
   useEffect(() => {
     const getTripCode = async () => {
