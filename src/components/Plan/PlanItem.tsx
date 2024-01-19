@@ -26,6 +26,7 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
   const tap = useRecoilValue(tapState);
   const [visitDate, setVisitDate] = useRecoilState(visitDateState);
   const { tripItem, tripPath, callBackPub } = useContext(socketContext);
+  console.log(visitDate);
 
   useEffect(() => {
     if (tap) {

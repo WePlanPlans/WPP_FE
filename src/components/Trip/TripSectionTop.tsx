@@ -11,6 +11,8 @@ const TripSectionTop = () => {
   const navigate = useNavigate();
   const { tripAuthority } = useGetTripsAuthority();
 
+  console.log(tripAuthority);
+
   return (
     <div className="min-h-screen">
       <BackBox

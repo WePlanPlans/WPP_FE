@@ -156,7 +156,7 @@ const TripPreference: React.FC = () => {
   };
 
   return (
-    <div className=" m-[-20px] flex flex-col items-center bg-gray1 pb-[20px]  ">
+    <div className=" m-[-20px] mt-0 flex flex-col items-center bg-gray1 pb-[20px]  ">
       <TripPreferenceButton />
       <div
         onClick={handleButtonClick}

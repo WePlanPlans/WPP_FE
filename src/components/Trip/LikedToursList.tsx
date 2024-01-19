@@ -52,7 +52,7 @@ export const LikedToursList = () => {
   };
 
   return (
-    <div className="realtive">
+    <div className="realtive pt-5">
       <LikedToursListCategory onCategoryClick={handleCategoryClick} />
 
       {data?.pages[0].data.content.length > 0 ? (
