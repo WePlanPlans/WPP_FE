@@ -56,8 +56,8 @@ const TripRealtimeEditor = () => {
           const imageUrl = isImageUrlValid ? thumbnailUrl : null;
 
           return (
-            <SwiperSlide>
-              <div key={member?.memberId}>
+            <SwiperSlide key={member?.memberId}>
+              <div>
                 {imageUrl ? (
                   <img
                     src={imageUrl}
