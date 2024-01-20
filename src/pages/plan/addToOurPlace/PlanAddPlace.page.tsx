@@ -1,10 +1,10 @@
 import SearchInput from '@components/search/SearchInput';
-import { MyLiked } from '@pages/plan/addPlace/MyLiked';
-import { SearchResultForPlan } from '@pages/plan/addPlace/SearchResult';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { SearchResultForPlan } from './SearchResult';
+import { OurLiked } from '../AddToTripPlan/OurLiked';
 
-export const AddOurList = () => {
+export const PlanAddPlace = () => {
   const location = useLocation();
 
   const queryParams = new URLSearchParams(location.search);
@@ -20,12 +20,12 @@ export const AddOurList = () => {
     }
   }, [location, searchWordFromQuery]);
   return (
-    <div>
+    <div className="min-h-screen">
       <SearchInput />
       {searchWord ? (
-        <SearchResultForPlan searchWord={searchWord} apiType="postTripsLike" />
+        <SearchResultForPlan searchWord={searchWord} apiType="putTrips" />
       ) : (
-        <MyLiked />
+        <OurLiked />
       )}
     </div>
   );

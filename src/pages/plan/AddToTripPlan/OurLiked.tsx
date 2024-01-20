@@ -3,12 +3,11 @@ import { useState } from 'react';
 import { Spinner } from '@components/common/spinner/Spinner';
 import { getTripsLike } from '@api/trips';
 import { getTripIdFromUrl } from '@utils/getTripIdFromUrl';
-
-import { MyLikedList } from './addPlace/MyLikedList';
 import WishCategory from '@components/Wish/WishCategory';
-import AddToListButton from './addPlace/AddtoListBtn';
+import AddToListButton from '../addToOurPlace/AddtoListBtn';
+import { OurLikedList } from './OurLikedList';
 
-export const OurLikedList = () => {
+export const OurLiked = () => {
   const [selectedContentTypeId, setSelectedContentTypeId] = useState<
     null | number
   >(null);
@@ -60,10 +59,10 @@ export const OurLikedList = () => {
       <WishCategory onCategoryClick={handleCategoryClick} />
       {noResults ? (
         <div className="my-10 text-center text-gray3">
-          나의 관심목록이 없습니다.
+          우리의 관심목록이 없습니다.
         </div>
       ) : (
-        <MyLikedList
+        <OurLikedList
           toursData={data || { pages: [] }}
           fetchNextPage={fetchNextPage}
           hasNextPage={hasNextPage}

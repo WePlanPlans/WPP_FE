@@ -54,7 +54,7 @@ export const getTripsLike = async (
 };
 
 // 우리의 관심 목록 등록
-export const postTripsLike = async (tripId: number, tourItemIds: number[]) => {
+export const postTripsLike = async (tripId: string, tourItemIds: number[]) => {
   const requestBody = {
     tourItemIds: tourItemIds,
   };
