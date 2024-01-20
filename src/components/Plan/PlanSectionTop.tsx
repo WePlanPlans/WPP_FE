@@ -12,7 +12,7 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { dayState, dateState } from '@recoil/plan';
 import { tripIdState, memberIdState } from '@recoil/socket';
 import { calculateDayAndDate } from '@utils/utils';
-import { TripSchedule } from '@components/Trip/TripSchedule';
+import PlanSchedule from './PlanSchedule';
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();
@@ -57,7 +57,7 @@ const PlanSectionTop = () => {
         }}
       />
       <TripRealtimeEditor />
-      <TripSchedule />
+      <PlanSchedule />
       <TripBudget />
       <Tab
         lists={DayArr}
