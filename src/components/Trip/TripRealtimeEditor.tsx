@@ -1,46 +1,15 @@
-import { useRecoilValue } from 'recoil';
-import { tripIdState } from '@recoil/socket';
 import { useEffect, useState } from 'react';
 import { socketContext } from '@hooks/useSocket';
 import { useContext } from 'react';
-import { pubConnectMember, pubDisconnectMember } from '@api/socket';
 import { UserIcon } from '@components/common/icons/Icons';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import { getItem } from '@utils/localStorageFun';
 
 const TripRealtimeEditor = () => {
-  const tripId = useRecoilValue(tripIdState);
-  const { callBackPub, tripMember } = useContext(socketContext);
-  const [token, setToken] = useState('');
-  const [pubMember, setPubMember] = useState({ token: '' });
-
-  useEffect(() => {
-    const accessToken = getItem('accessToken');
-    if (accessToken) {
-      setToken(accessToken);
-    }
-  }, []);
-
-  useEffect(() => {
-    setPubMember({ token: token || '' });
-  }, [token]);
-
-  // useEffect(() => {
-  //   if (pubMember && tripId) {
-  //     callBackPub(() => {
-  //       pubConnectMember(pubMember, tripId);
-  //     });
-  //     return () => {
-  //       callBackPub(() => pubDisconnectMember(pubMember, tripId));
-  //     };
-  //   }
-  // }, [pubMember]);
+  const { tripMember } = useContext(socketContext);
 
   const tripMemberData = tripMember?.data;
-  useEffect(() => {
-    console.log('tripMemberData', tripMemberData);
-  }, [tripMemberData]);
+
   return (
     <div className="my-5">
       <Swiper
@@ -56,8 +25,8 @@ const TripRealtimeEditor = () => {
           const imageUrl = isImageUrlValid ? thumbnailUrl : null;
 
           return (
-            <SwiperSlide>
-              <div key={member?.memberId}>
+            <SwiperSlide key={member?.memberId}>
+              <div>
                 {imageUrl ? (
                   <img
                     src={imageUrl}

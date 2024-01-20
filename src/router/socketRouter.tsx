@@ -5,19 +5,11 @@ import { PlanAddPlace } from '@pages/plan/addPlace/PlanAddPlace.page';
 import PlanPlaceSearch from '@pages/plan/planPlaceSearch.page';
 import Trip from '@pages/trip/trip.page';
 import MainLayout from './routerLayout';
-import { useRecoilValue } from 'recoil';
-import { tripIdState, visitDateState } from '@recoil/socket';
 import { AddOurList } from '@pages/trip/AddOurList';
 
 const SocketRoutes = () => {
-  const tripId = useRecoilValue(tripIdState);
-  const visitDate = useRecoilValue(visitDateState);
-  if (!tripId || !visitDate) {
-    return <div>에러</div>;
-  }
-
   return (
-    <socketContext.Provider value={useSocket(tripId, visitDate?.visitDate)}>
+    <socketContext.Provider value={useSocket()}>
       <Routes>
         <Route path="/" element={<PlanTrip />} />
         <Route path="/place" element={<PlanAddPlace />} />

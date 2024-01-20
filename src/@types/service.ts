@@ -103,6 +103,7 @@ export type SocketContextType = {
   tripPath: subPathRes | null;
   tripMember: subMemberRes | null;
   tripBudget: subBudgetRes | null;
+  tripId: string;
   callBackPub: (callback: () => void) => void;
 };
 

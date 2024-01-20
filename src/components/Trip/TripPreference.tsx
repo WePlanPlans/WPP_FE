@@ -8,9 +8,10 @@ import {
 } from '@utils/calculatePercentage';
 import { modalChildrenState, isModalOpenState } from '@recoil/modal';
 import { getTripsSurveyMembers } from '@api/trips';
-import { tripIdState } from '@recoil/socket';
-import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import { participantsState } from '@recoil/trip';
+import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
+
 interface RatioBarParams {
   value: number;
   total: number;
@@ -96,6 +97,7 @@ const Percentage = ({ value, total, color }: PercentageParams) => (
 );
 
 const TripPreference: React.FC = () => {
+  const { tripId } = useGetTripsAuthority();
   const [A, setA] = useState<[number, number]>([0, 0]);
   const [B, setB] = useState<[number, number]>([0, 0]);
   const [C, setC] = useState<[number, number]>([0, 0]);
@@ -103,12 +105,15 @@ const TripPreference: React.FC = () => {
   const [E, setE] = useState<[number, number]>([0, 0]);
   const setModalChildren = useSetRecoilState(modalChildrenState);
   const setIsModalOpen = useSetRecoilState(isModalOpenState);
-  const tripId = Number(useRecoilValue(tripIdState));
   const [participants, setParticipants] = useRecoilState(participantsState);
 
   const { data: tripsSurveyMembers } = useQuery({
     queryKey: ['tripsSurveyMembers', tripId],
-    queryFn: () => getTripsSurveyMembers(tripId),
+    queryFn: () =>
+      tripId != null
+        ? getTripsSurveyMembers(tripId)
+        : Promise.reject('tripId is null'),
+    enabled: !!tripId,
   });
 
   useEffect(() => {
@@ -118,7 +123,11 @@ const TripPreference: React.FC = () => {
 
   const { data: tripPreference, isLoading } = useQuery({
     queryKey: ['tripPreference', tripId],
-    queryFn: () => getTripsSurvey(tripId),
+    queryFn: () =>
+      tripId != null
+        ? getTripsSurvey(tripId)
+        : Promise.reject('tripId is null'),
+    enabled: !!tripId,
   });
 
   useEffect(() => {

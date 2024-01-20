@@ -9,7 +9,6 @@ import { socketContext } from '@hooks/useSocket';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { visitDateState } from '@recoil/socket';
 import { pubGetPathAndItems, pubUpdateTransportation } from '@api/socket';
-import { tripIdState } from '@recoil/socket';
 import { tapState } from '@recoil/plan';
 import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
 
@@ -22,11 +21,9 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
   const navigate = useNavigate();
   const { tripAuthority } = useGetTripsAuthority();
   const [isEdit, SetIsEdit] = useState(false);
-  const tripId = useRecoilValue(tripIdState);
   const tap = useRecoilValue(tapState);
-  const [visitDate, setVisitDate] = useRecoilState(visitDateState);
-  const { tripItem, tripPath, callBackPub } = useContext(socketContext);
-  console.log(visitDate);
+  const [, setVisitDate] = useRecoilState(visitDateState);
+  const { tripItem, tripPath, callBackPub, tripId } = useContext(socketContext);
 
   useEffect(() => {
     if (tap) {
