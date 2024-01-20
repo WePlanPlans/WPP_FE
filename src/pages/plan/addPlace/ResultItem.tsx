@@ -2,10 +2,12 @@ import { TourType } from '@/@types/tours.types';
 import { ListSelectBtn } from '@components/common/button/ListSelectBtn';
 import { StarIcon } from '@components/common/icons/Icons';
 import { selectedItemsState } from '@recoil/listItem';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 export const ResultItemPlan = ({ result }: { result: TourType }) => {
   const [selectedItems, setSelectedItems] = useRecoilState(selectedItemsState);
+  const navigate = useNavigate();
   const id = result.id;
   const handleSelect = () => {
     if (selectedItems.includes(id)) {
@@ -15,7 +17,9 @@ export const ResultItemPlan = ({ result }: { result: TourType }) => {
     }
   };
   return (
-    <div className="mt-[14px] flex h-[52px] w-full py-1.5">
+    <div
+      className="mt-[14px] flex h-[52px] w-full cursor-pointer py-1.5"
+      onClick={() => navigate(`/detail/${id}`)}>
       <div className="imgWrap mr-[16px] flex-shrink-0 overflow-hidden rounded-lg">
         <img
           className="size-[44px] object-cover"

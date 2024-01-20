@@ -23,7 +23,7 @@ export const AddOurList = () => {
     <div>
       <SearchInput />
       {searchWord ? (
-        <SearchResultForPlan searchWord={searchWord} />
+        <SearchResultForPlan searchWord={searchWord} apiType="postTripsLike" />
       ) : (
         <MyLiked />
       )}

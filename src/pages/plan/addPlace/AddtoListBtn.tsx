@@ -1,29 +1,28 @@
 import { useRecoilValue } from 'recoil';
 import { selectedItemsState } from '@recoil/listItem';
 import { ButtonPrimary } from '@components/common/button/Button';
-import { postTripsLike } from '@api/trips';
-// import { useNavigate } from 'react-router-dom';
+import { postTripsLike, putTrips } from '@api/trips';
+import { getTripIdFromUrl } from '@utils/getTripIdFromUrl';
 
-const AddToListButton = () => {
+const AddToListButton = ({
+  apiType,
+}: {
+  apiType: 'postTripsLike' | 'putTrips';
+}) => {
   const selectedTourItemIds = useRecoilValue(selectedItemsState);
-  // const navigate = useNavigate();
-
-  const getTripIdFromUrl = () => {
-    const pathSegments = window.location.pathname.split('/');
-    const tripIdIndex =
-      pathSegments.findIndex((segment) => segment === 'trip') + 1;
-    return pathSegments[tripIdIndex]
-      ? parseInt(pathSegments[tripIdIndex], 10)
-      : null;
-  };
+  const VISIT_DATE = '2024-02-01';
 
   const handleAddClick = async () => {
     const tripId = getTripIdFromUrl();
     if (tripId) {
       try {
-        const response = await postTripsLike(tripId, selectedTourItemIds);
+        let response;
+        if (apiType === 'postTripsLike') {
+          response = await postTripsLike(tripId, selectedTourItemIds);
+        } else if (apiType === 'putTrips' && selectedTourItemIds.length > 0) {
+          response = await putTrips(tripId, selectedTourItemIds[0], VISIT_DATE);
+        }
         console.log('API response:', response);
-        // navigate(`/trip/${tripId}`);
       } catch (error) {
         console.error('API error:', error);
       }

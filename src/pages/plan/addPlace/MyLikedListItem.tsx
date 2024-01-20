@@ -3,6 +3,7 @@ import { ListCheckBtn } from '@components/common/button/ListSelectBtn';
 import { StarIcon } from '@components/common/icons/Icons';
 import { selectedItemsState } from '@recoil/listItem';
 import { useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 
 interface WishItemProps {
   wishList: TourType;
@@ -19,7 +20,7 @@ export const MyLikedListItem: React.FC<WishItemProps> = ({ wishList }) => {
   } = wishList;
 
   const [selectedItems, setSelectedItems] = useRecoilState(selectedItemsState);
-
+  const navigate = useNavigate();
   const handleSelect = () => {
     if (selectedItems.includes(id)) {
       setSelectedItems(selectedItems.filter((item) => item !== id));
@@ -29,7 +30,9 @@ export const MyLikedListItem: React.FC<WishItemProps> = ({ wishList }) => {
   };
 
   return (
-    <div className="flex h-[48px] w-full items-center justify-center">
+    <div
+      className="flex h-[48px] w-full cursor-pointer items-center justify-center"
+      onClick={() => navigate(`/detail/${id}`)}>
       <div className="imgWrap mr-[16px] flex-shrink-0 overflow-hidden rounded-lg">
         <img
           className="size-[44px] object-cover"

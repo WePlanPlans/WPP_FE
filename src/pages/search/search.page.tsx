@@ -29,13 +29,13 @@ export const Search = () => {
   }, [location, regionFromQuery, searchWordFromQuery]);
 
   return (
-    <>
+    <div className="min-h-screen">
       <SearchInput />
       {searchWord ? (
         <SearchResult selectedRegion={selectedRegion} searchWord={searchWord} />
       ) : (
         <RegionSelect />
       )}
-    </>
+    </div>
   );
 };

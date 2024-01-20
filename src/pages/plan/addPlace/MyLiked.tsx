@@ -38,6 +38,8 @@ export const MyLiked = () => {
       },
     });
 
+  console.log('data', data);
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -46,10 +48,11 @@ export const MyLiked = () => {
   }
 
   const searchResults = data?.pages.flatMap((page) => page.data.content) || [];
+  // console.log('searchResults:', searchResults);
   const noResults = searchResults && searchResults.length === 0;
 
   return (
-    <>
+    <div className="flex min-h-[90vh] flex-col">
       <div className="title3 pt-3">나의 관심 목록 </div>
       <WishCategory onCategoryClick={handleCategoryClick} />
       {noResults ? (
@@ -65,9 +68,9 @@ export const MyLiked = () => {
           selectedContentTypeId={selectedContentTypeId}
         />
       )}
-      <div className="sticky bottom-0 bg-white py-[20px]">
-        <AddToListButton />
+      <div className="sticky bottom-0 mt-auto bg-white py-[20px]">
+        <AddToListButton apiType="postTripsLike" />
       </div>
-    </>
+    </div>
   );
 };

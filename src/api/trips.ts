@@ -10,8 +10,16 @@ export const getTrips = async (tripId: number) => {
 };
 
 // 여정 기본정보 수정
-export const putTrips = async (tripId: number, tripsData: TripRequest) => {
-  const res = await client.put(`trips/${tripId}`, tripsData);
+export const putTrips = async (
+  tripId: number,
+  tourItemId: number,
+  visitDate: string,
+) => {
+  const requestBody = {
+    tourItemId: tourItemId,
+    visitDate: visitDate,
+  };
+  const res = await authClient.post(`trips/${tripId}`, requestBody);
   return res;
 };
 
@@ -33,16 +41,26 @@ export const postTrips = async (tripsData: TripRequest) => {
 };
 
 // 우리의 관심목록 조회
-export const getTripsLike = async (
-  tripId: number,
-  category: number,
-  page: number,
-  size: number,
-) => {
-  const res = await client.get(
-    `trips/${tripId}/tripLikedTours?category=${category}&page=${page}$size=${size}`,
-  );
-  return res;
+export const getTripsLike = async (options: {
+  tripId: number;
+  category?: string;
+  page?: number;
+  size?: number;
+}) => {
+  const { tripId, category, page = 0, size } = options;
+
+  let query = `trips/${tripId}/tripLikedTours?`;
+
+  if (category) {
+    query += `&category=${category}`;
+  }
+  query += `&page=${page}`;
+
+  if (size) {
+    query += `&size=${size}`;
+  }
+  const res = await authClient.get(query);
+  return res.data;
 };
 
 // 우리의 관심 목록 등록

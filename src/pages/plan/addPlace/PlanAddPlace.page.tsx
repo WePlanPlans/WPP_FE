@@ -20,13 +20,13 @@ export const PlanAddPlace = () => {
     }
   }, [location, searchWordFromQuery]);
   return (
-    <>
+    <div className="min-h-screen">
       <SearchInput />
       {searchWord ? (
-        <SearchResultForPlan searchWord={searchWord} />
+        <SearchResultForPlan searchWord={searchWord} apiType="putTrips" />
       ) : (
         <OurLikedList />
       )}
-    </>
+    </div>
   );
 };
