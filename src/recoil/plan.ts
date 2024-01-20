@@ -9,3 +9,8 @@ export const dateState = atom<string[]>({
   key: 'dateState',
   default: [''],
 });
+
+export const tapState = atom<string>({
+  key: 'tapState',
+  default: '',
+});

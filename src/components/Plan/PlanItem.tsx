@@ -6,11 +6,12 @@ import PlanItemBox from './PlanItemBox';
 import PlanEditItemBox from './PlanEditItemBox';
 import { useContext, useEffect, useState } from 'react';
 import { socketContext } from '@hooks/useSocket';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { visitDateState } from '@recoil/socket';
 import { pubGetPathAndItems, pubUpdateTransportation } from '@api/socket';
 import { tripIdState } from '@recoil/socket';
-import { useRecoilValue } from 'recoil';
+import { tapState } from '@recoil/plan';
+import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
 
 type PlanItemProps = {
   date: string;
@@ -19,21 +20,22 @@ type PlanItemProps = {
 
 const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
   const navigate = useNavigate();
+  const { tripAuthority } = useGetTripsAuthority();
   const [isEdit, SetIsEdit] = useState(false);
-
   const tripId = useRecoilValue(tripIdState);
+  const tap = useRecoilValue(tapState);
   const [visitDate, setVisitDate] = useRecoilState(visitDateState);
   const { tripItem, tripPath, callBackPub } = useContext(socketContext);
+  console.log(visitDate);
 
   useEffect(() => {
-    setVisitDate({ visitDate: date });
-  }, [date]);
-
-  useEffect(() => {
-    if (visitDate && tripId) {
-      callBackPub(() => pubGetPathAndItems(visitDate, tripId));
+    if (tap) {
+      setVisitDate({ visitDate: date });
+      if (date && tripId) {
+        callBackPub(() => pubGetPathAndItems({ visitDate: date }, tripId));
+      }
     }
-  }, [visitDate]);
+  }, [tap]);
 
   const handleEdit = () => {
     SetIsEdit((prev) => !prev);
@@ -41,14 +43,14 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
 
   const handleTranspo = (
     transportation: 'CAR' | 'PUBLIC_TRANSPORTATION',
-    visitDate: string,
+    date: string,
     tripId: string,
   ) => {
     if (transportation !== transpo) {
       callBackPub(() =>
         pubUpdateTransportation(
           {
-            visitDate: visitDate,
+            visitDate: date,
             transportation: transportation,
           },
           tripId,
@@ -64,14 +66,12 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
       {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
 
       <div className="mb-[31px] mt-[31px] flex items-center justify-between">
-        {isEdit ? (
+        {tripAuthority !== 'WRITE' || isEdit ? (
           <div />
         ) : (
-          <div className="flex  items-center justify-center">
+          <div className="flex items-center justify-center">
             <div
-              onClick={() =>
-                handleTranspo('CAR', visitDate?.visitDate || '', tripId || '')
-              }
+              onClick={() => handleTranspo('CAR', date || '', tripId || '')}
               className="flex h-[32px] w-[32px] cursor-pointer items-center justify-center rounded-l-md border border-solid border-gray3">
               <CarIcon
                 size={19}
@@ -80,11 +80,7 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
             </div>
             <div
               onClick={() =>
-                handleTranspo(
-                  'PUBLIC_TRANSPORTATION',
-                  visitDate?.visitDate || '',
-                  tripId || '',
-                )
+                handleTranspo('PUBLIC_TRANSPORTATION', date || '', tripId || '')
               }
               className="pointer-cursor -ml-[1px] flex h-[32px] w-[32px] cursor-pointer items-center justify-center rounded-r-md border border-solid border-gray3">
               <BusIcon
@@ -96,13 +92,16 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
             </div>
           </div>
         )}
-
-        <button
-          type="button"
-          onClick={handleEdit}
-          className="flex h-8 w-[46px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#f0f0f0] p-2 text-sm font-medium text-gray4">
-          {isEdit ? '완료' : '편집'}
-        </button>
+        {tripAuthority !== 'WRITE' ? (
+          ''
+        ) : (
+          <button
+            type="button"
+            onClick={handleEdit}
+            className="flex h-8 w-[46px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#f0f0f0] p-2 text-sm font-medium text-gray4">
+            {isEdit ? '완료' : '편집'}
+          </button>
+        )}
       </div>
 
       <div className="flex flex-col gap-[5px]">
@@ -110,7 +109,7 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
           <PlanEditItemBox
             item={tripItem?.data?.tripItems || []}
             day={day}
-            visitDate={visitDate?.visitDate || ''}
+            visitDate={date || ''}
             tripId={tripId || ''}
           />
         ) : (
@@ -122,10 +121,11 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
           />
         )}
       </div>
-      <div className="mt-[18px]">
-        {isEdit ? (
-          ''
-        ) : (
+
+      {tripAuthority !== 'WRITE' || isEdit ? (
+        <div className="mt-[18px]" />
+      ) : (
+        <div className="my-[18px]">
           <ButtonWhite
             onClick={() => navigate('./place')}
             className="h-[40px] w-full">
@@ -134,8 +134,8 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
               <div className="mt-[1px]">장소 추가하기</div>
             </div>
           </ButtonWhite>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 };

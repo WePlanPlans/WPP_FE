@@ -63,6 +63,7 @@ export const useSocket = (tripId: string, visitDate: string) => {
 
       subMember(tripId, (res) => {
         if (res) {
+          // console.log('subMemberRes', res);
           setTripMember(res);
         }
       });
@@ -83,6 +84,7 @@ export const useSocket = (tripId: string, visitDate: string) => {
 
   useEffect(() => {
     socketConnect();
+    console.log('소켓연결');
 
     return () => {
       socketClient.deactivate();

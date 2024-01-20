@@ -1,4 +1,4 @@
-import { UserIcon } from '@components/common/icons/Icons';
+import { TripSchedule } from './TripSchedule';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { isModalOpenState, modalChildrenState } from '@recoil/modal';
 import TripSurveyMember from '@components/common/modal/children/TripSurveyMember';
@@ -6,9 +6,10 @@ import { Modal } from '@components/common/modal';
 import { useQuery } from '@tanstack/react-query';
 import { getTripsMembers } from '@api/trips';
 import { tripIdState } from '@recoil/socket';
-import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
+// import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
 import { DownIcon } from '@components/common/icons/Icons';
 import { useState } from 'react';
+import { UserIcon } from '@components/common/icons/Icons';
 
 const ShareList = () => {
   const tripId = Number(useRecoilValue(tripIdState));
@@ -21,7 +22,7 @@ const ShareList = () => {
   return (
     <>
       <hr className="my-3 border-solid border-gray2" />
-      <div>
+      <div className="max-h-[115px] overflow-y-auto">
         {members.map((member: any, index: number) => {
           return (
             <div
@@ -35,7 +36,13 @@ const ShareList = () => {
                   className="h-[32px] w-[32px] rounded-full"
                 />
               ) : (
-                <NullUser className="h-[32px] w-[32px]" />
+                <div
+                  className={
+                    'flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[#EDEDED]'
+                  }>
+                  <UserIcon size={20} color="white" fill="white" />
+                </div>
+                // <NullUser className="h-[32px] w-[32px]" />
               )}
               <div className="ml-3">{member.nickname}</div>
             </div>
@@ -81,7 +88,13 @@ const TripInfo = () => {
                     className="h-[32px] w-[32px] rounded-full border-2 border-solid border-white"
                   />
                 ) : (
-                  <NullUser className="h-[32px] w-[32px] border-2 border-solid border-white" />
+                  <div
+                    className={
+                      'flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[#EDEDED]'
+                    }>
+                    <UserIcon size={20} color="white" fill="white" />
+                  </div>
+                  // <NullUser className="h-[32px] w-[32px] border-2 border-solid border-white" />
                 )}
               </div>
             ))}
@@ -104,20 +117,7 @@ const TripInfo = () => {
         </div>
 
         {isAccordion && <ShareList />}
-        <hr className="mb-6 mt-3 border-solid border-gray2" />
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <div className="title1 mb-[10px] mr-1">강릉 여행 일정</div>
-            <div className="flex items-center pb-[10px]">
-              <UserIcon size={20} fill="#888" color="#888" />
-              <span className="body4 pt-[1px] text-gray4">5</span>
-            </div>
-          </div>
-          <button className="body3 rounded-lg border-2 border-solid border-gray2 p-2 text-gray4">
-            편집
-          </button>
-        </div>
-        <span className="body1 text-gray4">23.12.23 - 23.12.25</span>
+        <TripSchedule />
       </div>
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
         {modalChildren === 'TripSurveyMember' && <TripSurveyMember />}

@@ -19,15 +19,10 @@ export const OurLikedList = () => {
 
   const tripId = getTripIdFromUrl();
 
-  const { fetchNextPage, hasNextPage, data, isLoading, isError } =
+  const { fetchNextPage, hasNextPage, data, isLoading, error } =
     useInfiniteQuery({
-      queryKey: ['TripsLike'],
-      queryFn: ({ pageParam = 0 }) =>
-        getTripsLike({
-          tripId: tripId,
-          category: undefined,
-          page: pageParam,
-        }),
+      queryKey: ['ourTrips'],
+      queryFn: ({ pageParam = 0 }) => getTripsLike(tripId, pageParam, 10),
       initialPageParam: 0,
       getNextPageParam: (lastPage) => {
         if (
@@ -52,8 +47,8 @@ export const OurLikedList = () => {
   if (isLoading) {
     return <Spinner />;
   }
-  if (isError) {
-    console.log('error fetching search result ');
+  if (error) {
+    return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
   }
 
   const results = data?.pages.flatMap((page) => page.data.content) || [];

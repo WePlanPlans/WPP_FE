@@ -69,7 +69,7 @@ const MyAlert: React.FC<MyAlertProps> = ({ title, content }) => {
     <div className="flex h-full flex-col justify-between">
       <div className="mt-4 flex justify-center font-bold">{title}</div>
       <div className="mb-4 flex flex-col justify-center text-sm text-[#888888]">
-        {content.split('. ').map((sentence, index) => (
+        {content.split(/(?<=\.) /).map((sentence, index) => (
           <div key={index} className="flex justify-center">
             {sentence}
           </div>
