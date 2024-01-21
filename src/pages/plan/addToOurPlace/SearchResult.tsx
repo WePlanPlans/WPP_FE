@@ -7,9 +7,13 @@ import { ResultCategoryPlan } from './ResultCategoryPlan';
 
 interface SearchResultProps {
   searchWord: string;
+  apiType: 'postTripsLike' | 'putTrips';
 }
 
-export const SearchResultForPlan = ({ searchWord }: SearchResultProps) => {
+export const SearchResultForPlan = ({
+  searchWord,
+  apiType,
+}: SearchResultProps) => {
   const categories = ['전체', '숙소', '식당', '관광지'];
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
   useEffect(() => {
@@ -87,6 +91,7 @@ export const SearchResultForPlan = ({ searchWord }: SearchResultProps) => {
           fetchNextPage={hasNextPage ? fetchNextPage : null}
           hasNextPage={hasNextPage}
           isFetchingNextPage={isFetchingNextPage}
+          apiType={apiType}
         />
       )}
     </>

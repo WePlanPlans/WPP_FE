@@ -37,3 +37,18 @@ export interface TourType {
   longitude?: string;
   latitude?: string;
 }
+
+export interface LikedListType {
+  tripLikedItemId: number;
+  tourItemId: number;
+  contentTypeId: number;
+  title: string;
+  ratingAverage: number;
+  reviewCount: number;
+  smallThumbnailUrl: string;
+  tourAddress: string;
+  prefer: boolean;
+  notPrefer: boolean;
+  preferTotalCount: number;
+  notPreferTotalCount: number;
+}

@@ -1,3 +1,5 @@
+import { getColor } from '@utils/getColor';
+
 interface IconProps {
   size?: number;
   color?: string;
@@ -1299,7 +1301,6 @@ export const CounterIcon: React.FC<
   );
 };
 
-
 export const PlanColorIcon: React.FC<IconProps> = ({ size = 21 }) => {
   return (
     <svg
@@ -1315,14 +1316,14 @@ export const PlanColorIcon: React.FC<IconProps> = ({ size = 21 }) => {
       <path
         d="M8.32007 6.94141H15.8734"
         stroke="#B9B9B9"
-        stroke-width="1.50023"
-        stroke-linecap="round"
+        strokeWidth="1.50023"
+        strokeLinecap="round"
       />
       <path
         d="M8.32007 10.6875H15.8734"
         stroke="#B9B9B9"
-        stroke-width="1.50023"
-        stroke-linecap="round"
+        strokeWidth="1.50023"
+        strokeLinecap="round"
       />
       <path
         d="M16.1244 0.0742188H8.12286V2.07462C8.12286 2.60515 8.33362 3.11396 8.70876 3.48911C9.0839 3.86426 9.59271 4.07501 10.1232 4.07501H14.124C14.6545 4.07501 15.1633 3.86426 15.5385 3.48911C15.9136 3.11396 16.1244 2.60515 16.1244 2.07462V0.0742188ZM3.21193 6.36547L9.83319 12.9768C10.016 13.1685 10.1196 13.4221 10.1232 13.6869V15.0772C10.1232 15.3425 10.0179 15.5969 9.83029 15.7844C9.64272 15.972 9.38832 16.0774 9.12305 16.0774H7.73279C7.60116 16.0782 7.47067 16.0529 7.34881 16.0032C7.22695 15.9534 7.11611 15.88 7.02265 15.7873L0.4114 9.16603C0.228138 8.97906 0.125488 8.72769 0.125488 8.46589C0.125488 8.20408 0.228138 7.95271 0.4114 7.76575L1.81167 6.36547C1.99863 6.18221 2.25 6.07956 2.5118 6.07956C2.7736 6.07956 3.02497 6.18221 3.21193 6.36547Z"
@@ -1331,7 +1332,6 @@ export const PlanColorIcon: React.FC<IconProps> = ({ size = 21 }) => {
     </svg>
   );
 };
-
 
 export const ThumbsUp: React.FC<IconProps> = ({
   size = 16,
@@ -1639,6 +1639,8 @@ export const SequenceIcon: React.FC<IconProps & { number?: number }> = ({
   className,
   number,
 }) => {
+  const currentColor = getColor(number || 0);
+
   return (
     <svg
       width={size}
@@ -1650,7 +1652,7 @@ export const SequenceIcon: React.FC<IconProps & { number?: number }> = ({
       preserveAspectRatio="none">
       <path
         d="M20.2549 10.0508C20.2549 15.5736 15.7777 20.0508 10.2549 20.0508C4.73204 20.0508 0.254883 15.5736 0.254883 10.0508C0.254883 4.52793 4.73204 0.0507812 10.2549 0.0507812C15.7777 0.0507812 20.2549 4.52793 20.2549 10.0508Z"
-        fill="gray"
+        fill={currentColor}
       />
       {number !== undefined && (
         <text
@@ -1659,6 +1661,7 @@ export const SequenceIcon: React.FC<IconProps & { number?: number }> = ({
           dominantBaseline="middle"
           textAnchor="middle"
           fontSize="small"
+          fontWeight="bold"
           fill="white">
           {number}
         </text>
@@ -1720,38 +1723,6 @@ export const PaperIcon: React.FC<IconProps> = ({}) => {
         clipRule="evenodd"
         d="M4.1084 14.3789C4.1084 13.9647 4.44418 13.6289 4.8584 13.6289H8.3584C8.77261 13.6289 9.1084 13.9647 9.1084 14.3789C9.1084 14.7931 8.77261 15.1289 8.3584 15.1289H4.8584C4.44418 15.1289 4.1084 14.7931 4.1084 14.3789Z"
         fill="#5E5E5E"
-      />
-    </svg>
-  );
-};
-
-export const PlanColorIcon = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="21"
-      height="20"
-      viewBox="0 0 21 20"
-      fill="none">
-      <path
-        d="M18.4997 -0.00390625H6.49745C5.39267 -0.00390625 4.49707 0.891702 4.49707 1.99649V17.9997C4.49707 19.1045 5.39267 20.0001 6.49745 20.0001H18.4997C19.6045 20.0001 20.5001 19.1045 20.5001 17.9997V1.99649C20.5001 0.891702 19.6045 -0.00390625 18.4997 -0.00390625Z"
-        fill="#D7D7D7"
-      />
-      <path
-        d="M8.69458 6.86328H16.2479"
-        stroke="#B9B9B9"
-        strokeWidth="1.50023"
-        strokeLinecap="round"
-      />
-      <path
-        d="M8.69458 10.6094H16.2479"
-        stroke="#B9B9B9"
-        strokeWidth="1.50023"
-        strokeLinecap="round"
-      />
-      <path
-        d="M16.4989 -0.00390625H8.49737V1.99649C8.49737 2.52703 8.70813 3.03584 9.08327 3.41099C9.45842 3.78613 9.96722 3.99689 10.4978 3.99689H14.4985C15.029 3.99689 15.5378 3.78613 15.913 3.41099C16.2881 3.03584 16.4989 2.52703 16.4989 1.99649V-0.00390625ZM3.58644 6.28734L10.2077 12.8987C10.3905 13.0903 10.4941 13.344 10.4978 13.6088V14.9991C10.4978 15.2643 10.3924 15.5188 10.2048 15.7063C10.0172 15.8939 9.76283 15.9993 9.49756 15.9993H8.1073C7.97567 16 7.84518 15.9748 7.72332 15.925C7.60146 15.8753 7.49062 15.8019 7.39716 15.7092L0.785911 9.0879C0.60265 8.90094 0.5 8.64957 0.5 8.38776C0.5 8.12596 0.60265 7.87459 0.785911 7.68762L2.18618 6.28734C2.37314 6.10408 2.62451 6.00143 2.88631 6.00143C3.14811 6.00143 3.39948 6.10408 3.58644 6.28734Z"
-        fill="#5996CE"
       />
     </svg>
   );
