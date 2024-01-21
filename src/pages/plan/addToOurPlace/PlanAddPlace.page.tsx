@@ -23,7 +23,7 @@ export const PlanAddPlace = () => {
     <div className="min-h-screen">
       <SearchInput />
       {searchWord ? (
-        <SearchResultForPlan searchWord={searchWord} apiType="putTrips" />
+        <SearchResultForPlan searchWord={searchWord} apiType="postTripsItem" />
       ) : (
         <OurLiked />
       )}

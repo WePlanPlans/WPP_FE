@@ -68,7 +68,7 @@ export const OurLiked = () => {
         />
       )}
       <div className="sticky bottom-0 mt-auto bg-white py-[20px] ">
-        <AddToListButton apiType="putTrips" />
+        <AddToListButton apiType="postTripsItem" />
       </div>
     </div>
   );

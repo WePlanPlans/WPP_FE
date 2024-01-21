@@ -17,11 +17,6 @@ export const TripSchedule = () => {
           </div>
         </div>
 
-        {/* <div className="flex">
-          <button className="body3 rounded-lg border-2 border-solid border-gray2 p-2 text-gray4">
-            편집
-          </button>
-        </div> */}
         <EditCodeModal />
       </div>
       <span className="body1 text-gray4">
