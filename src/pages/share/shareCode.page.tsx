@@ -6,14 +6,14 @@ import { useNavigate } from 'react-router-dom';
 
 const shareCode = () => {
   const navigate = useNavigate();
-  const { tripAuthority, TripId } = useGetTripsAuthority();
+  const { tripAuthority, tripId } = useGetTripsAuthority();
 
   useEffect(() => {
-    if (tripAuthority === 'WRITE' && TripId) {
+    if (tripAuthority === 'WRITE' && tripId) {
       alert('이미 편집 가능한 여정입니다.');
-      navigate(`/trip/${TripId}`, { replace: true });
+      navigate(`/trip/${tripId}`, { replace: true });
     }
-  }, [tripAuthority, TripId]);
+  }, [tripAuthority, tripId]);
 
   const [inputCode, setInputCode] = useState<string>('');
   const [showError, setShowError] = useState<boolean>(false);
@@ -23,11 +23,11 @@ const shareCode = () => {
     if (changeValue.length <= 5) {
       setInputCode(e.target.value);
     }
-    if (changeValue.length === 5 && TripId) {
+    if (changeValue.length === 5 && tripId) {
       try {
-        const { data } = await postTripsjoin(TripId, changeValue);
+        const { data } = await postTripsjoin(tripId, changeValue);
         if (data.status === 200) {
-          navigate(`/trip/${TripId}`, { replace: true });
+          navigate(`/trip/${tripId}`, { replace: true });
         }
       } catch (err) {
         setShowError(true);

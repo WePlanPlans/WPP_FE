@@ -38,8 +38,6 @@ export const MyLiked = () => {
       },
     });
 
-  console.log('data', data);
-
   if (isLoading) {
     return <Spinner />;
   }
@@ -48,7 +46,6 @@ export const MyLiked = () => {
   }
 
   const searchResults = data?.pages.flatMap((page) => page.data.content) || [];
-  // console.log('searchResults:', searchResults);
   const noResults = searchResults && searchResults.length === 0;
 
   return (

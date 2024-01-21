@@ -15,13 +15,11 @@ import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { dayState, dateState } from '@recoil/plan';
 import { calculateDayAndDate } from '@utils/utils';
-import { TripSchedule } from '@components/Trip/TripSchedule';
 import { useGetTrips } from '@hooks/useGetTrips';
 import { visitDateState } from '@recoil/socket';
 import { useState } from 'react';
 import { getItem } from '@utils/localStorageFun';
 import PlanSchedule from './PlanSchedule';
-
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();

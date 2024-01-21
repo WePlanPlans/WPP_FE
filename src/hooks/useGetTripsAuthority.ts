@@ -11,7 +11,6 @@ type useGetTripsAuthorityReturn = {
 
 export const useGetTripsAuthority = (): useGetTripsAuthorityReturn => {
   const { id } = useParams();
-
   const defaultReturn = {
     tripAuthority: null,
     memberId: null,

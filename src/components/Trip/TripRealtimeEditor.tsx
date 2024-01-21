@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { socketContext } from '@hooks/useSocket';
 import { useContext } from 'react';
 import { UserIcon } from '@components/common/icons/Icons';

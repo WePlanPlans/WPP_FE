@@ -1,9 +1,8 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { selectedItemsState } from '@recoil/listItem';
 import { ButtonPrimary } from '@components/common/button/Button';
 import { postTripsLike } from '@api/trips';
-import { getTripIdFromUrl } from '@utils/getTripIdFromUrl';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { pubAddTripItem } from '@api/socket';
 import { useContext } from 'react';
 import { socketContext } from '@hooks/useSocket';
@@ -14,16 +13,15 @@ const AddToListButton = ({
 }: {
   apiType: 'postTripsLike' | 'putTrips';
 }) => {
-  const selectedTourItemIds = useRecoilValue(selectedItemsState);
-  console.log('selectedTourItemIds', selectedTourItemIds);
+  const { id: tripId } = useParams();
+  const [selectedTourItemIds, setSelectedTourItemIds] =
+    useRecoilState(selectedItemsState);
   const visitDate = useRecoilValue(visitDateState);
-  console.log('visitDate', visitDate);
-
+  console.log(selectedTourItemIds);
   const { callBackPub } = useContext(socketContext);
   const navigate = useNavigate();
 
   const handleAddClick = async () => {
-    const tripId = getTripIdFromUrl().toString();
     if (tripId) {
       try {
         let response;
@@ -40,11 +38,12 @@ const AddToListButton = ({
             newTripItems,
           };
 
-          console.log('pubAddTripItemData', pubAddTripItemData);
           callBackPub(() => pubAddTripItem(pubAddTripItemData, tripId));
-          navigate(`/trip/${tripId}/plan`);
+          setTimeout(() => {
+            setSelectedTourItemIds([]);
+            navigate(`/trip/${tripId}/plan`);
+          }, 500);
         }
-        console.log('API response:', response);
       } catch (error) {
         console.error('API error:', error);
       }

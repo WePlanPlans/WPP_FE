@@ -16,7 +16,7 @@ const EditCodeModal = () => {
   const handleConfirm = async () => {
     if (tripId) {
       try {
-        const { data } = await postTripsjoin(Number(tripId), inputCode);
+        const { data } = await postTripsjoin(tripId, inputCode);
         if (data.status === 200) {
           setIsModalOpen(false);
         }

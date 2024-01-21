@@ -91,7 +91,6 @@ export const useSocket = () => {
   useEffect(() => {
     if (tripId && visitDate) {
       socketConnect(tripId, visitDate.visitDate);
-      console.log(visitDate);
     }
 
     return () => {

@@ -5,12 +5,9 @@ import { PlanAddPlace } from '@pages/plan/addToOurPlace/PlanAddPlace.page';
 import PlanPlaceSearch from '@pages/plan/planPlaceSearch.page';
 import Trip from '@pages/trip/trip.page';
 import MainLayout from './routerLayout';
-import { useRecoilValue } from 'recoil';
-import { tripIdState, visitDateState } from '@recoil/socket';
 import Share from '@pages/share/share.page';
 import ShareCode from '@pages/share/shareCode.page';
-import { AddOurList } from '@pages/trip/AddOurList';
-
+import { AddOurList } from '@pages/trip/AddOurList.page';
 
 const SocketRoutes = () => {
   return (

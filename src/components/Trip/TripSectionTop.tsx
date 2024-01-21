@@ -5,10 +5,6 @@ import { BackBox } from '@components/common';
 import { useNavigate } from 'react-router-dom';
 import PlanTripButton from './PlanTripButton';
 import { LikedToursList } from './LikedToursList';
-
-
-const TripSectionTop = () => {
-  const navigate = useNavigate();
 import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
 import { useEffect, useState } from 'react';
 import IsEditableModal from '@components/Share/IsEditableModal';
@@ -25,7 +21,6 @@ const TripSectionTop = () => {
       }
     }
   }, [tripAuthority]);
-
 
   return (
     <div className="min-h-screen">

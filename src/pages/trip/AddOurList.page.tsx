@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 
 export const AddOurList = () => {
   const location = useLocation();
-
   const queryParams = new URLSearchParams(location.search);
   const searchWordFromQuery = queryParams.get('searchWord');
 
