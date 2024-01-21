@@ -13,14 +13,8 @@ import { AddOurList } from '@pages/trip/AddOurList';
 
 
 const SocketRoutes = () => {
-  const tripId = useRecoilValue(tripIdState);
-  const visitDate = useRecoilValue(visitDateState);
-  if (!tripId || !visitDate) {
-    return <div>에러</div>;
-  }
-
   return (
-    <socketContext.Provider value={useSocket(tripId, visitDate?.visitDate)}>
+    <socketContext.Provider value={useSocket()}>
       <Routes>
         <Route path="/" element={<PlanTrip />} />
         <Route path="/place" element={<PlanAddPlace />} />

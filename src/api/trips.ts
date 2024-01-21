@@ -4,7 +4,7 @@ import authClient from './authClient';
 // 여정 관련 API
 
 // 여정 상세조회
-export const getTrips = async (tripId: number) => {
+export const getTrips = async (tripId: string) => {
   const res = await client.get(`trips/${tripId}`);
   return res;
 };
@@ -79,17 +79,17 @@ export const postTripsLikeHate = async (
 };
 
 // 우리의 여행취향 조회
-export const getTripsSurvey = async (tripId: number) => {
+export const getTripsSurvey = async (tripId: string) => {
   const res = await client.get(`trips/${tripId}/survey`);
   return res;
 };
 // 우리의 여행취향 참여/미참여 회원 조회
-export const getTripsSurveyMembers = async (tripId: number) => {
+export const getTripsSurveyMembers = async (tripId: string) => {
   const res = await client.get(`trips/${tripId}/survey/members`);
   return res;
 };
 // 여정을 공유하고 있는 회원 조회
-export const getTripsMembers = async (tripId: number) => {
+export const getTripsMembers = async (tripId: string) => {
   const res = await client.get(`trips/${tripId}/members`);
   return res;
 };
@@ -97,6 +97,12 @@ export const getTripsMembers = async (tripId: number) => {
 // 편집권한 조회
 export const getTripsAuthority = async (tripId: string) => {
   const res = await authClient.get(`trips/${tripId}/authority`);
+  return res;
+};
+
+// 나의 여정목록 조회
+export const getMyTrips = async () => {
+  const res = await authClient.get(`trips`);
   return res;
 };
 

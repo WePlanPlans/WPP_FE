@@ -480,6 +480,7 @@ export const PlusIcon: React.FC<IconProps> = ({
   size = 20,
   color = 'black',
   fill = 'none',
+  className,
 }) => {
   return (
     <svg
@@ -487,7 +488,8 @@ export const PlusIcon: React.FC<IconProps> = ({
       width={size}
       height={size}
       viewBox="0 0 14 14"
-      fill={fill}>
+      fill={fill}
+      className={className}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -1727,3 +1729,24 @@ export const PaperIcon: React.FC<IconProps> = ({}) => {
     </svg>
   );
 };
+
+export const DropdownIcon: React.FC<IconProps> = ({}) => {
+  return (
+    <svg
+      width={23}
+      height={9}
+      viewBox="0 0 23 9"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet">
+      <path
+        d="M1.03125 1.22656L11.0311 7.60992L21.0313 1.22656"
+        stroke="#D7D7D7"
+        strokeWidth={2}
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+};
+
+
