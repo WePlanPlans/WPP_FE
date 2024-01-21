@@ -24,9 +24,8 @@ const AddToListButton = ({
   const handleAddClick = async () => {
     if (tripId) {
       try {
-        let response;
         if (apiType === 'postTripsLike') {
-          response = await postTripsLike(tripId, selectedTourItemIds);
+          await postTripsLike(tripId, selectedTourItemIds);
           navigate(`/trip/${tripId}`);
         } else if (apiType === 'postTripsItem' && visitDate) {
           const newTripItems = selectedTourItemIds.map((tourItemId) => ({
