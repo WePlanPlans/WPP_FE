@@ -71,10 +71,9 @@ const PlanEditItemBox = ({
 
   const handleConfirm = () => {
     if (tripId && visitDate && selectedItemId) {
-      pubDeleteItem({ tripId: tripId, visitDate: visitDate }, selectedItemId);
-      // callBackPub(() =>
-      //   pubDeleteItem({ tripId: tripId, visitDate: visitDate }, selectedItemId),
-      // );
+      callBackPub(() =>
+        pubDeleteItem({ tripId: tripId, visitDate: visitDate }, selectedItemId),
+      );
     }
     setToastPopUp(() => ({
       isPopUp: true,
@@ -141,7 +140,9 @@ const PlanEditItemBox = ({
                           />
                           <div className="flex w-full flex-col p-[10px]">
                             <div className="flex text-left text-[14px] font-medium text-black">
-                              {item.name}
+                              {item.name.length > 17
+                                ? item.name.slice(0, 17) + '...'
+                                : item.name}
                             </div>
                             <div className="mt-[3px] flex h-fit w-fit items-center justify-center gap-2 rounded-[3px] bg-[#ededed] p-[4px] text-center text-[11px] text-black">
                               {item.category}

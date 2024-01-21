@@ -76,7 +76,9 @@ const PlanItemBox = ({
                 />
                 <div className="flex w-full flex-col p-[10px]">
                   <div className="flex justify-between text-left text-[14px] font-medium text-black">
-                    {item.name}
+                    {item.name.length > 19
+                      ? item.name.slice(0, 19) + '...'
+                      : item.name}
                     {tripAuthority == 'WRITE' && (
                       <Alert
                         title={'비용을 입력해주세요'}
