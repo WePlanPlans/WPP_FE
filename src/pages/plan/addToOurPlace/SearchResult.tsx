@@ -7,7 +7,7 @@ import { ResultCategoryPlan } from './ResultCategoryPlan';
 
 interface SearchResultProps {
   searchWord: string;
-  apiType: 'postTripsLike' | 'putTrips';
+  apiType: 'postTripsLike' | 'postTripsItem';
 }
 
 export const SearchResultForPlan = ({
