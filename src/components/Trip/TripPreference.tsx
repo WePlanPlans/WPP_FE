@@ -8,9 +8,10 @@ import {
 } from '@utils/calculatePercentage';
 import { modalChildrenState, isModalOpenState } from '@recoil/modal';
 import { getTripsSurveyMembers } from '@api/trips';
-import { tripIdState } from '@recoil/socket';
-import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import { participantsState } from '@recoil/trip';
+import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
+
 interface RatioBarParams {
   value: number;
   total: number;
@@ -32,7 +33,9 @@ const TripPreferenceButton: React.FC = () => {
         <div>
           <HeartIcon fill="#888888" color="#888888" size={20} />
         </div>
-        <p className="ml-1.5">내 여행 취향 설정하러 가기</p>
+        <p className="ml-1.5 text-[14px] text-main1">
+          내 여행 취향 설정하러 가기
+        </p>
       </div>
       <div className="ml-auto">
         <RightIcon fill="#5E5E5E" />
@@ -94,6 +97,7 @@ const Percentage = ({ value, total, color }: PercentageParams) => (
 );
 
 const TripPreference: React.FC = () => {
+  const { tripId } = useGetTripsAuthority();
   const [A, setA] = useState<[number, number]>([0, 0]);
   const [B, setB] = useState<[number, number]>([0, 0]);
   const [C, setC] = useState<[number, number]>([0, 0]);
@@ -101,12 +105,15 @@ const TripPreference: React.FC = () => {
   const [E, setE] = useState<[number, number]>([0, 0]);
   const setModalChildren = useSetRecoilState(modalChildrenState);
   const setIsModalOpen = useSetRecoilState(isModalOpenState);
-  const tripId = Number(useRecoilValue(tripIdState));
   const [participants, setParticipants] = useRecoilState(participantsState);
 
   const { data: tripsSurveyMembers } = useQuery({
     queryKey: ['tripsSurveyMembers', tripId],
-    queryFn: () => getTripsSurveyMembers(tripId),
+    queryFn: () =>
+      tripId != null
+        ? getTripsSurveyMembers(tripId)
+        : Promise.reject('tripId is null'),
+    enabled: !!tripId,
   });
 
   useEffect(() => {
@@ -116,7 +123,11 @@ const TripPreference: React.FC = () => {
 
   const { data: tripPreference, isLoading } = useQuery({
     queryKey: ['tripPreference', tripId],
-    queryFn: () => getTripsSurvey(tripId),
+    queryFn: () =>
+      tripId != null
+        ? getTripsSurvey(tripId)
+        : Promise.reject('tripId is null'),
+    enabled: !!tripId,
   });
 
   useEffect(() => {
@@ -154,7 +165,7 @@ const TripPreference: React.FC = () => {
   };
 
   return (
-    <div className=" m-[-20px] flex flex-col items-center bg-gray1 pb-[20px]  ">
+    <div className=" m-[-20px] mt-0 flex flex-col items-center bg-gray1 pb-[20px]  ">
       <TripPreferenceButton />
       <div
         onClick={handleButtonClick}

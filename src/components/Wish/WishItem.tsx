@@ -38,12 +38,12 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
         </div>
 
         <div className="ml-[8px] flex flex-col items-start justify-between gap-[15px]">
-          <div className="max-w-[240px]">
-            <p className="overflow-hidden truncate text-clip whitespace-nowrap px-[2px] font-['Pretendard'] text-[16px] font-bold leading-normal text-black">
+          <div className=" max-w-[240px]">
+            <p className=" truncate whitespace-nowrap px-[2px] font-['Pretendard'] text-[16px] font-bold leading-normal text-black">
               {title}
             </p>
-            <div className="ml-[3px] mt-[5px] max-w-[260px] truncate">
-              <p className="text-[14px] text-gray6">{tourAddress}</p>
+            <div className="ml-[3px] mt-[5px] max-w-[260px]">
+              <p className="truncate text-[14px] text-gray6">{tourAddress}</p>
             </div>
           </div>
 

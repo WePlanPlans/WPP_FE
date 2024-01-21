@@ -16,6 +16,9 @@ import {
 } from '@/@types/service';
 import { createContext } from 'react';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { visitDateState } from '@recoil/socket';
 
 export const socketContext = createContext<SocketContextType>({
   tripInfo: null,
@@ -23,16 +26,20 @@ export const socketContext = createContext<SocketContextType>({
   tripPath: null,
   tripMember: null,
   tripBudget: null,
+  tripId: '',
   callBackPub: () => {},
 });
 
-export const useSocket = (tripId: string, visitDate: string) => {
+export const useSocket = () => {
+  const { id } = useParams();
+  const tripId = id ?? '';
+  const visitDate = useRecoilValue(visitDateState);
+
   const [tripInfo, setTripInfo] = useState<subInfoRes | null>(null);
   const [tripItem, setTripItem] = useState<subItemRes | null>(null);
   const [tripPath, setTripPath] = useState<subPathRes | null>(null);
   const [tripMember, setTripMember] = useState<subMemberRes | null>(null);
   const [tripBudget, setTripBudget] = useState<subBudgetRes | null>(null);
-
   const [socketCallback, setSocketCallback] = useState<(() => void) | null>(
     null,
   );
@@ -41,7 +48,7 @@ export const useSocket = (tripId: string, visitDate: string) => {
     setSocketCallback(() => callback);
   };
 
-  const socketConnect = () => {
+  const socketConnect = (tripId: string, visitDate: string) => {
     socketClient.onConnect = () => {
       subInfo(tripId, (res) => {
         if (res) {
@@ -82,12 +89,24 @@ export const useSocket = (tripId: string, visitDate: string) => {
   };
 
   useEffect(() => {
-    socketConnect();
+    if (tripId && visitDate) {
+      socketConnect(tripId, visitDate.visitDate);
+    }
+    console.log('소켓연결');
 
     return () => {
       socketClient.deactivate();
+      console.log('소켓해제');
     };
   }, [tripId, visitDate, socketCallback]);
 
-  return { tripInfo, tripItem, tripPath, tripMember, tripBudget, callBackPub };
+  return {
+    tripInfo,
+    tripItem,
+    tripPath,
+    tripMember,
+    tripBudget,
+    tripId,
+    callBackPub,
+  };
 };

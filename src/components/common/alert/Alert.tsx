@@ -3,13 +3,15 @@ import * as Dialog from '@radix-ui/react-dialog';
 
 interface AlertProps {
   title: string;
-  message: ReactNode;
+  message?: ReactNode;
   onConfirm: (() => void) | ((e: React.MouseEvent<HTMLElement>) => void);
   onCancel?: (() => void) | ((e: React.MouseEvent<HTMLElement>) => void);
   children: ReactNode;
   content?: ReactNode;
   closeOnConfirm?: boolean;
   isCheck?: number | null;
+  isOpen?: boolean;
+  setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Alert: FC<AlertProps> = ({
@@ -21,8 +23,10 @@ const Alert: FC<AlertProps> = ({
   content,
   closeOnConfirm = false,
   isCheck = true,
+  isOpen,
+  setIsOpen,
 }) => (
-  <Dialog.Root>
+  <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
     <Dialog.Trigger asChild disabled={!isCheck}>
       {children}
     </Dialog.Trigger>
@@ -31,10 +35,10 @@ const Alert: FC<AlertProps> = ({
       <Dialog.Content
         className={`${
           content && 'pb-[16px] pt-10'
-        } fixed left-[50%] top-[50%] z-[130] flex min-h-[192px] w-[346px] translate-x-[-50%] translate-y-[-50%] flex-col items-center justify-center rounded-[16px] bg-white shadow-lg focus:outline-none`}>
+        } fixed left-[50%] top-[50%] z-[130] flex min-h-[192px] w-[309px] translate-x-[-50%] translate-y-[-50%] flex-col items-center justify-center rounded-2xl bg-white px-[14px] shadow-lg focus:outline-none`}>
         <Dialog.Description
           className={`${
-            content ? 'w-[80%] text-left' : 'text-center text-[15px]'
+            content ? 'w-full pl-2 text-left' : 'text-center text-[15px]'
           } mt-[10px] font-bold leading-normal`}>
           <p
             className={` ${
@@ -49,7 +53,7 @@ const Alert: FC<AlertProps> = ({
           <Dialog.Close asChild>
             <button
               onClick={onCancel}
-              className="btn-base h-[48px] w-[134px] border border-solid border-gray3 bg-white p-[8px] text-[15px] font-bold text-[#888]">
+              className="btn-base h-[48px] w-[134px] border border-solid border-gray3 bg-white p-[8px] text-[15px] font-bold text-[#888] focus:outline-none">
               취소
             </button>
           </Dialog.Close>

@@ -10,6 +10,7 @@ interface Props {
   showSave?: boolean;
   saveHandler?: VoidFunction;
   showShare?: boolean;
+  shareHandler?: VoidFunction;
 }
 
 const BackBox = ({
@@ -21,6 +22,7 @@ const BackBox = ({
   showSave,
   saveHandler,
   showShare,
+  shareHandler,
 }: Props) => {
   const onBackClick = () => {
     backHandler && backHandler();
@@ -55,7 +57,9 @@ const BackBox = ({
         </button>
       )}
       {showShare && (
-        <button className="headline2 absolute right-0 text-main2">
+        <button
+          className="headline2 absolute right-0 text-main2"
+          onClick={shareHandler}>
           <ShareIcon />
         </button>
       )}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useGetToursReviews } from '@hooks/useReviewStats';
 import { v4 as uuidv4 } from 'uuid';
-import { DownIcon } from '@components/common/icons/Icons';
+import { DropdownIcon } from '@components/common/icons/Icons';
 import useReviewStatsCalculator from '@hooks/useReviewStatsCalculator';
 import { getEmoji } from '@utils/utils';
 
@@ -45,11 +45,11 @@ const DetailReviewStats = () => {
         <div className="flex items-center justify-center">
           <div
             onClick={() => setShowAll(!showAll)}
-            className="cursor-pointer transition-transform duration-300"
+            className="mt-[9px] cursor-pointer transition-transform duration-300"
             style={{
               transform: showAll ? 'rotate(180deg)' : 'rotate(0deg)',
             }}>
-            <DownIcon />
+            <DropdownIcon />
           </div>
         </div>
       )}

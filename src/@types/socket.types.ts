@@ -2,7 +2,7 @@ type subInfoMessage = (message: {
   status: number;
   message: string;
   data: {
-    tripId: number;
+    tripId: string;
     startDate: string;
     endDate: string;
     numberOfPeople: number;
@@ -16,7 +16,7 @@ type subItemMessage = (response: {
   status: number;
   message: string;
   data: {
-    tripId: number;
+    tripId: string;
     visitDate: string;
     transportation: 'CAR' | 'PUBLIC_TRANSPORTATION';
     tripItems: {
@@ -36,7 +36,7 @@ type subPathMessage = (response: {
   status: number;
   message: string;
   data: {
-    tripId: number;
+    tripId: string;
     visitDate: string;
     transportation: 'CAR' | 'PUBLIC_TRANSPORTATION';
     paths: {
@@ -61,16 +61,12 @@ type subMemberMessage = (response: {
   status: number;
   message: string;
   data: {
-    tripId: number;
-    connectedMembers: {
-      memberId: number;
-      name: string;
-      thumbnailUrl: string;
-    }[];
+    tripId: string;
     tripMembers: {
       memberId: number;
       name: string;
       thumbnailUrl: string;
+      connected: boolean;
     }[];
     numberOfPeople: number;
   };
@@ -80,7 +76,7 @@ type subBudgetMessage = (response: {
   status: number;
   message: string;
   data: {
-    tripId: number;
+    tripId: string;
     budget: number;
     calculatedPrice: number;
   };
@@ -102,9 +98,9 @@ interface pubAddTripItem {
 }
 
 interface pubUpdatePrice {
-  tripId: number;
+  tripId: string;
   visitDate: string;
-  price: number;
+  price: string;
 }
 
 interface pubUpdateTripItem {
@@ -132,7 +128,7 @@ interface pubDeleteItem {
 }
 
 interface pubMember {
-  memberId: number;
+  token: string;
 }
 
 interface pubGetPathAndItems {
