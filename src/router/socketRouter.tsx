@@ -1,13 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import { useSocket, socketContext } from '@hooks/useSocket';
 import PlanTrip from '@pages/plan/planTrip.page';
-import { PlanAddPlace } from '@pages/plan/addPlace/PlanAddPlace.page';
+import { PlanAddPlace } from '@pages/plan/addToOurPlace/PlanAddPlace.page';
 import PlanPlaceSearch from '@pages/plan/planPlaceSearch.page';
 import Trip from '@pages/trip/trip.page';
 import MainLayout from './routerLayout';
 import { useRecoilValue } from 'recoil';
 import { tripIdState, visitDateState } from '@recoil/socket';
-import { AddOurList } from '@pages/trip/AddOurList';
+import { AddOurList } from '@pages/trip/AddOurList.page';
 
 const SocketRoutes = () => {
   const tripId = useRecoilValue(tripIdState);

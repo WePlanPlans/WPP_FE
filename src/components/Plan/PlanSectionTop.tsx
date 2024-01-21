@@ -14,6 +14,7 @@ import { tripIdState, memberIdState } from '@recoil/socket';
 import { calculateDayAndDate } from '@utils/utils';
 import PlanSchedule from './PlanSchedule';
 
+
 const PlanSectionTop = () => {
   const navigate = useNavigate();
   const tripId = useRecoilValue(tripIdState);

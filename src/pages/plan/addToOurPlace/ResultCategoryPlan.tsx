@@ -10,6 +10,7 @@ interface ResultCategoryProps {
   fetchNextPage: (() => Promise<InfiniteQueryObserverResult<any, any>>) | null;
   hasNextPage: boolean;
   isFetchingNextPage: boolean;
+  apiType: 'postTripsLike' | 'putTrips';
 }
 
 export const ResultCategoryPlan = ({
@@ -17,10 +18,10 @@ export const ResultCategoryPlan = ({
   fetchNextPage,
   hasNextPage,
   isFetchingNextPage,
+  apiType,
 }: ResultCategoryProps) => {
   return (
     <>
-      <h2 className="headline2 my-2.5">ResultCategoryPlan</h2>
       {data.map((item) => (
         <ResultItemPlan key={item.id} result={item} />
       ))}
@@ -38,9 +39,7 @@ export const ResultCategoryPlan = ({
         <div className="mt-3 text-center text-gray3"></div>
       )}
       <div className="sticky bottom-0 bg-white py-[20px]">
-        <div className="sticky bottom-0 bg-white py-[20px]">
-          <AddToListButton />
-        </div>
+        <AddToListButton apiType={apiType} />
       </div>
     </>
   );
