@@ -3,8 +3,8 @@ interface TripRequest {
   numberOfPeople: number;
   startDate: string | null;
   endDate: string | null;
-  area: string | null;
-  subarea: string | null;
+  area?: string | null;
+  subarea?: string | null;
 }
 
 interface MyTripType {
@@ -40,7 +40,7 @@ interface ThumbsProps {
   prefer: boolean;
   notPrefer: boolean;
 }
-  
+
 interface AuthorityType {
   status: number;
   message: string;
