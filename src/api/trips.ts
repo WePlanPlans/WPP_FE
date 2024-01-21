@@ -91,3 +91,9 @@ export const getTripsAuthority = async (tripId: string) => {
   const res = await authClient.get(`trips/${tripId}/authority`);
   return res;
 };
+
+// 나의 여정목록 조회
+export const getMyTrips = async () => {
+  const res = await authClient.get(`trips`);
+  return res;
+};

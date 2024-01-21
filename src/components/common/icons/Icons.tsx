@@ -478,6 +478,7 @@ export const PlusIcon: React.FC<IconProps> = ({
   size = 20,
   color = 'black',
   fill = 'none',
+  className,
 }) => {
   return (
     <svg
@@ -485,7 +486,8 @@ export const PlusIcon: React.FC<IconProps> = ({
       width={size}
       height={size}
       viewBox="0 0 14 14"
-      fill={fill}>
+      fill={fill}
+      className={className}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
