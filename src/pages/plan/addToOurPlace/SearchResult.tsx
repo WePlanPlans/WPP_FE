@@ -1,7 +1,7 @@
 import { getToursSearch } from '@api/tours';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import ToursCategoryItem from '@components/Tours/ToursCategoryItem';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Spinner } from '@components/common/spinner/Spinner';
 import { ResultCategoryPlan } from './ResultCategoryPlan';
 
@@ -16,18 +16,10 @@ export const SearchResultForPlan = ({
 }: SearchResultProps) => {
   const categories = ['전체', '숙소', '식당', '관광지'];
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
-  useEffect(() => {
-    console.log(selectedCategory);
-  }, [selectedCategory]);
 
   const handleSelectCategory = (category: string) => {
     setSelectedCategory(category);
   };
-
-  useEffect(() => {
-    console.log('searchWord: ' + searchWord);
-  }, [searchWord]);
-  console.log();
 
   const {
     data,

@@ -12,7 +12,7 @@ interface LikedToursListProps {
   hasNextPage: boolean;
   isLoading: boolean;
   selectedContentTypeId: number | null;
-  selectedTripId: number;
+  selectedTripId: string;
 }
 
 const LikedToursListBox: React.FC<LikedToursListProps> = ({

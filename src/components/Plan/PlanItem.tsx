@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import TripMap from './TripMap';
 import PlanItemBox from './PlanItemBox';
 import PlanEditItemBox from './PlanEditItemBox';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { socketContext } from '@hooks/useSocket';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { visitDateState } from '@recoil/socket';
+import { visitDateState, isEditState } from '@recoil/socket';
 import { pubGetPathAndItems, pubUpdateTransportation } from '@api/socket';
 import { tapState } from '@recoil/plan';
 import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
@@ -20,7 +20,8 @@ type PlanItemProps = {
 const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
   const navigate = useNavigate();
   const { tripAuthority } = useGetTripsAuthority();
-  const [isEdit, SetIsEdit] = useState(false);
+  const [isEdit, setIsEdit] = useRecoilState(isEditState);
+
   const tap = useRecoilValue(tapState);
   const [, setVisitDate] = useRecoilState(visitDateState);
   const { tripItem, tripPath, callBackPub, tripId } = useContext(socketContext);
@@ -31,11 +32,12 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
       if (date && tripId) {
         callBackPub(() => pubGetPathAndItems({ visitDate: date }, tripId));
       }
+      setIsEdit(false);
     }
   }, [tap]);
 
   const handleEdit = () => {
-    SetIsEdit((prev) => !prev);
+    setIsEdit((prev) => !prev);
   };
 
   const handleTranspo = (

@@ -79,7 +79,6 @@ export const pubAddTripItem = (
     destination: `/pub/trips/${tripId}/addTripItems`,
     body: JSON.stringify(pubAddTripItem),
   });
-  console.log(pubAddTripItem);
 };
 
 // 여행 아이템 예상 가격 업데이트 이벤트 발생시

@@ -11,7 +11,7 @@ export const getTrips = async (tripId: string) => {
 
 // 여정 기본정보 수정
 export const putTrips = async (
-  tripId: number,
+  tripId: string,
   tourItemId: number,
   visitDate: string,
 ) => {
@@ -24,7 +24,7 @@ export const putTrips = async (
 };
 
 // 여정 탈퇴
-export const deleteTrips = async (tripId: number) => {
+export const deleteTrips = async (tripId: string) => {
   try {
     const res = await authClient.delete(`trips/${tripId}`);
 
@@ -42,7 +42,7 @@ export const postTrips = async (tripsData: TripRequest) => {
 
 // 우리의 관심목록 조회
 export const getTripsLike = async (
-  tripId: number,
+  tripId: string,
   page: number,
   size: number,
 ) => {
@@ -67,7 +67,7 @@ export const postTripsLike = async (tripId: string, tourItemIds: number[]) => {
 
 // 우리의 관심 목록 좋아요/싫어요
 export const postTripsLikeHate = async (
-  tripId: number,
+  tripId: string,
   tourId: number,
   prefer: boolean,
   notPrefer: boolean,
@@ -113,7 +113,7 @@ export const getTripsjoin = async (tripId: string) => {
 };
 
 // 여정 참여
-export const postTripsjoin = async (tripId: number, joinCode: string) => {
+export const postTripsjoin = async (tripId: string, joinCode: string) => {
   const res = await authClient.post(`trips/${tripId}/join`, { joinCode });
   return res;
 };

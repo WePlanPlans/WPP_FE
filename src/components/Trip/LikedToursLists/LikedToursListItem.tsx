@@ -12,7 +12,7 @@ import { useState } from 'react';
 
 interface LikedToursListItemProps {
   ourTripList: ourTripType;
-  selectedTripId: number;
+  selectedTripId: string;
 }
 
 const LikedToursListItem: React.FC<LikedToursListItemProps> = ({

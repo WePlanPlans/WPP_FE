@@ -8,7 +8,7 @@ interface TripRequest {
 }
 
 interface MyTripType {
-  tripId: number;
+  tripId: string;
   tripName: string;
   startDate: string;
   endDate: string;
@@ -35,7 +35,7 @@ interface ourTripType {
 }
 
 interface ThumbsProps {
-  tripId: number;
+  tripId: string;
   tourId: number;
   prefer: boolean;
   notPrefer: boolean;
@@ -47,6 +47,6 @@ interface AuthorityType {
   data: {
     memberId: number;
     tripAuthority: string;
-    TripId: number;
+    tripId: string;
   };
 }

@@ -2,12 +2,13 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Spinner } from '@components/common/spinner/Spinner';
 import { getTripsLike } from '@api/trips';
-import { getTripIdFromUrl } from '@utils/getTripIdFromUrl';
 import WishCategory from '@components/Wish/WishCategory';
 import AddToListButton from '../addToOurPlace/AddtoListBtn';
 import { OurLikedList } from './OurLikedList';
+import { useParams } from 'react-router-dom';
 
 export const OurLiked = () => {
+  const { id: tripId } = useParams();
   const [selectedContentTypeId, setSelectedContentTypeId] = useState<
     null | number
   >(null);
@@ -16,12 +17,10 @@ export const OurLiked = () => {
     setSelectedContentTypeId(contentTypeId);
   };
 
-  const tripId = getTripIdFromUrl();
-
   const { fetchNextPage, hasNextPage, data, isLoading, error } =
     useInfiniteQuery({
       queryKey: ['ourTrips'],
-      queryFn: ({ pageParam = 0 }) => getTripsLike(tripId, pageParam, 10),
+      queryFn: ({ pageParam = 0 }) => getTripsLike(tripId || '', pageParam, 10),
       initialPageParam: 0,
       getNextPageParam: (lastPage) => {
         if (
@@ -40,8 +39,6 @@ export const OurLiked = () => {
         return undefined;
       },
     });
-
-  console.log('data', data);
 
   if (isLoading) {
     return <Spinner />;
