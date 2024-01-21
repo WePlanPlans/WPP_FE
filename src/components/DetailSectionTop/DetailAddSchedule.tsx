@@ -9,10 +9,6 @@ import { calculateDayAndDate } from '@utils/utils';
 
 const DetailAddSchedule = () => {
   const { myTrips } = useGetMyTrips();
-  const tripDuration = calculateTripDuration(
-    myTrips[0]?.startDate,
-    myTrips[0]?.endDate,
-  );
 
   const { SmallDayArr } = calculateDayAndDate(
     myTrips[0]?.startDate,

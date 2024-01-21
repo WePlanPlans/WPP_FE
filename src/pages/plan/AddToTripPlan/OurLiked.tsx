@@ -2,7 +2,6 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Spinner } from '@components/common/spinner/Spinner';
 import { getTripsLike } from '@api/trips';
-import { getTripIdFromUrl } from '@utils/getTripIdFromUrl';
 import WishCategory from '@components/Wish/WishCategory';
 import AddToListButton from '../addToOurPlace/AddtoListBtn';
 import { OurLikedList } from './OurLikedList';
