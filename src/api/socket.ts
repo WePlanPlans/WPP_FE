@@ -84,7 +84,7 @@ export const pubAddTripItem = (
 // 여행 아이템 예상 가격 업데이트 이벤트 발생시
 export const pubUpdatePrice = (
   pubUpdatePrice: pubUpdatePrice,
-  tripItemId: string,
+  tripItemId: number,
 ) => {
   socketClient.publish({
     destination: `/pub/tripItems/${tripItemId}/updatePrice`,

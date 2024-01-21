@@ -92,9 +92,11 @@ export const useSocket = () => {
     if (tripId && visitDate) {
       socketConnect(tripId, visitDate.visitDate);
     }
+    console.log('소켓연결');
 
     return () => {
       socketClient.deactivate();
+      console.log('소켓해제');
     };
   }, [tripId, visitDate, socketCallback]);
 
