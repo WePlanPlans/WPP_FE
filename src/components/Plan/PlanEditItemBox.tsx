@@ -14,6 +14,8 @@ import { pubUpdateTripItemReq } from '@/@types/service';
 import Alert from '@components/common/alert/Alert';
 import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
 import PlanMoveItem from './PlanMoveItem';
+import { useRecoilState } from 'recoil';
+import { isEditState } from '@recoil/socket';
 
 type PlanItemBoxProps = {
   item: TripItem[];
@@ -33,7 +35,7 @@ const PlanEditItemBox = ({
   }
 
   const { callBackPub } = useContext(socketContext);
-
+  const [, setIsEdit] = useRecoilState(isEditState);
   const [items, setItems] = useState(item);
   const [newData, setNewData] = useState<pubUpdateTripItemReq | null>(null);
   const [selectedItemId, setSelectedItemId] = useState<number | null>(null);
@@ -78,6 +80,7 @@ const PlanEditItemBox = ({
       noun: '여행지',
       verb: '삭제',
     }));
+    setIsEdit(false);
   };
 
   const handleRadioChange = (id: number | null) => {
@@ -105,7 +108,10 @@ const PlanEditItemBox = ({
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppableId">
           {(provided) => (
-            <div {...provided.droppableProps} ref={provided.innerRef}>
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              className="mb-[68px]">
               <div className="text-left text-sm font-semibold">{day}</div>
               {items.map((item, index) => (
                 <Draggable

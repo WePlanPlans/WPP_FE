@@ -1,7 +1,7 @@
 import type { AuthRequest } from '@/@types/auth.types';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { postEmailLogin } from '@api/auth';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
 import SubmitBtn from '@components/common/button/SubmitBtn';
@@ -26,6 +26,8 @@ const LoginForm = () => {
   });
 
   const navigate = useNavigate();
+  const { state } = useLocation();
+
   // const [userInfo, setUserInfo] = useRecoilState(UserInfoState);
 
   const onLoginSubmit: SubmitHandler<AuthRequest> = async (data) => {
@@ -38,7 +40,11 @@ const LoginForm = () => {
       if (res.data.status === 200) {
         setItem('accessToken', res.data.data.tokenInfo.accessToken);
         // setUserInfo(res.data.data.memberDto);
-        navigate('/');
+        if (state) {
+          navigate(state.prevPath);
+        } else {
+          navigate('/');
+        }
       }
     } catch (err) {
       if (err instanceof AxiosError) {

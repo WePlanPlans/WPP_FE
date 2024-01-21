@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const useCounter = (
   initialValue: number = 0,
@@ -6,6 +6,10 @@ const useCounter = (
   max: number = Infinity,
 ): [number, () => void, () => void] => {
   const [value, setValue] = useState<number>(initialValue);
+
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue]);
 
   const increase = () => {
     setValue((prevValue) => Math.min(prevValue + 1, max));

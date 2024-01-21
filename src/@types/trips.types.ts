@@ -3,12 +3,12 @@ interface TripRequest {
   numberOfPeople: number;
   startDate: string | null;
   endDate: string | null;
-  area: string | null;
-  subarea: string | null;
+  area?: string | null;
+  subarea?: string | null;
 }
 
 interface MyTripType {
-  tripId: number;
+  tripId: string;
   tripName: string;
   startDate: string;
   endDate: string;
@@ -35,18 +35,18 @@ interface ourTripType {
 }
 
 interface ThumbsProps {
-  tripId: number;
+  tripId: string;
   tourId: number;
   prefer: boolean;
   notPrefer: boolean;
 }
-  
+
 interface AuthorityType {
   status: number;
   message: string;
   data: {
     memberId: number;
     tripAuthority: string;
-    TripId: number;
+    tripId: string;
   };
 }

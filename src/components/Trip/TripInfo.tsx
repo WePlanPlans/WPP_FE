@@ -5,20 +5,25 @@ import TripSurveyMember from '@components/common/modal/children/TripSurveyMember
 import { Modal } from '@components/common/modal';
 import { useQuery } from '@tanstack/react-query';
 import { getTripsMembers } from '@api/trips';
-import { tripIdState } from '@recoil/socket';
 // import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
 import { DownIcon } from '@components/common/icons/Icons';
 import { useState } from 'react';
 import { UserIcon } from '@components/common/icons/Icons';
+import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
 
 const ShareList = () => {
-  const tripId = Number(useRecoilValue(tripIdState));
+  const { tripId } = useGetTripsAuthority();
+
   const { data: tripsMembers } = useQuery({
     queryKey: ['tripsMembers', tripId],
-    queryFn: () => getTripsMembers(tripId),
+    queryFn: () =>
+      tripId != null
+        ? getTripsMembers(tripId)
+        : Promise.reject('tripId is null'),
+    enabled: !!tripId,
   });
   const members = tripsMembers?.data?.data?.tripMemberSimpleInfos;
-
+  console.log(tripsMembers);
   return (
     <>
       <hr className="my-3 border-solid border-gray2" />
@@ -54,15 +59,20 @@ const ShareList = () => {
 };
 
 const TripInfo = () => {
+  const { tripId } = useGetTripsAuthority();
   const modalChildren = useRecoilValue(modalChildrenState);
   const [isModalOpen, setIsModalOpen] = useRecoilState(isModalOpenState);
-  const tripId = Number(useRecoilValue(tripIdState));
   const [isAccordion, setIsAccordion] = useState(false);
 
   const { data: tripsMembers } = useQuery({
     queryKey: ['tripsMembers', tripId],
-    queryFn: () => getTripsMembers(tripId),
+    queryFn: () =>
+      tripId != null
+        ? getTripsMembers(tripId)
+        : Promise.reject('tripId is null'),
+    enabled: !!tripId,
   });
+
   const members = tripsMembers?.data?.data?.tripMemberSimpleInfos;
 
   const closeModal = () => {
@@ -72,6 +82,10 @@ const TripInfo = () => {
   const handleClickButton = () => {
     setIsAccordion((prev) => !prev);
   };
+
+  if (!tripId) {
+    return <div>error</div>;
+  }
 
   return (
     <>

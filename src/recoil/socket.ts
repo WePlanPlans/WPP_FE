@@ -1,16 +1,11 @@
 import { atom } from 'recoil';
 
-export const tripIdState = atom<string | null>({
-  key: 'tripIdState',
-  default: '1',
-});
-
 export const visitDateState = atom<{ visitDate: string } | null>({
   key: 'visitDateState',
-  default: { visitDate: '2024-01-03' },
+  default: { visitDate: '' },
 });
 
-export const memberIdState = atom<{ token: number | null }>({
-  key: 'memberIdState',
-  default: { token: null },
+export const isEditState = atom<boolean>({
+  key: 'isEditState',
+  default: false,
 });

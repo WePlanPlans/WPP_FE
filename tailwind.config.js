@@ -6,6 +6,8 @@ export default {
       colors: {
         main1: '#062139',
         main2: '#29DDF6',
+        main3: '#DAF9FF',
+        main4: '#F2FDFF',
         sub1: '#FFEC3E',
         sub2: '#FF2167',
         gray1: '#f8f8f8',
