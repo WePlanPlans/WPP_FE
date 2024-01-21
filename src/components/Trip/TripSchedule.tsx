@@ -1,4 +1,5 @@
 import { UserIcon } from '@components/common/icons/Icons';
+import EditCodeModal from './EditCodeModal';
 
 export const TripSchedule = () => {
   return (
@@ -12,6 +13,7 @@ export const TripSchedule = () => {
             <span className="body4 pt-[1px] text-gray4">5</span>
           </div>
         </div>
+        <EditCodeModal />
       </div>
       <span className="body1 text-gray4">23.12.23 - 23.12.25</span>
     </>

@@ -99,3 +99,15 @@ export const getTripsAuthority = async (tripId: string) => {
   const res = await authClient.get(`trips/${tripId}/authority`);
   return res;
 };
+
+// 여정 참여 코드 조회
+export const getTripsjoin = async (tripId: string) => {
+  const res = await authClient.get(`trips/${tripId}/join`);
+  return res;
+};
+
+// 여정 참여
+export const postTripsjoin = async (tripId: number, joinCode: string) => {
+  const res = await authClient.post(`trips/${tripId}/join`, { joinCode });
+  return res;
+};
