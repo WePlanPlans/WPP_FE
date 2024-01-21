@@ -20,6 +20,8 @@ import { useGetTrips } from '@hooks/useGetTrips';
 import { visitDateState } from '@recoil/socket';
 import { useState } from 'react';
 import { getItem } from '@utils/localStorageFun';
+import PlanSchedule from './PlanSchedule';
+
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();
@@ -84,13 +86,16 @@ const PlanSectionTop = () => {
     <div className="min-h-screen">
       <BackBox
         showBack={true}
-        showShare={true}
         backHandler={() => {
           navigate(-1);
         }}
+        showShare={true}
+        shareHandler={() => {
+          navigate(`/trip/${tripId}/share`);
+        }}
       />
       <TripRealtimeEditor />
-      <TripSchedule />
+      <PlanSchedule />
       <TripBudget />
       <Tab
         lists={DayArr}

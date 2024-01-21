@@ -36,7 +36,7 @@ export const MyLikedList: React.FC<WishListProps> = ({
       : toursData.pages;
 
   return (
-    <div className="min-h-[70vh]">
+    <div className="">
       <InfiniteScroll
         pageStart={0}
         loadMore={() => fetchNextPage()}

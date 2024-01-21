@@ -1,6 +1,6 @@
 import SearchInput from '@components/search/SearchInput';
-import { MyLiked } from '@pages/plan/addPlace/MyLiked';
-import { SearchResultForPlan } from '@pages/plan/addPlace/SearchResult';
+import { MyLiked } from '@pages/plan/addToOurPlace/MyLiked';
+import { SearchResultForPlan } from '@pages/plan/addToOurPlace/SearchResult';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ export const AddOurList = () => {
     <div>
       <SearchInput />
       {searchWord ? (
-        <SearchResultForPlan searchWord={searchWord} />
+        <SearchResultForPlan searchWord={searchWord} apiType="postTripsLike" />
       ) : (
         <MyLiked />
       )}

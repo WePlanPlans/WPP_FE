@@ -1,5 +1,7 @@
 import { UserIcon } from '@components/common/icons/Icons';
 import { useGetTrips } from '@hooks/useGetTrips';
+import EditCodeModal from './EditCodeModal';
+
 
 export const TripSchedule = () => {
   const { tripName, startDate, endDate, numberOfPeople } = useGetTrips();
@@ -15,11 +17,13 @@ export const TripSchedule = () => {
             <span className="body4 pt-[1px] text-gray4">{numberOfPeople}</span>
           </div>
         </div>
+
         <div className="flex">
           <button className="body3 rounded-lg border-2 border-solid border-gray2 p-2 text-gray4">
             편집
           </button>
         </div>
+        <EditCodeModal />
       </div>
       <span className="body1 text-gray4">
         {startDate?.substring(2).replace(/-/g, '.') || ''} -{' '}

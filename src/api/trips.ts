@@ -10,8 +10,16 @@ export const getTrips = async (tripId: string) => {
 };
 
 // 여정 기본정보 수정
-export const putTrips = async (tripId: number, tripsData: TripRequest) => {
-  const res = await client.put(`trips/${tripId}`, tripsData);
+export const putTrips = async (
+  tripId: number,
+  tourItemId: number,
+  visitDate: string,
+) => {
+  const requestBody = {
+    tourItemId: tourItemId,
+    visitDate: visitDate,
+  };
+  const res = await authClient.post(`trips/${tripId}`, requestBody);
   return res;
 };
 
@@ -46,7 +54,7 @@ export const getTripsLike = async (
 };
 
 // 우리의 관심 목록 등록
-export const postTripsLike = async (tripId: number, tourItemIds: number[]) => {
+export const postTripsLike = async (tripId: string, tourItemIds: number[]) => {
   const requestBody = {
     tourItemIds: tourItemIds,
   };
@@ -95,5 +103,17 @@ export const getTripsAuthority = async (tripId: string) => {
 // 나의 여정목록 조회
 export const getMyTrips = async () => {
   const res = await authClient.get(`trips`);
+  return res;
+};
+
+// 여정 참여 코드 조회
+export const getTripsjoin = async (tripId: string) => {
+  const res = await authClient.get(`trips/${tripId}/join`);
+  return res;
+};
+
+// 여정 참여
+export const postTripsjoin = async (tripId: number, joinCode: string) => {
+  const res = await authClient.post(`trips/${tripId}/join`, { joinCode });
   return res;
 };
