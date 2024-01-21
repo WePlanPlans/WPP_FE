@@ -9,8 +9,9 @@ interface ListSelectBtnProps {
 export const ListSelectBtn = ({ children, onClick }: ListSelectBtnProps) => {
   const [isActive, setIsActive] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setIsActive(!isActive);
+    e.stopPropagation();
     if (onClick) {
       onClick();
     }
@@ -36,15 +37,16 @@ interface ListCheckBtnProps {
 export const ListCheckBtn = ({ onClick }: ListCheckBtnProps) => {
   const [isActive, setIsActive] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setIsActive(!isActive);
+    e.stopPropagation();
     if (onClick) {
       onClick();
     }
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="m-2 flex items-center justify-center">
       <button
         onClick={handleClick}
         className={`focus:shadow-outline-blue body3 flex size-[20px] shrink-0 items-center justify-center rounded-[32px] text-white transition-colors duration-100 focus:outline-none ${

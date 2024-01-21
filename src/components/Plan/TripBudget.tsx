@@ -4,14 +4,11 @@ import { CloseIcon, SettingIcons } from '@components/common/icons/Icons';
 import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
 import { socketContext } from '@hooks/useSocket';
 import * as Progress from '@radix-ui/react-progress';
-import { tripIdState } from '@recoil/socket';
 import { useContext, useState } from 'react';
-import { useRecoilValue } from 'recoil';
 
 const TripBudget = () => {
   const { tripAuthority } = useGetTripsAuthority();
-  const { tripBudget } = useContext(socketContext);
-  const tripId = useRecoilValue(tripIdState);
+  const { tripBudget, tripId } = useContext(socketContext);
 
   const budget = tripBudget?.data;
 

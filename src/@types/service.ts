@@ -2,7 +2,7 @@ export type subInfoRes = {
   status: number;
   message: string;
   data: {
-    tripId: number;
+    tripId: string;
     startDate: string;
     endDate: string;
     numberOfPeople: number;
@@ -16,7 +16,7 @@ export type subItemRes = {
   status: number;
   message: string;
   data: {
-    tripId: number;
+    tripId: string;
     visitDate: string;
     transportation: 'CAR' | 'PUBLIC_TRANSPORTATION';
     tripItems: {
@@ -52,7 +52,7 @@ export type subPathRes = {
   status: number;
   message: string;
   data: {
-    tripId: number;
+    tripId: string;
     visitDate: string;
     transportation: 'CAR' | 'PUBLIC_TRANSPORTATION';
     paths: {
@@ -77,7 +77,7 @@ export type subMemberRes = {
   status: number;
   message: string;
   data: {
-    tripId: number;
+    tripId: string;
     tripMembers: {
       memberId: number;
       name: string;
@@ -91,7 +91,7 @@ export type subBudgetRes = {
   status: number;
   message: string;
   data: {
-    tripId: number;
+    tripId: string;
     budget: number;
     calculatedPrice: number;
   } | null;
@@ -103,6 +103,7 @@ export type SocketContextType = {
   tripPath: subPathRes | null;
   tripMember: subMemberRes | null;
   tripBudget: subBudgetRes | null;
+  tripId: string;
   callBackPub: (callback: () => void) => void;
 };
 
