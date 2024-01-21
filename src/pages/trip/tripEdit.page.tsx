@@ -1,54 +1,171 @@
+import { putTrips } from '@api/trips';
 import { BackBox } from '@components/common';
+import { ButtonPrimary } from '@components/common/button/Button';
 import {
   CalendarIcon,
-  PaperIcon,
-  SearchIcon,
+  CloseIcon,
+  CounterIcon,
+  PlanIcon,
   UserIcon,
 } from '@components/common/icons/Icons';
+import { InputField } from '@components/createTrip/InputField';
+import useCounter from '@hooks/useCounter';
+import { useGetTrips } from '@hooks/useGetTrips';
+import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
+import { tripDateState } from '@recoil/tripDate';
+import { formatDate } from '@utils/formatDate';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { SelectDate } from '../../components/createTrip/SelectDate';
 
 const TripEdit = () => {
+  const navigate = useNavigate();
+  const tripId = useGetTripsAuthority().tripId;
+  const { tripName, numberOfPeople, startDate, endDate } = useGetTrips();
+
+  const [title, setTitle] = useState('');
+  const [numOfMembers, increaseNumOfMembers, decreaseNumOfMembers] = useCounter(
+    numberOfPeople ?? 1,
+    1,
+  );
+  const [showSelectDate, setShowSelectDate] = useState(false);
+  const [tripDate, setTripDate] = useRecoilState(tripDateState);
+
+  let start: Date, end: Date;
+  if (startDate && endDate) {
+    start = new Date(startDate);
+    end = new Date(endDate);
+  }
+
+  useEffect(() => {
+    if (startDate && endDate) {
+      setTripDate({ startDate: start, endDate: end });
+    }
+    if (tripName) {
+      setTitle(tripName);
+    }
+  }, [tripName, startDate, endDate]);
+
+  const handleSubmit = async () => {
+    try {
+      let adjustedStartDate, adjustedEndDate;
+
+      if (tripDate.startDate) {
+        adjustedStartDate = new Date(tripDate.startDate);
+        adjustedStartDate.setDate(adjustedStartDate.getDate() + 1);
+      }
+      if (tripDate.endDate) {
+        adjustedEndDate = new Date(tripDate.endDate);
+        adjustedEndDate.setDate(adjustedEndDate.getDate() + 1);
+      }
+
+      const tripRequestData = {
+        tripName: title,
+        numberOfPeople: numOfMembers,
+        startDate: adjustedStartDate
+          ? adjustedStartDate.toISOString().split('T')[0]
+          : null,
+        endDate: adjustedEndDate
+          ? adjustedEndDate.toISOString().split('T')[0]
+          : null,
+      };
+
+      if (tripId) {
+        const response = await putTrips(tripId, tripRequestData);
+        console.log('전송 완료: ', response);
+        navigate('/trip/' + tripId);
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error('전송 실패: ', error);
+    }
+  };
+
+  const formattedTripDate =
+    tripDate.startDate && tripDate.endDate
+      ? tripDate.startDate === tripDate.endDate
+        ? formatDate(tripDate.startDate, 'yyyy. MM. dd')
+        : `${formatDate(tripDate.startDate, 'yyyy. MM. dd')} - ${formatDate(
+            tripDate.endDate,
+            'MM. dd',
+          )}`
+      : '여행 날짜 (선택)';
+
+  if (showSelectDate) {
+    return (
+      <SelectDate
+        onClose={() => {
+          setShowSelectDate(false);
+        }}
+      />
+    );
+  }
   return (
-    <>
-      <BackBox showBack={true}>여정 수정하기</BackBox>
+    <div className="flex h-[95vh] flex-col">
+      <BackBox
+        showBack={true}
+        backHandler={() => {
+          navigate(-1);
+        }}
+        children="여정 수정하기"
+      />
+      <div className="pb-[18px]" />
 
-      <form className="flex min-h-full flex-col gap-[16px] py-8">
-        <div className="flex items-center justify-start rounded-lg border border-[1px] border-solid border-[#D7D7D7] px-[14px] py-[8px]">
-          <div className="pb-[1.2px]">
-            <PaperIcon size={25} color="#1E1E1E" />
+      <InputField icon={PlanIcon}>
+        <input
+          type="text"
+          className="body1 flex-1 p-2 focus:outline-none"
+          placeholder={title || ''}
+          value={title || ''}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+          autoFocus
+        />
+        {title && (
+          <div
+            className="ml-auto cursor-pointer rounded-full bg-gray3"
+            onClick={() => {
+              setTitle('');
+            }}>
+            <CloseIcon />
           </div>
-          <p className="body1 flex py-[3px] pl-[8px] text-gray4">나의 여정 N</p>
-        </div>
+        )}
+      </InputField>
 
-        <div className="flex items-center justify-start rounded-lg border border-[1px] border-solid border-[#D7D7D7] px-[14px] py-[8px]">
-          <div className="pb-[1.2px]">
-            <UserIcon size={22} color="#1E1E1E" />
-          </div>
-          <p className="body1 flex py-[3px] pl-[3px] text-gray4">인원</p>
+      <InputField icon={UserIcon}>
+        <div className="body1 flex-1 p-2">인원</div>
+        <div className="ml-auto flex items-center justify-center">
+          {numOfMembers !== 1 && (
+            <button
+              className="flex size-[24px] items-center justify-center rounded-full text-gray3"
+              onClick={decreaseNumOfMembers}>
+              <CounterIcon minus />
+            </button>
+          )}
+          <div className="body1 flex-1 px-4">{numOfMembers}</div>
+          <button
+            className="flex size-[24px] items-center justify-center rounded-full text-white"
+            onClick={increaseNumOfMembers}>
+            <CounterIcon plus />
+          </button>
         </div>
+      </InputField>
 
-        <div className="flex items-center justify-start rounded-lg border border-[1px] border-solid border-[#D7D7D7] px-[14px] py-[8px]">
-          <div className="pb-[1px]">
-            <CalendarIcon size={22} color="#1E1E1E" />
-          </div>
-          <p className="body1 flex py-[3px] pl-[5px] text-gray4">
-            2023.12.14 ~ 2024.12.16
-          </p>
-        </div>
+      <InputField
+        icon={CalendarIcon}
+        onClick={() => {
+          setShowSelectDate(true);
+        }}
+        isClickable>
+        <div className="body1 p-2">{formattedTripDate}</div>
+      </InputField>
 
-        <div className="flex items-center justify-start rounded-lg border border-[1px] border-solid border-[#D7D7D7] px-[14px] py-[8px]">
-          <div className="pb-[1.2px]">
-            <SearchIcon size={18} color="#1E1E1E" />
-          </div>
-          <p className="body1 flex py-[3px] pl-[7px] text-gray4">
-            강릉 ・ 속초
-          </p>
-        </div>
-
-        <button className="headline1 fixed bottom-6 min-h-[40px] w-[375px] cursor-pointer rounded-lg bg-main2 p-[16px] text-white">
-          완료
-        </button>
-      </form>
-    </>
+      <div className="mt-auto">
+        <ButtonPrimary onClick={handleSubmit}>완료</ButtonPrimary>
+      </div>
+    </div>
   );
 };
 
