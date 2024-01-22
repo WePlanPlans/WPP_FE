@@ -31,7 +31,7 @@ const PlanItemBox = ({
   if (!item || !paths) {
     return <div>Missing data</div>;
   }
-
+  console.log(paths);
   const { tripAuthority } = useGetTripsAuthority();
   const { tripId } = useContext(socketContext);
 
@@ -70,7 +70,7 @@ const PlanItemBox = ({
             <div className="flex w-full flex-col">
               <div className="flex h-[87.5px]  rounded-lg border border-solid border-[#ededed] bg-white">
                 <img
-                  className="h-[87px] w-[93px] rounded-bl-lg rounded-tl-lg "
+                  className="h-[87px] w-[93px] rounded-bl-lg rounded-tl-lg"
                   src={item.thumbnailUrl}
                   alt="img"
                 />
@@ -103,7 +103,7 @@ const PlanItemBox = ({
                                 onChange={(e) => setInputPrice(e.target.value)}
                               />
                               <div
-                                className="cursor-pointer"
+                                className="ml-[-16px] cursor-pointer"
                                 onClick={() => setInputPrice('')}>
                                 {showCloseIcon && (
                                   <CloseIcon size={16} fill="#D7D7D7" />
@@ -142,9 +142,15 @@ const PlanItemBox = ({
                           ) : null}
                         </div>
                         <div className="mt-[3px]">
-                          {(path.pathInfo.totalDistance / 1000).toFixed(2)}km,{' '}
-                          {path.pathInfo.totalTime}분,{' '}
-                          {path.pathInfo.price.toLocaleString()}원
+                          {path.pathInfo.totalDistance < 0 ||
+                          path.pathInfo.totalTime < 0 ||
+                          path.pathInfo.price < 0
+                            ? '경로 정보가 없습니다.'
+                            : `${(path.pathInfo.totalDistance / 1000).toFixed(
+                                2,
+                              )}km, ${
+                                path.pathInfo.totalTime
+                              }분, ${path.pathInfo.price.toLocaleString()}원`}
                         </div>
                       </div>
                     </div>
