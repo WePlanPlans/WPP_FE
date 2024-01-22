@@ -70,7 +70,7 @@ const PlanItemBox = ({
             <div className="flex w-full flex-col">
               <div className="flex h-[87.5px]  rounded-lg border border-solid border-[#ededed] bg-white">
                 <img
-                  className="h-[87px] w-[93px] rounded-bl-lg rounded-tl-lg "
+                  className="h-[87px] w-[93px] rounded-bl-lg rounded-tl-lg"
                   src={item.thumbnailUrl}
                   alt="img"
                 />

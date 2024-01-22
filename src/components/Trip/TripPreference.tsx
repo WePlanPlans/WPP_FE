@@ -11,6 +11,7 @@ import { getTripsSurveyMembers } from '@api/trips';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import { participantsState } from '@recoil/trip';
 import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
+import { useNavigate } from 'react-router-dom';
 
 interface RatioBarParams {
   value: number;
@@ -27,8 +28,18 @@ interface PercentageParams {
 }
 
 const TripPreferenceButton: React.FC = () => {
+  const { tripAuthority } = useGetTripsAuthority();
+  const navigate = useNavigate();
+  const handleTrip = () => {
+    if (tripAuthority === 'WRITE') {
+      navigate('/mypage/survey');
+    }
+  };
+
   return (
-    <button className="mb-[17.5px] mt-[20px] flex w-[335px] items-center rounded-full bg-white px-6 py-4 text-sm">
+    <button
+      onClick={handleTrip}
+      className="mb-[17.5px] mt-[20px] flex w-[335px] items-center rounded-full bg-white px-6 py-4 text-sm">
       <div className="flex items-center text-gray6">
         <div>
           <HeartIcon fill="#888888" color="#888888" size={20} />
