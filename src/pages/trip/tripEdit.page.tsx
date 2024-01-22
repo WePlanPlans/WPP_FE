@@ -32,30 +32,35 @@ const TripEdit = () => {
   const [showSelectDate, setShowSelectDate] = useState(false);
   const [tripDate, setTripDate] = useRecoilState(tripDateState);
 
-  let start: Date, end: Date;
-  if (startDate && endDate) {
-    start = new Date(startDate);
-    end = new Date(endDate);
-  }
+  // 초기 날짜
+  const [initialStartDate, setInitialStartDate] = useState<Date | null>(null);
+  const [initialEndDate, setInitialEndDate] = useState<Date | null>(null);
 
   useEffect(() => {
     if (startDate && endDate) {
+      const start = new Date(startDate);
+      const end = new Date(endDate);
       setTripDate({ startDate: start, endDate: end });
-    }
-    if (tripName) {
-      setTitle(tripName);
+      setInitialStartDate(start);
+      setInitialEndDate(end);
+
+      if (tripName) {
+        setTitle(tripName);
+      }
     }
   }, [tripName, startDate, endDate]);
 
   const handleSubmit = async () => {
     try {
-      let adjustedStartDate, adjustedEndDate;
+      let adjustedStartDate = startDate ? new Date(startDate) : null;
+      let adjustedEndDate = endDate ? new Date(endDate) : null;
 
-      if (tripDate.startDate) {
+      if (tripDate.startDate && tripDate.startDate !== initialStartDate) {
         adjustedStartDate = new Date(tripDate.startDate);
         adjustedStartDate.setDate(adjustedStartDate.getDate() + 1);
       }
-      if (tripDate.endDate) {
+
+      if (tripDate.endDate && tripDate.endDate !== initialEndDate) {
         adjustedEndDate = new Date(tripDate.endDate);
         adjustedEndDate.setDate(adjustedEndDate.getDate() + 1);
       }
@@ -72,9 +77,8 @@ const TripEdit = () => {
       };
 
       if (tripId) {
-        const response = await putTrips(tripId, tripRequestData);
-        console.log('전송 완료: ', response);
-        navigate('/trip/' + tripId);
+        await putTrips(tripId, tripRequestData);
+        navigate(`/trip/${tripId}`);
         window.location.reload();
       }
     } catch (error) {
