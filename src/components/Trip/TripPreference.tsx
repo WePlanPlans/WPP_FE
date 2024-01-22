@@ -60,11 +60,17 @@ const RatioBar = ({ value, total, color, label1, label2 }: RatioBarParams) => {
     value >= total - value
       ? Math.round((175 * value) / total)
       : Math.round((175 * (total - value)) / total);
+  const isZeroColor =
+    total === 0 && value === 0 ? 'text-gray6' : `text-${color}`;
+  const isZeroWeight = total === 0 && value === 0 ? '' : 'font-bold';
+
   return (
     <div className="mb-1 flex items-center text-sm">
       {value >= total - value ? (
         <>
-          <div className={`w-[65px] font-bold text-${color}`}>{label1}</div>
+          <div className={`w-[65px] ${isZeroWeight} ${isZeroColor}`}>
+            {label1}
+          </div>
           <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
             <div style={{ width }} className={`rounded-full bg-${color}`}></div>
           </div>
@@ -85,27 +91,33 @@ const RatioBar = ({ value, total, color, label1, label2 }: RatioBarParams) => {
   );
 };
 
-const Percentage = ({ value, total, color }: PercentageParams) => (
-  <div className="flex justify-between text-gray6">
-    {value >= total - value ? (
-      <>
-        <div className={`font-bold text-${color}`}>
-          {calculatePercentage(value, total)}%
-        </div>
-        <div className="text-gray6">
-          {calculatePercentageRemain(value, total)}%
-        </div>
-      </>
-    ) : (
-      <>
-        <div className="text-gray6">{calculatePercentage(value, total)}%</div>
-        <div className={`font-bold text-${color}`}>
-          {calculatePercentageRemain(value, total)}%
-        </div>
-      </>
-    )}
-  </div>
-);
+const Percentage = ({ value, total, color }: PercentageParams) => {
+  const isZeroColor =
+    total === 0 && value === 0 ? 'text-gray6' : `text-${color}`;
+  const isZeroWeight = total === 0 && value === 0 ? '' : 'font-bold';
+
+  return (
+    <div className="flex justify-between text-gray6">
+      {value >= total - value ? (
+        <>
+          <div className={`${isZeroWeight} ${isZeroColor}`}>
+            {calculatePercentage(value, total)}%
+          </div>
+          <div className="text-gray6">
+            {calculatePercentageRemain(value, total)}%
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="text-gray6">{calculatePercentage(value, total)}%</div>
+          <div className={`font-bold text-${color}`}>
+            {calculatePercentageRemain(value, total)}%
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
 
 const TripPreference: React.FC = () => {
   const { tripId } = useGetTripsAuthority();
@@ -143,6 +155,7 @@ const TripPreference: React.FC = () => {
 
   useEffect(() => {
     if (tripPreference) {
+      console.log('tripPreference', tripPreference);
       setA([
         tripPreference?.data?.data?.planningCount,
         tripPreference?.data?.data?.planningTotalCount,

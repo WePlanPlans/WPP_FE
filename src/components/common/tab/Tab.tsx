@@ -29,7 +29,7 @@ const Tab = ({ lists, contents }: TabProps) => {
       defaultValue="tab0"
       onValueChange={handleTabChange}>
       <Tabs.List
-        className="border-b-1 no-scrollbar flex shrink-0 overflow-x-scroll"
+        className="border-b-1 no-scrollbar flex shrink-0"
         aria-label="Manage your account">
         {lists.map((list, index) => {
           return (
