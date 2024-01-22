@@ -13,7 +13,7 @@ const ToursCategoryItem = ({
     <button
       type="button"
       onClick={() => onSelect(name)}
-      className={`body4 mr-[5px] flex items-center justify-center whitespace-nowrap rounded-[30px] border border-solid bg-[#28D8FF] px-[16px] py-[7px] leading-normal ${buttonStyle}`}>
+      className={`body4 mr-[5px] flex items-center justify-center whitespace-nowrap rounded-[30px] border border-solid bg-[#28D8FF] px-[18px] py-[7px] leading-normal ${buttonStyle}`}>
       {name}
     </button>
   );

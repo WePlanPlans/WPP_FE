@@ -40,7 +40,10 @@ const Nav = () => {
           }}
           className="cursor-pointer flex-col items-center justify-center px-2">
           <div className="flex justify-center">
-            <HomeIcon fill={isActive('/') ? 'currentColor' : 'none'} />
+            <HomeIcon
+              size={24}
+              fill={isActive('/') ? 'currentColor' : 'none'}
+            />
           </div>
           <p className="caption1 mt-[3px] text-center">홈</p>
         </div>
@@ -50,9 +53,13 @@ const Nav = () => {
             onClick={() => navigate('/mytrip')}
             className="cursor-pointer flex-col items-center justify-center px-2">
             <div className="flex justify-center">
-              {isActive('/mytrip') ? <CalendarIcon2 /> : <CalendarIcon />}
+              {isActive('/mytrip') ? (
+                <CalendarIcon2 size={24} />
+              ) : (
+                <CalendarIcon size={24} />
+              )}
             </div>
-            <p className="caption1 mt-[4px] text-center text-xs/[11px]">여정</p>
+            <p className="caption1 mt-[6px] text-center text-xs/[11px]">여정</p>
           </div>
         ) : (
           <Alert
@@ -67,9 +74,12 @@ const Nav = () => {
             onConfirm={handleConfirm}>
             <div className="cursor-pointer flex-col items-center justify-center px-2">
               <div className="flex justify-center">
-                <CalendarIcon fill={isActive('/mytrip') ? '#1E1E1E' : 'none'} />
+                <CalendarIcon
+                  size={24}
+                  fill={isActive('/mytrip') ? '#1E1E1E' : 'none'}
+                />
               </div>
-              <p className="caption1 mt-[4px] text-center text-xs/[11px]">
+              <p className="caption1 mt-[6px] text-center text-xs/[11px]">
                 여정
               </p>
             </div>
@@ -82,10 +92,11 @@ const Nav = () => {
             className="cursor-pointer flex-col items-center justify-center px-2">
             <div className="flex justify-center">
               <HeartIcon
+                size={24}
                 fill={isActive('/wishlist') ? 'currentColor' : 'none'}
               />
             </div>
-            <p className="caption1 mt-[4px] text-center text-xs/[11px]">
+            <p className="caption1 mt-[5px] text-center text-xs/[11px]">
               관심목록
             </p>
           </div>
@@ -103,10 +114,11 @@ const Nav = () => {
             <div className="cursor-pointer flex-col items-center justify-center px-2">
               <div className="flex justify-center">
                 <HeartIcon
+                  size={24}
                   fill={isActive('/wishlist') ? 'currentColor' : 'none'}
                 />
               </div>
-              <p className="caption1 mt-[4px] text-center text-xs/[11px]">
+              <p className="caption1 mt-[5px] text-center text-xs/[11px]">
                 관심목록
               </p>
             </div>
@@ -117,9 +129,12 @@ const Nav = () => {
           onClick={() => navigate('/mypage')}
           className="cursor-pointer flex-col items-center justify-center px-1">
           <div className="flex justify-center">
-            <UserIcon fill={isActive('/mypage') ? 'currentColor' : 'none'} />
+            <UserIcon
+              size={24}
+              fill={isActive('/mypage') ? 'currentColor' : 'none'}
+            />
           </div>
-          <p className="caption1 mt-[3px] text-center ">내정보</p>
+          <p className="caption1 mt-[4px] text-center ">내정보</p>
         </div>
       </div>
     </nav>
