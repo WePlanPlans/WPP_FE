@@ -6,12 +6,16 @@ import { getColor } from '@utils/getColor';
 const VITE_KAKAO_MAP_API_KEY = import.meta.env.VITE_KAKAO_MAP_API_KEY;
 
 const TripMap = ({ paths }: { paths: Paths[] }) => {
+  const DEFAULT_LATITUDE = 36.34;
+  const DEFAULT_LONGITUDE = 127.77;
+
   const firstPath = paths[0];
-  const latitude = firstPath?.fromLatitude;
-  const longitude = firstPath?.fromLongitude;
+  const latitude = firstPath ? firstPath.fromLatitude : DEFAULT_LATITUDE;
+  const longitude = firstPath ? firstPath.fromLongitude : DEFAULT_LONGITUDE;
 
   const mapRef = useRef<kakao.maps.Map | null>(null);
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
+  const [maplevel, setMapLevel] = useState(4);
 
   const defaultPosition = { lat: Number(latitude), lng: Number(longitude) };
 
@@ -84,7 +88,13 @@ const TripMap = ({ paths }: { paths: Paths[] }) => {
   };
 
   useEffect(() => {
-    setBounds();
+    if (paths.length > 0) {
+      setTimeout(() => {
+        setBounds();
+      }, 100);
+    } else {
+      setMapLevel(15);
+    }
   }, [paths]);
 
   // 마커를 클릭할 때 호출되는 함수
@@ -186,39 +196,40 @@ const TripMap = ({ paths }: { paths: Paths[] }) => {
         key={VITE_KAKAO_MAP_API_KEY}
         center={centerPosition}
         style={MapStyle}
-        level={4}
+        level={maplevel}
         className="relative object-fill"
         ref={mapRef}>
-        {paths.map((path, index) => (
-          <div key={path.toSeqNum}>
-            <MapMarker
-              position={{
-                lat: Number(path.fromLatitude),
-                lng: Number(path.fromLongitude),
-              }}
-              onClick={() => handleMarkerClick(path.toSeqNum)}
-              image={getSequenceIconUrl(path.toSeqNum - 1)}
-            />
-            {/* 마지막 항목인 경우, 목적지 위치에 마커 추가 */}
-            {index === paths.length - 1 && (
+        {paths.length !== 0 &&
+          paths.map((path, index) => (
+            <div key={path.toSeqNum}>
               <MapMarker
                 position={{
-                  lat: Number(path.toLatitude),
-                  lng: Number(path.toLongitude),
+                  lat: Number(path.fromLatitude),
+                  lng: Number(path.fromLongitude),
                 }}
-                onClick={() => handleMarkerClick(path.toSeqNum + 1)}
-                image={getSequenceIconUrl(path.toSeqNum)}
+                onClick={() => handleMarkerClick(path.toSeqNum)}
+                image={getSequenceIconUrl(path.toSeqNum - 1)}
               />
-            )}
-            <Polyline
-              path={polylinePath}
-              strokeWeight={2}
-              strokeColor={'black'}
-              strokeOpacity={0.5}
-              strokeStyle={'longdash'}
-            />
-          </div>
-        ))}
+              {/* 마지막 항목인 경우, 목적지 위치에 마커 추가 */}
+              {index === paths.length - 1 && (
+                <MapMarker
+                  position={{
+                    lat: Number(path.toLatitude),
+                    lng: Number(path.toLongitude),
+                  }}
+                  onClick={() => handleMarkerClick(path.toSeqNum + 1)}
+                  image={getSequenceIconUrl(path.toSeqNum)}
+                />
+              )}
+              <Polyline
+                path={polylinePath}
+                strokeWeight={2}
+                strokeColor={'black'}
+                strokeOpacity={0.5}
+                strokeStyle={'longdash'}
+              />
+            </div>
+          ))}
       </Map>
     </div>
   );
