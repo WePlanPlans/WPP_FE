@@ -17,7 +17,6 @@ const AddToListButton = ({
   const [selectedTourItemIds, setSelectedTourItemIds] =
     useRecoilState(selectedItemsState);
   const visitDate = useRecoilValue(visitDateState);
-  console.log(selectedTourItemIds);
   const { callBackPub } = useContext(socketContext);
   const navigate = useNavigate();
 
