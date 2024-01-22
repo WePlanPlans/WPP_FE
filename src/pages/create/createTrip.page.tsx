@@ -95,7 +95,8 @@ export const CreateTrip = () => {
       <InputField icon={PlanIcon}>
         <input
           type="text"
-          className="flex-1 p-2 focus:outline-none"
+          className="min-w-0 flex-1 p-2 focus:outline-none"
+          size={0}
           placeholder={defaultTitle}
           value={title}
           onChange={(e) => {
