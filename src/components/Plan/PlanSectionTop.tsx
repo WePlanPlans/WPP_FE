@@ -1,4 +1,4 @@
-import TripRealtimeEditor from '@components/Trip/TripRealtimeEditor';
+import TripRealtimeMember from '@components/Trip/TripRealtimeMember';
 import { BackBox } from '@components/common';
 import { useNavigate } from 'react-router-dom';
 import TripBudget from './TripBudget';
@@ -92,7 +92,7 @@ const PlanSectionTop = () => {
           navigate(`/trip/${tripId}/share`);
         }}
       />
-      <TripRealtimeEditor />
+      <TripRealtimeMember />
       <PlanSchedule />
       <TripBudget />
       <Tab
