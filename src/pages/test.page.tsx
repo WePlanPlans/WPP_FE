@@ -11,7 +11,7 @@ import { InputField } from '@components/createTrip/InputField';
 import { tripDateState } from '@recoil/tripDate';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { SelectDate } from '../../components/createTrip/SelectDate';
+import { SelectDate } from '@components/createTrip/SelectDate';
 import { postTrips } from '@api/trips';
 import useCounter from '@hooks/useCounter';
 import { formatDate } from '@utils/formatDate';
@@ -20,7 +20,7 @@ import { getMemberTrips } from '@api/member';
 import { useNavigate } from 'react-router-dom';
 import { Spinner } from '@components/common/spinner/Spinner';
 
-export const CreateTrip = () => {
+export const TestPage = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [numOfMembers, increaseNumOfMembers, decreaseNumOfMembers] = useCounter(
@@ -38,9 +38,9 @@ export const CreateTrip = () => {
   if (isLoading) {
     return <Spinner />;
   }
-  if (isError) {
-    return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
-  }
+  // if (isError) {
+  //   return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
+  // }
   const MY_TRIP_NUMBER = data?.length + 1;
   const defaultTitle = `나의 여정 ${MY_TRIP_NUMBER}`;
 
@@ -88,7 +88,7 @@ export const CreateTrip = () => {
     );
   }
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex max-h-screen flex-col">
       <BackHeader />
       <div className="title1 mt-2 pb-5">여행 생성하기</div>
 
@@ -143,7 +143,7 @@ export const CreateTrip = () => {
         <div className="p-2">{formattedTripDate}</div>
       </InputField>
 
-      <div className="mt-auto py-[24px]">
+      <div className="mt-auto">
         <ButtonPrimary onClick={handleSubmit}>완료</ButtonPrimary>
       </div>
     </div>
