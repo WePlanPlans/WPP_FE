@@ -21,7 +21,7 @@ export const putTrips = async (
 // 여행 상세페이지에서 여정에 여행지 등록
 export const postTripsItem = async (
   tripId: string,
-  tourItemId: number,
+  tourItemId: string,
   visitDate: string,
 ) => {
   const requestBody = {

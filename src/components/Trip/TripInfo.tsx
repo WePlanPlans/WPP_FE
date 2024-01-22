@@ -23,7 +23,6 @@ const ShareList = () => {
     enabled: !!tripId,
   });
   const members = tripsMembers?.data?.data?.tripMemberSimpleInfos;
-  console.log(tripsMembers);
   return (
     <>
       <hr className="my-3 border-solid border-gray2" />
