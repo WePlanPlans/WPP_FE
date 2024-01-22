@@ -1583,15 +1583,15 @@ export const EditStarIcon = () => {
             id="Vector 868"
             d="M22.1255 40.0781H42.1255"
             stroke="#8DA3B8"
-            stroke-width="3"
-            stroke-linecap="round"
+            strokeWidth="3"
+            strokeLinecap="round"
           />
           <path
             id="Vector 869"
             d="M22.1255 50.0781H42.1255"
             stroke="#8DA3B8"
-            stroke-width="3"
-            stroke-linecap="round"
+            strokeWidth="3"
+            strokeLinecap="round"
           />
           <path
             id="secondary"
@@ -1748,5 +1748,3 @@ export const DropdownIcon: React.FC<IconProps> = ({}) => {
     </svg>
   );
 };
-
-

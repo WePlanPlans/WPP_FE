@@ -10,6 +10,6 @@ export const ageArr: SelectOption[] = [
   { id: 'TEENAGER', value: '10대' },
   { id: 'TWENTIES', value: '20대' },
   { id: 'THIRTIES', value: '30대' },
-  { id: 'FOURTIES', value: '40대' },
+  { id: 'FORTIES', value: '40대' },
   { id: 'ABOVE_FIFTIES', value: '50대 이상' },
 ];
