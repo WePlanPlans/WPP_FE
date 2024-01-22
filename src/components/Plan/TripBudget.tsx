@@ -113,11 +113,11 @@ const TripBudget = () => {
                   </button>
                 }
                 content={
-                  <div className="mb-6 mt-8 flex w-[80%] items-center justify-between border-b-[1px] border-solid border-gray4">
+                  <div className="mb-6 mt-8 flex w-[95%] items-center justify-between border-b-[1px] border-solid border-gray4">
                     <div className="flex w-full items-center justify-between">
                       <input
                         type="number"
-                        className="title3 pl-[2px] text-gray6 placeholder:text-gray4 focus:outline-none"
+                        className="title3 w-full pl-[2px] text-gray6 placeholder:text-gray4 focus:outline-none"
                         placeholder="금액"
                         value={inputBudget}
                         onChange={(e) => setInputBudget(e.target.value)}

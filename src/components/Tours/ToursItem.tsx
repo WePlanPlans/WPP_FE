@@ -30,7 +30,7 @@ const ToursItem = ({ tour }: { tour: TourType }) => {
           <Like liked={liked} id={id} />
         </div>
       </div>
-      <p className="headline1 mt-2 overflow-hidden text-clip whitespace-nowrap px-[2px] leading-normal">
+      <p className="headline1 mt-2 truncate px-[2px] font-semibold leading-normal">
         {title}
       </p>
       <div className="caption1 ml-[2px] flex items-start leading-normal text-gray4">
