@@ -18,7 +18,7 @@ interface MemberInfo {
   // | 'TEENAGER'
   // | 'TWENTIES'
   // | 'THIRTIES'
-  // | 'FOURTIES'
+  // | 'FORTIES'
   // | 'ABOVE_FIFTIES'
   // | 'DEFATULT'
   genderType: string | null;
