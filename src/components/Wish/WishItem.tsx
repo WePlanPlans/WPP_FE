@@ -1,6 +1,7 @@
 import { TourType } from '@/@types/tours.types';
 import { HeartIcon, StarIcon } from '@components/common/icons/Icons';
 import Like from '@components/common/like/Like';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface WishItemProps {
@@ -19,7 +20,16 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
     tourAddress,
   } = wishList;
 
+  const [isMetroIncluded, setIsMetroIncluded] = useState<boolean>(false);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (tourAddress) {
+      const isMetroCityIncluded = /특별시|광역시/.test(tourAddress);
+      setIsMetroIncluded(isMetroCityIncluded);
+    }
+  }, []);
 
   return (
     <div
@@ -43,7 +53,14 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
               {title}
             </p>
             <div className="ml-[3px] mt-[5px] max-w-[260px]">
-              <p className="truncate text-[14px] text-gray6">{tourAddress}</p>
+              <p className="truncate text-[14px] text-gray6">
+                {isMetroIncluded && tourAddress
+                  ? (tourAddress.match(/(.*?[시군구])/)?.[0] || '') +
+                    (tourAddress
+                      .replace(/(.*?[시군구])/, '')
+                      .match(/(특별시|광역시)?.*?[시군구]/)?.[0] || '')
+                  : tourAddress?.match(/(.*?[시군구])/)?.[0]}
+              </p>
             </div>
           </div>
 
