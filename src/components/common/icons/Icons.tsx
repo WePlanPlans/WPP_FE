@@ -322,7 +322,7 @@ export const MapIcon: React.FC<IconProps> = ({
   return (
     <svg
       width={size}
-      height={size}
+      height={size + 4}
       viewBox="2 -1.5 20 20"
       fill={fill}
       xmlns="http://www.w3.org/2000/svg">
@@ -1583,15 +1583,15 @@ export const EditStarIcon = () => {
             id="Vector 868"
             d="M22.1255 40.0781H42.1255"
             stroke="#8DA3B8"
-            stroke-width="3"
-            stroke-linecap="round"
+            strokeWidth="3"
+            strokeLinecap="round"
           />
           <path
             id="Vector 869"
             d="M22.1255 50.0781H42.1255"
             stroke="#8DA3B8"
-            stroke-width="3"
-            stroke-linecap="round"
+            strokeWidth="3"
+            strokeLinecap="round"
           />
           <path
             id="secondary"

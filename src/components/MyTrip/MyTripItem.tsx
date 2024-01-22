@@ -21,7 +21,7 @@ const MyTripItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
     tripName,
     startDate,
     endDate,
-    numberOfPeople,
+    numberOfTripMember,
     tripThumbnailUrl,
   } = myTripList;
 
@@ -44,7 +44,7 @@ const MyTripItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
         destructive={true}
         onClick={() => deleteMyTripMutate(tripId)}>
         <div className="flex min-h-[72px] min-w-[64px] items-center justify-center bg-gray3">
-          <span className="text-xs font-semibold text-white">삭제</span>
+          <span className="text-xs font-semibold text-white">나가기</span>
         </div>
       </SwipeAction>
     </TrailingActions>
@@ -71,13 +71,14 @@ const MyTripItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
                 </div>
                 <div className="text-sm font-normal text-zinc-500">
                   {startDate.replace(/-/g, '.')} -{' '}
-                  {endDate.replace(/-/g, '.').split('2024.')} ({tripDuration})
+                  {endDate.replace(/-/g, '.').split('2024.')}
+                  {tripDuration === '0박 1일' ? null : ` (${tripDuration})`}
                 </div>
               </div>
 
               <div className="mb-[5px] flex text-xs font-normal text-zinc-500">
                 <UserIcon size={13} fill="#888" color="none" />
-                <span>{numberOfPeople}명과 공유중</span>
+                <span>{numberOfTripMember}명과 공유중</span>
               </div>
             </div>
           </div>

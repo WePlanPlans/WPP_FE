@@ -8,7 +8,6 @@ import {
   DetailToursMap,
   DetailToursRating,
 } from '.';
-import { useGetMyTrips } from '@hooks/useGetMyTrips';
 
 export default function DetailSectionTop() {
   const params = useParams();

@@ -31,7 +31,6 @@ const PlanItemBox = ({
   if (!item || !paths) {
     return <div>Missing data</div>;
   }
-  console.log(paths);
   const { tripAuthority } = useGetTripsAuthority();
   const { tripId } = useContext(socketContext);
 

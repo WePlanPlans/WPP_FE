@@ -156,6 +156,7 @@ const DetailAddSchedule = () => {
                             content={
                               <div className="mb-[16px] flex items-start justify-start gap-1">
                                 <Swiper
+                                  className="w-full"
                                   spaceBetween={4}
                                   slidesPerView={'auto'}
                                   centeredSlides={false}>
