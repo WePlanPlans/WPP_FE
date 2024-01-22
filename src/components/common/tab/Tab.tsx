@@ -29,7 +29,7 @@ const Tab = ({ lists, contents }: TabProps) => {
       defaultValue="tab0"
       onValueChange={handleTabChange}>
       <Tabs.List
-        className="border-b-1 no-scrollbar flex shrink-0 overflow-x-scroll"
+        className="border-b-1 no-scrollbar flex shrink-0"
         aria-label="Manage your account">
         {lists.map((list, index) => {
           return (
@@ -37,7 +37,7 @@ const Tab = ({ lists, contents }: TabProps) => {
               key={index}
               className={`${
                 isDayTab ? 'caption1' : 'headline1 flex-1'
-              } flex min-w-[57px] cursor-pointer select-none items-center justify-center overflow-x-scroll border-b-2 border-solid border-gray2 py-[8px] leading-none text-gray4 outline-none data-[state=active]:border-b-2 data-[state=active]:border-solid data-[state=active]:border-black data-[state=active]:text-black`}
+              } flex min-w-[57px] cursor-pointer select-none items-center justify-center border-b-2 border-solid border-gray2 py-[8px] leading-none text-gray4 outline-none data-[state=active]:border-b-2 data-[state=active]:border-solid data-[state=active]:border-black data-[state=active]:text-black`}
               value={`tab${index}`}>
               {list}
             </Tabs.Trigger>

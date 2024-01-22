@@ -11,6 +11,7 @@ import { getTripsSurveyMembers } from '@api/trips';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import { participantsState } from '@recoil/trip';
 import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
+import { useNavigate } from 'react-router-dom';
 
 interface RatioBarParams {
   value: number;
@@ -27,8 +28,16 @@ interface PercentageParams {
 }
 
 const TripPreferenceButton: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleClickButton = () => {
+    navigate('/signup/survey');
+  };
+
   return (
-    <button className="mb-[17.5px] mt-[20px] flex w-[335px] items-center rounded-full bg-white px-6 py-4 text-sm">
+    <button
+      onClick={handleClickButton}
+      className="mb-[17.5px] mt-[20px] flex w-[335px] items-center rounded-full bg-white px-6 py-4 text-sm">
       <div className="flex items-center text-gray6">
         <div>
           <HeartIcon fill="#888888" color="#888888" size={20} />
@@ -49,11 +58,17 @@ const RatioBar = ({ value, total, color, label1, label2 }: RatioBarParams) => {
     value >= total - value
       ? Math.round((175 * value) / total)
       : Math.round((175 * (total - value)) / total);
+  const isZeroColor =
+    total === 0 && value === 0 ? 'text-gray6' : `text-${color}`;
+  const isZeroWeight = total === 0 && value === 0 ? '' : 'font-bold';
+
   return (
     <div className="mb-1 flex items-center text-sm">
       {value >= total - value ? (
         <>
-          <div className={`w-[65px] font-bold text-${color}`}>{label1}</div>
+          <div className={`w-[65px] ${isZeroWeight} ${isZeroColor}`}>
+            {label1}
+          </div>
           <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
             <div style={{ width }} className={`rounded-full bg-${color}`}></div>
           </div>
@@ -74,27 +89,33 @@ const RatioBar = ({ value, total, color, label1, label2 }: RatioBarParams) => {
   );
 };
 
-const Percentage = ({ value, total, color }: PercentageParams) => (
-  <div className="flex justify-between text-gray6">
-    {value >= total - value ? (
-      <>
-        <div className={`font-bold text-${color}`}>
-          {calculatePercentage(value, total)}%
-        </div>
-        <div className="text-gray6">
-          {calculatePercentageRemain(value, total)}%
-        </div>
-      </>
-    ) : (
-      <>
-        <div className="text-gray6">{calculatePercentage(value, total)}%</div>
-        <div className={`font-bold text-${color}`}>
-          {calculatePercentageRemain(value, total)}%
-        </div>
-      </>
-    )}
-  </div>
-);
+const Percentage = ({ value, total, color }: PercentageParams) => {
+  const isZeroColor =
+    total === 0 && value === 0 ? 'text-gray6' : `text-${color}`;
+  const isZeroWeight = total === 0 && value === 0 ? '' : 'font-bold';
+
+  return (
+    <div className="flex justify-between text-gray6">
+      {value >= total - value ? (
+        <>
+          <div className={`${isZeroWeight} ${isZeroColor}`}>
+            {calculatePercentage(value, total)}%
+          </div>
+          <div className="text-gray6">
+            {calculatePercentageRemain(value, total)}%
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="text-gray6">{calculatePercentage(value, total)}%</div>
+          <div className={`font-bold text-${color}`}>
+            {calculatePercentageRemain(value, total)}%
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
 
 const TripPreference: React.FC = () => {
   const { tripId } = useGetTripsAuthority();
@@ -132,6 +153,7 @@ const TripPreference: React.FC = () => {
 
   useEffect(() => {
     if (tripPreference) {
+      console.log('tripPreference', tripPreference);
       setA([
         tripPreference?.data?.data?.planningCount,
         tripPreference?.data?.data?.planningTotalCount,
