@@ -24,7 +24,6 @@ export const useGetTripsAuthority = (): useGetTripsAuthorityReturn => {
     queryKey: ['getTripsAuthority', id],
     queryFn: () => getTripsAuthority(id),
     enabled: !!id,
-    staleTime: 60000,
   });
 
   const tripAuthority = data?.data.data.tripAuthority;
