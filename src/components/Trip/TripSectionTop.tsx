@@ -18,6 +18,8 @@ const TripSectionTop = () => {
     if (tripAuthority !== null) {
       if (tripAuthority !== 'WRITE') {
         setIsEditable(true);
+      } else {
+        setIsEditable(false);
       }
     }
   }, [tripAuthority]);
