@@ -13,6 +13,7 @@ interface MyTripType {
   startDate: string;
   endDate: string;
   numberOfPeople: number;
+  numberOfTripMember: number;
   tripStatus: string;
   tripThumbnailUrl: string;
   area: string;
