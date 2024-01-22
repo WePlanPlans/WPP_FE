@@ -91,12 +91,12 @@ const EditCodeModal = () => {
                     </button>
                     <Alert
                       title="여행 나가기"
-                      message="선택한 여행에서 나가시겠습니까?"
+                      message="이 여행에서 나가시겠어요?"
                       onConfirm={handleDelete}
                       closeOnConfirm={true}>
                       <button className="body1 mb-2 mr-auto flex min-h-6 w-full items-center rounded-lg py-2 font-medium text-gray7 outline-none">
                         <DeleteIcon size={24} color="#888888" />
-                        <span className="pl-[8px]">여행 나가기</span>
+                        <span className="pl-[8px] pt-[1px]">여행 나가기</span>
                       </button>
                     </Alert>
                   </>
