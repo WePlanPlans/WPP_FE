@@ -1,28 +1,25 @@
-import { deleteComments } from '@api/comments';
 import { DeleteIcon, PenIcon } from '@components/common/icons/Icons';
 import {
-  isModalOpenState,
-  titleState,
-  modalChildrenState,
   alertTypeState,
+  isModalOpenState,
+  modalChildrenState,
+  titleState,
 } from '@recoil/modal';
 import {
+  commentState,
   contentState,
   contentTypeIdState,
   isModifyingCommentState,
   isModifyingReviewState,
   keywordsState,
   ratingState,
-  targetCommentIdState,
   targetReviewIdState,
   tourItemIdState,
-  // inputFocusState,
 } from '@recoil/review';
+import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { commentState } from '@recoil/review';
 
 const EditDelete: React.FC = () => {
   const rating = useRecoilValue(ratingState);
@@ -30,7 +27,6 @@ const EditDelete: React.FC = () => {
   const content = useRecoilValue(contentState);
   const title = useRecoilValue(titleState);
   const targetReviewId = useRecoilValue(targetReviewIdState);
-  const targetCommentId = useRecoilValue(targetCommentIdState);
   const tourItemId = useRecoilValue(tourItemIdState);
   const contentTypeId = useRecoilValue(contentTypeIdState);
   const setIsModifyingReview = useSetRecoilState(isModifyingReviewState);
@@ -64,22 +60,13 @@ const EditDelete: React.FC = () => {
     }
   };
 
-  const { mutate: deleteCommentMutate } = useMutation({
-    mutationFn: (targetCommentId: number) => deleteComments(targetCommentId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['reviewComments'] });
-    },
-    onError: () => console.log('error'),
-  });
-
   const handleDelete = async () => {
     if (title === '내 리뷰') {
       setModalChildren('MyAlert');
       setAlertType('DeleteReview');
     } else if (title === '내 댓글') {
-      await deleteCommentMutate(targetCommentId);
-      setIsModalOpen(false);
-      setComment('');
+      setModalChildren('MyAlert');
+      setAlertType('DeleteComment');
     }
   };
 
