@@ -2,7 +2,7 @@ import SearchInput from '@components/search/SearchInput';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { SearchResultForPlan } from './SearchResult';
-import { OurLikedList } from '../OurLikedList';
+import { OurLiked } from '../AddToTripPlan/OurLiked';
 
 export const PlanAddPlace = () => {
   const location = useLocation();
@@ -20,13 +20,13 @@ export const PlanAddPlace = () => {
     }
   }, [location, searchWordFromQuery]);
   return (
-    <>
+    <div className="min-h-screen">
       <SearchInput />
       {searchWord ? (
-        <SearchResultForPlan searchWord={searchWord} />
+        <SearchResultForPlan searchWord={searchWord} apiType="postTripsItem" />
       ) : (
-        <OurLikedList />
+        <OurLiked />
       )}
-    </>
+    </div>
   );
 };

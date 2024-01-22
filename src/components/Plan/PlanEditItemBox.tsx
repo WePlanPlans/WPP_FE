@@ -1,4 +1,4 @@
-import { PenIcon, DragAndDropIcon } from '@components/common/icons/Icons';
+import { DragAndDropIcon } from '@components/common/icons/Icons';
 import { TripItem } from '@/@types/service';
 import {
   DragDropContext,
@@ -14,6 +14,8 @@ import { pubUpdateTripItemReq } from '@/@types/service';
 import Alert from '@components/common/alert/Alert';
 import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
 import PlanMoveItem from './PlanMoveItem';
+import { useRecoilState } from 'recoil';
+import { isEditState } from '@recoil/socket';
 
 type PlanItemBoxProps = {
   item: TripItem[];
@@ -33,7 +35,7 @@ const PlanEditItemBox = ({
   }
 
   const { callBackPub } = useContext(socketContext);
-
+  const [, setIsEdit] = useRecoilState(isEditState);
   const [items, setItems] = useState(item);
   const [newData, setNewData] = useState<pubUpdateTripItemReq | null>(null);
   const [selectedItemId, setSelectedItemId] = useState<number | null>(null);
@@ -78,6 +80,7 @@ const PlanEditItemBox = ({
       noun: '여행지',
       verb: '삭제',
     }));
+    setIsEdit(false);
   };
 
   const handleRadioChange = (id: number | null) => {
@@ -105,7 +108,10 @@ const PlanEditItemBox = ({
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppableId">
           {(provided) => (
-            <div {...provided.droppableProps} ref={provided.innerRef}>
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              className="mb-[68px]">
               <div className="text-left text-sm font-semibold">{day}</div>
               {items.map((item, index) => (
                 <Draggable
@@ -133,9 +139,10 @@ const PlanEditItemBox = ({
                             alt="img"
                           />
                           <div className="flex w-full flex-col p-[10px]">
-                            <div className="flex justify-between text-left text-[14px] font-medium text-black">
-                              {item.name}
-                              <PenIcon size={14} className="cursor-pointer" />
+                            <div className="flex text-left text-[14px] font-medium text-black">
+                              {item.name.length > 17
+                                ? item.name.slice(0, 17) + '...'
+                                : item.name}
                             </div>
                             <div className="mt-[3px] flex h-fit w-fit items-center justify-center gap-2 rounded-[3px] bg-[#ededed] p-[4px] text-center text-[11px] text-black">
                               {item.category}
@@ -160,7 +167,7 @@ const PlanEditItemBox = ({
           )}
         </Droppable>
       </DragDropContext>
-      <div className="justify-cente fixed bottom-0 left-0 right-0 z-10 flex">
+      <div className="fixed bottom-0 left-0 right-0 z-10 flex justify-center">
         <div className="mx-auto flex h-14 max-w-md">
           <Alert
             title={'여행지 삭제'}

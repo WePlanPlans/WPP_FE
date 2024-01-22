@@ -6,16 +6,15 @@ import { useParams } from 'react-router-dom';
 type useGetTripsAuthorityReturn = {
   tripAuthority: string | null;
   memberId: number | null;
-  TripId: number | null;
+  tripId: string | null;
 };
 
 export const useGetTripsAuthority = (): useGetTripsAuthorityReturn => {
   const { id } = useParams();
-
   const defaultReturn = {
     tripAuthority: null,
     memberId: null,
-    TripId: null,
+    tripId: null,
   };
 
   if (!id) {
@@ -25,15 +24,16 @@ export const useGetTripsAuthority = (): useGetTripsAuthorityReturn => {
     queryKey: ['getTripsAuthority', id],
     queryFn: () => getTripsAuthority(id),
     enabled: !!id,
+    staleTime: 60000,
   });
 
   const tripAuthority = data?.data.data.tripAuthority;
   const memberId = data?.data.data.memberId;
-  const TripId = data?.data.data.TripId;
+  const tripId = data?.data.data.TripId;
 
   if (isLoading || isError) {
     return defaultReturn;
   }
 
-  return { tripAuthority, memberId, TripId };
+  return { tripAuthority, memberId, tripId };
 };

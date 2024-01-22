@@ -30,13 +30,19 @@ export const getEmoji = (content: string) => {
 export function calculateDayAndDate(startDate: string, endDate: string) {
   let start = new Date(startDate);
   const end = new Date(endDate);
-  const differenceInDays: number =
-    (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24);
-
-  const DayArr = Array.from(
-    { length: Math.ceil(differenceInDays) + 1 },
-    (_, i) => `DAY ${i + 1}`,
+  const differenceInDays: number = Math.round(
+    (end.getTime() - start.getTime()) / (1000 * 3600 * 24),
   );
+
+  const createDayArray = (prefix: string) =>
+    Array.from(
+      { length: differenceInDays + 1 },
+      (_, i) => `${prefix} ${i + 1}`,
+    );
+
+  const DayArr = createDayArray('DAY');
+  const SmallDayArr = createDayArray('Day');
+
   const DateArr = [];
 
   while (start <= end) {
@@ -47,5 +53,6 @@ export function calculateDayAndDate(startDate: string, endDate: string) {
   return {
     DayArr,
     DateArr,
+    SmallDayArr,
   };
 }

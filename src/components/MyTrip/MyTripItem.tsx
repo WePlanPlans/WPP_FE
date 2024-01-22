@@ -31,7 +31,7 @@ const MyTripItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
   const tripDuration = calculateTripDuration(startDate, endDate);
 
   const { mutate: deleteMyTripMutate } = useMutation({
-    mutationFn: (tripId: number) => deleteTrips(tripId),
+    mutationFn: (tripId: string) => deleteTrips(tripId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['myTrips'] });
     },

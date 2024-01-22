@@ -84,7 +84,7 @@ export const pubAddTripItem = (
 // 여행 아이템 예상 가격 업데이트 이벤트 발생시
 export const pubUpdatePrice = (
   pubUpdatePrice: pubUpdatePrice,
-  tripItemId: string,
+  tripItemId: number,
 ) => {
   socketClient.publish({
     destination: `/pub/tripItems/${tripItemId}/updatePrice`,
@@ -101,17 +101,15 @@ export const pubUpdateTripItem = (
     destination: `/pub/trips/${tripId}/updateTripItemOrder`,
     body: JSON.stringify(pubUpdateTripItem),
   });
-
-  console.log('데이터', pubUpdateTripItem);
 };
 
 // 여행 날짜별 교통 수단 변경 이벤트 발생시 (01/16 업데이트)
 export const pubUpdateTransportation = (
   pubUpdateTransportation: pubUpdateTransportation,
-  trips: string,
+  tripId: string,
 ) => {
   socketClient.publish({
-    destination: `/pub/trips/${trips}/updateTransportation`,
+    destination: `/pub/trips/${tripId}/updateTransportation`,
     body: JSON.stringify(pubUpdateTransportation),
   });
 };
@@ -136,7 +134,6 @@ export const pubDeleteItem = (
     destination: `/pub/tripItems/${tripItemId}/deleteItem`,
     body: JSON.stringify(pubDeleteItem),
   });
-  console.log(pubDeleteItem);
 };
 
 // 멤버 여정 페이지로 입장 이벤트 발생시

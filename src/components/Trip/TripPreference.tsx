@@ -8,9 +8,11 @@ import {
 } from '@utils/calculatePercentage';
 import { modalChildrenState, isModalOpenState } from '@recoil/modal';
 import { getTripsSurveyMembers } from '@api/trips';
-import { tripIdState } from '@recoil/socket';
-import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import { participantsState } from '@recoil/trip';
+import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
+import { useNavigate } from 'react-router-dom';
+
 interface RatioBarParams {
   value: number;
   total: number;
@@ -26,8 +28,18 @@ interface PercentageParams {
 }
 
 const TripPreferenceButton: React.FC = () => {
+  const { tripAuthority } = useGetTripsAuthority();
+  const navigate = useNavigate();
+  const handleTrip = () => {
+    if (tripAuthority === 'WRITE') {
+      navigate('/mypage/survey');
+    }
+  };
+
   return (
-    <button className="mb-[17.5px] mt-[20px] flex w-[335px] items-center rounded-full bg-white px-6 py-4 text-sm">
+    <button
+      onClick={handleTrip}
+      className="mb-[17.5px] mt-[20px] flex w-[335px] items-center rounded-full bg-white px-6 py-4 text-sm">
       <div className="flex items-center text-gray6">
         <div>
           <HeartIcon fill="#888888" color="#888888" size={20} />
@@ -96,6 +108,7 @@ const Percentage = ({ value, total, color }: PercentageParams) => (
 );
 
 const TripPreference: React.FC = () => {
+  const { tripId } = useGetTripsAuthority();
   const [A, setA] = useState<[number, number]>([0, 0]);
   const [B, setB] = useState<[number, number]>([0, 0]);
   const [C, setC] = useState<[number, number]>([0, 0]);
@@ -103,12 +116,15 @@ const TripPreference: React.FC = () => {
   const [E, setE] = useState<[number, number]>([0, 0]);
   const setModalChildren = useSetRecoilState(modalChildrenState);
   const setIsModalOpen = useSetRecoilState(isModalOpenState);
-  const tripId = Number(useRecoilValue(tripIdState));
   const [participants, setParticipants] = useRecoilState(participantsState);
 
   const { data: tripsSurveyMembers } = useQuery({
     queryKey: ['tripsSurveyMembers', tripId],
-    queryFn: () => getTripsSurveyMembers(tripId),
+    queryFn: () =>
+      tripId != null
+        ? getTripsSurveyMembers(tripId)
+        : Promise.reject('tripId is null'),
+    enabled: !!tripId,
   });
 
   useEffect(() => {
@@ -118,7 +134,11 @@ const TripPreference: React.FC = () => {
 
   const { data: tripPreference, isLoading } = useQuery({
     queryKey: ['tripPreference', tripId],
-    queryFn: () => getTripsSurvey(tripId),
+    queryFn: () =>
+      tripId != null
+        ? getTripsSurvey(tripId)
+        : Promise.reject('tripId is null'),
+    enabled: !!tripId,
   });
 
   useEffect(() => {

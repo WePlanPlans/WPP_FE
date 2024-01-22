@@ -6,46 +6,79 @@ import Tab from '@components/common/tab/Tab';
 import PlanItem from './PlanItem';
 import { socketContext } from '@hooks/useSocket';
 import { useContext } from 'react';
-import { pubEnterMember } from '@api/socket';
+import {
+  pubEnterMember,
+  pubConnectMember,
+  pubDisconnectMember,
+} from '@api/socket';
 import { useEffect } from 'react';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { dayState, dateState } from '@recoil/plan';
-import { tripIdState, memberIdState } from '@recoil/socket';
 import { calculateDayAndDate } from '@utils/utils';
-import { TripSchedule } from '@components/Trip/TripSchedule';
+import { useGetTrips } from '@hooks/useGetTrips';
+import { visitDateState } from '@recoil/socket';
+import { useState } from 'react';
+import { getItem } from '@utils/localStorageFun';
+import PlanSchedule from './PlanSchedule';
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();
-  const tripId = useRecoilValue(tripIdState);
-
-  const pubMember = useRecoilValue(memberIdState);
   const [, setDay] = useRecoilState(dayState);
   const [, setDate] = useRecoilState(dateState);
-
-  if (!pubMember || !tripId) {
-    return <div>에러</div>;
-  }
-
-  const { callBackPub, tripInfo } = useContext(socketContext);
-
-  useEffect(() => {
-    callBackPub(() => pubEnterMember(tripId));
-  }, []);
+  const {
+    callBackPub,
+    tripId,
+    tripInfo,
+    tripItem,
+    tripPath,
+    tripMember,
+    tripBudget,
+  } = useContext(socketContext);
+  const [, setVisitDate] = useRecoilState(visitDateState);
+  const { startDate, endDate } = useGetTrips();
+  const [isEnter, setIsEnter] = useState(false);
 
   let DayArr: string[] = [];
   let DateArr: string[] = [];
-
-  const startDate = tripInfo?.data?.startDate;
-  const endDate = tripInfo?.data?.endDate;
 
   if (startDate && endDate) {
     ({ DayArr, DateArr } = calculateDayAndDate(startDate, endDate));
   }
 
   useEffect(() => {
+    if (startDate) {
+      setVisitDate({ visitDate: startDate });
+    }
     setDay(DayArr);
     setDate(DateArr);
   }, [startDate, endDate]);
+
+  useEffect(() => {
+    callBackPub(() => pubEnterMember(tripId));
+  }, []);
+
+  useEffect(() => {
+    if (tripInfo && tripItem && tripPath && tripMember && tripBudget) {
+      setIsEnter(true);
+    }
+  }, [tripInfo, tripItem, tripPath, tripMember, tripBudget]);
+
+  useEffect(() => {
+    if (isEnter) {
+      const accessToken = getItem('accessToken');
+      if (accessToken) {
+        callBackPub(() => {
+          pubConnectMember({ token: accessToken || '' }, tripId);
+        });
+
+        return () => {
+          callBackPub(() =>
+            pubDisconnectMember({ token: accessToken || '' }, tripId),
+          );
+        };
+      }
+    }
+  }, [isEnter]);
 
   return (
     <div className="min-h-screen">
@@ -60,7 +93,7 @@ const PlanSectionTop = () => {
         }}
       />
       <TripRealtimeEditor />
-      <TripSchedule />
+      <PlanSchedule />
       <TripBudget />
       <Tab
         lists={DayArr}

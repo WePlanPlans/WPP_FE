@@ -15,15 +15,16 @@ export const LikedToursList = () => {
   >(null);
 
   const navigate = useNavigate();
-  const params = useParams();
+  const { id: tripId } = useParams();
 
-  const [selectedTripId, _] = useState(Number(params.id));
+  if (!tripId) {
+    return;
+  }
 
   const { fetchNextPage, hasNextPage, data, isLoading, error } =
     useInfiniteQuery({
       queryKey: ['ourTrips'],
-      queryFn: ({ pageParam = 0 }) =>
-        getTripsLike(selectedTripId, pageParam, 10),
+      queryFn: ({ pageParam = 0 }) => getTripsLike(tripId, pageParam, 10),
       initialPageParam: 0,
       getNextPageParam: (lastPage) => {
         if (
@@ -62,7 +63,7 @@ export const LikedToursList = () => {
             fetchNextPage={fetchNextPage}
             hasNextPage={hasNextPage}
             isLoading={isLoading}
-            selectedTripId={selectedTripId}
+            selectedTripId={tripId}
             selectedContentTypeId={selectedContentTypeId}
           />
         </div>
