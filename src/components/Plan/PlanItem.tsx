@@ -116,6 +116,7 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
             item={tripItem?.data?.tripItems || []}
             paths={tripPath?.data?.paths || []}
             transportation={transpo}
+            visitDate={date || ''}
             day={day}
           />
         )}

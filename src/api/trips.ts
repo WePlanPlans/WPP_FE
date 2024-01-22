@@ -12,6 +12,15 @@ export const getTrips = async (tripId: string) => {
 // 여정 기본정보 수정
 export const putTrips = async (
   tripId: string,
+  tripRequestData: TripRequest,
+) => {
+  const res = await authClient.put(`trips/${tripId}`, tripRequestData);
+  return res;
+};
+
+// 여행 상세페이지에서 여정에 여행지 등록
+export const postTripsItem = async (
+  tripId: string,
   tourItemId: number,
   visitDate: string,
 ) => {

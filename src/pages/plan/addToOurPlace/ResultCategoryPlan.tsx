@@ -10,7 +10,7 @@ interface ResultCategoryProps {
   fetchNextPage: (() => Promise<InfiniteQueryObserverResult<any, any>>) | null;
   hasNextPage: boolean;
   isFetchingNextPage: boolean;
-  apiType: 'postTripsLike' | 'putTrips';
+  apiType: 'postTripsLike' | 'postTripsItem';
 }
 
 export const ResultCategoryPlan = ({

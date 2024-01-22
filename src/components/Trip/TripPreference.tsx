@@ -28,15 +28,17 @@ interface PercentageParams {
 }
 
 const TripPreferenceButton: React.FC = () => {
+  const { tripAuthority } = useGetTripsAuthority();
   const navigate = useNavigate();
-
-  const handleClickButton = () => {
-    navigate('/signup/survey');
+  const handleTrip = () => {
+    if (tripAuthority === 'WRITE') {
+      navigate('/mypage/survey');
+    }
   };
 
   return (
     <button
-      onClick={handleClickButton}
+      onClick={handleTrip}
       className="mb-[17.5px] mt-[20px] flex w-[335px] items-center rounded-full bg-white px-6 py-4 text-sm">
       <div className="flex items-center text-gray6">
         <div>

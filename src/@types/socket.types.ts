@@ -100,7 +100,7 @@ interface pubAddTripItem {
 interface pubUpdatePrice {
   tripId: string;
   visitDate: string;
-  price: number;
+  price: string;
 }
 
 interface pubUpdateTripItem {

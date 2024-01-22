@@ -11,7 +11,7 @@ import { visitDateState } from '@recoil/socket';
 const AddToListButton = ({
   apiType,
 }: {
-  apiType: 'postTripsLike' | 'putTrips';
+  apiType: 'postTripsLike' | 'postTripsItem';
 }) => {
   const { id: tripId } = useParams();
   const [selectedTourItemIds, setSelectedTourItemIds] =
@@ -24,11 +24,10 @@ const AddToListButton = ({
   const handleAddClick = async () => {
     if (tripId) {
       try {
-        // let response;
         if (apiType === 'postTripsLike') {
-          // response = await postTripsLike(tripId, selectedTourItemIds);
+          await postTripsLike(tripId, selectedTourItemIds);
           navigate(`/trip/${tripId}`);
-        } else if (apiType === 'putTrips' && visitDate) {
+        } else if (apiType === 'postTripsItem' && visitDate) {
           const newTripItems = selectedTourItemIds.map((tourItemId) => ({
             tourItemId: tourItemId,
           }));

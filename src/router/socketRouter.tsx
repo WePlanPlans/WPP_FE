@@ -8,6 +8,7 @@ import MainLayout from './routerLayout';
 import Share from '@pages/share/share.page';
 import ShareCode from '@pages/share/shareCode.page';
 import { AddOurList } from '@pages/trip/AddOurList.page';
+import TripEdit from '@pages/trip/tripEdit.page';
 
 const SocketRoutes = () => {
   return (
@@ -29,6 +30,7 @@ const SocketRouter = () => {
         <Route path=":id/share" element={<Share />} />
         <Route path=":id/code" element={<ShareCode />} />
         <Route path=":id/add" element={<AddOurList />} />
+        <Route path=":id/edit" element={<TripEdit />} />
         <Route path=":id/plan/*" element={<SocketRoutes />} />
       </Route>
     </Routes>
