@@ -31,7 +31,7 @@ const PlanItemBox = ({
   if (!item || !paths) {
     return <div>Missing data</div>;
   }
-
+  console.log(paths);
   const { tripAuthority } = useGetTripsAuthority();
   const { tripId } = useContext(socketContext);
 
@@ -122,7 +122,7 @@ const PlanItemBox = ({
                     {item.category}
                   </div>
                   <div className="mt-[15px] text-sm font-bold text-black">
-                    {item.price} 원
+                    {item.price.toLocaleString()} 원
                   </div>
                 </div>
               </div>
@@ -142,9 +142,15 @@ const PlanItemBox = ({
                           ) : null}
                         </div>
                         <div className="mt-[3px]">
-                          {(path.pathInfo.totalDistance / 1000).toFixed(2)}km,{' '}
-                          {path.pathInfo.totalTime}분,{' '}
-                          {path.pathInfo.price.toLocaleString()}원
+                          {path.pathInfo.totalDistance < 0 ||
+                          path.pathInfo.totalTime < 0 ||
+                          path.pathInfo.price < 0
+                            ? '경로 정보가 없습니다.'
+                            : `${(path.pathInfo.totalDistance / 1000).toFixed(
+                                2,
+                              )}km, ${
+                                path.pathInfo.totalTime
+                              }분, ${path.pathInfo.price.toLocaleString()}원`}
                         </div>
                       </div>
                     </div>
