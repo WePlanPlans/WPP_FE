@@ -20,7 +20,8 @@ const PlanSchedule = () => {
         </div>
       </div>
       <span className="body1 text-gray4">
-        {trip?.startDate} ~ {trip?.endDate}
+        {trip?.startDate?.substring(2).replace(/-/g, '.') || ''} -{' '}
+        {trip?.endDate?.substring(5).replace(/-/g, '.') || ''}
       </span>
     </div>
   );
