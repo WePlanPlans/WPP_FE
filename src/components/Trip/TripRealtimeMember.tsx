@@ -4,7 +4,7 @@ import { UserIcon } from '@components/common/icons/Icons';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 
-const TripRealtimeEditor = () => {
+const TripRealtimeMember = () => {
   const { tripMember } = useContext(socketContext);
 
   const tripMemberData = tripMember?.data;
@@ -60,4 +60,4 @@ const TripRealtimeEditor = () => {
   );
 };
 
-export default TripRealtimeEditor;
+export default TripRealtimeMember;
