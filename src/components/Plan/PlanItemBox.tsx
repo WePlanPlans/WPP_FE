@@ -103,7 +103,7 @@ const PlanItemBox = ({
                                 onChange={(e) => setInputPrice(e.target.value)}
                               />
                               <div
-                                className="cursor-pointer"
+                                className="ml-[-16px] cursor-pointer"
                                 onClick={() => setInputPrice('')}>
                                 {showCloseIcon && (
                                   <CloseIcon size={16} fill="#D7D7D7" />
