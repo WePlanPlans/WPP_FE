@@ -59,7 +59,7 @@ const EditCodeModal = () => {
       {isToastVisible && <ToastPopUp noun="여행 일정" verb="삭제" />}
       {tripAuthority === 'WRITE' ? (
         <Dialog.Root modal>
-          <Dialog.Trigger>
+          <Dialog.Trigger asChild>
             <button
               onClick={() => setIsEditModal(true)}
               className="body3 rounded-lg border-[1px] border-solid border-gray2 px-[10px] py-[8px] text-gray4">
@@ -109,7 +109,7 @@ const EditCodeModal = () => {
           isOpen={isModalOpen}
           setIsOpen={setIsModalOpen}
           onConfirm={handleConfirm}>
-          <button className="body3 rounded-lg border-2 border-solid border-gray2 p-2 text-gray4">
+          <button className="body3 rounded-lg border-[1px] border-solid border-gray2 px-[10px] py-[8px] text-gray4">
             편집
           </button>
         </Alert>

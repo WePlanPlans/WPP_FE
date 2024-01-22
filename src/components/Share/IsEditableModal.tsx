@@ -56,7 +56,7 @@ const IsEditableModal = ({ isEditable, setIsEditable }: Props) => {
               </button>
             </Alert>
           )}
-          <Dialog.Close>
+          <Dialog.Close asChild>
             <button className="body1 text-gray5">보기만 할게요</button>
           </Dialog.Close>
         </Dialog.Content>
