@@ -67,7 +67,6 @@ export default function DetailToursRating({
             </span>
           );
         })}
-
         <div className="h-3 pl-1">
           <p className="text-xs font-normal leading-4 text-gray4 ">
             ({reviewTotalCount})

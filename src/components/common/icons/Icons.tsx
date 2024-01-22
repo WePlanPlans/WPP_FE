@@ -1749,4 +1749,87 @@ export const DropdownIcon: React.FC<IconProps> = ({}) => {
   );
 };
 
-
+export const GrayCalendarIcon: React.FC<IconProps> = ({}) => {
+  return (
+    <svg
+      width={44}
+      height={47}
+      viewBox="0 0 44 47"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-[43px] w-[40.75px] flex-shrink-0 flex-grow-0"
+      preserveAspectRatio="none">
+      <rect
+        x="2.125"
+        y="4.95215"
+        width={40}
+        height={40}
+        rx="11.1111"
+        stroke="#D7D7D7"
+        stroke-width="3.33333"
+      />
+      <path
+        d="M2.875 15.9521H42.875"
+        stroke="#D7D7D7"
+        stroke-width="3.33333"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M33 1.95215L33 8.95215"
+        stroke="#D7D7D7"
+        stroke-width="3.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M13 1.95215L13 8.95215"
+        stroke="#D7D7D7"
+        stroke-width="3.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M10 24.9521H12"
+        stroke="#D7D7D7"
+        stroke-width="3.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M22 24.9521H24"
+        stroke="#D7D7D7"
+        stroke-width="3.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M33 24.9521H35"
+        stroke="#D7D7D7"
+        stroke-width="3.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M10 33.9521H12"
+        stroke="#D7D7D7"
+        stroke-width="3.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M22 33.9521H24"
+        stroke="#D7D7D7"
+        stroke-width="3.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M33 33.9521H35"
+        stroke="#D7D7D7"
+        stroke-width="3.33333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};

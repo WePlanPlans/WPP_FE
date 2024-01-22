@@ -1,15 +1,14 @@
 // import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-
 import { getDetailTours, getToursReviews } from '@api/tours';
-
 import {
   DetailToursButtons,
   DetailToursInfo,
   DetailToursMap,
   DetailToursRating,
 } from '.';
+import { useGetMyTrips } from '@hooks/useGetMyTrips';
 
 export default function DetailSectionTop() {
   const params = useParams();
