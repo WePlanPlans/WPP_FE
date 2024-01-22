@@ -113,7 +113,7 @@ const TripBudget = () => {
                   </button>
                 }
                 content={
-                  <div className="mb-6 mt-8 flex w-[80%] items-center justify-between border-b-[1px] border-solid border-gray4">
+                  <div className="mb-6 mt-8 flex w-[95%] items-center justify-between border-b-[1px] border-solid border-gray4">
                     <div className="flex w-full items-center justify-between">
                       <input
                         type="number"
