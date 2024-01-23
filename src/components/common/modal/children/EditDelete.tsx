@@ -6,7 +6,6 @@ import {
   titleState,
 } from '@recoil/modal';
 import {
-  commentState,
   contentState,
   contentTypeIdState,
   isModifyingCommentState,
@@ -16,7 +15,6 @@ import {
   targetReviewIdState,
   tourItemIdState,
 } from '@recoil/review';
-import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -34,10 +32,8 @@ const EditDelete: React.FC = () => {
   const navigate = useNavigate();
   const setIsModalOpen = useSetRecoilState(isModalOpenState);
   const setModalChildren = useSetRecoilState(modalChildrenState);
-  const setComment = useSetRecoilState(commentState);
   const setAlertType = useSetRecoilState(alertTypeState);
   // const setInputFocus = useSetRecoilState(inputFocusState);
-  const queryClient = useQueryClient();
 
   const handleEdit = () => {
     if (title == '내 리뷰') {
@@ -71,20 +67,20 @@ const EditDelete: React.FC = () => {
   };
 
   return (
-    <div className="mt-2">
-      <div className="text-md mb-4 font-bold">{title}</div>
-      <div>
+    <div className="m-[-20px] text-[15px]">
+      <div className="h-[48px]  pl-[25px] pt-[20px] font-bold">{title}</div>
+      <div className="">
         <button
           onClick={handleEdit}
-          className="flex h-[52px] w-full cursor-pointer items-center gap-1">
-          <PenIcon color="#888888" />
-          <p className="text-gray7">수정하기</p>
+          className="flex h-[52px] w-full cursor-pointer items-center gap-1  pl-[20px]">
+          <PenIcon size={24} color="#888888" className="mt-0.5" />
+          <p className="pl-[5px] text-gray7">수정하기</p>
         </button>
         <button
           onClick={handleDelete}
-          className="flex h-[52px] w-full cursor-pointer items-center gap-1">
-          <DeleteIcon color="#888888" />
-          <p className="text-gray7">삭제하기</p>
+          className="flex h-[52px] w-full cursor-pointer items-center gap-1  pl-[20px]">
+          <DeleteIcon size={24} color="#888888" />
+          <p className="pl-[5px] text-gray7">삭제하기</p>
         </button>
       </div>
     </div>
