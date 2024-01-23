@@ -1,9 +1,7 @@
 // import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-
 import { getDetailTours, getToursReviews } from '@api/tours';
-
 import {
   DetailToursButtons,
   DetailToursInfo,
