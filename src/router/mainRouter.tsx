@@ -15,12 +15,10 @@ import {
   EditUserSurvey,
   Mypage,
 } from '@pages/mypage';
-import useGetUserInfo from '@hooks/useGetUserInfo';
 import MainLayout from './routerLayout';
 import { CreateTrip } from '@pages/create/createTrip.page';
 
 const MainRouter = () => {
-  useGetUserInfo();
   return (
     <>
       <Routes>
