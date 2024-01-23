@@ -15,7 +15,7 @@ const EditUserSurvey = () => {
         나의 여행 취향 설정
       </BackBox>
       <div className="mt-8">
-        <AuthSurvey path={'/mypage'} />
+        <AuthSurvey />
       </div>
     </>
   );
