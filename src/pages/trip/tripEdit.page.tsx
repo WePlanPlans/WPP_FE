@@ -119,7 +119,7 @@ const TripEdit = () => {
       <InputField icon={PlanIcon}>
         <input
           type="text"
-          className="body1 flex-1 p-2 focus:outline-none"
+          className="body1 min-w-0 flex-1 p-2 focus:outline-none"
           placeholder={title || ''}
           value={title || ''}
           onChange={(e) => {
