@@ -13,8 +13,8 @@ export default function DetailHeader() {
   };
 
   return (
-    <header className="mb-4 flex">
-      <div onClick={goBack} className=" flex cursor-pointer items-center py-2">
+    <header className="mb-10 flex">
+      <div onClick={goBack} className=" flex cursor-pointer items-center">
         <BackIcon />
       </div>
     </header>
