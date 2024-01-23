@@ -88,7 +88,7 @@ export const CreateTrip = () => {
     );
   }
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-dvh flex-col">
       <BackHeader />
       <div className="title1 mt-2 pb-5">여행 생성하기</div>
 
