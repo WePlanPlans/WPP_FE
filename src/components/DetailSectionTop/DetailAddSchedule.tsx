@@ -92,7 +92,7 @@ const DetailAddSchedule = () => {
           <Dialog.Portal>
             <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 z-10 bg-black opacity-70" />
             <Dialog.Content
-              className={`fixed left-[50%] top-[97%] z-10 w-[412px] translate-x-[-50%] translate-y-[-90%] rounded-tl-[16px] rounded-tr-[16px] bg-white p-[20px] pb-[50px] focus:outline-none ${
+              className={`fixed left-[50%] top-[97%] z-10 w-[100vw] max-w-[412px] translate-x-[-50%] translate-y-[-90%] rounded-tl-[16px] rounded-tr-[16px] bg-white p-[20px] pb-[50px] focus:outline-none ${
                 myTrips.length > 0 ? 'h-[392px]' : 'h-[276px]'
               }`}>
               <div className="text-mauve12 m-0 flex w-full justify-end text-[17px] font-medium">
