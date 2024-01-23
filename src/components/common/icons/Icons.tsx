@@ -506,11 +506,7 @@ export const PlusIcon: React.FC<IconProps> = ({
   );
 };
 
-export const ChatIcon: React.FC<IconProps> = ({
-  size = 25,
-  color = 'black',
-  fill = 'none',
-}) => {
+export const ChatIcon: React.FC<IconProps> = ({ size = 25, fill = 'none' }) => {
   return (
     <svg
       width={size}
