@@ -9,7 +9,7 @@ import { UserInfoState } from '@recoil/Auth.atom';
 import { useRecoilState } from 'recoil';
 
 interface Props {
-  path: string;
+  path?: string;
 }
 
 const AuthSurvey = ({ path }: Props) => {
@@ -42,7 +42,11 @@ const AuthSurvey = ({ path }: Props) => {
         //   newPrevUserInfo.survey = data;
         //   return newPrevUserInfo;
         // });
-        navigate(path);
+        if (path) {
+          navigate(path);
+        } else {
+          navigate(-1);
+        }
       }
     } catch (err) {
       console.error(err);
