@@ -61,6 +61,18 @@ export const subBudget = (
   });
 };
 
+// 커서 공유
+export const subCursor = (
+  tripId: string,
+  visitDate: string,
+  subCursorMessage: subCursorMessage,
+) => {
+  socketClient.subscribe(`/sub/${tripId}/cursor/${visitDate}`, (message) => {
+    const res = JSON.parse(message.body);
+    subCursorMessage(res);
+  });
+};
+
 // 소켓 전송
 // 여정 기본 정보 변경 이벤트 발생시
 export const pubInfo = (pubInfo: pubInfo, tripId: string) => {
@@ -186,4 +198,13 @@ export const pubUpdateBudget = (
     destination: `/pub/trips/${tripId}/updateBudget`,
     body: JSON.stringify(pubUpdateBudget),
   });
+};
+
+// 커서공유
+export const pubCursor = (pubCursor: pubCursor, tripId: string) => {
+  socketClient.publish({
+    destination: `/pub/trips/${tripId}/cursor`,
+    body: JSON.stringify(pubCursor),
+  });
+  console.log(pubCursor);
 };

@@ -10,6 +10,7 @@ import {
   pubEnterMember,
   pubConnectMember,
   pubDisconnectMember,
+  pubCursor,
 } from '@api/socket';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
@@ -33,6 +34,7 @@ const PlanSectionTop = () => {
     tripPath,
     tripMember,
     tripBudget,
+    tripCursor,
   } = useContext(socketContext);
   const [, setVisitDate] = useRecoilState(visitDateState);
   const { startDate, endDate } = useGetTrips();
@@ -44,6 +46,8 @@ const PlanSectionTop = () => {
   if (startDate && endDate) {
     ({ DayArr, DateArr } = calculateDayAndDate(startDate, endDate));
   }
+
+  console.log(tripCursor);
 
   useEffect(() => {
     if (startDate) {
@@ -79,6 +83,21 @@ const PlanSectionTop = () => {
       }
     }
   }, [isEnter]);
+
+  // useEffect(() => {
+  //   callBackPub(() =>
+  //     pubCursor(
+  //       {
+  //         token:
+  //           'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4MCIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE3MDU5OTQ4NDJ9.nu7XavOKvKaFYJB77bmPkkYV3rLvfra2zGxa9d9kArwS235CiKi_5UTzm4HqanUIFonhXmS0yxFBrjchlpPFQg',
+  //         visitDate: '2024-02-07',
+  //         x: 123.213,
+  //         y: 92.531,
+  //       },
+  //       tripId,
+  //     ),
+  //   );
+  // }, []);
 
   return (
     <div className="min-h-screen">

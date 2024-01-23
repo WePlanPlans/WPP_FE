@@ -82,6 +82,19 @@ type subBudgetMessage = (response: {
   };
 }) => void;
 
+type subCursorMessage = (response: {
+  status: number;
+  message: string;
+  data: {
+    tripId: string;
+    visitDate: string;
+    memberId: number;
+    name: string;
+    x: number;
+    y: number;
+  };
+}) => void;
+
 interface pubInfo {
   startDate: string;
   endDate: string;
@@ -137,4 +150,11 @@ interface pubGetPathAndItems {
 
 interface pubUpdateBudget {
   budget: number;
+}
+
+interface pubCursor {
+  token: string;
+  visitDate: string;
+  x: number;
+  y: number;
 }
