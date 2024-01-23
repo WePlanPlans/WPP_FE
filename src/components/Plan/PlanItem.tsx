@@ -128,7 +128,7 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
         <div className="my-[18px]">
           <ButtonWhite
             onClick={() => navigate('./place')}
-            className="h-[40px] w-full">
+            className="h-[56px] w-full">
             <div className="flex items-center justify-center gap-[5px] font-bold text-gray4">
               <PlusIcon size={15} color="#888" />
               <div className="mt-[1px]">장소 추가하기</div>

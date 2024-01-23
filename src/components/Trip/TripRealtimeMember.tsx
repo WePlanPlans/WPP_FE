@@ -15,7 +15,7 @@ const TripRealtimeMember = () => {
         slidesPerView={5}
         navigation={true}
         modules={[Navigation]}
-        className="flex w-[375px] items-center justify-center">
+        className="w-[100vw]items-center flex max-w-[375px] justify-center">
         {tripMemberData?.tripMembers?.map((member) => {
           const isConnected = member?.connected;
           const thumbnailUrl = member?.thumbnailUrl;
