@@ -18,9 +18,7 @@ export default function ReviewHeader() {
 
   return (
     <header className="mb-4 flex items-center ">
-      <div
-        onClick={goBack}
-        className=" flex cursor-pointer items-center px-3 py-2">
+      <div onClick={goBack} className=" flex cursor-pointer items-center py-2">
         <BackIcon />
       </div>
       <div className="flex-grow pr-9 text-center text-sm font-bold">

@@ -1,4 +1,9 @@
-import { StarIcon, ChatIcon, MoreIcon } from '@components/common/icons/Icons';
+import {
+  StarIcon,
+  ChatIcon,
+  MoreIcon,
+  UserIcon,
+} from '@components/common/icons/Icons';
 import { useSetRecoilState, useRecoilState } from 'recoil';
 import {
   isModalOpenState,
@@ -16,7 +21,6 @@ import {
 import { MouseEvent, useState } from 'react';
 import { getEmoji } from '@utils/utils';
 import { getStarFill } from '@utils/getStarFill';
-import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
 
 interface Keyword {
   keywordId: number;
@@ -121,16 +125,19 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
             <img
               src={authorProfileImageUrl}
               alt="유저 프로필"
-              className="h-[60px] w-[60px] rounded-full"
+              className="h-[44px] w-[44px] rounded-full"
             />
           ) : (
-            <NullUser />
+            <div
+              className={`flex h-[44px] w-[44px] items-center justify-center rounded-full bg-[#EDEDED]`}>
+              <UserIcon size={32} color="white" fill="white" />
+            </div>
           )}
         </div>
         <div className=" mr-2 flex flex-col gap-1">
-          <div className="font-bold">{authorNickname}</div>
+          <div className="ml-1 font-bold">{authorNickname}</div>
           <div className="flex gap-2">
-            <div className="flex">
+            <div className="flex h-[17px] items-center">
               {Array.from({ length: 5 }, (_, index) => (
                 <StarIcon
                   key={index}
@@ -141,7 +148,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
                 />
               ))}
             </div>
-            <div className="text-sm text-gray4">
+            <div className="flex items-center text-[12px] text-gray3">
               {formatCreatedTime(createdTime)}
             </div>
           </div>
@@ -160,7 +167,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
           {content.length > 55 ? `${content.slice(0, 55)}...` : content}
         </div>
       ) : (
-        <div className="mb-4 text-gray7">{content}</div>
+        <div className="mb-4 text-[14px] text-gray7">{content}</div>
       )}
 
       <div className="flex items-center ">
@@ -199,7 +206,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
                     .map((keyword, idx) => (
                       <div
                         key={idx}
-                        className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6">
+                        className="rounded-md bg-gray1 px-2 py-1 text-gray6">
                         {getEmoji(keyword.content)} {keyword.content}
                       </div>
                     ))}
