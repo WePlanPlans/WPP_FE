@@ -24,7 +24,7 @@ const MainLayout = () => {
   );
 
   return (
-    <div className="mx-auto h-dvh max-w-[412px] bg-white">
+    <div className="mx-auto min-h-dvh min-w-[350px] max-w-[412px] bg-white">
       <Header />
       <div className="h-full px-5">
         <Outlet />
