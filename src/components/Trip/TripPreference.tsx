@@ -14,19 +14,19 @@ import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
 import { useNavigate } from 'react-router-dom';
 import { getMember } from '@api/member';
 
-interface RatioBarParams {
+type RatioBarParams = {
   value: number;
   total: number;
   color: string;
   label1: string;
   label2: string;
-}
+};
 
-interface PercentageParams {
+type PercentageParams = {
   value: number;
   total: number;
   color: string;
-}
+};
 
 const TripPreferenceButton: React.FC = () => {
   const { tripAuthority } = useGetTripsAuthority();
