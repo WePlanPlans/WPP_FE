@@ -17,10 +17,9 @@ type PlanCursorProps = {
 
 const PlanOtherCursor = () => {
   const { memberId } = useGetTripsAuthority();
-  const { tripCursor } = useContext(socketContext);
+  const { tripCursor, tripMember } = useContext(socketContext);
   const [otherCursors, setOtherCursors] = useState<TripCursorData[]>([]);
 
-  console.log(otherCursors);
   useEffect(() => {
     if (
       tripCursor &&

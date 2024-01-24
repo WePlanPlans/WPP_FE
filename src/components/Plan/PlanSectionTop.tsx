@@ -65,6 +65,7 @@ const PlanSectionTop = () => {
 
   useEffect(() => {
     if (isEnter) {
+      console.log('실행');
       const accessToken = getItem('accessToken');
       if (accessToken) {
         callBackPub(() => {

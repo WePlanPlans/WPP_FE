@@ -45,14 +45,20 @@ export const useSocket = () => {
   const [tripBudget, setTripBudget] = useState<subBudgetRes | null>(null);
   const [tripCursor, setTripCursor] = useState<subCursorRes | null>(null);
 
-  const socketCallbackRef = useRef<(() => void) | null>(null);
+  // const socketCallbackRef = useRef<(() => void) | null>(null);
+
+  // const callBackPub = (callback: () => void): void => {
+  //   // socketCallbackRef에 새로운 콜백을 할당
+  //   socketCallbackRef.current = callback;
+  // };
+
+  const [socketCallback, setSocketCallback] = useState<(() => void) | null>(
+    null,
+  );
 
   const callBackPub = (callback: () => void): void => {
-    // socketCallbackRef에 새로운 콜백을 할당
-    socketCallbackRef.current = callback;
+    setSocketCallback(() => callback);
   };
-
-  console.log(socketCallbackRef.current);
 
   const socketConnect = (tripId: string, visitDate: string) => {
     socketClient.onConnect = () => {
@@ -92,9 +98,10 @@ export const useSocket = () => {
         }
       });
 
-      if (socketCallbackRef.current) {
-        socketCallbackRef.current();
+      if (socketCallback) {
+        socketCallback();
       }
+
     };
 
     socketClient.activate();
@@ -110,7 +117,7 @@ export const useSocket = () => {
       socketClient.deactivate();
       console.log('소켓해제');
     };
-  }, [tripId, visitDate]);
+  }, [tripId, visitDate, callBackPub]);
 
   return {
     tripInfo,
@@ -123,11 +130,3 @@ export const useSocket = () => {
     callBackPub,
   };
 };
-
-// const [socketCallback, setSocketCallback] = useState<(() => void) | null>(
-//   null,
-// );
-
-// const callBackPub = (callback: () => void): void => {
-//   setSocketCallback(() => callback);
-// };
