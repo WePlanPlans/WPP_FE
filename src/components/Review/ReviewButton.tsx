@@ -58,7 +58,7 @@ const ReviewButton = (props: ButtonProps) => {
 
       <ButtonPrimary
         onClick={onClick}
-        className="flex items-center justify-center"
+        className="flex h-[56px] items-center justify-center"
         disabled={
           isRatingValid === false ||
           (isContentValid === false && isKeywordsValid === false)

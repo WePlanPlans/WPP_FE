@@ -96,10 +96,12 @@ const MyAlert: React.FC<MyAlertProps> = ({ title, content }) => {
         ))}
       </div>
       <div className="flex gap-3 ">
-        <ButtonWhite onClick={closeModal} className="text-sm">
+        <ButtonWhite onClick={closeModal} className="h-[48px] text-sm">
           취소
         </ButtonWhite>
-        <ButtonPrimary onClick={handleClickButton} className="text-sm">
+        <ButtonPrimary
+          onClick={handleClickButton}
+          className="h-[48px] text-sm ">
           확인
         </ButtonPrimary>
       </div>
