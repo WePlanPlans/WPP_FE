@@ -1,6 +1,5 @@
 import client from './client';
 import authClient from './authClient';
-import { ReviewRequest } from '@recoil/review';
 // 리뷰 관련 API
 
 // 리뷰수정

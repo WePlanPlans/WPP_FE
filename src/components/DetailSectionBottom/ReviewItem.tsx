@@ -21,7 +21,6 @@ import {
 import { MouseEvent, useState } from 'react';
 import { getEmoji } from '@utils/utils';
 import { getStarFill } from '@utils/getStarFill';
-import { ReviewInfoItemProps } from '@/@types/tours.types';
 
 const Item: React.FC<ReviewInfoItemProps> = (props: ReviewInfoItemProps) => {
   const {

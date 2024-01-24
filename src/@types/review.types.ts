@@ -1,10 +1,10 @@
-export interface Keyword {
+interface Keyword {
   keywordId: number;
   content: string;
-  type: string;
+  type?: string;
 }
 
-export interface CommentItemProps {
+interface CommentItemProps {
   commentId: number;
   authorNickname: string;
   authorProfileImageUrl: string;
@@ -14,7 +14,7 @@ export interface CommentItemProps {
   isAuthor: boolean;
 }
 
-export interface MyReviewContent {
+interface MyReviewContent {
   reviewId: number;
   authorNickname: string;
   authorProfileImageUrl: string;
@@ -24,4 +24,11 @@ export interface MyReviewContent {
   keywords: Keyword[];
   commentCount: number;
   isAuthor?: boolean;
+}
+
+interface ReviewRequest {
+  tourItemId: number;
+  rating: number;
+  keywords: Keyword[];
+  content: string;
 }

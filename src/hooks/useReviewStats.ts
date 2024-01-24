@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import { getToursReviews } from '@api/tours';
-import { TourKeywordInfo } from '@/@types/tours.types';
 import { useParams } from 'react-router-dom';
 
 type UseGetToursReviewsReturn = {

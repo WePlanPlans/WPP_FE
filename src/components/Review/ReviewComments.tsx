@@ -13,7 +13,6 @@ import MyAlert from '@components/common/modal/children/MyAlert';
 import { commentState, toastPopUpState } from '@recoil/review';
 import { alertTypeState } from '@recoil/modal';
 import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
-import { CommentItemProps } from '@/@types/review.types';
 
 export default function ReviewComments() {
   const params = useParams();
