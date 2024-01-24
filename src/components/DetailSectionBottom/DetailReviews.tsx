@@ -190,7 +190,7 @@ export default function DetailReviews({
         {modalChildren === 'MyAlert' && alertType === 'LoginReview' && (
           <MyAlert
             title="로그인"
-            content="리뷰 쓰기 시 로그인이 필요해요. 로그인하시겠어요?"
+            content="리뷰를 쓰려면 로그인이 필요해요. 로그인하러 가볼까요?"
           />
         )}
       </Modal>

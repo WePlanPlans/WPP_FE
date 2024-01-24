@@ -51,7 +51,7 @@ const ToastPopUp: React.FC<ToastPopUpProps> = ({ noun, verb }) => {
       <CircleCheckIcon fill="#29DDF6" className="mr-2" />
       <p>
         {noun}
-        {particle} {verb}되었습니다.
+        {particle} {verb}되었어요.
       </p>
     </div>
   );

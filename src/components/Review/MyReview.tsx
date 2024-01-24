@@ -114,7 +114,7 @@ export default function MyReview() {
             <PenIcon size={50} color="#D7D7D7" />
           </div>
           <div className="text-md mb-2 flex justify-center font-bold text-gray4">
-            작성한 리뷰가 없습니다
+            내가 쓴 리뷰가 없어요
           </div>
           <div className="flex justify-center text-sm text-gray4">
             다녀온 여행지의 리뷰를 남겨보세요!

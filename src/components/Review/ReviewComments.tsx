@@ -89,8 +89,8 @@ export default function ReviewComments() {
       <div className="h-[8px] bg-gray1"></div>
       <div className="flex flex-col">
         {commentDataLength == 0 && (
-          <div className="mb-4 flex flex-col items-center justify-center text-sm text-gray4">
-            <div>댓글이 없습니다. </div>
+          <div className="mt-10 flex flex-col items-center justify-center text-sm text-gray4">
+            <div>아직 댓글이 없어요. </div>
             <div>첫 댓글을 작성해보세요!</div>
           </div>
         )}
