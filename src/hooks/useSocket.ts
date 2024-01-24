@@ -17,7 +17,7 @@ import {
   SocketContextType,
 } from '@/@types/service';
 import { createContext } from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { visitDateState } from '@recoil/socket';
@@ -45,13 +45,14 @@ export const useSocket = () => {
   const [tripBudget, setTripBudget] = useState<subBudgetRes | null>(null);
   const [tripCursor, setTripCursor] = useState<subCursorRes | null>(null);
 
-  const [socketCallback, setSocketCallback] = useState<(() => void) | null>(
-    null,
-  );
+  const socketCallbackRef = useRef<(() => void) | null>(null);
 
   const callBackPub = (callback: () => void): void => {
-    setSocketCallback(() => callback);
+    // socketCallbackRef에 새로운 콜백을 할당
+    socketCallbackRef.current = callback;
   };
+
+  console.log(socketCallbackRef.current);
 
   const socketConnect = (tripId: string, visitDate: string) => {
     socketClient.onConnect = () => {
@@ -91,8 +92,8 @@ export const useSocket = () => {
         }
       });
 
-      if (socketCallback) {
-        socketCallback();
+      if (socketCallbackRef.current) {
+        socketCallbackRef.current();
       }
     };
 
@@ -103,11 +104,13 @@ export const useSocket = () => {
     if (tripId && visitDate) {
       socketConnect(tripId, visitDate.visitDate);
     }
+    console.log('소켓연결');
 
     return () => {
       socketClient.deactivate();
+      console.log('소켓해제');
     };
-  }, [tripId, visitDate, socketCallback]);
+  }, [tripId, visitDate]);
 
   return {
     tripInfo,
@@ -120,3 +123,11 @@ export const useSocket = () => {
     callBackPub,
   };
 };
+
+// const [socketCallback, setSocketCallback] = useState<(() => void) | null>(
+//   null,
+// );
+
+// const callBackPub = (callback: () => void): void => {
+//   setSocketCallback(() => callback);
+// };

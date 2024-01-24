@@ -11,6 +11,8 @@ import { visitDateState, isEditState } from '@recoil/socket';
 import { pubGetPathAndItems, pubUpdateTransportation } from '@api/socket';
 import { tapState } from '@recoil/plan';
 import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
+import PlanCursor from './PlanCursor';
+import PlanOtherCursor from './PlanOtherCursor';
 
 type PlanItemProps = {
   date: string;
@@ -62,8 +64,10 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
 
   return (
     <>
-      {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
+      <PlanCursor date={date} />
+      <PlanOtherCursor />
 
+      {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
       <div className="mb-[31px] mt-[31px] flex items-center justify-between">
         {tripAuthority !== 'WRITE' || isEdit ? (
           <div />
