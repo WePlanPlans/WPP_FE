@@ -1,11 +1,19 @@
 import { PlanColorIcon, RightIcon } from '@components/common/icons/Icons';
 import { useNavigate } from 'react-router-dom';
+import { getMember } from '@api/member';
 
 const PlanTripButton = () => {
   const navigate = useNavigate();
 
-  const handleButtonClick = () => {
-    navigate('plan');
+  const handleButtonClick = async () => {
+    try {
+      const res = await getMember();
+      if (res.data.status === 200) {
+        navigate('plan');
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
