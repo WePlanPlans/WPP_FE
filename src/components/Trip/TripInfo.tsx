@@ -26,7 +26,7 @@ const ShareList = () => {
     <>
       <hr className="my-3 border-solid border-gray2" />
       <div className="max-h-[115px] overflow-y-auto">
-        {members.map((member: any, index: number) => {
+        {members.map((member: TripMemeberInfo, index: number) => {
           return (
             <div
               className={`mb-2 flex cursor-pointer items-center text-gray5`}
@@ -89,7 +89,7 @@ const TripInfo = () => {
       <div className="my-5">
         <div className="flex items-center justify-between">
           <div className="flex  space-x-[-17.5px]">
-            {members?.map((member: any, index: number) => (
+            {members?.map((member: TripMemeberInfo, index: number) => (
               <div key={index}>
                 {member.profileImageUrl &&
                 member.profileImageUrl !== 'http://asiduheimage.jpg' ? (

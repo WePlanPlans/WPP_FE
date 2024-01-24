@@ -21,30 +21,9 @@ import {
 import { MouseEvent, useState } from 'react';
 import { getEmoji } from '@utils/utils';
 import { getStarFill } from '@utils/getStarFill';
+import { ReviewInfoItemProps } from '@/@types/tours.types';
 
-interface Keyword {
-  keywordId: number;
-  content: string;
-  type: string;
-}
-
-interface ItemProps {
-  reviewId: number;
-  authorNickname: string;
-  authorProfileImageUrl: string;
-  rating: number;
-  createdTime: any;
-  content: string;
-  keywords: Keyword[]; // keywordId, content, type
-  commentCount: number;
-  onClick?: () => void;
-  tourItemId?: number;
-  contentTypeId?: number;
-  canTextOverflow: boolean;
-  isAuthor?: boolean;
-}
-
-const Item: React.FC<ItemProps> = (props: ItemProps) => {
+const Item: React.FC<ReviewInfoItemProps> = (props: ReviewInfoItemProps) => {
   const {
     reviewId,
     authorNickname,

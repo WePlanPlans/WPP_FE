@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-interface ReviewRequest {
+export interface ReviewRequest {
   tourItemId: number;
   rating: number;
   keywords: Keyword[];

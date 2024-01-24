@@ -4,11 +4,7 @@ import { getReviewKeywords } from '@api/review';
 import { useQuery } from '@tanstack/react-query';
 import { useRecoilState } from 'recoil';
 import { keywordsState } from '@recoil/review';
-
-interface Keyword {
-  keywordId: number;
-  content: string;
-}
+import { Keyword } from '@/@types/review.types';
 
 export default function ReviewKeyword() {
   const location = useLocation();
@@ -59,7 +55,7 @@ export default function ReviewKeyword() {
       <div className="mb-5 text-lg font-bold">어떤 점이 좋았나요? </div>
       <div className="text-md mb-10 grid grid-cols-2 gap-2 font-bold">
         {reviewKeywords?.data?.data?.keywords?.map(
-          (keyword: any, index: number) => {
+          (keyword: Keyword, index: number) => {
             const row = Math.floor(index / columns) + 1;
             const col = (index % columns) + 1;
 

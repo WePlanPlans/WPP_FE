@@ -52,3 +52,25 @@ export interface LikedListType {
   preferTotalCount: number;
   notPreferTotalCount: number;
 }
+
+export interface ReviewInfoItemProps {
+  reviewId: number;
+  authorNickname: string;
+  authorProfileImageUrl: string;
+  rating: number;
+  createdTime: string;
+  content: string;
+  keywords: Keyword[]; // keywordId, content, type
+  commentCount: number;
+  onClick?: () => void;
+  tourItemId?: number;
+  contentTypeId?: number;
+  canTextOverflow: boolean;
+  isAuthor?: boolean;
+}
+
+interface Keyword {
+  keywordId: number;
+  content: string;
+  type: string;
+}
