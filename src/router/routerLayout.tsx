@@ -20,6 +20,7 @@ const MainLayout = () => {
     '/plan',
     '/create',
     '/add',
+    '/edit',
   ];
   const showNav = !hideNavPaths.some((path) =>
     location.pathname.includes(path),
