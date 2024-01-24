@@ -78,7 +78,7 @@ export const LikedToursList = () => {
       )}
 
       {/* 우리의 관심 여행지 추가 버튼 => 검색 라우터 이동 */}
-      <div className="sticky bottom-5 left-1/2 z-[100] inline-flex h-10 w-[168px] -translate-x-1/2 transform items-center justify-center gap-1.5 rounded-3xl border border-solid border-cyan-400 bg-white px-3.5">
+      <div className="sticky bottom-[65px] left-1/2 z-[100] inline-flex h-10 w-[168px] -translate-x-1/2 transform items-center justify-center gap-1.5 rounded-3xl border border-solid border-cyan-400 bg-white px-3.5">
         <button
           onClick={() => navigate('add')}
           className="flex items-center justify-between">
