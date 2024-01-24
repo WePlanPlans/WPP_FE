@@ -10,11 +10,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { getMember } from '@api/member';
 
-interface reviewProps {
-  reviewData: any;
-}
-
-export default function DetailTourButtons({ reviewData }: reviewProps) {
+export default function DetailTourButtons({
+  reviewData,
+}: {
+  reviewData: tourDetail;
+}) {
   const { title, contentTypeId } = reviewData;
   const params = useParams();
   const tourItemId = Number(params.id);

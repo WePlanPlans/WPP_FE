@@ -3,11 +3,7 @@ import { ratingState } from '@recoil/review';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
-interface ButtonProps {
-  onClick: () => void;
-}
-
-const ReviewButton = (props: ButtonProps) => {
+const ReviewButton = (props: { onClick: () => void }) => {
   const { onClick } = props;
   const rating = useRecoilValue(ratingState);
   const [isRatingValid, setIsRatingValid] = useState(false);
