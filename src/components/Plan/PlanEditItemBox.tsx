@@ -171,7 +171,7 @@ const PlanEditItemBox = ({
         <div className="mx-auto flex h-14 max-w-md">
           <Alert
             title={'여행지 삭제'}
-            message={<>선택한 장소를 삭제하시겠습니까?</>}
+            message={<>여정에서 이 장소를 삭제할까요?</>}
             onConfirm={handleConfirm}
             closeOnConfirm={true}
             isCheck={selectedItemId}>

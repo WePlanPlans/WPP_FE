@@ -28,14 +28,13 @@ const ScrollTopButton = () => {
   }
 
   return (
-    <div
+    <button
       className="sticky bottom-[20px]
       mt-[-50px] flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-white shadow-md"
-      style={{ left: 'calc(100%)' }}>
-      <button onClick={scrollToTop}>
-        <TopIcon />
-      </button>
-    </div>
+      style={{ left: 'calc(100%)' }}
+      onClick={scrollToTop}>
+      <TopIcon />
+    </button>
   );
 };
 

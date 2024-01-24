@@ -20,7 +20,7 @@ import { visitDateState } from '@recoil/socket';
 import { useState } from 'react';
 import { getItem } from '@utils/localStorageFun';
 import PlanSchedule from './PlanSchedule';
-import ScrollTopButton from './ScrollTopButton';
+import ScrollTopButton from '../common/scrollTopButton/ScrollTopButton';
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();

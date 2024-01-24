@@ -21,7 +21,7 @@ import EditDelete from '@components/common/modal/children/EditDelete';
 import MyAlert from '@components/common/modal/children/MyAlert';
 import { alertTypeState } from '@recoil/modal';
 import { PenIcon } from '@components/common/icons/Icons';
-import ScrollTopButton from '@components/Plan/ScrollTopButton';
+import ScrollTopButton from '@components/common/scrollTopButton/ScrollTopButton';
 import { MyReviewContent } from '@/@types/review.types';
 
 export default function MyReview() {
