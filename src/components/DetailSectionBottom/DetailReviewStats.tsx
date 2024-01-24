@@ -9,6 +9,7 @@ const DetailReviewStats = () => {
   const { reviewStats } = useGetToursReviews();
   const { calculateWidth, getColor } = useReviewStatsCalculator(reviewStats);
   const [showAll, setShowAll] = useState(false);
+  console.log(reviewStats);
 
   return (
     <>

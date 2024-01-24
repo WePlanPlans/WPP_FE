@@ -17,7 +17,7 @@ export const SelectDate = ({ onClose }: { onClose: () => void }) => {
   };
 
   return (
-    <div className="flex h-[95vh] flex-col">
+    <div className="scroll-y-none flex h-dvh flex-col overflow-hidden">
       <header className="relative mb-7 flex w-full items-center justify-center bg-white text-center">
         <div className="absolute left-0">
           <BackIcon onClick={onClose} />
@@ -30,7 +30,7 @@ export const SelectDate = ({ onClose }: { onClose: () => void }) => {
           setSelectedEndDate(endDate);
         }}
       />
-      <div className="mt-auto">
+      <div className="mt-auto bg-white py-[24px]">
         <ButtonPrimary onClick={handleComplete}>완료</ButtonPrimary>
       </div>
     </div>

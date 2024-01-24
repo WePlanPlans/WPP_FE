@@ -88,14 +88,15 @@ export const CreateTrip = () => {
     );
   }
   return (
-    <div className="flex h-[95vh] flex-col">
+    <div className="flex h-dvh flex-col">
       <BackHeader />
       <div className="title1 mt-2 pb-5">여행 생성하기</div>
 
       <InputField icon={PlanIcon}>
         <input
           type="text"
-          className="flex-1 p-2 focus:outline-none"
+          className="min-w-0 flex-1 p-2 focus:outline-none"
+          size={0}
           placeholder={defaultTitle}
           value={title}
           onChange={(e) => {
@@ -142,7 +143,7 @@ export const CreateTrip = () => {
         <div className="p-2">{formattedTripDate}</div>
       </InputField>
 
-      <div className="mt-auto">
+      <div className="mt-auto py-[24px]">
         <ButtonPrimary onClick={handleSubmit}>완료</ButtonPrimary>
       </div>
     </div>

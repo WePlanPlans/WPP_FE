@@ -61,6 +61,18 @@ export const subBudget = (
   });
 };
 
+// 커서 공유
+export const subCursor = (
+  tripId: string,
+  visitDate: string,
+  subCursorMessage: subCursorMessage,
+) => {
+  socketClient.subscribe(`/sub/${tripId}/cursor/${visitDate}`, (message) => {
+    const res = JSON.parse(message.body);
+    subCursorMessage(res);
+  });
+};
+
 // 소켓 전송
 // 여정 기본 정보 변경 이벤트 발생시
 export const pubInfo = (pubInfo: pubInfo, tripId: string) => {
@@ -84,7 +96,7 @@ export const pubAddTripItem = (
 // 여행 아이템 예상 가격 업데이트 이벤트 발생시
 export const pubUpdatePrice = (
   pubUpdatePrice: pubUpdatePrice,
-  tripItemId: string,
+  tripItemId: number,
 ) => {
   socketClient.publish({
     destination: `/pub/tripItems/${tripItemId}/updatePrice`,
@@ -106,10 +118,10 @@ export const pubUpdateTripItem = (
 // 여행 날짜별 교통 수단 변경 이벤트 발생시 (01/16 업데이트)
 export const pubUpdateTransportation = (
   pubUpdateTransportation: pubUpdateTransportation,
-  trips: string,
+  tripId: string,
 ) => {
   socketClient.publish({
-    destination: `/pub/trips/${trips}/updateTransportation`,
+    destination: `/pub/trips/${tripId}/updateTransportation`,
     body: JSON.stringify(pubUpdateTransportation),
   });
 };
@@ -142,6 +154,7 @@ export const pubConnectMember = (pubMember: pubMember, tripId: string) => {
     destination: `/pub/trips/${tripId}/connectMember`,
     body: JSON.stringify(pubMember),
   });
+  console.log('입장발생');
 };
 
 // 멤버 여정 페이지 퇴장 이벤트 발생시
@@ -150,6 +163,7 @@ export const pubDisconnectMember = (pubMember: pubMember, tripId: string) => {
     destination: `/pub/trips/${tripId}/disconnectMember`,
     body: JSON.stringify(pubMember),
   });
+  console.log('퇴장발생');
 };
 
 // 여정 편집 페이지 입장 이벤트 발생시(모든 sub 다받음)
@@ -185,5 +199,13 @@ export const pubUpdateBudget = (
   socketClient.publish({
     destination: `/pub/trips/${tripId}/updateBudget`,
     body: JSON.stringify(pubUpdateBudget),
+  });
+};
+
+// 커서공유
+export const pubCursor = (pubCursor: pubCursor, tripId: string) => {
+  socketClient.publish({
+    destination: `/pub/trips/${tripId}/cursor`,
+    body: JSON.stringify(pubCursor),
   });
 };

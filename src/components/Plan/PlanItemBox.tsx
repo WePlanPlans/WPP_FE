@@ -3,15 +3,22 @@ import {
   CarIcon,
   BusIcon,
   SequenceIcon,
+  CloseIcon,
 } from '@components/common/icons/Icons';
 import { TripItem, Paths } from '@/@types/service';
 import { v4 as uuidv4 } from 'uuid';
+import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
+import Alert from '@components/common/alert/Alert';
+import { useContext, useState } from 'react';
+import { socketContext } from '@hooks/useSocket';
+import { pubUpdatePrice } from '@api/socket';
 
 type PlanItemBoxProps = {
   item: TripItem[];
   paths: Paths[];
   transportation: string;
   day: string;
+  visitDate: string;
 };
 
 const PlanItemBox = ({
@@ -19,12 +26,31 @@ const PlanItemBox = ({
   paths,
   transportation,
   day,
+  visitDate,
 }: PlanItemBoxProps) => {
   if (!item || !paths) {
     return <div>Missing data</div>;
   }
+  const { tripAuthority } = useGetTripsAuthority();
+  const { tripId } = useContext(socketContext);
 
   const itemLength = item.length;
+  const [inputPrice, setInputPrice] = useState('');
+  const showCloseIcon = inputPrice;
+
+  const handlePrice = (inputBudget: string, tripItemId: number) => {
+    if (inputBudget && tripItemId) {
+      pubUpdatePrice(
+        {
+          tripId: tripId,
+          visitDate: visitDate,
+          price: inputBudget,
+        },
+        tripItemId,
+      );
+      setInputPrice('');
+    }
+  };
 
   return (
     <>
@@ -41,22 +67,61 @@ const PlanItemBox = ({
               <SequenceIcon className="z-10" number={item.seqNum} />
             </div>
             <div className="flex w-full flex-col">
-              <div className="flex h-[87.5px]  rounded-lg border border-solid border-[#ededed] bg-white">
+              <div className="flex h-[87.5px] rounded-lg border border-solid border-[#ededed] bg-white">
                 <img
-                  className="h-[87px] w-[93px] rounded-bl-lg rounded-tl-lg "
+                  className="h-[87px] w-[93px] rounded-bl-lg rounded-tl-lg"
                   src={item.thumbnailUrl}
                   alt="img"
                 />
                 <div className="flex w-full flex-col p-[10px]">
-                  <div className="flex justify-between text-left text-[14px] font-medium text-black">
-                    {item.name}
-                    <PenIcon size={14} className="cursor-pointer" />
+                  <div className="text-left text-[14px] font-medium text-black">
+                    {item.name.length > 19
+                      ? item.name.slice(0, 19) + '...'
+                      : item.name}
                   </div>
                   <div className="mt-[3px] flex h-fit w-fit items-center justify-center gap-2 rounded-[3px] bg-[#ededed] p-[4px] text-center text-[11px] text-black">
                     {item.category}
                   </div>
-                  <div className="mt-[15px] text-sm font-bold text-black">
-                    {item.price} 원
+                  <div className="mt-[15px] flex justify-between text-sm font-bold text-black">
+                    {item.price.toLocaleString()} 원
+                    {tripAuthority == 'WRITE' && (
+                      <Alert
+                        title={'비용을 입력해주세요'}
+                        message={''}
+                        onConfirm={() =>
+                          handlePrice(inputPrice, item.tripItemId)
+                        }
+                        closeOnConfirm={true}
+                        children={
+                          <button>
+                            <PenIcon size={14} />
+                          </button>
+                        }
+                        content={
+                          <div className="mb-6 mt-8 flex w-[95%] items-center justify-between border-b-[1px] border-solid border-gray4">
+                            <div className="flex w-full items-center justify-between">
+                              <input
+                                type="number"
+                                className="title3 w-full pl-[2px] text-gray6 placeholder:text-gray4 focus:outline-none"
+                                placeholder="금액"
+                                value={inputPrice}
+                                onChange={(e) => setInputPrice(e.target.value)}
+                              />
+                              <div
+                                className="ml-[-16px] cursor-pointer"
+                                onClick={() => setInputPrice('')}>
+                                {showCloseIcon && (
+                                  <CloseIcon size={16} fill="#D7D7D7" />
+                                )}
+                              </div>
+                            </div>
+                            <span className="title3 pl-[4.5px] text-gray4">
+                              원
+                            </span>
+                          </div>
+                        }
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -76,9 +141,15 @@ const PlanItemBox = ({
                           ) : null}
                         </div>
                         <div className="mt-[3px]">
-                          {(path.pathInfo.totalDistance / 1000).toFixed(2)}km,{' '}
-                          {path.pathInfo.totalTime}분,{' '}
-                          {path.pathInfo.price.toLocaleString()}원
+                          {path.pathInfo.totalDistance < 0 ||
+                          path.pathInfo.totalTime < 0 ||
+                          path.pathInfo.price < 0
+                            ? '경로 정보가 없습니다.'
+                            : `${(path.pathInfo.totalDistance / 1000).toFixed(
+                                2,
+                              )}km, ${
+                                path.pathInfo.totalTime
+                              }분, ${path.pathInfo.price.toLocaleString()}원`}
                         </div>
                       </div>
                     </div>

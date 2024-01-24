@@ -42,7 +42,7 @@ export const getModalStyles = (modalChildren: string) => {
         transform: 'translate(-50%, 0)',
         maxWidth: '412px',
         width: '100%',
-        height: '186px',
+        height: '162px',
         borderTopLeftRadius: '16px',
         borderTopRightRadius: '16px',
       },

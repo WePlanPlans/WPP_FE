@@ -11,6 +11,8 @@ import { visitDateState, isEditState } from '@recoil/socket';
 import { pubGetPathAndItems, pubUpdateTransportation } from '@api/socket';
 import { tapState } from '@recoil/plan';
 import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
+import PlanCursor from './PlanCursor';
+import PlanOtherCursor from './PlanOtherCursor';
 
 type PlanItemProps = {
   date: string;
@@ -62,8 +64,10 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
 
   return (
     <>
-      {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
+      <PlanCursor date={date} />
+      <PlanOtherCursor />
 
+      {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
       <div className="mb-[31px] mt-[31px] flex items-center justify-between">
         {tripAuthority !== 'WRITE' || isEdit ? (
           <div />
@@ -116,6 +120,7 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
             item={tripItem?.data?.tripItems || []}
             paths={tripPath?.data?.paths || []}
             transportation={transpo}
+            visitDate={date || ''}
             day={day}
           />
         )}
@@ -127,7 +132,7 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
         <div className="my-[18px]">
           <ButtonWhite
             onClick={() => navigate('./place')}
-            className="h-[40px] w-full">
+            className="h-[56px] w-full">
             <div className="flex items-center justify-center gap-[5px] font-bold text-gray4">
               <PlusIcon size={15} color="#888" />
               <div className="mt-[1px]">장소 추가하기</div>

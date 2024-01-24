@@ -6,10 +6,12 @@ import {
   targetReviewIdState,
   tourItemIdState,
   commentState,
+  targetCommentIdState,
 } from '@recoil/review';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deleteComments } from '@api/comments';
 
 interface MyAlertProps {
   title: string;
@@ -23,6 +25,7 @@ const MyAlert: React.FC<MyAlertProps> = ({ title, content }) => {
   const setToastPopUp = useSetRecoilState(toastPopUpState);
   const queryClient = useQueryClient();
   const setComment = useSetRecoilState(commentState);
+  const targetCommentId = useRecoilValue(targetCommentIdState);
 
   const { mutate: deleteReviewMutate } = useMutation({
     mutationFn: (targetReviewId: number) => deleteReview(targetReviewId),
@@ -33,6 +36,14 @@ const MyAlert: React.FC<MyAlertProps> = ({ title, content }) => {
       queryClient.invalidateQueries({
         queryKey: ['myReviews'],
       });
+    },
+    onError: () => console.log('error'),
+  });
+
+  const { mutate: deleteCommentMutate } = useMutation({
+    mutationFn: (targetCommentId: number) => deleteComments(targetCommentId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['reviewComments'] });
     },
     onError: () => console.log('error'),
   });
@@ -53,6 +64,15 @@ const MyAlert: React.FC<MyAlertProps> = ({ title, content }) => {
           navigate(`/detail/${tourItemId}`);
         }
       }
+    } else if (title == '댓글 삭제') {
+      await deleteCommentMutate(targetCommentId);
+      setIsModalOpen(false);
+      setComment('');
+      setToastPopUp(() => ({
+        isPopUp: true,
+        noun: '댓글',
+        verb: '삭제',
+      }));
     } else if (title == '로그인') {
       setComment('');
       setIsModalOpen(false);
@@ -76,10 +96,12 @@ const MyAlert: React.FC<MyAlertProps> = ({ title, content }) => {
         ))}
       </div>
       <div className="flex gap-3 ">
-        <ButtonWhite onClick={closeModal} className="text-sm">
+        <ButtonWhite onClick={closeModal} className="h-[48px] text-sm">
           취소
         </ButtonWhite>
-        <ButtonPrimary onClick={handleClickButton} className="text-sm">
+        <ButtonPrimary
+          onClick={handleClickButton}
+          className="h-[48px] text-sm ">
           확인
         </ButtonPrimary>
       </div>

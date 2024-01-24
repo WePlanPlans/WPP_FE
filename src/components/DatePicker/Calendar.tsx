@@ -173,7 +173,7 @@ const Calendar: React.FC<{
             : '날짜를 선택해주세요.'}
       </div>
 
-      <div ref={calendarRef} className="h-screen overflow-auto scrollbar-hide">
+      <div ref={calendarRef} className="flex-1 overflow-auto scrollbar-hide">
         {visibleMonths.map((month, idx) => (
           <div key={idx}>{renderCalendar(month)}</div>
         ))}

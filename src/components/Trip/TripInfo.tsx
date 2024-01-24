@@ -5,7 +5,6 @@ import TripSurveyMember from '@components/common/modal/children/TripSurveyMember
 import { Modal } from '@components/common/modal';
 import { useQuery } from '@tanstack/react-query';
 import { getTripsMembers } from '@api/trips';
-// import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
 import { DownIcon } from '@components/common/icons/Icons';
 import { useState } from 'react';
 import { UserIcon } from '@components/common/icons/Icons';
@@ -23,7 +22,6 @@ const ShareList = () => {
     enabled: !!tripId,
   });
   const members = tripsMembers?.data?.data?.tripMemberSimpleInfos;
-  console.log(tripsMembers);
   return (
     <>
       <hr className="my-3 border-solid border-gray2" />
@@ -47,7 +45,6 @@ const ShareList = () => {
                   }>
                   <UserIcon size={20} color="white" fill="white" />
                 </div>
-                // <NullUser className="h-[32px] w-[32px]" />
               )}
               <div className="ml-3">{member.nickname}</div>
             </div>
@@ -108,7 +105,6 @@ const TripInfo = () => {
                     }>
                     <UserIcon size={20} color="white" fill="white" />
                   </div>
-                  // <NullUser className="h-[32px] w-[32px] border-2 border-solid border-white" />
                 )}
               </div>
             ))}

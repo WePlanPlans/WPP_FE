@@ -4,7 +4,7 @@ import { UserIcon } from '@components/common/icons/Icons';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 
-const TripRealtimeEditor = () => {
+const TripRealtimeMember = () => {
   const { tripMember } = useContext(socketContext);
 
   const tripMemberData = tripMember?.data;
@@ -15,7 +15,7 @@ const TripRealtimeEditor = () => {
         slidesPerView={5}
         navigation={true}
         modules={[Navigation]}
-        className="flex w-[375px] items-center justify-center">
+        className="w-[100vw]items-center flex max-w-[375px] justify-center">
         {tripMemberData?.tripMembers?.map((member) => {
           const isConnected = member?.connected;
           const thumbnailUrl = member?.thumbnailUrl;
@@ -60,4 +60,4 @@ const TripRealtimeEditor = () => {
   );
 };
 
-export default TripRealtimeEditor;
+export default TripRealtimeMember;
