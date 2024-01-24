@@ -34,7 +34,7 @@ const LogoutButton = () => {
   return (
     <Alert
       title="로그아웃"
-      message="로그아웃 하시겠어요?"
+      message="로그아웃할까요?"
       onConfirm={handleConfirm}
       onCancel={handleCancel}>
       <button onClick={onLogoutClick} className="caption2 text-gray4">
