@@ -20,6 +20,7 @@ import { visitDateState } from '@recoil/socket';
 import { useState } from 'react';
 import { getItem } from '@utils/localStorageFun';
 import PlanSchedule from './PlanSchedule';
+import ScrollTopButton from './ScrollTopButton';
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();
@@ -101,6 +102,7 @@ const PlanSectionTop = () => {
           <PlanItem key={date} date={date} day={DayArr[index]} />
         ))}
       />
+      <ScrollTopButton />
     </div>
   );
 };

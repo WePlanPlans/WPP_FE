@@ -5,6 +5,7 @@ import WishList from './WishList';
 import NoDataMessage from '@components/common/noData/NoDataMessage';
 import { getMemberTours } from '@api/member';
 import { HeartIcon } from '@components/common/icons/Icons';
+import ScrollTopButton from '@components/Plan/ScrollTopButton';
 
 const Wish = () => {
   const [selectedContentTypeId, setSelectedContentTypeId] = useState<
@@ -64,6 +65,8 @@ const Wish = () => {
           icon={<HeartIcon size={44} fill="#EDEDED" color="#EDEDED" />}
         />
       )}
+      <ScrollTopButton />
+      <div className="mb-5" />
     </div>
   );
 };
