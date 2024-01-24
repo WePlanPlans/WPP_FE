@@ -26,12 +26,13 @@ import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
 import EditDelete from '@components/common/modal/children/EditDelete';
 import MyAlert from '@components/common/modal/children/MyAlert';
 import { alertTypeState } from '@recoil/modal';
+import { ReviewInfoItemProps } from '@/@types/tours.types';
 
-interface reviewProps {
-  reviewData: any;
-}
-
-export default function DetailReviews({ reviewData }: reviewProps) {
+export default function DetailReviews({
+  reviewData,
+}: {
+  reviewData: tourDetail;
+}) {
   const [reviewDataLength, setReviewDataLength] = useState<number>(0);
   const { title, contentTypeId } = reviewData;
   const params = useParams();
@@ -73,7 +74,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
     return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
   }
 
-  const handleReviewClick = (item: any) => {
+  const handleReviewClick = (item: ReviewInfoItemProps) => {
     const reviewId = item.reviewId;
     navigate(`/reviewComment/${reviewId}`, { state: { item, tourItemId } });
   };
@@ -155,24 +156,26 @@ export default function DetailReviews({ reviewData }: reviewProps) {
             {
               return (
                 <React.Fragment key={index}>
-                  {group?.data.data.reviewInfos.content.map((item: any) => (
-                    <ReviewItem
-                      key={item.reviewId}
-                      reviewId={item.reviewId}
-                      authorNickname={item.authorNickname}
-                      authorProfileImageUrl={item.authorProfileImageUrl}
-                      rating={item.rating}
-                      createdTime={item.createdTime}
-                      content={item.content}
-                      keywords={item.keywords}
-                      commentCount={item.commentCount}
-                      onClick={() => handleReviewClick(item)}
-                      tourItemId={tourItemId}
-                      contentTypeId={contentTypeId}
-                      canTextOverflow={true}
-                      isAuthor={item.isAuthor}
-                    />
-                  ))}
+                  {group?.data.data.reviewInfos.content.map(
+                    (item: ReviewInfoItemProps) => (
+                      <ReviewItem
+                        key={item.reviewId}
+                        reviewId={item.reviewId}
+                        authorNickname={item.authorNickname}
+                        authorProfileImageUrl={item.authorProfileImageUrl}
+                        rating={item.rating}
+                        createdTime={item.createdTime}
+                        content={item.content}
+                        keywords={item.keywords}
+                        commentCount={item.commentCount}
+                        onClick={() => handleReviewClick(item)}
+                        tourItemId={tourItemId}
+                        contentTypeId={contentTypeId}
+                        canTextOverflow={true}
+                        isAuthor={item.isAuthor}
+                      />
+                    ),
+                  )}
                 </React.Fragment>
               );
             }

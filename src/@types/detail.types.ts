@@ -1,5 +1,6 @@
 interface tourDetail {
   id: number;
+  contentTypeId: number;
   title: string;
   liked: boolean;
   fullAddress: string;

@@ -22,6 +22,7 @@ import MyAlert from '@components/common/modal/children/MyAlert';
 import { alertTypeState } from '@recoil/modal';
 import { PenIcon } from '@components/common/icons/Icons';
 import ScrollTopButton from '@components/Plan/ScrollTopButton';
+import { MyReviewContent } from '@/@types/review.types';
 
 export default function MyReview() {
   const [reviewDataLength, setReviewDataLength] = useState<number>(0);
@@ -60,7 +61,7 @@ export default function MyReview() {
     return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
   }
 
-  const handleReviewClick = (item: any) => {
+  const handleReviewClick = (item: MyReviewContent) => {
     const reviewId = item.reviewId;
     navigate(`/reviewComment/${reviewId}`, { state: { item } });
   };
@@ -134,7 +135,7 @@ export default function MyReview() {
             {
               return (
                 <React.Fragment key={index}>
-                  {group?.data.data.content.map((item: any) => {
+                  {group?.data.data.content.map((item: MyReviewContent) => {
                     item.isAuthor = true;
                     return (
                       <ReviewItem

@@ -13,6 +13,7 @@ import MyAlert from '@components/common/modal/children/MyAlert';
 import { commentState, toastPopUpState } from '@recoil/review';
 import { alertTypeState } from '@recoil/modal';
 import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
+import { CommentItemProps } from '@/@types/review.types';
 
 export default function ReviewComments() {
   const params = useParams();
@@ -107,17 +108,19 @@ export default function ReviewComments() {
               {
                 return (
                   <React.Fragment key={index}>
-                    {group?.data.data.comments.content.map((item: any) => (
-                      <CommentItem
-                        key={item.commentId}
-                        commentId={item.commentId}
-                        authorNickname={item.authorNickname}
-                        authorProfileImageUrl={item.authorProfileImageUrl}
-                        createdTime={item.createdTime}
-                        content={item.content}
-                        isAuthor={item.isAuthor}
-                      />
-                    ))}
+                    {group?.data.data.comments.content.map(
+                      (item: CommentItemProps) => (
+                        <CommentItem
+                          key={item.commentId}
+                          commentId={item.commentId}
+                          authorNickname={item.authorNickname}
+                          authorProfileImageUrl={item.authorProfileImageUrl}
+                          createdTime={item.createdTime}
+                          content={item.content}
+                          isAuthor={item.isAuthor}
+                        />
+                      ),
+                    )}
                   </React.Fragment>
                 );
               }
