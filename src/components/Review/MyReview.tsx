@@ -21,6 +21,7 @@ import EditDelete from '@components/common/modal/children/EditDelete';
 import MyAlert from '@components/common/modal/children/MyAlert';
 import { alertTypeState } from '@recoil/modal';
 import { PenIcon } from '@components/common/icons/Icons';
+import ScrollTopButton from '@components/Plan/ScrollTopButton';
 
 export default function MyReview() {
   const [reviewDataLength, setReviewDataLength] = useState<number>(0);
@@ -163,6 +164,7 @@ export default function MyReview() {
           <MyAlert title="리뷰 삭제" content="리뷰를 삭제할까요?" />
         )}
       </Modal>
+      <ScrollTopButton />
     </>
   );
 }

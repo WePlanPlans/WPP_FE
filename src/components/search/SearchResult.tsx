@@ -4,6 +4,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import ToursCategoryItem from '@components/Tours/ToursCategoryItem';
 import { useEffect, useState } from 'react';
 import { Spinner } from '@components/common/spinner/Spinner';
+import ScrollTopButton from '@components/Plan/ScrollTopButton';
 
 interface SearchResultProps {
   selectedRegion: string | null;
@@ -97,6 +98,8 @@ export const SearchResult = ({
           isFetchingNextPage={isFetchingNextPage}
         />
       )}
+      <ScrollTopButton />
+      <div className="mb-5" />
     </>
   );
 };
