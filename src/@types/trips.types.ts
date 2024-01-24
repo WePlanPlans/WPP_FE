@@ -51,3 +51,13 @@ interface AuthorityType {
     tripId: string;
   };
 }
+interface TripSurveySetMemberInfo {
+  memberId: number;
+  nickname: string;
+  thumbnail: string;
+}
+
+interface TripMemeberInfo {
+  nickname: string;
+  profileImageUrl: string;
+}

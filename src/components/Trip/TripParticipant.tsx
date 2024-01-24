@@ -7,9 +7,11 @@ interface ParticipantStatusProps {
   status: string;
 }
 
-const ParticipantList: React.FC<{ infos: any[] }> = ({ infos }) => (
+const ParticipantList: React.FC<{ infos: TripSurveySetMemberInfo[] }> = ({
+  infos,
+}) => (
   <div className="grid grid-cols-2 gap-3.5">
-    {infos.map((info: any) => (
+    {infos.map((info: TripSurveySetMemberInfo) => (
       <div
         key={info.memberId}
         className={`flex h-[40px] cursor-pointer items-center text-gray5`}>
