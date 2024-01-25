@@ -85,7 +85,7 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
 
         <div className="ml-[8px] flex flex-col items-start justify-between gap-[1px]">
           <div className="max-w-[270px]">
-            <p className=" truncate  whitespace-nowrap px-[2px] font-['Pretendard'] text-[16px] font-bold leading-normal text-black">
+            <p className=" truncate whitespace-nowrap  px-[2px] text-[16px] font-bold leading-normal text-black">
               {title}
             </p>
 

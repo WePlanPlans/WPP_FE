@@ -49,7 +49,7 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
 
         <div className="ml-[8px] flex flex-col items-start justify-between gap-[15px]">
           <div className=" max-w-[230px]">
-            <p className=" truncate whitespace-nowrap px-[2px] font-['Pretendard'] text-[16px] font-bold leading-normal text-black">
+            <p className=" truncate whitespace-nowrap px-[2px] text-[16px] font-bold leading-normal text-black">
               {title}
             </p>
             <div className="ml-[3px] mt-[5px] max-w-[260px]">
@@ -58,7 +58,7 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
                   ? (tourAddress.match(/(.*?[시군구])/)?.[0] || '') +
                     (tourAddress
                       .replace(/(.*?[시군구])/, '')
-                      .match(/(특별시|광역시)?.*?[시군구]/)?.[0] || '')
+                      .match(/(특별`시|광역시)?.*?[시군구]/)?.[0] || '')
                   : tourAddress?.match(/(.*?[시군구])/)?.[0]}
               </p>
             </div>
