@@ -34,7 +34,6 @@ const PlanEditItemBox = ({
     return <div>Missing data</div>;
   }
 
-  const { callBackPub } = useContext(socketContext);
   const [, setIsEdit] = useRecoilState(isEditState);
   const [items, setItems] = useState(item);
   const [newData, setNewData] = useState<pubUpdateTripItemReq | null>(null);
@@ -65,15 +64,13 @@ const PlanEditItemBox = ({
 
   useEffect(() => {
     if (newData && tripId) {
-      callBackPub(() => pubUpdateTripItem(newData, tripId));
+      pubUpdateTripItem(newData, tripId);
     }
   }, [newData]);
 
   const handleConfirm = () => {
     if (tripId && visitDate && selectedItemId) {
-      callBackPub(() =>
-        pubDeleteItem({ tripId: tripId, visitDate: visitDate }, selectedItemId),
-      );
+      pubDeleteItem({ tripId: tripId, visitDate: visitDate }, selectedItemId);
     }
     setToastPopUp(() => ({
       isPopUp: true,

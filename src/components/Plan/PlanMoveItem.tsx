@@ -22,7 +22,6 @@ const PlanMoveItem: React.FC<PlanMoveItemProps> = ({
   visitDate,
 }) => {
   const [, setIsEdit] = useRecoilState(isEditState);
-  const { callBackPub } = useContext(socketContext);
   const day = useRecoilValue(dayState);
   const date = useRecoilValue(dateState);
 
@@ -37,15 +36,13 @@ const PlanMoveItem: React.FC<PlanMoveItemProps> = ({
       return;
     }
     if (tripId && isCheck && visitDate) {
-      callBackPub(() =>
-        pubUpdateVisitDate(
-          {
-            tripId: tripId,
-            oldVisitDate: visitDate,
-            newVisitDate: newVisitDate,
-          },
-          isCheck,
-        ),
+      pubUpdateVisitDate(
+        {
+          tripId: tripId,
+          oldVisitDate: visitDate,
+          newVisitDate: newVisitDate,
+        },
+        isCheck,
       );
     }
     setToastPopUp(() => ({
