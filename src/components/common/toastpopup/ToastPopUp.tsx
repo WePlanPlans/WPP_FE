@@ -22,8 +22,10 @@ const ToastPopUp: React.FC<ToastPopUpProps> = ({ noun, verb }) => {
   }, []);
 
   useEffect(() => {
-    if (noun === '일정' || noun === '날짜 이동' || noun === '여행 일정') {
+    if (noun === '일정' || noun === '날짜 이동') {
       setParticle('이');
+    } else if (noun === '나의 여정') {
+      setParticle('에서');
     }
   }, [noun]);
 

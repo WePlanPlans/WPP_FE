@@ -5,7 +5,7 @@ import WishList from './WishList';
 import NoDataMessage from '@components/common/noData/NoDataMessage';
 import { getMemberTours } from '@api/member';
 import { HeartIcon } from '@components/common/icons/Icons';
-import ScrollTopButton from '@components/Plan/ScrollTopButton';
+import ScrollTopButton from '@components/common/scrollTopButton/ScrollTopButton';
 
 const Wish = () => {
   const [selectedContentTypeId, setSelectedContentTypeId] = useState<

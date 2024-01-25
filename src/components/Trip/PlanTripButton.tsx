@@ -24,7 +24,7 @@ const PlanTripButton = () => {
         <div className="pt-0.5">
           <PlanColorIcon />
         </div>
-        <p className="ml-2 text-[15px] text-gray5">여행 계획하기</p>
+        <p className="body1 ml-2 text-[15px] text-gray5">여행 계획하기</p>
       </div>
       <div className="pt-0.5">
         <RightIcon fill="#888888" />
