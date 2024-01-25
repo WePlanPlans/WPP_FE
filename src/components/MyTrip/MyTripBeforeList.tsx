@@ -14,8 +14,8 @@ const MyTripBeforeList: React.FC<MyTripIngListProps> = ({ myTripsData }) => {
 
   return (
     <>
-      <div className="mb-[10px] mt-[40px]">
-        <h1 className="text-xl font-bold text-stone-900">다가오는 여행</h1>
+      <div className="mb-[10px] mt-[30px]">
+        <h1 className="text-[18px] font-bold text-gray7">다가오는 여행</h1>
       </div>
       <div className="no-scrollbar grid grid-cols-1 gap-[5px] overflow-y-scroll">
         {myTripsData.map((myTripList: MyTripType) => (
