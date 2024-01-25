@@ -22,7 +22,6 @@ import MyAlert from '@components/common/modal/children/MyAlert';
 import { alertTypeState } from '@recoil/modal';
 import { PenIcon } from '@components/common/icons/Icons';
 import ScrollTopButton from '@components/Plan/ScrollTopButton';
-import { MyReviewContent } from '@/@types/review.types';
 
 export default function MyReview() {
   const [reviewDataLength, setReviewDataLength] = useState<number>(0);
