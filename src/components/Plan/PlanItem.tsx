@@ -11,8 +11,6 @@ import { visitDateState, isEditState } from '@recoil/socket';
 import { pubGetPathAndItems, pubUpdateTransportation } from '@api/socket';
 import { tapState } from '@recoil/plan';
 import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
-import PlanCursor from './PlanCursor';
-import PlanOtherCursor from './PlanOtherCursor';
 
 type PlanItemProps = {
   date: string;
@@ -26,8 +24,7 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
 
   const tap = useRecoilValue(tapState);
   const [, setVisitDate] = useRecoilState(visitDateState);
-  const { tripItem, tripPath, callBackPub, tripId, tripCursor } =
-    useContext(socketContext);
+  const { tripItem, tripPath, callBackPub, tripId } = useContext(socketContext);
 
   useEffect(() => {
     if (tap) {
@@ -49,15 +46,6 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
     tripId: string,
   ) => {
     if (transportation !== transpo) {
-      // callBackPub(() =>
-      //   pubUpdateTransportation(
-      //     {
-      //       visitDate: date,
-      //       transportation: transportation,
-      //     },
-      //     tripId,
-      //   ),
-      // );
       pubUpdateTransportation(
         {
           visitDate: date,
@@ -72,9 +60,6 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
 
   return (
     <>
-      {/* <PlanCursor date={date} />
-      <PlanOtherCursor /> */}
-
       {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
       <div className="mb-[31px] mt-[31px] flex items-center justify-between">
         {tripAuthority !== 'WRITE' || isEdit ? (

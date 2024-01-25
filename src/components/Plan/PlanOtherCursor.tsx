@@ -1,56 +1,86 @@
 import { useEffect, useState, useContext } from 'react';
 import { BsFillCursorFill } from 'react-icons/bs';
-import { pubCursor } from '@api/socket';
 import { socketContext } from '@hooks/useSocket';
 import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
+import { useRecoilValue } from 'recoil';
+import { visitDateState } from '@recoil/socket';
 
 type TripCursorData = {
+  color: string;
   memberId: number;
+  tripId: string;
+  visitDate: string;
   x: number;
   y: number;
   name: string;
 };
 
-type PlanCursorProps = {
-  date: string;
-};
-
 const PlanOtherCursor = () => {
+  const visitDate = useRecoilValue(visitDateState);
   const { memberId } = useGetTripsAuthority();
-  const { tripCursor, tripMember } = useContext(socketContext);
+  const { tripCursor } = useContext(socketContext);
   const [otherCursors, setOtherCursors] = useState<TripCursorData[]>([]);
 
   useEffect(() => {
-    if (
-      tripCursor &&
-      tripCursor.data &&
-      tripCursor.data.memberId !== memberId
-    ) {
+    if (tripCursor?.data && tripCursor.data.memberId !== memberId) {
       setOtherCursors((prevCursors) => {
+        if (!tripCursor.data) {
+          return prevCursors;
+        }
+
         const existingCursorIndex = prevCursors.findIndex(
-          (cursor) => cursor.memberId === tripCursor.data!.memberId,
+          (cursor) => cursor.memberId === tripCursor?.data?.memberId,
         );
+
+        const newCursor: TripCursorData = {
+          ...tripCursor.data,
+          x: tripCursor.data.x * window.innerWidth,
+          y: tripCursor.data.y * window.innerHeight,
+        };
 
         if (existingCursorIndex !== -1) {
           const updatedCursors = [...prevCursors];
-          updatedCursors[existingCursorIndex] = tripCursor.data!;
+          updatedCursors[existingCursorIndex] = newCursor;
           return updatedCursors;
         } else {
-          return [...prevCursors, tripCursor.data!];
+          return [...prevCursors, newCursor];
         }
       });
     }
   }, [tripCursor, memberId]);
+
+  useEffect(() => {
+    setOtherCursors([]);
+  }, [visitDate]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setOtherCursors([]);
+    }, 30000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
       {otherCursors.map((cursor, index) => (
         <div
           key={index}
-          className="pointer-events-none fixed z-50 w-full -translate-x-2 -translate-y-2 transform"
-          style={{ left: `${cursor.x}px`, top: `${cursor.y}px` }}>
-          <BsFillCursorFill size={15} color="red" className="scale-x-[-1]" />
-          <div className="text-bold absolute left-1 top-2 p-1 text-center text-xs text-red">
+          className="pointer-events-none absolute z-50 -translate-x-2 -translate-y-2 transform"
+          style={{
+            left: `${cursor.x}px`,
+            top: `${cursor.y}px`,
+          }}>
+          <BsFillCursorFill
+            size={15}
+            color={cursor.color}
+            className="scale-x-[-1]"
+          />
+          <div
+            className={
+              'text-bold absolute left-1 top-2 p-1 text-center text-xs'
+            }
+            style={{ whiteSpace: 'nowrap', color: cursor.color }}>
             {cursor.name}
           </div>
         </div>

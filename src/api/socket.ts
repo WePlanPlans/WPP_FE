@@ -154,7 +154,6 @@ export const pubConnectMember = (pubMember: pubMember, tripId: string) => {
     destination: `/pub/trips/${tripId}/connectMember`,
     body: JSON.stringify(pubMember),
   });
-  console.log('입장발생');
 };
 
 // 멤버 여정 페이지 퇴장 이벤트 발생시
@@ -163,7 +162,6 @@ export const pubDisconnectMember = (pubMember: pubMember, tripId: string) => {
     destination: `/pub/trips/${tripId}/disconnectMember`,
     body: JSON.stringify(pubMember),
   });
-  console.log('퇴장발생');
 };
 
 // 여정 편집 페이지 입장 이벤트 발생시(모든 sub 다받음)

@@ -86,6 +86,7 @@ type subCursorMessage = (response: {
   status: number;
   message: string;
   data: {
+    color: string;
     tripId: string;
     visitDate: string;
     memberId: number;
