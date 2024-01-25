@@ -45,9 +45,9 @@ const CreateTripButton = () => {
           title={'로그인'}
           message={
             <>
-              로그인이 필요한 기능입니다.
+              여정을 계획하려면 로그인이 필요해요.
               <br />
-              로그인 하시겠습니까?
+              로그인하러 가볼까요?
             </>
           }
           onConfirm={handleConfirm}>

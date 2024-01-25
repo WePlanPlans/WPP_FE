@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { useSocket, socketContext } from '@hooks/useSocket';
 import PlanTrip from '@pages/plan/planTrip.page';
-import { PlanAddPlace } from '@pages/plan/addToOurPlace/PlanAddPlace.page';
+import { PlanAddPlace } from '@components/addToList/addToOurPlace/PlanAddPlace.page';
 import PlanPlaceSearch from '@pages/plan/planPlaceSearch.page';
 import Trip from '@pages/trip/trip.page';
 import MainLayout from './routerLayout';

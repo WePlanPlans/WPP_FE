@@ -61,3 +61,15 @@ interface TripMemeberInfo {
   nickname: string;
   profileImageUrl: string;
 }
+
+interface Participant {
+  memberId: number;
+  nickname: string;
+  thumbnail: string;
+}
+
+interface Participants {
+  tripSurveyMemberCount: number;
+  tripSurveySetMemberInfos: Participant[];
+  nonTripSurveySetMemberInfos: Participant[];
+}

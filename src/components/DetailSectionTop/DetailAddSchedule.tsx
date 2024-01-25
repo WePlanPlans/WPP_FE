@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 import { postTripsItem } from '@api/trips';
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
 
 const DetailAddSchedule = () => {
   const token = localStorage.getItem('accessToken');
@@ -29,6 +30,12 @@ const DetailAddSchedule = () => {
   const initialValue = myTrips.findIndex(
     (trip) => trip.tripStatus !== '여행완료',
   );
+
+  const [toastPopUp, setToastPopUp] = useState({
+    isPopUp: false,
+    noun: '',
+    verb: '',
+  });
 
   const handleNavigate = (url: string) => {
     navigate(url);
@@ -63,6 +70,11 @@ const DetailAddSchedule = () => {
       } catch (error) {
         console.error('요청 실패:', error);
       } finally {
+        setToastPopUp(() => ({
+          isPopUp: true,
+          noun: '일정',
+          verb: '추가',
+        }));
         setIsProcessing(false);
       }
     }
@@ -79,14 +91,30 @@ const DetailAddSchedule = () => {
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    if (toastPopUp.isPopUp) {
+      const timer = setTimeout(() => {
+        setToastPopUp(() => ({
+          isPopUp: false,
+          noun: '',
+          verb: '',
+        }));
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [toastPopUp]);
+
   return (
     <>
+      {toastPopUp.isPopUp && (
+        <ToastPopUp noun={toastPopUp.noun} verb={toastPopUp.verb} />
+      )}
       {token ? (
         <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
           <Dialog.Trigger asChild>
             <button className="flex h-[53px] w-1/2 items-center justify-center gap-2 rounded-lg border border-solid border-gray3 p-2 pr-4 ">
-              <CalendarIcon className="mb-[2px]" />
-              <span className="text-sm ">일정 추가</span>
+              <CalendarIcon className="mb-[2px]" color="#5E5E5E" />
+              <span className="text-sm text-gray5">일정 추가</span>
             </button>
           </Dialog.Trigger>
           <Dialog.Portal>
@@ -244,8 +272,8 @@ const DetailAddSchedule = () => {
           }
           onConfirm={() => handleNavigate('/login')}>
           <button className="flex h-[53px] w-1/2 items-center justify-center gap-2 rounded-lg border border-solid border-gray3 p-2 pr-4 ">
-            <CalendarIcon className="mb-[2px]" />
-            <span className="text-sm ">일정 추가</span>
+            <CalendarIcon className="mb-[2px]" color="#5E5E5E" />
+            <span className="text-sm text-gray5">일정 추가</span>
           </button>
         </Alert>
       )}

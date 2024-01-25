@@ -26,7 +26,6 @@ import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
 import EditDelete from '@components/common/modal/children/EditDelete';
 import MyAlert from '@components/common/modal/children/MyAlert';
 import { alertTypeState } from '@recoil/modal';
-import { ReviewInfoItemProps } from '@/@types/tours.types';
 
 export default function DetailReviews({
   reviewData,

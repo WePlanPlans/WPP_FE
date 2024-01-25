@@ -34,6 +34,106 @@ export const HomeIcon: React.FC<IconProps> = ({
 };
 
 export const CalendarIcon: React.FC<IconProps> = ({
+  size = 20,
+  color = 'black',
+  fill = 'none',
+  className,
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 21 21"
+      color={color}
+      fill={fill}
+      className={className}>
+      <path
+        d="M10.5404 17.8008H5.1237C4.68167 17.8008 4.25775 17.6252 3.94519 17.3126C3.63263 17.0001 3.45703 16.5761 3.45703 16.1341V6.13411C3.45703 5.69209 3.63263 5.26816 3.94519 4.9556C4.25775 4.64304 4.68167 4.46745 5.1237 4.46745H15.1237C15.5657 4.46745 15.9896 4.64304 16.3022 4.9556C16.6148 5.26816 16.7904 5.69209 16.7904 6.13411V10.3008M13.457 2.80078V6.13411M6.79036 2.80078V6.13411M3.45703 9.46745H16.7904M13.457 16.1341H18.457M15.957 13.6341V18.6341"
+        stroke="#5E5E5E"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const CalendarIcon2: React.FC<IconProps> = ({ size = 25 }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 25 25"
+      fill="none">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M2.40913 7.61438H21.8252C21.4919 4.94249 19.2127 2.875 16.4505 2.875H7.78385C5.0217 2.875 2.74243 4.94249 2.40913 7.61438ZM21.8672 8.96849H2.36719V16.9585C2.36719 19.95 4.79231 22.3752 7.78385 22.3752H16.4505C19.4421 22.3752 21.8672 19.95 21.8672 16.9585V8.96849Z"
+        fill="#1E1E1E"
+      />
+      <path
+        d="M6.15918 12.6195H7.24251"
+        stroke="white"
+        strokeWidth="1.35412"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11.5752 12.6195H12.6585"
+        stroke="white"
+        strokeWidth="1.35412"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.9922 12.6195H18.0755"
+        stroke="white"
+        strokeWidth="1.35412"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.15918 16.9525H7.24251"
+        stroke="white"
+        strokeWidth="1.35412"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11.5752 16.9525H12.6585"
+        stroke="white"
+        strokeWidth="1.35412"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.9922 16.9525H18.0755"
+        stroke="white"
+        strokeWidth="1.35412"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.5758 2.06055L16.5758 5.31058"
+        stroke="#1E1E1E"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7.65885 2.06055L7.65885 5.31058"
+        stroke="#1E1E1E"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const CalendarIcon3: React.FC<IconProps> = ({
   size = 25,
   color = 'black',
   fill = 'none',
@@ -114,80 +214,6 @@ export const CalendarIcon: React.FC<IconProps> = ({
       <path
         d="M16.6955 17.6654H17.6955"
         stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-};
-
-export const CalendarIcon2: React.FC<IconProps> = ({ size = 25 }) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 25 25"
-      fill="none">
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M2.40913 7.61438H21.8252C21.4919 4.94249 19.2127 2.875 16.4505 2.875H7.78385C5.0217 2.875 2.74243 4.94249 2.40913 7.61438ZM21.8672 8.96849H2.36719V16.9585C2.36719 19.95 4.79231 22.3752 7.78385 22.3752H16.4505C19.4421 22.3752 21.8672 19.95 21.8672 16.9585V8.96849Z"
-        fill="#1E1E1E"
-      />
-      <path
-        d="M6.15918 12.6195H7.24251"
-        stroke="white"
-        strokeWidth="1.35412"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M11.5752 12.6195H12.6585"
-        stroke="white"
-        strokeWidth="1.35412"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M16.9922 12.6195H18.0755"
-        stroke="white"
-        strokeWidth="1.35412"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M6.15918 16.9525H7.24251"
-        stroke="white"
-        strokeWidth="1.35412"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M11.5752 16.9525H12.6585"
-        stroke="white"
-        strokeWidth="1.35412"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M16.9922 16.9525H18.0755"
-        stroke="white"
-        strokeWidth="1.35412"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M16.5758 2.06055L16.5758 5.31058"
-        stroke="#1E1E1E"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M7.65885 2.06055L7.65885 5.31058"
-        stroke="#1E1E1E"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -342,7 +368,7 @@ export const MapIcon: React.FC<IconProps> = ({
 };
 
 export const PenIcon: React.FC<IconProps> = ({
-  size = 25,
+  size = 20,
   color = 'black',
   fill = 'none',
   className,
@@ -386,24 +412,21 @@ export const PenIcon: React.FC<IconProps> = ({
 };
 
 export const PhoneIcon: React.FC<IconProps> = ({
-  size = 25,
-  color = 'black',
-  fill = 'none',
+  size = 20,
+  color = '#888888',
+  fill = '#888888',
 }) => {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
-      viewBox="0 0 17 17"
-      fill={fill}
-      xmlns="http://www.w3.org/2000/svg">
-      <g id="Group 36690">
-        <path
-          id="Vector"
-          d="M10.4971 14.3215C11.1129 14.7188 11.8468 14.8919 12.5752 14.8118C13.3037 14.7316 13.9823 14.4031 14.4971 13.8815L14.9471 13.4415C15.1444 13.2397 15.2548 12.9687 15.2548 12.6865C15.2548 12.4043 15.1444 12.1333 14.9471 11.9315L13.0371 10.0415C12.837 9.84482 12.5676 9.73463 12.2871 9.73463C12.0065 9.73463 11.7372 9.84482 11.5371 10.0415C11.3353 10.2388 11.0643 10.3492 10.7821 10.3492C10.4999 10.3492 10.2289 10.2388 10.0271 10.0415L7.02709 7.04148C6.92701 6.94285 6.84754 6.82532 6.79329 6.6957C6.73905 6.56609 6.71112 6.42698 6.71112 6.28648C6.71112 6.14597 6.73905 6.00687 6.79329 5.87725C6.84754 5.74764 6.92701 5.6301 7.02709 5.53148C7.22374 5.33137 7.33394 5.06204 7.33394 4.78148C7.33394 4.50092 7.22374 4.23158 7.02709 4.03148L5.12709 2.13148C4.9253 1.93419 4.6543 1.82373 4.37209 1.82373C4.08988 1.82373 3.81888 1.93419 3.61709 2.13148L3.17709 2.58148C2.65544 3.09622 2.32692 3.77488 2.24679 4.50334C2.16666 5.23181 2.3398 5.96565 2.73709 6.58148C4.80713 9.63221 7.44103 12.2593 10.4971 14.3215Z"
-          stroke={color}
-        />
-      </g>
+      viewBox="0 0 21 21"
+      fill={fill}>
+      <path
+        d="M12.034 17.1643C12.8021 17.6607 13.7175 17.877 14.6262 17.7769C15.5349 17.6768 16.3815 17.2664 17.0235 16.6147L17.5849 16.065C17.831 15.8129 17.9688 15.4743 17.9688 15.1217C17.9688 14.7692 17.831 14.4306 17.5849 14.1785L15.2023 11.8173C14.9527 11.5716 14.6168 11.434 14.2668 11.434C13.9168 11.434 13.5809 11.5716 13.3313 11.8173C13.0795 12.0638 12.7415 12.2018 12.3895 12.2018C12.0375 12.2018 11.6994 12.0638 11.4477 11.8173L7.70552 8.06937C7.58068 7.94616 7.48155 7.79932 7.41389 7.63739C7.34622 7.47546 7.31138 7.30167 7.31138 7.12614C7.31138 6.9506 7.34622 6.77682 7.41389 6.61489C7.48155 6.45296 7.58068 6.30612 7.70552 6.18291C7.95083 5.93292 8.08828 5.59643 8.08828 5.24593C8.08828 4.89542 7.95083 4.55893 7.70552 4.30894L5.33547 1.93525C5.08376 1.68878 4.74572 1.55078 4.39369 1.55078C4.04167 1.55078 3.70363 1.68878 3.45191 1.93525L2.90306 2.49744C2.25235 3.14052 1.84257 3.98837 1.74261 4.89845C1.64266 5.80853 1.85863 6.72533 2.35421 7.49468C4.93636 11.306 8.22186 14.5881 12.034 17.1643Z"
+        fill={color}
+      />
     </svg>
   );
 };
@@ -683,32 +706,23 @@ export const SearchIcon: React.FC<IconProps> = ({
 }) => {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
+      color={color}
       width={size}
       height={size}
-      viewBox="0 0 15 15"
-      fill={fill}
-      xmlns="http://www.w3.org/2000/svg">
-      <g id="Search">
-        <ellipse
-          id="Ellipse"
-          cx="6.74886"
-          cy="6.60726"
-          rx="5.33333"
-          ry="5.33333"
-          stroke={color}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          id="Line"
-          d="M10.4155 10.5793L13.7489 13.9127"
-          stroke={color}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </g>
+      fill={fill}>
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M8.00156 2.27344C4.88115 2.27344 2.35156 4.80303 2.35156 7.92344C2.35156 11.0438 4.88115 13.5734 8.00156 13.5734C11.122 13.5734 13.6516 11.0438 13.6516 7.92344C13.6516 4.80303 11.122 2.27344 8.00156 2.27344ZM0.851562 7.92344C0.851562 3.9746 4.05273 0.773438 8.00156 0.773438C11.9504 0.773438 15.1516 3.9746 15.1516 7.92344C15.1516 11.8723 11.9504 15.0734 8.00156 15.0734C4.05273 15.0734 0.851562 11.8723 0.851562 7.92344Z"
+        fill="#1E1E1E"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M11.872 12.1596C12.1649 11.8667 12.6398 11.8667 12.9327 12.1596L16.9327 16.1597C17.2256 16.4526 17.2256 16.9274 16.9327 17.2203C16.6398 17.5132 16.1649 17.5132 15.872 17.2203L11.872 13.2203C11.5791 12.9274 11.5791 12.4525 11.872 12.1596Z"
+        fill="#1E1E1E"
+      />
     </svg>
   );
 };

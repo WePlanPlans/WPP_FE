@@ -1,5 +1,4 @@
 import { ButtonWhite } from '@components/common/button/Button';
-import { TourType } from '@/@types/tours.types';
 import { InfiniteQueryObserverResult } from '@tanstack/react-query';
 import { ResultItem } from './ResultItem';
 

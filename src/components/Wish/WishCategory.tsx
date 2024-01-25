@@ -10,9 +10,9 @@ const WishCategory: React.FC<WishCategoryProps> = ({ onCategoryClick }) => {
 
   const categories = [
     { code: null, name: '전체' },
-    { code: 12, name: '관광지' },
     { code: 32, name: '숙소' },
     { code: 39, name: '식당' },
+    { code: 12, name: '관광지' },
   ];
 
   const handleSelectCategory = (name: string) => {
@@ -25,7 +25,7 @@ const WishCategory: React.FC<WishCategoryProps> = ({ onCategoryClick }) => {
   };
 
   return (
-    <div className="no-scrollbar mb-6 mt-3 flex w-[100%] overflow-scroll overflow-y-hidden bg-white">
+    <div className="no-scrollbar mb-[10px] mt-[10px] flex w-[100%] overflow-scroll overflow-y-hidden bg-white">
       {categories.map((category) => {
         return (
           <WishCategoryItem

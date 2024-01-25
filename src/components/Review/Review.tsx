@@ -15,7 +15,6 @@ import { isModalOpenState } from '@recoil/modal';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ReviewRequest } from '@recoil/review';
 interface EditReviewMutationParams {
   reviewData: ReviewRequest;
   targetReviewId: number;

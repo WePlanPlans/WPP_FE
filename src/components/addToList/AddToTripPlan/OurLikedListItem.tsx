@@ -1,4 +1,3 @@
-import { LikedListType } from '@/@types/tours.types';
 import { ListCheckBtn } from '@components/common/button/ListSelectBtn';
 import { StarIcon } from '@components/common/icons/Icons';
 import { selectedItemsState } from '@recoil/listItem';

@@ -9,15 +9,16 @@ export const RegionSelect = ({}) => {
 
   const [selectedRegion, setSelectedRegion] = useState('');
   // 지역값 쿼리스트링으로 저장
-  const onRegionSelect = (value: string) => {
+  const onRegionSelect = (key: string) => {
     const queryParams = new URLSearchParams(location.search);
+    const value = AREA_CODE[key as keyof typeof AREA_CODE];
 
-    if (value === selectedRegion) {
+    if (key === selectedRegion) {
       queryParams.delete('region');
       setSelectedRegion('');
     } else {
       queryParams.set('region', value);
-      setSelectedRegion(value);
+      setSelectedRegion(key);
     }
 
     navigate(
@@ -30,6 +31,6 @@ export const RegionSelect = ({}) => {
   };
 
   return (
-    <ToggleValue values={Object.values(AREA_CODE)} onToggle={onRegionSelect} />
+    <ToggleValue values={Object.keys(AREA_CODE)} onToggle={onRegionSelect} />
   );
 };
