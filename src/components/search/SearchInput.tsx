@@ -52,24 +52,26 @@ const SearchInput = () => {
         <div className="cursor-pointer" onClick={goBack}>
           <BackIcon />
         </div>
-        <div className="absolute left-[36px] top-1/2  -translate-y-1/2 transform">
-          <SearchIcon />
-        </div>
-        <input
-          className="body1 ml-5 h-[40px] w-full items-center rounded-lg bg-gray1 pl-[32px] pr-2.5 focus:outline-none"
-          placeholder="어디로 떠나세요?"
-          value={inputValue}
-          onChange={handleChange}
-          onKeyPress={handleKeyPress}
-          autoFocus
-        />
-        {inputValue && (
-          <div
-            className="absolute right-2 top-1/2 -translate-y-1/2 transform cursor-pointer rounded-full bg-gray3"
-            onClick={clearInput}>
-            <CloseIcon />
+        <div className="body1 ml-5 flex h-[40px] w-full items-center rounded-lg bg-gray1">
+          <div className="ml-[14px]">
+            <SearchIcon />
           </div>
-        )}
+          <input
+            className=" ml-[8px] bg-transparent pr-2.5 focus:outline-none"
+            placeholder="어디로 떠나세요?"
+            value={inputValue}
+            onChange={handleChange}
+            onKeyPress={handleKeyPress}
+            autoFocus
+          />
+          {inputValue && (
+            <div
+              className="absolute right-2 top-1/2 -translate-y-1/2 transform cursor-pointer rounded-full bg-gray3"
+              onClick={clearInput}>
+              <CloseIcon />
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

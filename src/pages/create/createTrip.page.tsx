@@ -102,7 +102,6 @@ export const CreateTrip = () => {
           onChange={(e) => {
             setTitle(e.target.value);
           }}
-          autoFocus
         />
         {title && (
           <div
