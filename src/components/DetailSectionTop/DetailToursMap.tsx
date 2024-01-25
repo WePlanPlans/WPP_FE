@@ -42,7 +42,7 @@ export default function DetailToursMap({ mapData }: DetailToursMapProps) {
       <div className="flex-col items-start">
         <div className="mb-[10px] ml-[-2.5px] flex items-center">
           <MapIcon size={24} fill="#888888" color="none" />
-          <p className="min-w-[310px] flex-shrink-0 flex-grow-0 overflow-hidden text-left text-sm text-[#1e1e1e]">
+          <p className="max-w-[325px] flex-shrink-0 flex-grow-0 overflow-hidden truncate text-left text-sm text-[#1e1e1e]">
             {fullAddress}
           </p>
         </div>
