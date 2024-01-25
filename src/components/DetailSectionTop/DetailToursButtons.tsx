@@ -10,11 +10,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { getMember } from '@api/member';
 
-interface reviewProps {
-  reviewData: any;
-}
-
-export default function DetailTourButtons({ reviewData }: reviewProps) {
+export default function DetailTourButtons({
+  reviewData,
+}: {
+  reviewData: tourDetail;
+}) {
   const { title, contentTypeId } = reviewData;
   const params = useParams();
   const tourItemId = Number(params.id);
@@ -48,8 +48,8 @@ export default function DetailTourButtons({ reviewData }: reviewProps) {
         <button
           onClick={handlePostingReivew}
           className="flex h-[53px] w-1/2 items-center justify-center gap-2 rounded-lg border border-solid border-gray3 p-2 pr-4">
-          <PenIcon className="mt-[3px]" />
-          <span className="text-sm ">리뷰 쓰기</span>
+          <PenIcon className="mt-[0.5px]" color="#5E5E5E" />
+          <span className="text-sm text-gray5">리뷰 쓰기</span>
         </button>
       </div>
     </>

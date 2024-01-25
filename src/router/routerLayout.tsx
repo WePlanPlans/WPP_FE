@@ -17,8 +17,10 @@ const MainLayout = () => {
     '/myPageReview',
     '/info',
     '/survey',
-    '/trip',
+    '/plan',
     '/create',
+    '/add',
+    '/edit',
   ];
   const showNav = !hideNavPaths.some((path) =>
     location.pathname.includes(path),

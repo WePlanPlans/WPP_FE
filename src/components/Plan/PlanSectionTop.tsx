@@ -23,6 +23,7 @@ import PlanSchedule from './PlanSchedule';
 import PlanCursor from './PlanCursor';
 import PlanOtherCursor from './PlanOtherCursor';
 
+
 const PlanSectionTop = () => {
   const navigate = useNavigate();
   const [, setDay] = useRecoilState(dayState);
@@ -102,6 +103,7 @@ const PlanSectionTop = () => {
           <PlanItem key={date} date={date} day={DayArr[index]} />
         ))}
       />
+      <ScrollTopButton />
     </div>
   );
 };

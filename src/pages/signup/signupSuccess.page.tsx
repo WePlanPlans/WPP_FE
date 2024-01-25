@@ -11,14 +11,14 @@ const SignupSuccess = () => {
           <SuccessIcon />
         </div>
         <h1 className="title1 mb-3 text-center text-main1">
-          환영합니다!
+          만나서 반가워요!
           <br />
-          가입이 완료되었습니다.
+          가입이 완료되었어요.
         </h1>
         <span className="body6 text-center leading-5 text-gray4">
-          위플랜플랜스 회원이 되신 것을 환영합니다.
+          위플랜플랜스에서 여행 계획을 세워볼까요?
           <br />
-          여행 취향과 프로필을 등록해주세요!
+          여행 취향과 프로필을 등록하면 도움이 될 거예요.
         </span>
       </div>
       <div className="flex flex-col gap-2">

@@ -52,6 +52,15 @@ const PlanItemBox = ({
     }
   };
 
+  const formatTime = (totalMinutes: number) => {
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    if (hours === 0) {
+      return `${minutes}분`;
+    }
+    return `${hours}시간 ${minutes}분`;
+  };
+
   return (
     <>
       <div>
@@ -147,9 +156,9 @@ const PlanItemBox = ({
                             ? '경로 정보가 없습니다.'
                             : `${(path.pathInfo.totalDistance / 1000).toFixed(
                                 2,
-                              )}km, ${
-                                path.pathInfo.totalTime
-                              }분, ${path.pathInfo.price.toLocaleString()}원`}
+                              )}km, ${formatTime(
+                                path.pathInfo.totalTime,
+                              )}, ${path.pathInfo.price.toLocaleString()}원`}
                         </div>
                       </div>
                     </div>

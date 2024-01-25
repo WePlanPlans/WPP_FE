@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
-  CalendarIcon,
+  CalendarIcon3,
   CalendarIcon2,
   HeartIcon,
   HomeIcon,
@@ -45,7 +45,9 @@ const Nav = () => {
               fill={isActive('/') ? 'currentColor' : 'none'}
             />
           </div>
-          <p className="caption1 mt-[3px] text-center">홈</p>
+          <p className="caption1 mt-[3px] text-center font-normal text-gray7">
+            홈
+          </p>
         </div>
 
         {isLoggedIn ? (
@@ -56,31 +58,33 @@ const Nav = () => {
               {isActive('/mytrip') ? (
                 <CalendarIcon2 size={24} />
               ) : (
-                <CalendarIcon size={24} />
+                <CalendarIcon3 size={24} />
               )}
             </div>
-            <p className="caption1 mt-[6px] text-center text-xs/[11px]">여정</p>
+            <p className="caption1 mt-[6px] text-center text-xs/[11px] font-normal text-gray7">
+              일정
+            </p>
           </div>
         ) : (
           <Alert
             title={'로그인'}
             message={
               <>
-                나의 여정 조회를 위해 로그인이 필요합니다.
+                여정을 관리하려면 로그인이 필요해요.
                 <br />
-                로그인 하시겠습니까?
+                로그인하러 가볼까요?
               </>
             }
             onConfirm={handleConfirm}>
             <div className="cursor-pointer flex-col items-center justify-center px-2">
               <div className="flex justify-center">
-                <CalendarIcon
+                <CalendarIcon3
                   size={24}
                   fill={isActive('/mytrip') ? '#1E1E1E' : 'none'}
                 />
               </div>
-              <p className="caption1 mt-[6px] text-center text-xs/[11px]">
-                여정
+              <p className="caption1 mt-[6px] text-center text-xs/[11px] font-normal text-gray7">
+                일정
               </p>
             </div>
           </Alert>
@@ -96,7 +100,7 @@ const Nav = () => {
                 fill={isActive('/wishlist') ? 'currentColor' : 'none'}
               />
             </div>
-            <p className="caption1 mt-[5px] text-center text-xs/[11px]">
+            <p className="caption1 mt-[5px] text-center text-xs/[11px] font-normal text-gray7">
               관심목록
             </p>
           </div>
@@ -105,9 +109,9 @@ const Nav = () => {
             title={'로그인'}
             message={
               <>
-                관심 목록 조회를 위해 로그인이 필요합니다.
+                관심 여행지를 관리하려면 로그인이 필요해요.
                 <br />
-                로그인 하시겠습니까?
+                로그인하러 가볼까요?
               </>
             }
             onConfirm={handleConfirm}>
@@ -118,7 +122,7 @@ const Nav = () => {
                   fill={isActive('/wishlist') ? 'currentColor' : 'none'}
                 />
               </div>
-              <p className="caption1 mt-[5px] text-center text-xs/[11px]">
+              <p className="caption1 mt-[5px] text-center text-xs/[11px] font-normal text-gray7">
                 관심목록
               </p>
             </div>
@@ -134,7 +138,9 @@ const Nav = () => {
               fill={isActive('/mypage') ? 'currentColor' : 'none'}
             />
           </div>
-          <p className="caption1 mt-[4px] text-center ">내정보</p>
+          <p className="caption1 mt-[4px] text-center font-normal text-gray7">
+            내정보
+          </p>
         </div>
       </div>
     </nav>

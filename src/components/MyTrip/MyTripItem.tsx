@@ -66,10 +66,10 @@ const MyTripItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
             </div>
             <div className="ml-[10px] flex w-full flex-col items-start justify-between  ">
               <div className="mt-[1px] ">
-                <div className="truncate text-[15px] text-base font-semibold text-stone-900">
+                <div className="truncate text-[15px] text-base font-bold text-stone-900">
                   {tripName}
                 </div>
-                <div className="text-sm font-normal text-zinc-500">
+                <div className="text-[14px] font-normal text-gray5">
                   {startDate.replace(/-/g, '.')} -{' '}
                   {endDate.replace(/-/g, '.').split('2024.')}
                   {tripDuration === '0박 1일' ? null : ` (${tripDuration})`}
