@@ -133,6 +133,95 @@ export const CalendarIcon2: React.FC<IconProps> = ({ size = 25 }) => {
   );
 };
 
+export const CalendarIcon3: React.FC<IconProps> = ({
+  size = 25,
+  color = 'black',
+  fill = 'none',
+  className,
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      className={className}
+      viewBox="0 0 25 25"
+      fill={fill}>
+      <rect
+        x="3.1955"
+        y="4.66537"
+        width="18"
+        height="18"
+        rx="5"
+        stroke={color}
+        strokeWidth="1.5"
+      />
+      <path
+        d="M3.1955 9.66537H21.1955"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.6956 3.16537L16.6956 6.16537"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7.69556 3.16537L7.69556 6.16537"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.69543 13.6646H7.69543"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11.6954 13.6646H12.6954"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.6955 13.6646H17.6955"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6.69543 17.6654H7.69543"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M11.6954 17.6654H12.6954"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.6955 17.6654H17.6955"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
 export const HeartIcon: React.FC<IconProps> = ({
   size = 25,
   color = 'black',

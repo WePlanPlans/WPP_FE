@@ -72,12 +72,12 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
 
   return (
     <div
-      className={`relative cursor-pointer pb-[4px]`}
+      className={`relative mb-[4px] cursor-pointer`}
       onClick={() => navigate(`/detail/${tourItemId}`)}>
       <div className="flex">
         <div>
           <img
-            className="rounded-1 h-[72px] max-h-[72px] w-[72px] rounded-[16px] object-cover"
+            className="rounded-1 h-[72px] max-h-[72px] w-[72px] rounded-[8px] object-cover"
             src={smallThumbnailUrl}
             alt="여행지 이미지"
           />
