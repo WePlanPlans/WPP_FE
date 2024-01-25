@@ -8,7 +8,7 @@ import { LikedToursList } from './LikedToursList';
 import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
 import { useEffect, useState } from 'react';
 import IsEditableModal from '@components/Share/IsEditableModal';
-import ScrollTopButton from '@components/Plan/ScrollTopButton';
+import ScrollTopButton from '@components/common/scrollTopButton/ScrollTopButton';
 
 const TripSectionTop = () => {
   const navigate = useNavigate();

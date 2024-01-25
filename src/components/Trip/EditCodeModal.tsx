@@ -63,14 +63,14 @@ const EditCodeModal = () => {
 
   return (
     <>
-      {isToastVisible && <ToastPopUp noun="여행 일정" verb="삭제" />}
+      {isToastVisible && <ToastPopUp noun="나의 여정" verb="삭제" />}
       {isLogin ? (
         tripAuthority === 'WRITE' ? (
           <Dialog.Root modal>
             <Dialog.Trigger asChild>
               <button
                 onClick={() => setIsEditModal(true)}
-                className="body3 rounded-lg border-[1px] border-solid border-gray2 px-[10px] py-[8px] text-gray4">
+                className="body3 rounded-lg border-[1.25px] border-solid border-gray2 px-[10px] py-[8px] text-gray4">
                 편집
               </button>
             </Dialog.Trigger>
