@@ -9,7 +9,7 @@ export const ResultItem = ({ result }: { result: TourType }) => {
   };
   return (
     <div
-      className="flex h-[52px] w-full cursor-pointer py-1.5"
+      className="mb-[8px] flex h-[52px] w-full cursor-pointer py-1.5"
       onClick={handleClick}>
       <div className="imgWrap mr-2.5 flex-shrink-0 overflow-hidden rounded-lg">
         <img
@@ -19,7 +19,7 @@ export const ResultItem = ({ result }: { result: TourType }) => {
         />
       </div>
       <div className="textWrap flex flex-grow flex-col justify-between overflow-hidden py-0.5">
-        <div className="name body3 truncate">{result.title}</div>
+        <div className="name body4 truncate">{result.title}</div>
         <span className="address body6 truncate text-gray4">
           {result.tourAddress}
         </span>

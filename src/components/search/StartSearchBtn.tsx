@@ -13,7 +13,7 @@ export const StartSearchButton = () => {
       className="flex h-[40px] w-full items-center border-b-2 border-solid px-1"
       onClick={goToSearch}>
       <SearchIcon className="  mr-2.5" />
-      <span className="body1 text-gray4">어디로 떠나세요?</span>
+      <span className="body1 text-gray3">어디로 떠나세요?</span>
     </button>
   );
 };

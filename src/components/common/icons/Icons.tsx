@@ -724,32 +724,23 @@ export const SearchIcon: React.FC<IconProps> = ({
 }) => {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
+      color={color}
       width={size}
       height={size}
-      viewBox="0 0 15 15"
-      fill={fill}
-      xmlns="http://www.w3.org/2000/svg">
-      <g id="Search">
-        <ellipse
-          id="Ellipse"
-          cx="6.74886"
-          cy="6.60726"
-          rx="5.33333"
-          ry="5.33333"
-          stroke={color}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          id="Line"
-          d="M10.4155 10.5793L13.7489 13.9127"
-          stroke={color}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </g>
+      fill={fill}>
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M8.00156 2.27344C4.88115 2.27344 2.35156 4.80303 2.35156 7.92344C2.35156 11.0438 4.88115 13.5734 8.00156 13.5734C11.122 13.5734 13.6516 11.0438 13.6516 7.92344C13.6516 4.80303 11.122 2.27344 8.00156 2.27344ZM0.851562 7.92344C0.851562 3.9746 4.05273 0.773438 8.00156 0.773438C11.9504 0.773438 15.1516 3.9746 15.1516 7.92344C15.1516 11.8723 11.9504 15.0734 8.00156 15.0734C4.05273 15.0734 0.851562 11.8723 0.851562 7.92344Z"
+        fill="#1E1E1E"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M11.872 12.1596C12.1649 11.8667 12.6398 11.8667 12.9327 12.1596L16.9327 16.1597C17.2256 16.4526 17.2256 16.9274 16.9327 17.2203C16.6398 17.5132 16.1649 17.5132 15.872 17.2203L11.872 13.2203C11.5791 12.9274 11.5791 12.4525 11.872 12.1596Z"
+        fill="#1E1E1E"
+      />
     </svg>
   );
 };
