@@ -202,7 +202,7 @@ const DetailAddSchedule = () => {
                   <div className="mt-[40px] flex flex-col items-center justify-center text-center">
                     <GrayCalendarIcon />
                     <p className="mt-[16px] flex-shrink-0 flex-grow-0 text-left text-sm font-semibold text-[#888]">
-                      등록된 여행이 없습니다.
+                      참여하고 있는 여정이 없어요.
                     </p>
                   </div>
                 </Dialog.Description>

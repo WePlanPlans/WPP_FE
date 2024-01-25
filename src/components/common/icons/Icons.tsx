@@ -1041,8 +1041,8 @@ export const TopIcon: React.FC<IconProps> = () => {
 };
 
 export const ShareIcon: React.FC<ChackIconProps> = ({
-  width = 20,
-  height = 19,
+  width = 17.9,
+  height = 17,
   fill = 'none',
   color = 'black',
 }) => {
