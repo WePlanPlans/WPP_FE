@@ -22,6 +22,7 @@ import { getItem } from '@utils/localStorageFun';
 import PlanSchedule from './PlanSchedule';
 import PlanCursor from './PlanCursor';
 import PlanOtherCursor from './PlanOtherCursor';
+import { isMobile } from 'react-device-detect';
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();
@@ -81,8 +82,12 @@ const PlanSectionTop = () => {
   }, [isEnter]);
   return (
     <div className="cursor-area min-h-screen" ref={cursorAreaRef}>
-      <PlanCursor props={cursorAreaRef} />
-      <PlanOtherCursor />
+      {!isMobile && (
+        <>
+          <PlanCursor props={cursorAreaRef} />
+          <PlanOtherCursor />
+        </>
+      )}
       <BackBox
         showBack={true}
         backHandler={() => {
