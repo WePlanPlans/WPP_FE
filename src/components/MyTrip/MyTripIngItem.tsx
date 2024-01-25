@@ -36,7 +36,7 @@ const MyTripIngItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
             </div>
 
             <div className="text-xs font-semibold text-white">
-              {startDate.replace(/-/g, '.')} ~{' '}
+              {startDate.replace(/-/g, '.')} -{' '}
               {endDate.replace(/-/g, '.').split('2024.')}{' '}
               {tripDuration === '0박 1일' ? null : ` (${tripDuration})`}
             </div>
