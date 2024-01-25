@@ -206,4 +206,5 @@ export const pubCursor = (pubCursor: pubCursor, tripId: string) => {
     destination: `/pub/trips/${tripId}/cursor`,
     body: JSON.stringify(pubCursor),
   });
+  console.log('섭실행')
 };

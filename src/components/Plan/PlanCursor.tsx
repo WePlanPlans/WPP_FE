@@ -5,6 +5,7 @@ import { socketContext } from '@hooks/useSocket';
 import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
 import { useRecoilValue } from 'recoil';
 import { visitDateState } from '@recoil/socket';
+import { throttle } from 'lodash';
 
 type PlanCursorProps = {
   props: RefObject<HTMLDivElement>;
@@ -21,6 +22,20 @@ const PlanCursor = ({ props }: PlanCursorProps) => {
     (member) => member.memberId === memberId,
   );
 
+  const throttledPubCursor = throttle((x, y) => {
+    if (token && visitDate) {
+      pubCursor(
+        {
+          token: token,
+          visitDate: visitDate.visitDate,
+          x,
+          y,
+        },
+        tripId,
+      );
+    }
+  }, 50);
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const myX = e.clientX;
@@ -31,15 +46,7 @@ const PlanCursor = ({ props }: PlanCursorProps) => {
       const y = (e.clientY + window.scrollY) / window.innerHeight;
 
       if (token && myName && visitDate && tripId) {
-        pubCursor(
-          {
-            token: token,
-            visitDate: visitDate.visitDate,
-            x,
-            y,
-          },
-          tripId,
-        );
+        throttledPubCursor(x, y);
       }
     };
 
