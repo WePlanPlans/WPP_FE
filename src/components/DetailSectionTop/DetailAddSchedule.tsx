@@ -85,8 +85,8 @@ const DetailAddSchedule = () => {
         <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
           <Dialog.Trigger asChild>
             <button className="flex h-[53px] w-1/2 items-center justify-center gap-2 rounded-lg border border-solid border-gray3 p-2 pr-4 ">
-              <CalendarIcon className="mb-[2px]" />
-              <span className="text-sm ">일정 추가</span>
+              <CalendarIcon className="mb-[2px]" color="#5E5E5E" />
+              <span className="text-sm text-gray5">일정 추가</span>
             </button>
           </Dialog.Trigger>
           <Dialog.Portal>
@@ -244,8 +244,8 @@ const DetailAddSchedule = () => {
           }
           onConfirm={() => handleNavigate('/login')}>
           <button className="flex h-[53px] w-1/2 items-center justify-center gap-2 rounded-lg border border-solid border-gray3 p-2 pr-4 ">
-            <CalendarIcon className="mb-[2px]" />
-            <span className="text-sm ">일정 추가</span>
+            <CalendarIcon className="mb-[2px]" color="#5E5E5E" />
+            <span className="text-sm text-gray5">일정 추가</span>
           </button>
         </Alert>
       )}

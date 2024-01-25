@@ -33,12 +33,12 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
 
   return (
     <div
-      className={`relative cursor-pointer pb-4 `}
+      className={`relative mb-[2px] cursor-pointer `}
       onClick={() => navigate(`/detail/${id}`)}>
       <div className="flex">
         <div>
           <img
-            className="rounded-1 h-[82px] max-h-[82px] w-[82px] rounded-[16px] object-cover"
+            className="rounded-1 h-[72px] max-h-[72px] w-[72px] rounded-[8px] object-cover"
             src={smallThumbnailUrl}
             alt="여행지 이미지"
           />
@@ -48,7 +48,7 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
         </div>
 
         <div className="ml-[8px] flex flex-col items-start justify-between gap-[15px]">
-          <div className=" max-w-[240px]">
+          <div className=" max-w-[230px]">
             <p className=" truncate whitespace-nowrap px-[2px] font-['Pretendard'] text-[16px] font-bold leading-normal text-black">
               {title}
             </p>

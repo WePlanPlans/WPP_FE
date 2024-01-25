@@ -17,7 +17,7 @@ export default function DetailToursMap({ mapData }: DetailToursMapProps) {
 
   const MapStyle = {
     width: '100%',
-    height: '180px',
+    height: '160px',
     marginTop: '5px',
     marginBottom: '15px',
   };

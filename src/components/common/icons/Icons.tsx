@@ -34,7 +34,7 @@ export const HomeIcon: React.FC<IconProps> = ({
 };
 
 export const CalendarIcon: React.FC<IconProps> = ({
-  size = 25,
+  size = 20,
   color = 'black',
   fill = 'none',
   className,
@@ -44,77 +44,14 @@ export const CalendarIcon: React.FC<IconProps> = ({
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
-      className={className}
-      viewBox="0 0 25 25"
-      fill={fill}>
-      <rect
-        x="3.1955"
-        y="4.66537"
-        width="18"
-        height="18"
-        rx="5"
-        stroke={color}
-        strokeWidth="1.5"
-      />
+      viewBox="0 0 21 21"
+      color={color}
+      fill={fill}
+      className={className}>
       <path
-        d="M3.1955 9.66537H21.1955"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M16.6956 3.16537L16.6956 6.16537"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M7.69556 3.16537L7.69556 6.16537"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M6.69543 13.6646H7.69543"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M11.6954 13.6646H12.6954"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M16.6955 13.6646H17.6955"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M6.69543 17.6654H7.69543"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M11.6954 17.6654H12.6954"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M16.6955 17.6654H17.6955"
-        stroke={color}
-        strokeWidth="1.5"
+        d="M10.5404 17.8008H5.1237C4.68167 17.8008 4.25775 17.6252 3.94519 17.3126C3.63263 17.0001 3.45703 16.5761 3.45703 16.1341V6.13411C3.45703 5.69209 3.63263 5.26816 3.94519 4.9556C4.25775 4.64304 4.68167 4.46745 5.1237 4.46745H15.1237C15.5657 4.46745 15.9896 4.64304 16.3022 4.9556C16.6148 5.26816 16.7904 5.69209 16.7904 6.13411V10.3008M13.457 2.80078V6.13411M6.79036 2.80078V6.13411M3.45703 9.46745H16.7904M13.457 16.1341H18.457M15.957 13.6341V18.6341"
+        stroke="#5E5E5E"
+        strokeWidth="1.25"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -342,7 +279,7 @@ export const MapIcon: React.FC<IconProps> = ({
 };
 
 export const PenIcon: React.FC<IconProps> = ({
-  size = 25,
+  size = 20,
   color = 'black',
   fill = 'none',
   className,
@@ -386,24 +323,21 @@ export const PenIcon: React.FC<IconProps> = ({
 };
 
 export const PhoneIcon: React.FC<IconProps> = ({
-  size = 25,
-  color = 'black',
-  fill = 'none',
+  size = 20,
+  color = '#888888',
+  fill = '#888888',
 }) => {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
-      viewBox="0 0 17 17"
-      fill={fill}
-      xmlns="http://www.w3.org/2000/svg">
-      <g id="Group 36690">
-        <path
-          id="Vector"
-          d="M10.4971 14.3215C11.1129 14.7188 11.8468 14.8919 12.5752 14.8118C13.3037 14.7316 13.9823 14.4031 14.4971 13.8815L14.9471 13.4415C15.1444 13.2397 15.2548 12.9687 15.2548 12.6865C15.2548 12.4043 15.1444 12.1333 14.9471 11.9315L13.0371 10.0415C12.837 9.84482 12.5676 9.73463 12.2871 9.73463C12.0065 9.73463 11.7372 9.84482 11.5371 10.0415C11.3353 10.2388 11.0643 10.3492 10.7821 10.3492C10.4999 10.3492 10.2289 10.2388 10.0271 10.0415L7.02709 7.04148C6.92701 6.94285 6.84754 6.82532 6.79329 6.6957C6.73905 6.56609 6.71112 6.42698 6.71112 6.28648C6.71112 6.14597 6.73905 6.00687 6.79329 5.87725C6.84754 5.74764 6.92701 5.6301 7.02709 5.53148C7.22374 5.33137 7.33394 5.06204 7.33394 4.78148C7.33394 4.50092 7.22374 4.23158 7.02709 4.03148L5.12709 2.13148C4.9253 1.93419 4.6543 1.82373 4.37209 1.82373C4.08988 1.82373 3.81888 1.93419 3.61709 2.13148L3.17709 2.58148C2.65544 3.09622 2.32692 3.77488 2.24679 4.50334C2.16666 5.23181 2.3398 5.96565 2.73709 6.58148C4.80713 9.63221 7.44103 12.2593 10.4971 14.3215Z"
-          stroke={color}
-        />
-      </g>
+      viewBox="0 0 21 21"
+      fill={fill}>
+      <path
+        d="M12.034 17.1643C12.8021 17.6607 13.7175 17.877 14.6262 17.7769C15.5349 17.6768 16.3815 17.2664 17.0235 16.6147L17.5849 16.065C17.831 15.8129 17.9688 15.4743 17.9688 15.1217C17.9688 14.7692 17.831 14.4306 17.5849 14.1785L15.2023 11.8173C14.9527 11.5716 14.6168 11.434 14.2668 11.434C13.9168 11.434 13.5809 11.5716 13.3313 11.8173C13.0795 12.0638 12.7415 12.2018 12.3895 12.2018C12.0375 12.2018 11.6994 12.0638 11.4477 11.8173L7.70552 8.06937C7.58068 7.94616 7.48155 7.79932 7.41389 7.63739C7.34622 7.47546 7.31138 7.30167 7.31138 7.12614C7.31138 6.9506 7.34622 6.77682 7.41389 6.61489C7.48155 6.45296 7.58068 6.30612 7.70552 6.18291C7.95083 5.93292 8.08828 5.59643 8.08828 5.24593C8.08828 4.89542 7.95083 4.55893 7.70552 4.30894L5.33547 1.93525C5.08376 1.68878 4.74572 1.55078 4.39369 1.55078C4.04167 1.55078 3.70363 1.68878 3.45191 1.93525L2.90306 2.49744C2.25235 3.14052 1.84257 3.98837 1.74261 4.89845C1.64266 5.80853 1.85863 6.72533 2.35421 7.49468C4.93636 11.306 8.22186 14.5881 12.034 17.1643Z"
+        fill={color}
+      />
     </svg>
   );
 };
