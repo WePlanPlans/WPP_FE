@@ -49,14 +49,21 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
     tripId: string,
   ) => {
     if (transportation !== transpo) {
-      callBackPub(() =>
-        pubUpdateTransportation(
-          {
-            visitDate: date,
-            transportation: transportation,
-          },
-          tripId,
-        ),
+      // callBackPub(() =>
+      //   pubUpdateTransportation(
+      //     {
+      //       visitDate: date,
+      //       transportation: transportation,
+      //     },
+      //     tripId,
+      //   ),
+      // );
+      pubUpdateTransportation(
+        {
+          visitDate: date,
+          transportation: transportation,
+        },
+        tripId,
       );
     }
   };

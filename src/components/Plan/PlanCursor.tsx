@@ -43,38 +43,17 @@ const PlanCursor = ({ date }: PlanCursorProps) => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (token && position && myName && date && tripId) {
-  //     const timeoutId = setTimeout(() => {
-  //       callBackPub(() =>
-  //         pubCursor(
-  //           {
-  //             token: token,
-  //             visitDate: date,
-  //             x: position.x,
-  //             y: position.y,
-  //           },
-  //           tripId,
-  //         ),
-  //       );
-  //     }, 1000);
-
-  //     return () => clearTimeout(timeoutId);
-  //   }
-  // }, [position]);
 
   useEffect(() => {
     if (token && position && myName && date && tripId) {
-      callBackPub(() =>
-        pubCursor(
-          {
-            token: token,
-            visitDate: date,
-            x: position.x,
-            y: position.y,
-          },
-          tripId,
-        ),
+      pubCursor(
+        {
+          token: token,
+          visitDate: date,
+          x: position.x,
+          y: position.y,
+        },
+        tripId,
       );
     }
   }, [position]);

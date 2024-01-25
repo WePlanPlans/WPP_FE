@@ -68,14 +68,18 @@ const PlanSectionTop = () => {
       console.log('실행');
       const accessToken = getItem('accessToken');
       if (accessToken) {
-        callBackPub(() => {
-          pubConnectMember({ token: accessToken || '' }, tripId);
-        });
+        // callBackPub(() => {
+        //   pubConnectMember({ token: accessToken || '' }, tripId);
+        // });
+
+        pubConnectMember({ token: accessToken || '' }, tripId);
 
         return () => {
-          callBackPub(() =>
-            pubDisconnectMember({ token: accessToken || '' }, tripId),
-          );
+          // callBackPub(() =>
+          //   pubDisconnectMember({ token: accessToken || '' }, tripId),
+          // );
+
+          pubDisconnectMember({ token: accessToken || '' }, tripId);
         };
       }
     }

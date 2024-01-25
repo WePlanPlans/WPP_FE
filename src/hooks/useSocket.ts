@@ -17,7 +17,7 @@ import {
   SocketContextType,
 } from '@/@types/service';
 import { createContext } from 'react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { visitDateState } from '@recoil/socket';
@@ -44,13 +44,6 @@ export const useSocket = () => {
   const [tripMember, setTripMember] = useState<subMemberRes | null>(null);
   const [tripBudget, setTripBudget] = useState<subBudgetRes | null>(null);
   const [tripCursor, setTripCursor] = useState<subCursorRes | null>(null);
-
-  // const socketCallbackRef = useRef<(() => void) | null>(null);
-
-  // const callBackPub = (callback: () => void): void => {
-  //   // socketCallbackRef에 새로운 콜백을 할당
-  //   socketCallbackRef.current = callback;
-  // };
 
   const [socketCallback, setSocketCallback] = useState<(() => void) | null>(
     null,
@@ -101,7 +94,6 @@ export const useSocket = () => {
       if (socketCallback) {
         socketCallback();
       }
-
     };
 
     socketClient.activate();
@@ -117,7 +109,7 @@ export const useSocket = () => {
       socketClient.deactivate();
       console.log('소켓해제');
     };
-  }, [tripId, visitDate, callBackPub]);
+  }, [tripId, visitDate, socketCallback]);
 
   return {
     tripInfo,
