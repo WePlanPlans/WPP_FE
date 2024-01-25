@@ -92,7 +92,7 @@ const DetailAddSchedule = () => {
           <Dialog.Portal>
             <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 z-10 bg-black opacity-70" />
             <Dialog.Content
-              className={`fixed left-[50%] top-[97%] z-10 w-[412px] translate-x-[-50%] translate-y-[-90%] rounded-tl-[16px] rounded-tr-[16px] bg-white p-[20px] pb-[50px] focus:outline-none ${
+              className={`fixed left-[50%] top-[97%] z-10 w-[100vw] max-w-[412px] translate-x-[-50%] translate-y-[-90%] rounded-tl-[16px] rounded-tr-[16px] bg-white p-[20px] pb-[50px] focus:outline-none ${
                 myTrips.length > 0 ? 'h-[392px]' : 'h-[276px]'
               }`}>
               <div className="text-mauve12 m-0 flex w-full justify-end text-[17px] font-medium">
@@ -202,7 +202,7 @@ const DetailAddSchedule = () => {
                   <div className="mt-[40px] flex flex-col items-center justify-center text-center">
                     <GrayCalendarIcon />
                     <p className="mt-[16px] flex-shrink-0 flex-grow-0 text-left text-sm font-semibold text-[#888]">
-                      등록된 여행이 없습니다.
+                      참여하고 있는 여정이 없어요.
                     </p>
                   </div>
                 </Dialog.Description>

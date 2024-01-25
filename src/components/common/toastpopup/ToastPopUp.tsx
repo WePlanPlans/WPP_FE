@@ -22,8 +22,10 @@ const ToastPopUp: React.FC<ToastPopUpProps> = ({ noun, verb }) => {
   }, []);
 
   useEffect(() => {
-    if (noun === '일정' || noun === '날짜 이동' || noun === '여행 일정') {
+    if (noun === '일정' || noun === '날짜 이동') {
       setParticle('이');
+    } else if (noun === '나의 여정') {
+      setParticle('에서');
     }
   }, [noun]);
 
@@ -51,7 +53,7 @@ const ToastPopUp: React.FC<ToastPopUpProps> = ({ noun, verb }) => {
       <CircleCheckIcon fill="#29DDF6" className="mr-2" />
       <p>
         {noun}
-        {particle} {verb}되었습니다.
+        {particle} {verb}되었어요.
       </p>
     </div>
   );

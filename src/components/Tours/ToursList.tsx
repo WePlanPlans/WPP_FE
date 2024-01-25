@@ -1,4 +1,3 @@
-import { TourType, ToursListProps } from '@/@types/tours.types';
 import { getTours } from '@api/tours';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
@@ -46,6 +45,7 @@ const ToursList = ({ selectedRegion }: ToursListProps) => {
       pageStart={0}
       loadMore={() => fetchNextPage()}
       hasMore={hasNextPage}
+      threshold={500}
       loader={
         <div key={uuidv4()} className="flex justify-center">
           <Spinner />

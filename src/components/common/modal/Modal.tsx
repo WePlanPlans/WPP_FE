@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Modal from 'react-modal';
 import { modalChildrenState } from '@recoil/modal';
 import { useRecoilValue } from 'recoil';
@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil';
 interface ModalProps {
   isOpen: boolean;
   closeModal: () => void;
-  children: any;
+  children: ReactNode;
 }
 
 const ModalComponent: React.FC<ModalProps> = ({
@@ -42,7 +42,7 @@ export const getModalStyles = (modalChildren: string) => {
         transform: 'translate(-50%, 0)',
         maxWidth: '412px',
         width: '100%',
-        height: '186px',
+        height: '162px',
         borderTopLeftRadius: '16px',
         borderTopRightRadius: '16px',
       },

@@ -52,6 +52,15 @@ const PlanItemBox = ({
     }
   };
 
+  const formatTime = (totalMinutes: number) => {
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    if (hours === 0) {
+      return `${minutes}분`;
+    }
+    return `${hours}시간 ${minutes}분`;
+  };
+
   return (
     <>
       <div>
@@ -98,11 +107,11 @@ const PlanItemBox = ({
                           </button>
                         }
                         content={
-                          <div className="mb-6 mt-8 flex w-[80%] items-center justify-between border-b-[1px] border-solid border-gray4">
+                          <div className="mb-6 mt-8 flex w-[95%] items-center justify-between border-b-[1px] border-solid border-gray4">
                             <div className="flex w-full items-center justify-between">
                               <input
                                 type="number"
-                                className="title3 text-gray6 placeholder:text-gray4 focus:outline-none"
+                                className="title3 w-full pl-[2px] text-gray6 placeholder:text-gray4 focus:outline-none"
                                 placeholder="금액"
                                 value={inputPrice}
                                 onChange={(e) => setInputPrice(e.target.value)}
@@ -147,9 +156,9 @@ const PlanItemBox = ({
                             ? '경로 정보가 없습니다.'
                             : `${(path.pathInfo.totalDistance / 1000).toFixed(
                                 2,
-                              )}km, ${
-                                path.pathInfo.totalTime
-                              }분, ${path.pathInfo.price.toLocaleString()}원`}
+                              )}km, ${formatTime(
+                                path.pathInfo.totalTime,
+                              )}, ${path.pathInfo.price.toLocaleString()}원`}
                         </div>
                       </div>
                     </div>

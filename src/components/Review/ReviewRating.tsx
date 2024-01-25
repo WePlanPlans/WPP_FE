@@ -13,7 +13,7 @@ const ReviewRating = () => {
 
   const handleStarClick = (index: number) => {
     const newRating = index + 1;
-    setRating((prevRating: any) => {
+    setRating((prevRating: number) => {
       const updatedIsHalfClicked =
         prevRating === newRating ? !isHalfClicked : false;
       setIsHalfClicked(updatedIsHalfClicked);
@@ -25,12 +25,12 @@ const ReviewRating = () => {
 
   return (
     <div className="mb-6 flex flex-col items-center justify-center">
-      <div className="mb-1 text-xl font-bold">{title}</div>
+      <div className="mb-4 text-[20px] font-bold">{title}</div>
       <button className="flex gap-1">
         {Array.from({ length: 5 }, (_, index) => (
           <StarIcon
             key={index}
-            size={30}
+            size={40}
             color="none"
             fill={index < rating ? '#FFEC3E' : '#EDEDED'}
             onClick={() => handleStarClick(index)}

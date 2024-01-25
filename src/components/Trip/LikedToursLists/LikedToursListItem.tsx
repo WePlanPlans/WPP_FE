@@ -1,3 +1,7 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { postTripsLikeHate } from '@api/trips';
 import {
   ThumbsUp,
   ThumbsDown,
@@ -5,10 +9,6 @@ import {
   ClickThumbsDown,
   StarIcon,
 } from '@components/common/icons/Icons';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postTripsLikeHate } from '@api/trips';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 interface LikedToursListItemProps {
   ourTripList: ourTripType;
@@ -34,11 +34,11 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [thumbsState, setThumbsState] = useState({
-    prefer: false,
-    notPrefer: false,
+    prefer: prefer,
+    notPrefer: notPrefer,
   });
 
-  const { mutate: thumbsUpMutate } = useMutation({
+  const { mutate: thumbsMutate } = useMutation({
     mutationFn: () =>
       postTripsLikeHate(
         selectedTripId,
@@ -54,14 +54,20 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
 
   const onClickThumbsUpButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setThumbsState({ prefer: true, notPrefer: false });
-    thumbsUpMutate();
+    setThumbsState((prev) => ({
+      prefer: !prev.prefer,
+      notPrefer: false,
+    }));
+    thumbsMutate();
   };
 
   const onClickThumbsDownButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setThumbsState({ prefer: false, notPrefer: true });
-    thumbsUpMutate();
+    setThumbsState((prev) => ({
+      prefer: false,
+      notPrefer: !prev.notPrefer,
+    }));
+    thumbsMutate();
   };
 
   return (

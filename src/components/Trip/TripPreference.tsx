@@ -12,47 +12,65 @@ import { useSetRecoilState, useRecoilState } from 'recoil';
 import { participantsState } from '@recoil/trip';
 import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
 import { useNavigate } from 'react-router-dom';
+import { getMember } from '@api/member';
 
-interface RatioBarParams {
+type RatioBarParams = {
   value: number;
   total: number;
   color: string;
   label1: string;
   label2: string;
-}
+};
 
-interface PercentageParams {
+type PercentageParams = {
   value: number;
   total: number;
   color: string;
-}
+};
 
 const TripPreferenceButton: React.FC = () => {
   const { tripAuthority } = useGetTripsAuthority();
   const navigate = useNavigate();
+  const [res, setRes] = useState<any>(null);
+
   const handleTrip = () => {
-    if (tripAuthority === 'WRITE') {
-      navigate('/mypage/survey');
-    }
+    navigate('/mypage/survey');
   };
 
-  return (
-    <button
-      onClick={handleTrip}
-      className="mb-[17.5px] mt-[20px] flex w-[335px] items-center rounded-full bg-white px-6 py-4 text-sm">
-      <div className="flex items-center text-gray6">
-        <div>
-          <HeartIcon fill="#888888" color="#888888" size={20} />
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const temp = await getMember();
+        setRes(temp);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (res?.data?.status === 200 && tripAuthority === 'WRITE') {
+    return (
+      <button
+        onClick={handleTrip}
+        className="mb-[17.5px]  flex w-[335px] items-center rounded-full bg-white px-6 py-4 text-sm">
+        <div className="flex items-center text-gray6">
+          <div>
+            <HeartIcon fill="#888888" color="#888888" size={20} />
+          </div>
+          <p className="ml-1.5 text-[14px] text-main1">
+            내 여행 취향 설정하러 가기
+          </p>
         </div>
-        <p className="ml-1.5 text-[14px] text-main1">
-          내 여행 취향 설정하러 가기
-        </p>
-      </div>
-      <div className="ml-auto">
-        <RightIcon fill="#5E5E5E" />
-      </div>
-    </button>
-  );
+        <div className="ml-auto">
+          <RightIcon fill="#5E5E5E" />
+        </div>
+      </button>
+    );
+  } else {
+    return null;
+  }
 };
 
 const RatioBar = ({ value, total, color, label1, label2 }: RatioBarParams) => {
@@ -189,7 +207,7 @@ const TripPreference: React.FC = () => {
   };
 
   return (
-    <div className=" m-[-20px] mt-0 flex flex-col items-center bg-gray1 pb-[20px]  ">
+    <div className=" m-[-20px] mt-0 flex flex-col items-center bg-gray1 pb-[20px] pt-[20px]  ">
       <TripPreferenceButton />
       <div
         onClick={handleButtonClick}

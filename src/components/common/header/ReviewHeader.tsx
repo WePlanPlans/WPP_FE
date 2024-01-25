@@ -17,13 +17,11 @@ export default function ReviewHeader() {
   };
 
   return (
-    <header className="mb-4 flex items-center ">
-      <div
-        onClick={goBack}
-        className=" flex cursor-pointer items-center px-3 py-2">
+    <header className="mb-8 flex items-center ">
+      <div onClick={goBack} className=" flex cursor-pointer items-center">
         <BackIcon />
       </div>
-      <div className="flex-grow pr-9 text-center text-sm font-bold">
+      <div className="flex-grow justify-center pr-2 text-center text-[15px] font-bold">
         리뷰 쓰기
       </div>
     </header>

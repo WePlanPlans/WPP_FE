@@ -27,11 +27,11 @@ import EditDelete from '@components/common/modal/children/EditDelete';
 import MyAlert from '@components/common/modal/children/MyAlert';
 import { alertTypeState } from '@recoil/modal';
 
-interface reviewProps {
-  reviewData: any;
-}
-
-export default function DetailReviews({ reviewData }: reviewProps) {
+export default function DetailReviews({
+  reviewData,
+}: {
+  reviewData: tourDetail;
+}) {
   const [reviewDataLength, setReviewDataLength] = useState<number>(0);
   const { title, contentTypeId } = reviewData;
   const params = useParams();
@@ -73,7 +73,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
     return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
   }
 
-  const handleReviewClick = (item: any) => {
+  const handleReviewClick = (item: ReviewInfoItemProps) => {
     const reviewId = item.reviewId;
     navigate(`/reviewComment/${reviewId}`, { state: { item, tourItemId } });
   };
@@ -155,24 +155,26 @@ export default function DetailReviews({ reviewData }: reviewProps) {
             {
               return (
                 <React.Fragment key={index}>
-                  {group?.data.data.reviewInfos.content.map((item: any) => (
-                    <ReviewItem
-                      key={item.reviewId}
-                      reviewId={item.reviewId}
-                      authorNickname={item.authorNickname}
-                      authorProfileImageUrl={item.authorProfileImageUrl}
-                      rating={item.rating}
-                      createdTime={item.createdTime}
-                      content={item.content}
-                      keywords={item.keywords}
-                      commentCount={item.commentCount}
-                      onClick={() => handleReviewClick(item)}
-                      tourItemId={tourItemId}
-                      contentTypeId={contentTypeId}
-                      canTextOverflow={true}
-                      isAuthor={item.isAuthor}
-                    />
-                  ))}
+                  {group?.data.data.reviewInfos.content.map(
+                    (item: ReviewInfoItemProps) => (
+                      <ReviewItem
+                        key={item.reviewId}
+                        reviewId={item.reviewId}
+                        authorNickname={item.authorNickname}
+                        authorProfileImageUrl={item.authorProfileImageUrl}
+                        rating={item.rating}
+                        createdTime={item.createdTime}
+                        content={item.content}
+                        keywords={item.keywords}
+                        commentCount={item.commentCount}
+                        onClick={() => handleReviewClick(item)}
+                        tourItemId={tourItemId}
+                        contentTypeId={contentTypeId}
+                        canTextOverflow={true}
+                        isAuthor={item.isAuthor}
+                      />
+                    ),
+                  )}
                 </React.Fragment>
               );
             }
@@ -187,7 +189,7 @@ export default function DetailReviews({ reviewData }: reviewProps) {
         {modalChildren === 'MyAlert' && alertType === 'LoginReview' && (
           <MyAlert
             title="로그인"
-            content="리뷰 쓰기 시 로그인이 필요해요. 로그인하시겠어요?"
+            content="리뷰를 쓰려면 로그인이 필요해요. 로그인하러 가볼까요?"
           />
         )}
       </Modal>

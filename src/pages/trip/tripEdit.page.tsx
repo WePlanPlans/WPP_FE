@@ -106,7 +106,7 @@ const TripEdit = () => {
     );
   }
   return (
-    <div className="flex h-[95vh] flex-col">
+    <div className="flex h-dvh flex-col">
       <BackBox
         showBack={true}
         backHandler={() => {
@@ -166,7 +166,7 @@ const TripEdit = () => {
         <div className="body1 p-2">{formattedTripDate}</div>
       </InputField>
 
-      <div className="mt-auto">
+      <div className="mt-auto py-[24px]">
         <ButtonPrimary onClick={handleSubmit}>완료</ButtonPrimary>
       </div>
     </div>

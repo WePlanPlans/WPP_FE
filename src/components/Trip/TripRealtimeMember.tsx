@@ -6,7 +6,6 @@ import { Navigation } from 'swiper/modules';
 
 const TripRealtimeMember = () => {
   const { tripMember } = useContext(socketContext);
-
   const tripMemberData = tripMember?.data;
 
   return (
@@ -15,7 +14,7 @@ const TripRealtimeMember = () => {
         slidesPerView={5}
         navigation={true}
         modules={[Navigation]}
-        className="flex w-[375px] items-center justify-center">
+        className="flex w-[100vw] max-w-[375px] items-center justify-center">
         {tripMemberData?.tripMembers?.map((member) => {
           const isConnected = member?.connected;
           const thumbnailUrl = member?.thumbnailUrl;

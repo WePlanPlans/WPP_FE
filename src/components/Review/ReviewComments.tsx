@@ -10,8 +10,9 @@ import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import EditDelete from '@components/common/modal/children/EditDelete';
 import MyAlert from '@components/common/modal/children/MyAlert';
-import { commentState } from '@recoil/review';
+import { commentState, toastPopUpState } from '@recoil/review';
 import { alertTypeState } from '@recoil/modal';
+import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
 
 export default function ReviewComments() {
   const params = useParams();
@@ -23,6 +24,7 @@ export default function ReviewComments() {
   const modalChildren = useRecoilValue(modalChildrenState);
   const setComment = useSetRecoilState(commentState);
   const alertType = useRecoilValue(alertTypeState);
+  const [toastPopUp, setToastPopUp] = useRecoilState(toastPopUpState);
 
   const {
     data: reviewComments,
@@ -61,16 +63,33 @@ export default function ReviewComments() {
     console.log('reviewComments', reviewComments);
   }, [reviewComments]);
 
+  useEffect(() => {
+    if (toastPopUp.isPopUp) {
+      const timer = setTimeout(() => {
+        setToastPopUp(() => ({
+          isPopUp: false,
+          noun: '',
+          verb: '',
+        }));
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [toastPopUp]);
+
   return (
     <>
+      {toastPopUp.isPopUp && (
+        <ToastPopUp noun={toastPopUp.noun} verb={toastPopUp.verb} />
+      )}
       <div className="mb-4 text-sm">
         댓글
         <span className="pl-1 font-bold">{commentDataLength}</span>
       </div>
+      <div className="h-[8px] bg-gray1"></div>
       <div className="flex flex-col">
         {commentDataLength == 0 && (
-          <div className="mb-4 flex flex-col items-center justify-center text-sm text-gray4">
-            <div>댓글이 없습니다. </div>
+          <div className="mt-10 flex flex-col items-center justify-center text-sm text-gray4">
+            <div>아직 댓글이 없어요. </div>
             <div>첫 댓글을 작성해보세요!</div>
           </div>
         )}
@@ -88,17 +107,19 @@ export default function ReviewComments() {
               {
                 return (
                   <React.Fragment key={index}>
-                    {group?.data.data.comments.content.map((item: any) => (
-                      <CommentItem
-                        key={item.commentId}
-                        commentId={item.commentId}
-                        authorNickname={item.authorNickname}
-                        authorProfileImageUrl={item.authorProfileImageUrl}
-                        createdTime={item.createdTime}
-                        content={item.content}
-                        isAuthor={item.isAuthor}
-                      />
-                    ))}
+                    {group?.data.data.comments.content.map(
+                      (item: CommentItemProps) => (
+                        <CommentItem
+                          key={item.commentId}
+                          commentId={item.commentId}
+                          authorNickname={item.authorNickname}
+                          authorProfileImageUrl={item.authorProfileImageUrl}
+                          createdTime={item.createdTime}
+                          content={item.content}
+                          isAuthor={item.isAuthor}
+                        />
+                      ),
+                    )}
                   </React.Fragment>
                 );
               }
@@ -117,6 +138,9 @@ export default function ReviewComments() {
             title="로그인"
             content="댓글 쓰기 시 로그인이 필요해요. 로그인하시겠어요?"
           />
+        )}
+        {modalChildren === 'MyAlert' && alertType === 'DeleteComment' && (
+          <MyAlert title="댓글 삭제" content="댓글을 삭제할까요?" />
         )}
       </Modal>
     </>

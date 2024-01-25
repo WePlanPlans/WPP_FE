@@ -1,47 +1,35 @@
 import { ButtonPrimary } from '@components/common/button/Button';
-import { useState, useEffect } from 'react';
-import { contentState, keywordsState } from '@recoil/review';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { ratingState } from '@recoil/review';
+import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 
-interface ButtonProps {
-  onClick: () => void;
-}
-
-const ReviewButton = (props: ButtonProps) => {
+const ReviewButton = (props: { onClick: () => void }) => {
   const { onClick } = props;
-  const [content] = useRecoilState(contentState);
-  const keywords = useRecoilValue(keywordsState);
-  const [isContentValid, setIsContentValid] = useState(false);
-  const [isKeywordsValid, setIsKeywordsValid] = useState(false);
+  const rating = useRecoilValue(ratingState);
+  const [isRatingValid, setIsRatingValid] = useState(false);
 
   useEffect(() => {
-    if (content.length >= 10) {
-      setIsContentValid(true);
-    } else if (content.length < 10) {
-      setIsContentValid(false);
+    if (rating > 0) {
+      setIsRatingValid(true);
+    } else if (rating <= 0) {
+      setIsRatingValid(false);
     }
-  }, [content]);
-
-  useEffect(() => {
-    if (keywords.length > 0) {
-      setIsKeywordsValid(true);
-    } else if (keywords.length <= 0) {
-      setIsKeywordsValid(false);
-    }
-  }, [keywords]);
+  }, [rating]);
 
   return (
-    <div className="pb-4">
-      {isContentValid === false && isKeywordsValid === false && (
-        <div className="mb-2 flex items-center justify-center text-xs text-[#FF0F00]">
-          키워드를 선택하거나 텍스트를 10자 이상 입력해주세요
-        </div>
-      )}
+    <div className=" bottom-0  mt-auto flex w-full items-center justify-center pb-4">
+      {/* {isRatingValid === true &&
+        isContentValid === false &&
+        isKeywordsValid === false && (
+          <div className="mb-2 flex items-center justify-center text-xs text-[#FF0F00]">
+            키워드를 선택하거나 텍스트를 10자 이상 입력해주세요
+          </div>
+        )} */}
 
       <ButtonPrimary
         onClick={onClick}
-        className="flex items-center justify-center"
-        disabled={isContentValid === false && isKeywordsValid === false}>
+        className="flex h-[56px] items-center justify-center"
+        disabled={isRatingValid === false}>
         완료
       </ButtonPrimary>
     </div>

@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { Nav } from '@components/common/nav';
 import { InputComment } from '@components/common/nav';
 import '../index.css';
+import useGetUserInfo from '@hooks/useGetUserInfo';
 
 const MainLayout = () => {
   const location = useLocation();
@@ -16,15 +17,19 @@ const MainLayout = () => {
     '/myPageReview',
     '/info',
     '/survey',
-    '/trip',
+    '/plan',
     '/create',
+    '/add',
+    '/edit',
   ];
   const showNav = !hideNavPaths.some((path) =>
     location.pathname.includes(path),
   );
 
+  useGetUserInfo();
+
   return (
-    <div className="mx-auto h-dvh max-w-[412px] bg-white">
+    <div className="mx-auto min-h-dvh min-w-[350px] max-w-[412px] bg-white">
       <Header />
       <div className="h-full px-5">
         <Outlet />

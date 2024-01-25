@@ -1,4 +1,3 @@
-import { RegionTypes, ToursCategoryProps } from '@/@types/tours.types';
 import ToursCategoryItem from './ToursCategoryItem';
 import { getPopularRegion } from '@api/region';
 import { Swiper, SwiperSlide } from 'swiper/react';

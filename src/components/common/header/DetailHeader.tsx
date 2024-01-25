@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import { BackIcon } from '../icons/Icons';
 import { commentState } from '@recoil/review';
+import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+import { BackIcon } from '../icons/Icons';
 
 export default function DetailHeader() {
   const navigate = useNavigate();
@@ -13,10 +13,8 @@ export default function DetailHeader() {
   };
 
   return (
-    <header className="mb-4 flex">
-      <div
-        onClick={goBack}
-        className=" flex cursor-pointer items-center px-3 py-2">
+    <header className="mb-10 flex">
+      <div onClick={goBack} className=" flex cursor-pointer items-center">
         <BackIcon />
       </div>
     </header>

@@ -1,24 +1,13 @@
-import { MoreIcon } from '@components/common/icons/Icons';
+import { MoreIcon, UserIcon } from '@components/common/icons/Icons';
 import {
   isModalOpenState,
-  titleState,
   modalChildrenState,
+  titleState,
 } from '@recoil/modal';
 import { commentState, targetCommentIdState } from '@recoil/review';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
 
-interface ItemProps {
-  commentId: number;
-  authorNickname: string;
-  authorProfileImageUrl: string;
-  createdTime: any;
-  content: string;
-  onClick?: () => void;
-  isAuthor: boolean;
-}
-
-const CommentItem: React.FC<ItemProps> = (props: ItemProps) => {
+const CommentItem: React.FC<CommentItemProps> = (props: CommentItemProps) => {
   const {
     commentId,
     authorNickname,
@@ -55,7 +44,7 @@ const CommentItem: React.FC<ItemProps> = (props: ItemProps) => {
   };
 
   return (
-    <div className="mb-4 border-t border-solid border-gray-300 pt-4">
+    <div className="border-b border-solid border-gray-300 py-[13px]">
       <div className=" flex items-center">
         <div className="mr-4">
           {!(
@@ -65,10 +54,13 @@ const CommentItem: React.FC<ItemProps> = (props: ItemProps) => {
             <img
               src={authorProfileImageUrl}
               alt="유저 프로필"
-              className="h-[60px] w-[60px] rounded-full"
+              className="h-[40px] w-[40px] rounded-full"
             />
           ) : (
-            <NullUser />
+            <div
+              className={`flex h-[40px] w-[40px] items-center justify-center rounded-full bg-[#EDEDED]`}>
+              <UserIcon size={30} color="white" fill="white" />
+            </div>
           )}
         </div>
         <div className=" flex flex-col justify-center gap-1">
@@ -85,7 +77,7 @@ const CommentItem: React.FC<ItemProps> = (props: ItemProps) => {
           </div>
         )}
       </div>
-      <div className="ml-16 w-[275px] pl-3 text-sm text-gray7">{content}</div>
+      <div className="ml-14 w-[275px] text-sm text-gray7">{content}</div>
     </div>
   );
 };
