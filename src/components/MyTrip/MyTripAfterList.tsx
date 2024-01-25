@@ -17,18 +17,22 @@ const MyTripAfterList: React.FC<MyTripIngListProps> = ({ myTripsData }) => {
       new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
   );
 
-  return (
-    <>
-      <div className="mb-[10px] mt-[40px]">
-        <h1 className="text-xl font-bold text-stone-900">지난 여행</h1>
-      </div>
-      <div className="no-scrollbar grid grid-cols-1 gap-[5px] overflow-y-scroll">
-        {sortedTrips.map((myTripList: MyTripType) => (
-          <MyTripItem key={uuidv4()} myTripList={myTripList} />
-        ))}
-      </div>
-    </>
-  );
+  if (sortedTrips.length > 0) {
+    return (
+      <>
+        <div className="mb-[10px] mt-[40px]">
+          <h1 className="text-xl font-bold text-stone-900">지난 여행</h1>
+        </div>
+        <div className="no-scrollbar grid grid-cols-1 gap-[5px] overflow-y-scroll">
+          {sortedTrips.map((myTripList: MyTripType) => (
+            <MyTripItem key={uuidv4()} myTripList={myTripList} />
+          ))}
+        </div>
+      </>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default MyTripAfterList;
