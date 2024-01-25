@@ -113,6 +113,7 @@ export const pubUpdateTripItem = (
     destination: `/pub/trips/${tripId}/updateTripItemOrder`,
     body: JSON.stringify(pubUpdateTripItem),
   });
+  console.log('실행');
 };
 
 // 여행 날짜별 교통 수단 변경 이벤트 발생시 (01/16 업데이트)
@@ -206,5 +207,4 @@ export const pubCursor = (pubCursor: pubCursor, tripId: string) => {
     destination: `/pub/trips/${tripId}/cursor`,
     body: JSON.stringify(pubCursor),
   });
-  console.log('섭실행')
 };

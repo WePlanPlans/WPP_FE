@@ -3,8 +3,6 @@ import { PaperIcon } from '@components/common/icons/Icons';
 import { useRecoilValue } from 'recoil';
 import { dayState, dateState } from '@recoil/plan';
 import { pubUpdateVisitDate } from '@api/socket';
-import { useContext } from 'react';
-import { socketContext } from '@hooks/useSocket';
 import { useState, useEffect } from 'react';
 import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
 import { useRecoilState } from 'recoil';
