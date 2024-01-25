@@ -6,7 +6,6 @@ import {
 } from '@recoil/modal';
 import { commentState, targetCommentIdState } from '@recoil/review';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { CommentItemProps } from '@/@types/review.types';
 
 const CommentItem: React.FC<CommentItemProps> = (props: CommentItemProps) => {
   const {

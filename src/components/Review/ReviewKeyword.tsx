@@ -4,7 +4,6 @@ import { getReviewKeywords } from '@api/review';
 import { useQuery } from '@tanstack/react-query';
 import { useRecoilState } from 'recoil';
 import { keywordsState } from '@recoil/review';
-import { Keyword } from '@/@types/review.types';
 
 export default function ReviewKeyword() {
   const location = useLocation();

@@ -2,7 +2,6 @@ import React from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { v4 as uuidv4 } from 'uuid';
 import { OurLikedListItem } from './OurLikedListItem';
-import { LikedListType } from '@/@types/tours.types';
 import { Spinner } from '@components/common/spinner/Spinner';
 
 interface WishListProps {
