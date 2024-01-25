@@ -1,17 +1,5 @@
 import { atom } from 'recoil';
 
-export interface ReviewRequest {
-  tourItemId: number;
-  rating: number;
-  keywords: Keyword[];
-  content: string;
-}
-
-type Keyword = {
-  keywordId: number;
-  content: string;
-};
-
 export const ratingState = atom({
   key: 'ratingState',
   default: 0,

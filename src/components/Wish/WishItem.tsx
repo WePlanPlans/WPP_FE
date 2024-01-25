@@ -1,4 +1,3 @@
-import { TourType } from '@/@types/tours.types';
 import { HeartIcon, StarIcon } from '@components/common/icons/Icons';
 import Like from '@components/common/like/Like';
 import { useEffect, useState } from 'react';

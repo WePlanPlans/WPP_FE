@@ -21,7 +21,6 @@ import {
 import { MouseEvent, useState } from 'react';
 import { getEmoji } from '@utils/utils';
 import { getStarFill } from '@utils/getStarFill';
-import { ReviewInfoItemProps } from '@/@types/tours.types';
 
 const Item: React.FC<ReviewInfoItemProps> = (props: ReviewInfoItemProps) => {
   const {
@@ -185,7 +184,7 @@ const Item: React.FC<ReviewInfoItemProps> = (props: ReviewInfoItemProps) => {
                     .map((keyword, idx) => (
                       <div
                         key={idx}
-                        className="rounded-md bg-gray1 px-2 py-1 text-gray6">
+                        className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6">
                         {getEmoji(keyword.content)} {keyword.content}
                       </div>
                     ))}

@@ -1,30 +1,30 @@
-export type TourKeywordInfo = {
+interface TourKeywordInfo {
   keywordId: number;
   content: string;
   type: string;
   keywordCount: number;
-};
+}
 
-export interface RegionTypes {
+interface RegionTypes {
   areaCode?: number;
   subAreaCode?: number;
   name: string;
 }
 
-export interface ToursCategoryItemProps extends RegionTypes {
+interface ToursCategoryItemProps extends RegionTypes {
   isSelected: boolean;
   onSelect: (name: string) => void;
 }
 
-export interface ToursListProps {
+interface ToursListProps {
   selectedRegion: string;
 }
 
-export interface ToursCategoryProps extends ToursListProps {
+interface ToursCategoryProps extends ToursListProps {
   setSelectedRegion: (region: string) => void;
 }
 
-export interface TourType {
+interface TourType {
   contentTypeId?: number;
   id: number;
   title: string;
@@ -38,7 +38,7 @@ export interface TourType {
   latitude?: string;
 }
 
-export interface LikedListType {
+interface LikedListType {
   tripLikedItemId: number;
   tourItemId: number;
   contentTypeId: number;
@@ -53,7 +53,7 @@ export interface LikedListType {
   notPreferTotalCount: number;
 }
 
-export interface ReviewInfoItemProps {
+interface ReviewInfoItemProps {
   reviewId: number;
   authorNickname: string;
   authorProfileImageUrl: string;
@@ -72,5 +72,5 @@ export interface ReviewInfoItemProps {
 interface Keyword {
   keywordId: number;
   content: string;
-  type: string;
+  type?: string;
 }

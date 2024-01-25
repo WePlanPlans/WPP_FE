@@ -1,6 +1,3 @@
-import { ThemeProvider } from 'styled-components';
-import { GlobalStyle } from '@styles/globalStyles';
-import { theme } from '@styles/theme';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -17,11 +14,8 @@ const App = () => {
       <RecoilRoot>
         <BrowserRouter>
           <ScrollToTop />
-          <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            <MainRouter />
-            <SocketRouter />
-          </ThemeProvider>
+          <MainRouter />
+          <SocketRouter />
         </BrowserRouter>
       </RecoilRoot>
       <ReactQueryDevtools initialIsOpen={false} />

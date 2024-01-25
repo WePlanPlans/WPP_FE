@@ -1,4 +1,3 @@
-import { TourType } from '@/@types/tours.types';
 import { useNavigate } from 'react-router-dom';
 
 export const ResultItem = ({ result }: { result: TourType }) => {
