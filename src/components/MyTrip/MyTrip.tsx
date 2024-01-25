@@ -42,7 +42,7 @@ const MyTrip = () => {
         </>
       ) : (
         <NoDataMessage
-          message1="저장된 여정 목록이 없습니다."
+          message1="참여하고 있는 여정이 없어요."
           message2="새로운 여행을 계획해보세요!"
           icon={<PenIcon size={44} fill="#EDEDED" color="#EDEDED" />}
         />
