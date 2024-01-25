@@ -25,7 +25,7 @@ const WishCategory: React.FC<WishCategoryProps> = ({ onCategoryClick }) => {
   };
 
   return (
-    <div className="no-scrollbar mb-[10px] mt-3 flex w-[100%] overflow-scroll overflow-y-hidden bg-white">
+    <div className="no-scrollbar mb-[10px] mt-[10px] flex w-[100%] overflow-scroll overflow-y-hidden bg-white">
       {categories.map((category) => {
         return (
           <WishCategoryItem
