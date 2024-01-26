@@ -1,5 +1,3 @@
-import { ToursCategoryItemProps } from '@/@types/tours.types';
-
 const ToursCategoryItem = ({
   name,
   isSelected,

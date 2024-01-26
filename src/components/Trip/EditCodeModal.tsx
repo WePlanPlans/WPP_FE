@@ -63,21 +63,21 @@ const EditCodeModal = () => {
 
   return (
     <>
-      {isToastVisible && <ToastPopUp noun="여행 일정" verb="삭제" />}
+      {isToastVisible && <ToastPopUp noun="나의 여정" verb="삭제" />}
       {isLogin ? (
         tripAuthority === 'WRITE' ? (
           <Dialog.Root modal>
             <Dialog.Trigger asChild>
               <button
                 onClick={() => setIsEditModal(true)}
-                className="body3 rounded-lg border-[1px] border-solid border-gray2 px-[10px] py-[8px] text-gray4">
+                className="body3 rounded-lg border-[1.25px] border-solid border-gray2 px-[10px] py-[8px] text-gray4">
                 편집
               </button>
             </Dialog.Trigger>
             {isEditModal && (
               <Dialog.Portal>
-                <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 z-10 bg-black opacity-70" />
-                <Dialog.Content className="data-[state=open]:animate-contentShow fixed bottom-0 left-[50%] z-10 flex w-full max-w-[412px] translate-x-[-50%] flex-col items-center rounded-t-2xl bg-white px-5 pb-8 pt-9">
+                <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 z-[100] bg-black opacity-70" />
+                <Dialog.Content className="data-[state=open]:animate-contentShow fixed bottom-0 left-[50%] z-[100] flex w-full max-w-[412px] translate-x-[-50%] flex-col items-center rounded-t-2xl bg-white px-5 pb-8 pt-9">
                   <Dialog.Title className="headline2 mr-auto pb-2.5 text-gray7">
                     나의 여정
                   </Dialog.Title>

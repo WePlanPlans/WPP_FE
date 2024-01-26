@@ -22,29 +22,7 @@ import { MouseEvent, useState } from 'react';
 import { getEmoji } from '@utils/utils';
 import { getStarFill } from '@utils/getStarFill';
 
-interface Keyword {
-  keywordId: number;
-  content: string;
-  type: string;
-}
-
-interface ItemProps {
-  reviewId: number;
-  authorNickname: string;
-  authorProfileImageUrl: string;
-  rating: number;
-  createdTime: any;
-  content: string;
-  keywords: Keyword[]; // keywordId, content, type
-  commentCount: number;
-  onClick?: () => void;
-  tourItemId?: number;
-  contentTypeId?: number;
-  canTextOverflow: boolean;
-  isAuthor?: boolean;
-}
-
-const Item: React.FC<ItemProps> = (props: ItemProps) => {
+const Item: React.FC<ReviewInfoItemProps> = (props: ReviewInfoItemProps) => {
   const {
     reviewId,
     authorNickname,
@@ -206,7 +184,7 @@ const Item: React.FC<ItemProps> = (props: ItemProps) => {
                     .map((keyword, idx) => (
                       <div
                         key={idx}
-                        className="rounded-md bg-gray1 px-2 py-1 text-gray6">
+                        className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6">
                         {getEmoji(keyword.content)} {keyword.content}
                       </div>
                     ))}

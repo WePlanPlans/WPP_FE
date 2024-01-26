@@ -22,6 +22,7 @@ import { getItem } from '@utils/localStorageFun';
 import PlanSchedule from './PlanSchedule';
 import PlanCursor from './PlanCursor';
 import PlanOtherCursor from './PlanOtherCursor';
+import ScrollTopButton from '@components/common/scrollTopButton/ScrollTopButton';
 import { isMobile } from 'react-device-detect';
 
 const PlanSectionTop = () => {
@@ -107,6 +108,7 @@ const PlanSectionTop = () => {
           <PlanItem key={date} date={date} day={DayArr[index]} />
         ))}
       />
+      <ScrollTopButton />
     </div>
   );
 };

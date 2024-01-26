@@ -16,7 +16,7 @@ export const ToggleValue = ({
       {values.map((value) => (
         <ToggleGroup.Item
           key={value}
-          className="ToggleGroupItem block flex h-10 w-full cursor-pointer items-center justify-center rounded-lg border border-solid border-gray2 bg-white transition-colors data-[state=on]:border-black"
+          className="ToggleGroupItem body4 block flex h-10 w-full cursor-pointer items-center justify-center rounded-lg border border-solid border-gray2 bg-white text-gray5 transition-colors data-[state=on]:border-black data-[state=on]:text-black"
           value={value}
           aria-label={value}
           onClick={() => onToggle(value)}>

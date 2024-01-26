@@ -22,8 +22,8 @@ const IsEditableModal = ({ isEditable, setIsEditable }: Props) => {
   return (
     <Dialog.Root open={isEditable} onOpenChange={setIsEditable} modal>
       <Dialog.Portal>
-        <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 z-10 bg-black opacity-70" />
-        <Dialog.Content className="data-[state=open]:animate-contentShow fixed bottom-0 left-[50%] z-10 flex w-full max-w-[412px] translate-x-[-50%] flex-col items-center rounded-t-2xl bg-white px-5 pb-8 pt-9">
+        <Dialog.Overlay className="data-[state=open]:animate-overlayShow fixed inset-0 z-[101] bg-black opacity-70" />
+        <Dialog.Content className="data-[state=open]:animate-contentShow fixed bottom-0 left-[50%] z-[101] flex w-full max-w-[412px] translate-x-[-50%] flex-col items-center rounded-t-2xl bg-white px-5 pb-8 pt-9">
           <Dialog.Title className="title3 pb-2.5 text-center text-gray7">
             편집 참여 코드를 입력하시면
             <br />

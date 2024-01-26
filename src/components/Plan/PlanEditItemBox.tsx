@@ -6,7 +6,7 @@ import {
   Draggable,
   DropResult,
 } from 'react-beautiful-dnd';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { pubUpdateTripItem, pubDeleteItem } from '@api/socket';
 import { pubUpdateTripItemReq } from '@/@types/service';
 import Alert from '@components/common/alert/Alert';
@@ -35,13 +35,19 @@ const PlanEditItemBox = ({
 
   const [, setIsEdit] = useRecoilState(isEditState);
   const [items, setItems] = useState(item);
-  const [newData, setNewData] = useState<pubUpdateTripItemReq | null>(null);
   const [selectedItemId, setSelectedItemId] = useState<number | null>(null);
   const [toastPopUp, setToastPopUp] = useState({
     isPopUp: false,
     noun: '',
     verb: '',
   });
+
+  const debouncedPubUpdateTripItem = useCallback(
+    debounce((newData: pubUpdateTripItemReq, tripId: string) => {
+      pubUpdateTripItem(newData, tripId);
+    }, 3000),
+    [],
+  );
 
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
@@ -55,21 +61,8 @@ const PlanEditItemBox = ({
       seqNum: index + 1,
     }));
 
-    setNewData({
-      visitDate: visitDate,
-      tripItemOrder,
-    });
+    debouncedPubUpdateTripItem({ visitDate: visitDate, tripItemOrder }, tripId);
   };
-
-  const debouncedPubUpdateTripItem = debounce((newData, tripId) => {
-    pubUpdateTripItem(newData, tripId);
-  }, 1000);
-
-  useEffect(() => {
-    if (newData && tripId) {
-      debouncedPubUpdateTripItem(newData, tripId);
-    }
-  }, [newData]);
 
   const handleConfirm = () => {
     if (tripId && visitDate && selectedItemId) {
@@ -132,22 +125,24 @@ const PlanEditItemBox = ({
                           checked={selectedItemId === item.tripItemId}></input>
                       </div>
                       <div className="flex w-full flex-col">
-                        <div className="mb-[8px] flex  h-[87.5px] rounded-lg border border-solid border-[#ededed] bg-white">
+                        <div className="mb-[8px] flex h-[88.5px] rounded-lg border border-solid border-[#ededed] bg-white">
                           <img
                             className="h-[87px] w-[93px] rounded-bl-lg rounded-tl-lg "
                             src={item.thumbnailUrl}
                             alt="img"
                           />
-                          <div className="flex w-full flex-col p-[10px]">
+                          <div className="flex h-[88px] w-full flex-col px-[10px] py-[8px]">
                             <div className="flex text-left text-[14px] font-medium text-black">
                               {item.name.length > 17
                                 ? item.name.slice(0, 17) + '...'
                                 : item.name}
                             </div>
-                            <div className="mt-[3px] flex h-fit w-fit items-center justify-center gap-2 rounded-[3px] bg-[#ededed] p-[4px] text-center text-[11px] text-black">
-                              {item.category}
+                            <div className="mb-[11px] mt-[4px] flex h-[16px] w-fit items-center justify-center rounded-[3px] bg-[#ededed] px-[4px] py-[8px] text-center text-[11px] text-black">
+                              <div className="flex h-[13px] items-center justify-center text-center">
+                                {item.category}
+                              </div>
                             </div>
-                            <div className="mt-[15px] text-sm font-bold text-black">
+                            <div className="flex justify-between text-sm font-bold text-black">
                               {item.price} 원
                             </div>
                           </div>
@@ -171,7 +166,7 @@ const PlanEditItemBox = ({
         <div className="mx-auto flex h-14 max-w-md">
           <Alert
             title={'여행지 삭제'}
-            message={<>선택한 장소를 삭제하시겠습니까?</>}
+            message={<>여정에서 이 장소를 삭제할까요?</>}
             onConfirm={handleConfirm}
             closeOnConfirm={true}
             isCheck={selectedItemId}>

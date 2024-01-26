@@ -1,3 +1,7 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { postTripsLikeHate } from '@api/trips';
 import {
   ThumbsUp,
   ThumbsDown,
@@ -5,10 +9,6 @@ import {
   ClickThumbsDown,
   StarIcon,
 } from '@components/common/icons/Icons';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postTripsLikeHate } from '@api/trips';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 interface LikedToursListItemProps {
   ourTripList: ourTripType;
@@ -34,11 +34,11 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [thumbsState, setThumbsState] = useState({
-    prefer: false,
-    notPrefer: false,
+    prefer: prefer,
+    notPrefer: notPrefer,
   });
 
-  const { mutate: thumbsUpMutate } = useMutation({
+  const { mutate: thumbsMutate } = useMutation({
     mutationFn: () =>
       postTripsLikeHate(
         selectedTripId,
@@ -54,24 +54,30 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
 
   const onClickThumbsUpButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setThumbsState({ prefer: true, notPrefer: false });
-    thumbsUpMutate();
+    setThumbsState((prev) => ({
+      prefer: !prev.prefer,
+      notPrefer: false,
+    }));
+    thumbsMutate();
   };
 
   const onClickThumbsDownButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setThumbsState({ prefer: false, notPrefer: true });
-    thumbsUpMutate();
+    setThumbsState((prev) => ({
+      prefer: false,
+      notPrefer: !prev.notPrefer,
+    }));
+    thumbsMutate();
   };
 
   return (
     <div
-      className={`relative cursor-pointer pb-[4px]`}
+      className={`relative mb-[4px] cursor-pointer`}
       onClick={() => navigate(`/detail/${tourItemId}`)}>
       <div className="flex">
         <div>
           <img
-            className="rounded-1 h-[72px] max-h-[72px] w-[72px] rounded-[16px] object-cover"
+            className="rounded-1 h-[72px] max-h-[72px] w-[72px] rounded-[8px] object-cover"
             src={smallThumbnailUrl}
             alt="여행지 이미지"
           />
@@ -79,7 +85,7 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
 
         <div className="ml-[8px] flex flex-col items-start justify-between gap-[1px]">
           <div className="max-w-[270px]">
-            <p className=" truncate  whitespace-nowrap px-[2px] font-['Pretendard'] text-[16px] font-bold leading-normal text-black">
+            <p className="truncate whitespace-nowrap  px-[2px] text-[16px] font-bold leading-normal text-black">
               {title}
             </p>
 
