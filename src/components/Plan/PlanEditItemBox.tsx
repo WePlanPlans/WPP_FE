@@ -140,8 +140,8 @@ const PlanEditItemBox = ({
                           />
                           <div className="flex h-[88px] w-full flex-col px-[10px] py-[8px]">
                             <div className="flex text-left text-[14px] font-medium text-black">
-                              {item.name.length > 17
-                                ? item.name.slice(0, 17) + '...'
+                              {item.name.length > 16
+                                ? item.name.slice(0, 16) + '...'
                                 : item.name}
                             </div>
                             <div className="mb-[11px] mt-[4px] flex h-[16px] w-fit items-center justify-center rounded-[3px] bg-[#ededed] px-[4px] py-[8px] text-center text-[11px] text-black">
