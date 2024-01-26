@@ -54,7 +54,7 @@ const MyTripItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
     <SwipeableList>
       <SwipeableListItem trailingActions={trailingActions()}>
         <div
-          className="relative mb-[10px] cursor-pointer"
+          className="relative cursor-pointer"
           onClick={() => navigate(`/trip/${tripId}`)}>
           <div className="flex min-h-[72px]">
             <div>

@@ -32,7 +32,7 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
 
   return (
     <div
-      className={`relative mb-[6px] flex max-h-[72px] cursor-pointer items-center`}
+      className={`relative flex max-h-[72px] cursor-pointer items-center`}
       onClick={() => navigate(`/detail/${id}`)}>
       <div className="flex items-center">
         <div>
