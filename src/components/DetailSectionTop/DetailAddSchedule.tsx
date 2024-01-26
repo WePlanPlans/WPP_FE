@@ -265,9 +265,9 @@ const DetailAddSchedule = () => {
           title={'로그인'}
           message={
             <>
-              새로운 여행 생성 시 로그인이 필요합니다.
+              일정에 추가하려면 로그인이 필요해요.
               <br />
-              로그인 하시겠습니까?
+              로그인하러 가볼까요?
             </>
           }
           onConfirm={() => handleNavigate('/login')}>
