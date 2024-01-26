@@ -38,14 +38,14 @@ const Nav = () => {
             navigate('/');
             window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
           }}
-          className="cursor-pointer flex-col items-center justify-center px-2">
+          className="w-[53.12px] cursor-pointer flex-col items-center justify-center px-2">
           <div className="flex justify-center">
             <HomeIcon
               size={24}
               fill={isActive('/') ? 'currentColor' : 'none'}
             />
           </div>
-          <p className="caption1 mt-[3px] text-center font-normal text-gray7">
+          <p className="caption1 mt-[2px] text-center font-normal text-gray7">
             홈
           </p>
         </div>
@@ -53,7 +53,7 @@ const Nav = () => {
         {isLoggedIn ? (
           <div
             onClick={() => navigate('/mytrip')}
-            className="cursor-pointer flex-col items-center justify-center px-2">
+            className="cursor-pointe w-[53.12px] flex-col items-center justify-center px-2">
             <div className="flex justify-center">
               {isActive('/mytrip') ? (
                 <CalendarIcon2 size={24} />
@@ -61,8 +61,8 @@ const Nav = () => {
                 <CalendarIcon3 size={24} />
               )}
             </div>
-            <p className="caption1 mt-[6px] text-center text-xs/[11px] font-normal text-gray7">
-              일정
+            <p className="caption1 mt-[5px] text-center text-xs/[11px] font-normal text-gray7">
+              여정
             </p>
           </div>
         ) : (
@@ -76,15 +76,15 @@ const Nav = () => {
               </>
             }
             onConfirm={handleConfirm}>
-            <div className="cursor-pointer flex-col items-center justify-center px-2">
+            <div className="w-[53.12px] cursor-pointer flex-col items-center justify-center px-2">
               <div className="flex justify-center">
                 <CalendarIcon3
                   size={24}
                   fill={isActive('/mytrip') ? '#1E1E1E' : 'none'}
                 />
               </div>
-              <p className="caption1 mt-[6px] text-center text-xs/[11px] font-normal text-gray7">
-                일정
+              <p className="caption1 mt-[5px] text-center text-xs/[11px] font-normal text-gray7">
+                여정
               </p>
             </div>
           </Alert>
@@ -93,14 +93,14 @@ const Nav = () => {
         {isLoggedIn ? (
           <div
             onClick={() => navigate('/wishlist')}
-            className="cursor-pointer flex-col items-center justify-center px-2">
+            className="w-[53.12px] cursor-pointer flex-col items-center justify-center px-2">
             <div className="flex justify-center">
               <HeartIcon
                 size={24}
                 fill={isActive('/wishlist') ? 'currentColor' : 'none'}
               />
             </div>
-            <p className="caption1 mt-[5px] text-center text-xs/[11px] font-normal text-gray7">
+            <p className="caption1 mt-[4px] whitespace-nowrap text-center text-xs/[11px] font-normal text-gray7">
               관심목록
             </p>
           </div>
@@ -115,14 +115,14 @@ const Nav = () => {
               </>
             }
             onConfirm={handleConfirm}>
-            <div className="cursor-pointer flex-col items-center justify-center px-2">
+            <div className="w-[53.12px] cursor-pointer flex-col items-center justify-center px-2">
               <div className="flex justify-center">
                 <HeartIcon
                   size={24}
                   fill={isActive('/wishlist') ? 'currentColor' : 'none'}
                 />
               </div>
-              <p className="caption1 mt-[5px] text-center text-xs/[11px] font-normal text-gray7">
+              <p className="caption1 mt-[4px] whitespace-nowrap text-center text-xs/[11px] font-normal text-gray7">
                 관심목록
               </p>
             </div>
@@ -131,14 +131,14 @@ const Nav = () => {
 
         <div
           onClick={() => navigate('/mypage')}
-          className="cursor-pointer flex-col items-center justify-center px-1">
+          className="w-[53.12px] cursor-pointer flex-col items-center justify-center px-1 pt-[1px]">
           <div className="flex justify-center">
             <UserIcon
               size={24}
               fill={isActive('/mypage') ? 'currentColor' : 'none'}
             />
           </div>
-          <p className="caption1 mt-[4px] text-center font-normal text-gray7">
+          <p className="caption1 mt-[3px] text-center font-normal text-gray7">
             내정보
           </p>
         </div>
