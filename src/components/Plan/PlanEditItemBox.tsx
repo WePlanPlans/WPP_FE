@@ -6,7 +6,7 @@ import {
   Draggable,
   DropResult,
 } from 'react-beautiful-dnd';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { pubUpdateTripItem, pubDeleteItem } from '@api/socket';
 import { pubUpdateTripItemReq } from '@/@types/service';
 import Alert from '@components/common/alert/Alert';
@@ -35,13 +35,19 @@ const PlanEditItemBox = ({
 
   const [, setIsEdit] = useRecoilState(isEditState);
   const [items, setItems] = useState(item);
-  const [newData, setNewData] = useState<pubUpdateTripItemReq | null>(null);
   const [selectedItemId, setSelectedItemId] = useState<number | null>(null);
   const [toastPopUp, setToastPopUp] = useState({
     isPopUp: false,
     noun: '',
     verb: '',
   });
+
+  const debouncedPubUpdateTripItem = useCallback(
+    debounce((newData: pubUpdateTripItemReq, tripId: string) => {
+      pubUpdateTripItem(newData, tripId);
+    }, 3000),
+    [],
+  );
 
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
@@ -55,21 +61,8 @@ const PlanEditItemBox = ({
       seqNum: index + 1,
     }));
 
-    setNewData({
-      visitDate: visitDate,
-      tripItemOrder,
-    });
+    debouncedPubUpdateTripItem({ visitDate: visitDate, tripItemOrder }, tripId);
   };
-
-  const debouncedPubUpdateTripItem = debounce((newData, tripId) => {
-    pubUpdateTripItem(newData, tripId);
-  }, 1000);
-
-  useEffect(() => {
-    if (newData && tripId) {
-      debouncedPubUpdateTripItem(newData, tripId);
-    }
-  }, [newData]);
 
   const handleConfirm = () => {
     if (tripId && visitDate && selectedItemId) {
@@ -140,8 +133,8 @@ const PlanEditItemBox = ({
                           />
                           <div className="flex h-[88px] w-full flex-col px-[10px] py-[8px]">
                             <div className="flex text-left text-[14px] font-medium text-black">
-                              {item.name.length > 17
-                                ? item.name.slice(0, 17) + '...'
+                              {item.name.length > 16
+                                ? item.name.slice(0, 16) + '...'
                                 : item.name}
                             </div>
                             <div className="mb-[11px] mt-[4px] flex h-[16px] w-fit items-center justify-center rounded-[3px] bg-[#ededed] px-[4px] py-[8px] text-center text-[11px] text-black">
