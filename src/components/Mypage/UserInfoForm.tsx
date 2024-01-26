@@ -20,7 +20,7 @@ const UserInfoForm = () => {
     resetField,
     setError,
     setValue,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<any>({
     mode: 'onChange',
     criteriaMode: 'all',
@@ -61,6 +61,7 @@ const UserInfoForm = () => {
           navigate('/mypage');
         }}
         showSave
+        isSaveValid={isValid}
         saveHandler={handleSubmit(onInfoSubmit)}>
         회원정보 수정
       </BackBox>
