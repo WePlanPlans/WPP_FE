@@ -4,11 +4,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { UserInfoState } from '@recoil/Auth.atom';
 import { useEffect } from 'react';
-import SubmitBtn from '@components/common/button/SubmitBtn';
 import UserInfoImg from '@components/Auth/SignupInfo/UserInfoImg';
 import AuthNicknameInputBox from '@components/Auth/AuthInput/AuthInputBox/AuthNicknameInputBox';
 import AuthDropDown from '@components/Auth/SignupInfo/AuthDropDown/AuthDropDown';
 import { ageArr, genderArr } from '@utils/authSelectOptions';
+import { BackBox } from '@components/common';
+import DeleteMemberButton from './DeleteMemberButton';
 
 const UserInfoForm = () => {
   const {
@@ -19,7 +20,7 @@ const UserInfoForm = () => {
     resetField,
     setError,
     setValue,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<any>({
     mode: 'onChange',
     criteriaMode: 'all',
@@ -33,8 +34,6 @@ const UserInfoForm = () => {
     setValue('genderType', userInfo?.genderType);
     setValue('ageType', userInfo?.ageType);
   }, [userInfo]);
-
-  console.log(watch());
 
   const onInfoSubmit: SubmitHandler<any> = async (data) => {
     const { nickname, profileImageUrl, genderType, ageType } = data;
@@ -55,54 +54,65 @@ const UserInfoForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onInfoSubmit)}
-      className="flex h-[85vh] w-full flex-col justify-between">
-      <div>
-        <div className="mb-4 mt-6">
-          <UserInfoImg
-            register={register}
-            setValue={setValue}
-            inputValue={watch('profileImageUrl')}
-          />
-        </div>
-        <div className="mb-12 flex flex-col items-center">
-          <div className="body5 mb-2 h-8 rounded-full border border-solid border-gray2 px-3 py-2 text-gray5">
-            {userInfo?.email}
+    <>
+      <BackBox
+        showBack
+        backHandler={() => {
+          navigate('/mypage');
+        }}
+        showSave
+        saveHandler={handleSubmit(onInfoSubmit)}>
+        회원정보 수정
+      </BackBox>
+      <div className="flex flex-col items-center">
+        <form
+          // onSubmit={handleSubmit(onInfoSubmit)}
+          className="flex h-[85vh] w-full flex-col justify-between">
+          <div>
+            <div className="mb-4 mt-6">
+              <UserInfoImg
+                register={register}
+                setValue={setValue}
+                inputValue={watch('profileImageUrl')}
+              />
+            </div>
+            <div className="mb-12 flex flex-col items-center">
+              <div className="body5 mb-2 h-8 rounded-full border border-solid border-gray2 px-3 py-2 text-gray5">
+                {userInfo?.email}
+              </div>
+              <Link to="password" className="body4 text-gray4">
+                비밀번호 변경
+              </Link>
+            </div>
+            <AuthNicknameInputBox
+              register={register}
+              inputValue={watch('nickname')}
+              resetField={resetField}
+              errors={errors}
+              setError={setError}
+              getValues={getValues}
+            />
+            <div className="flex flex-col gap-6">
+              <AuthDropDown
+                label="성별"
+                options={genderArr}
+                name={'genderType'}
+                setValue={setValue}
+                value={watch('genderType')}
+              />
+              <AuthDropDown
+                label="연령대"
+                options={ageArr}
+                name={'ageType'}
+                setValue={setValue}
+                value={watch('ageType')}
+              />
+            </div>
           </div>
-          <Link to="password" className="body4 text-gray4">
-            비밀번호 변경
-          </Link>
-        </div>
-        <AuthNicknameInputBox
-          register={register}
-          inputValue={watch('nickname')}
-          resetField={resetField}
-          errors={errors}
-          setError={setError}
-          getValues={getValues}
-        />
-        <div className="flex flex-col gap-6">
-          <AuthDropDown
-            label="성별"
-            options={genderArr}
-            name={'genderType'}
-            setValue={setValue}
-            value={watch('genderType')}
-          />
-          <AuthDropDown
-            label="연령대"
-            options={ageArr}
-            name={'ageType'}
-            setValue={setValue}
-            value={watch('ageType')}
-          />
-        </div>
+          <DeleteMemberButton />
+        </form>
       </div>
-      <div className="mt-auto">
-        <SubmitBtn isActive={isValid}>완료</SubmitBtn>
-      </div>
-    </form>
+    </>
   );
 };
 
