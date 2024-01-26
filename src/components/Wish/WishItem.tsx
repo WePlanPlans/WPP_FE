@@ -32,9 +32,9 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
 
   return (
     <div
-      className={`relative mb-[2px] cursor-pointer `}
+      className={`relative mb-[6px] flex max-h-[72px] cursor-pointer items-center`}
       onClick={() => navigate(`/detail/${id}`)}>
-      <div className="flex">
+      <div className="flex items-center">
         <div>
           <img
             className="rounded-1 h-[72px] max-h-[72px] w-[72px] rounded-[8px] object-cover"
@@ -51,7 +51,7 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
             <p className=" truncate whitespace-nowrap px-[2px] text-[16px] font-bold leading-normal text-black">
               {title}
             </p>
-            <div className="ml-[3px] mt-[5px] max-w-[260px]">
+            <div className="ml-[3px] max-w-[260px]">
               <p className="truncate text-[14px] text-gray6">
                 {isMetroIncluded && tourAddress
                   ? (tourAddress.match(/(.*?[시군구])/)?.[0] || '') +
@@ -63,9 +63,9 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
             </div>
           </div>
 
-          <div className="caption1 mb-[2px] ml-[3px] flex justify-center leading-normal text-gray4">
+          <div className="caption1 mb-[4px] ml-[3px] flex justify-center leading-normal text-gray4">
             <div className="mr-[5px] flex items-center">
-              <div className="mb-[2px]">
+              <div className="">
                 <StarIcon size={12.5} color="#FFEC3E" fill="#FFEC3E" />
               </div>
               <div className="flex items-center pt-[1.5px]">
@@ -78,10 +78,10 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
               </div>
             </div>
             <div className="flex items-center justify-center ">
-              <div className="mb-[0.5px]">
+              <div className="">
                 <HeartIcon size={14} color="#FF2167" fill="#FF2167" />
               </div>
-              <span className="ml-1 mt-[2.8px] text-xs">
+              <span className="ml-1 mt-[0px] text-xs">
                 {likedCount ? likedCount.toLocaleString() : likedCount}
               </span>
             </div>
