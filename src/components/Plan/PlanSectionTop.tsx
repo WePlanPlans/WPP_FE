@@ -86,9 +86,9 @@ const PlanSectionTop = () => {
       {!isMobile && (
         <>
           <PlanCursor props={cursorAreaRef} />
-          <PlanOtherCursor />
         </>
       )}
+      <PlanOtherCursor />
       <BackBox
         showBack={true}
         backHandler={() => {
