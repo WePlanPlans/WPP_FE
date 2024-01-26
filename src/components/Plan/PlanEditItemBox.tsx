@@ -6,7 +6,7 @@ import {
   Draggable,
   DropResult,
 } from 'react-beautiful-dnd';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { pubUpdateTripItem, pubDeleteItem } from '@api/socket';
 import { pubUpdateTripItemReq } from '@/@types/service';
 import Alert from '@components/common/alert/Alert';
@@ -35,13 +35,19 @@ const PlanEditItemBox = ({
 
   const [, setIsEdit] = useRecoilState(isEditState);
   const [items, setItems] = useState(item);
-  const [newData, setNewData] = useState<pubUpdateTripItemReq | null>(null);
   const [selectedItemId, setSelectedItemId] = useState<number | null>(null);
   const [toastPopUp, setToastPopUp] = useState({
     isPopUp: false,
     noun: '',
     verb: '',
   });
+
+  const debouncedPubUpdateTripItem = useCallback(
+    debounce((newData: pubUpdateTripItemReq, tripId: string) => {
+      pubUpdateTripItem(newData, tripId);
+    }, 3000),
+    [],
+  );
 
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
@@ -55,21 +61,8 @@ const PlanEditItemBox = ({
       seqNum: index + 1,
     }));
 
-    setNewData({
-      visitDate: visitDate,
-      tripItemOrder,
-    });
+    debouncedPubUpdateTripItem({ visitDate: visitDate, tripItemOrder }, tripId);
   };
-
-  const debouncedPubUpdateTripItem = debounce((newData, tripId) => {
-    pubUpdateTripItem(newData, tripId);
-  }, 1000);
-
-  useEffect(() => {
-    if (newData && tripId) {
-      debouncedPubUpdateTripItem(newData, tripId);
-    }
-  }, [newData]);
 
   const handleConfirm = () => {
     if (tripId && visitDate && selectedItemId) {

@@ -125,6 +125,7 @@ export const pubUpdateTransportation = (
     destination: `/pub/trips/${tripId}/updateTransportation`,
     body: JSON.stringify(pubUpdateTransportation),
   });
+  console.log('펍실행');
 };
 
 // 여행 아이템 방문 날짜 변경 이벤트 발생시
