@@ -62,7 +62,7 @@ const Nav = () => {
               )}
             </div>
             <p className="caption1 mt-[6px] text-center text-xs/[11px] font-normal text-gray7">
-              일정
+              여정
             </p>
           </div>
         ) : (
@@ -84,7 +84,7 @@ const Nav = () => {
                 />
               </div>
               <p className="caption1 mt-[6px] text-center text-xs/[11px] font-normal text-gray7">
-                일정
+                여정
               </p>
             </div>
           </Alert>
