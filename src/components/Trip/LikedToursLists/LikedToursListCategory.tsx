@@ -27,7 +27,7 @@ const LikedToursListCategory: React.FC<LikedToursListCategoryProps> = ({
   };
 
   return (
-    <div className="no-scrollbar mb-[10px] flex w-[100%] overflow-scroll overflow-y-hidden bg-white">
+    <div className="no-scrollbar my-[8px] flex w-[100%] overflow-scroll overflow-y-hidden bg-white py-[10px]">
       {categories.map((category) => {
         return (
           <LikedToursListCategoryItem
