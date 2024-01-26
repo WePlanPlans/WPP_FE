@@ -1,19 +1,18 @@
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { v4 as uuidv4 } from 'uuid';
-import { OurLikedListItem } from './OurLikedListItem';
-import { LikedListType } from '@/@types/tours.types';
+import { MyLikedListItem } from './MyLikedListItem';
 import { Spinner } from '@components/common/spinner/Spinner';
 
 interface WishListProps {
-  toursData: { pages: Array<{ data: { content: LikedListType[] } }> };
+  toursData: { pages: Array<{ data: { content: TourType[] } }> };
   fetchNextPage: () => void;
   hasNextPage: boolean;
   isLoading: boolean;
   selectedContentTypeId: number | null;
 }
 
-export const OurLikedList: React.FC<WishListProps> = ({
+export const MyLikedList: React.FC<WishListProps> = ({
   toursData,
   fetchNextPage,
   hasNextPage,
@@ -50,8 +49,8 @@ export const OurLikedList: React.FC<WishListProps> = ({
           {!isLoading &&
             filteredData.map((group) => (
               <React.Fragment key={uuidv4()}>
-                {group?.data.content.map((wishList: LikedListType) => (
-                  <OurLikedListItem key={uuidv4()} wishList={wishList} />
+                {group?.data.content.map((wishList: TourType) => (
+                  <MyLikedListItem key={uuidv4()} wishList={wishList} />
                 ))}
               </React.Fragment>
             ))}

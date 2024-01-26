@@ -21,6 +21,8 @@ import EditDelete from '@components/common/modal/children/EditDelete';
 import MyAlert from '@components/common/modal/children/MyAlert';
 import { alertTypeState } from '@recoil/modal';
 import { PenIcon } from '@components/common/icons/Icons';
+import ScrollTopButton from '@components/common/scrollTopButton/ScrollTopButton';
+
 
 export default function MyReview() {
   const [reviewDataLength, setReviewDataLength] = useState<number>(0);
@@ -59,7 +61,7 @@ export default function MyReview() {
     return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
   }
 
-  const handleReviewClick = (item: any) => {
+  const handleReviewClick = (item: MyReviewContent) => {
     const reviewId = item.reviewId;
     navigate(`/reviewComment/${reviewId}`, { state: { item } });
   };
@@ -112,7 +114,7 @@ export default function MyReview() {
             <PenIcon size={50} color="#D7D7D7" />
           </div>
           <div className="text-md mb-2 flex justify-center font-bold text-gray4">
-            작성한 리뷰가 없습니다
+            내가 쓴 리뷰가 없어요
           </div>
           <div className="flex justify-center text-sm text-gray4">
             다녀온 여행지의 리뷰를 남겨보세요!
@@ -133,7 +135,7 @@ export default function MyReview() {
             {
               return (
                 <React.Fragment key={index}>
-                  {group?.data.data.content.map((item: any) => {
+                  {group?.data.data.content.map((item: MyReviewContent) => {
                     item.isAuthor = true;
                     return (
                       <ReviewItem
@@ -163,6 +165,7 @@ export default function MyReview() {
           <MyAlert title="리뷰 삭제" content="리뷰를 삭제할까요?" />
         )}
       </Modal>
+      <ScrollTopButton />
     </>
   );
 }

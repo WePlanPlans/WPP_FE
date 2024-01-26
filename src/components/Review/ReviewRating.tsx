@@ -13,7 +13,7 @@ const ReviewRating = () => {
 
   const handleStarClick = (index: number) => {
     const newRating = index + 1;
-    setRating((prevRating: any) => {
+    setRating((prevRating: number) => {
       const updatedIsHalfClicked =
         prevRating === newRating ? !isHalfClicked : false;
       setIsHalfClicked(updatedIsHalfClicked);

@@ -1,4 +1,3 @@
-import { TourType } from '@/@types/tours.types';
 import { HeartIcon, StarIcon } from '@components/common/icons/Icons';
 import Like from '@components/common/like/Like';
 import { useEffect, useState } from 'react';
@@ -33,12 +32,12 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
 
   return (
     <div
-      className={`relative cursor-pointer pb-4 `}
+      className={`relative mb-[6px] flex max-h-[72px] cursor-pointer items-center`}
       onClick={() => navigate(`/detail/${id}`)}>
-      <div className="flex">
+      <div className="flex items-center">
         <div>
           <img
-            className="rounded-1 h-[82px] max-h-[82px] w-[82px] rounded-[16px] object-cover"
+            className="rounded-1 h-[72px] max-h-[72px] w-[72px] rounded-[8px] object-cover"
             src={smallThumbnailUrl}
             alt="여행지 이미지"
           />
@@ -48,25 +47,25 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
         </div>
 
         <div className="ml-[8px] flex flex-col items-start justify-between gap-[15px]">
-          <div className=" max-w-[240px]">
-            <p className=" truncate whitespace-nowrap px-[2px] font-['Pretendard'] text-[16px] font-bold leading-normal text-black">
+          <div className=" max-w-[230px]">
+            <p className=" truncate whitespace-nowrap px-[2px] text-[16px] font-bold leading-normal text-black">
               {title}
             </p>
-            <div className="ml-[3px] mt-[5px] max-w-[260px]">
+            <div className="ml-[3px] max-w-[260px]">
               <p className="truncate text-[14px] text-gray6">
                 {isMetroIncluded && tourAddress
                   ? (tourAddress.match(/(.*?[시군구])/)?.[0] || '') +
                     (tourAddress
                       .replace(/(.*?[시군구])/, '')
-                      .match(/(특별시|광역시)?.*?[시군구]/)?.[0] || '')
+                      .match(/(특별`시|광역시)?.*?[시군구]/)?.[0] || '')
                   : tourAddress?.match(/(.*?[시군구])/)?.[0]}
               </p>
             </div>
           </div>
 
-          <div className="caption1 mb-[2px] ml-[3px] flex justify-center leading-normal text-gray4">
+          <div className="caption1 mb-[4px] ml-[3px] flex justify-center leading-normal text-gray4">
             <div className="mr-[5px] flex items-center">
-              <div className="mb-[2px]">
+              <div className="">
                 <StarIcon size={12.5} color="#FFEC3E" fill="#FFEC3E" />
               </div>
               <div className="flex items-center pt-[1.5px]">
@@ -79,10 +78,10 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
               </div>
             </div>
             <div className="flex items-center justify-center ">
-              <div className="mb-[0.5px]">
+              <div className="">
                 <HeartIcon size={14} color="#FF2167" fill="#FF2167" />
               </div>
-              <span className="ml-1 mt-[2.8px] text-xs">
+              <span className="ml-1 mt-[0px] text-xs">
                 {likedCount ? likedCount.toLocaleString() : likedCount}
               </span>
             </div>

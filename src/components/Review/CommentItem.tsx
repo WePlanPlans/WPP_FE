@@ -6,17 +6,8 @@ import {
 } from '@recoil/modal';
 import { commentState, targetCommentIdState } from '@recoil/review';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-interface ItemProps {
-  commentId: number;
-  authorNickname: string;
-  authorProfileImageUrl: string;
-  createdTime: any;
-  content: string;
-  onClick?: () => void;
-  isAuthor: boolean;
-}
 
-const CommentItem: React.FC<ItemProps> = (props: ItemProps) => {
+const CommentItem: React.FC<CommentItemProps> = (props: CommentItemProps) => {
   const {
     commentId,
     authorNickname,
@@ -53,7 +44,7 @@ const CommentItem: React.FC<ItemProps> = (props: ItemProps) => {
   };
 
   return (
-    <div className="border-b border-solid border-gray-300 py-[13px]">
+    <div className="border-b border-solid border-gray2 py-[13px]">
       <div className=" flex items-center">
         <div className="mr-4">
           {!(

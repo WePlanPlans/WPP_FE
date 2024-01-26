@@ -28,12 +28,15 @@
     "@types/react-beautiful-dnd": "^13.1.8",
     "axios": "^1.6.2",
     "date-fns": "^3.1.0",
+    "lodash": "^4.17.21",
     "msw": "0.36.3",
     "path": "^0.12.7",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
+    "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",
+    "react-icons": "^5.0.1",
     "react-infinite-scroller": "^1.2.6",
     "react-kakao-maps-sdk": "^1.1.24",
     "react-modal": "^3.16.1",
@@ -52,6 +55,7 @@
     "websocket": "^1.0.34"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.202",
     "@types/react": "^18.2.43",
     "@types/react-date-range": "^1.4.9",
     "@types/react-dom": "^18.2.17",

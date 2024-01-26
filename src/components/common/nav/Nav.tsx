@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
-  CalendarIcon,
+  CalendarIcon3,
   CalendarIcon2,
   HeartIcon,
   HomeIcon,
@@ -38,48 +38,52 @@ const Nav = () => {
             navigate('/');
             window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
           }}
-          className="cursor-pointer flex-col items-center justify-center px-2">
+          className="w-[53.12px] cursor-pointer flex-col items-center justify-center px-2">
           <div className="flex justify-center">
             <HomeIcon
               size={24}
               fill={isActive('/') ? 'currentColor' : 'none'}
             />
           </div>
-          <p className="caption1 mt-[3px] text-center">홈</p>
+          <p className="caption1 mt-[2px] text-center font-normal text-gray7">
+            홈
+          </p>
         </div>
 
         {isLoggedIn ? (
           <div
             onClick={() => navigate('/mytrip')}
-            className="cursor-pointer flex-col items-center justify-center px-2">
+            className="cursor-pointe w-[53.12px] flex-col items-center justify-center px-2">
             <div className="flex justify-center">
               {isActive('/mytrip') ? (
                 <CalendarIcon2 size={24} />
               ) : (
-                <CalendarIcon size={24} />
+                <CalendarIcon3 size={24} />
               )}
             </div>
-            <p className="caption1 mt-[6px] text-center text-xs/[11px]">여정</p>
+            <p className="caption1 mt-[5px] text-center text-xs/[11px] font-normal text-gray7">
+              여정
+            </p>
           </div>
         ) : (
           <Alert
             title={'로그인'}
             message={
               <>
-                나의 여정 조회를 위해 로그인이 필요합니다.
+                여정을 관리하려면 로그인이 필요해요.
                 <br />
-                로그인 하시겠습니까?
+                로그인하러 가볼까요?
               </>
             }
             onConfirm={handleConfirm}>
-            <div className="cursor-pointer flex-col items-center justify-center px-2">
+            <div className="w-[53.12px] cursor-pointer flex-col items-center justify-center px-2">
               <div className="flex justify-center">
-                <CalendarIcon
+                <CalendarIcon3
                   size={24}
                   fill={isActive('/mytrip') ? '#1E1E1E' : 'none'}
                 />
               </div>
-              <p className="caption1 mt-[6px] text-center text-xs/[11px]">
+              <p className="caption1 mt-[5px] text-center text-xs/[11px] font-normal text-gray7">
                 여정
               </p>
             </div>
@@ -89,14 +93,14 @@ const Nav = () => {
         {isLoggedIn ? (
           <div
             onClick={() => navigate('/wishlist')}
-            className="cursor-pointer flex-col items-center justify-center px-2">
+            className="w-[53.12px] cursor-pointer flex-col items-center justify-center px-2">
             <div className="flex justify-center">
               <HeartIcon
                 size={24}
                 fill={isActive('/wishlist') ? 'currentColor' : 'none'}
               />
             </div>
-            <p className="caption1 mt-[5px] text-center text-xs/[11px]">
+            <p className="caption1 mt-[4px] whitespace-nowrap text-center text-xs/[11px] font-normal text-gray7">
               관심목록
             </p>
           </div>
@@ -105,20 +109,20 @@ const Nav = () => {
             title={'로그인'}
             message={
               <>
-                관심 목록 조회를 위해 로그인이 필요합니다.
+                관심 여행지를 관리하려면 로그인이 필요해요.
                 <br />
-                로그인 하시겠습니까?
+                로그인하러 가볼까요?
               </>
             }
             onConfirm={handleConfirm}>
-            <div className="cursor-pointer flex-col items-center justify-center px-2">
+            <div className="w-[53.12px] cursor-pointer flex-col items-center justify-center px-2">
               <div className="flex justify-center">
                 <HeartIcon
                   size={24}
                   fill={isActive('/wishlist') ? 'currentColor' : 'none'}
                 />
               </div>
-              <p className="caption1 mt-[5px] text-center text-xs/[11px]">
+              <p className="caption1 mt-[4px] whitespace-nowrap text-center text-xs/[11px] font-normal text-gray7">
                 관심목록
               </p>
             </div>
@@ -127,14 +131,16 @@ const Nav = () => {
 
         <div
           onClick={() => navigate('/mypage')}
-          className="cursor-pointer flex-col items-center justify-center px-1">
+          className="w-[53.12px] cursor-pointer flex-col items-center justify-center px-1 pt-[1px]">
           <div className="flex justify-center">
             <UserIcon
               size={24}
               fill={isActive('/mypage') ? 'currentColor' : 'none'}
             />
           </div>
-          <p className="caption1 mt-[4px] text-center ">내정보</p>
+          <p className="caption1 mt-[3px] text-center font-normal text-gray7">
+            내정보
+          </p>
         </div>
       </div>
     </nav>

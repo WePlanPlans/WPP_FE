@@ -85,11 +85,11 @@ export default function ReviewComments() {
         댓글
         <span className="pl-1 font-bold">{commentDataLength}</span>
       </div>
-      <div className="h-[8px] bg-gray1"></div>
+      <div className="ml-[-20px] mr-[-20px] h-[8px] bg-gray1"></div>
       <div className="flex flex-col">
         {commentDataLength == 0 && (
-          <div className="mb-4 flex flex-col items-center justify-center text-sm text-gray4">
-            <div>댓글이 없습니다. </div>
+          <div className="mt-10 flex flex-col items-center justify-center text-sm text-gray4">
+            <div>아직 댓글이 없어요. </div>
             <div>첫 댓글을 작성해보세요!</div>
           </div>
         )}
@@ -107,17 +107,19 @@ export default function ReviewComments() {
               {
                 return (
                   <React.Fragment key={index}>
-                    {group?.data.data.comments.content.map((item: any) => (
-                      <CommentItem
-                        key={item.commentId}
-                        commentId={item.commentId}
-                        authorNickname={item.authorNickname}
-                        authorProfileImageUrl={item.authorProfileImageUrl}
-                        createdTime={item.createdTime}
-                        content={item.content}
-                        isAuthor={item.isAuthor}
-                      />
-                    ))}
+                    {group?.data.data.comments.content.map(
+                      (item: CommentItemProps) => (
+                        <CommentItem
+                          key={item.commentId}
+                          commentId={item.commentId}
+                          authorNickname={item.authorNickname}
+                          authorProfileImageUrl={item.authorProfileImageUrl}
+                          createdTime={item.createdTime}
+                          content={item.content}
+                          isAuthor={item.isAuthor}
+                        />
+                      ),
+                    )}
                   </React.Fragment>
                 );
               }

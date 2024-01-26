@@ -1,4 +1,3 @@
-import { RegionTypes, ToursCategoryProps } from '@/@types/tours.types';
 import ToursCategoryItem from './ToursCategoryItem';
 import { getPopularRegion } from '@api/region';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -52,7 +51,11 @@ const ToursCategory = ({
   if (showSkeleton) {
     return (
       <div className="no-scrollbar my-3 flex w-[100%] overflow-scroll overflow-y-hidden bg-white">
-        <Swiper spaceBetween={8} slidesPerView={'auto'}>
+        <Swiper
+          spaceBetween={8}
+          slidesPerView={'auto'}
+          centeredSlides={false}
+          className="w-full">
           {Array.from({ length: 10 }, (_, index) => (
             <SwiperSlide key={index} className="w-[62px]">
               <ToursCategoryItemSkeleton />

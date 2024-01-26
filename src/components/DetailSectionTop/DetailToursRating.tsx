@@ -44,7 +44,7 @@ export default function DetailToursRating({
       <div className="flex w-full cursor-pointer items-center">
         {STAR_IDX_ARR.map((item, idx) => {
           return (
-            <span key={`${item}+${idx}`}>
+            <span key={`${item}+${idx}`} className="pr-[3px]">
               <svg
                 width="16"
                 height="15"
@@ -67,9 +67,8 @@ export default function DetailToursRating({
             </span>
           );
         })}
-
-        <div className="h-3 pl-1">
-          <p className="text-xs font-normal leading-4 text-gray4 ">
+        <div className="h-3 pl-[1px]">
+          <p className="text-[14px] font-normal leading-4 text-gray4 ">
             ({reviewTotalCount})
           </p>
         </div>

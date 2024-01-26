@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import TripMap from './TripMap';
 import PlanItemBox from './PlanItemBox';
 import PlanEditItemBox from './PlanEditItemBox';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useCallback } from 'react';
 import { socketContext } from '@hooks/useSocket';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { visitDateState, isEditState } from '@recoil/socket';
 import { pubGetPathAndItems, pubUpdateTransportation } from '@api/socket';
 import { tapState } from '@recoil/plan';
 import { useGetTripsAuthority } from '@hooks/useGetTripsAuthority';
+import { debounce } from 'lodash';
 
 type PlanItemProps = {
   date: string;
@@ -40,37 +41,35 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
     setIsEdit((prev) => !prev);
   };
 
-  const handleTranspo = (
-    transportation: 'CAR' | 'PUBLIC_TRANSPORTATION',
-    date: string,
-    tripId: string,
-  ) => {
-    if (transportation !== transpo) {
-      callBackPub(() =>
+  const transpo = tripItem?.data?.transportation || '';
+
+  const debouncedHandleTranspo = useCallback(
+    debounce((transportation, date, tripId) => {
+      if (transportation !== transpo) {
         pubUpdateTransportation(
           {
             visitDate: date,
             transportation: transportation,
           },
           tripId,
-        ),
-      );
-    }
-  };
-
-  const transpo = tripItem?.data?.transportation || '';
+        );
+      }
+    }, 1000),
+    [transpo],
+  );
 
   return (
     <>
       {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
-
       <div className="mb-[31px] mt-[31px] flex items-center justify-between">
         {tripAuthority !== 'WRITE' || isEdit ? (
           <div />
         ) : (
           <div className="flex items-center justify-center">
             <div
-              onClick={() => handleTranspo('CAR', date || '', tripId || '')}
+              onClick={() =>
+                debouncedHandleTranspo('CAR', date || '', tripId || '')
+              }
               className="flex h-[32px] w-[32px] cursor-pointer items-center justify-center rounded-l-md border border-solid border-gray3">
               <CarIcon
                 size={19}
@@ -79,7 +78,11 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
             </div>
             <div
               onClick={() =>
-                handleTranspo('PUBLIC_TRANSPORTATION', date || '', tripId || '')
+                debouncedHandleTranspo(
+                  'PUBLIC_TRANSPORTATION',
+                  date || '',
+                  tripId || '',
+                )
               }
               className="pointer-cursor -ml-[1px] flex h-[32px] w-[32px] cursor-pointer items-center justify-center rounded-r-md border border-solid border-gray3">
               <BusIcon
@@ -128,7 +131,7 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
         <div className="my-[18px]">
           <ButtonWhite
             onClick={() => navigate('./place')}
-            className="h-[40px] w-full">
+            className="h-[56px] w-full">
             <div className="flex items-center justify-center gap-[5px] font-bold text-gray4">
               <PlusIcon size={15} color="#888" />
               <div className="mt-[1px]">장소 추가하기</div>

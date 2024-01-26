@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Modal from 'react-modal';
 import { modalChildrenState } from '@recoil/modal';
 import { useRecoilValue } from 'recoil';
@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil';
 interface ModalProps {
   isOpen: boolean;
   closeModal: () => void;
-  children: any;
+  children: ReactNode;
 }
 
 const ModalComponent: React.FC<ModalProps> = ({

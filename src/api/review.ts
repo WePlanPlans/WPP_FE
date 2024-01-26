@@ -1,6 +1,5 @@
 import client from './client';
 import authClient from './authClient';
-
 // 리뷰 관련 API
 
 // 리뷰수정

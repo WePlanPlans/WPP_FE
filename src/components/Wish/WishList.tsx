@@ -3,7 +3,6 @@ import InfiniteScroll from 'react-infinite-scroller';
 import { v4 as uuidv4 } from 'uuid';
 import WishItem from './WishItem';
 import ToursItemSkeleton from '@components/Tours/ToursItemSkeleton';
-import { TourType } from '@/@types/tours.types';
 import { Spinner } from '@components/common/spinner/Spinner';
 
 interface WishListProps {

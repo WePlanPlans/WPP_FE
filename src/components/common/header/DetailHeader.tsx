@@ -13,7 +13,7 @@ export default function DetailHeader() {
   };
 
   return (
-    <header className="mb-10 flex">
+    <header className="mb-[18px] flex">
       <div onClick={goBack} className=" flex cursor-pointer items-center">
         <BackIcon />
       </div>

@@ -5,11 +5,6 @@ import { useQuery } from '@tanstack/react-query';
 import { useRecoilState } from 'recoil';
 import { keywordsState } from '@recoil/review';
 
-interface Keyword {
-  keywordId: number;
-  content: string;
-}
-
 export default function ReviewKeyword() {
   const location = useLocation();
   const { state } = location;
@@ -50,38 +45,29 @@ export default function ReviewKeyword() {
     }
   };
 
-  // 5x2 형태로 배치하기 위해 행(row)과 열(column)을 계산
-  // const rows = 5;
-  const columns = 2;
-
   return (
     <>
       <div className="mb-5 text-lg font-bold">어떤 점이 좋았나요? </div>
-      <div className="text-md mb-10 grid grid-cols-2 gap-2 font-bold">
-        {reviewKeywords?.data?.data?.keywords?.map(
-          (keyword: any, index: number) => {
-            const row = Math.floor(index / columns) + 1;
-            const col = (index % columns) + 1;
+      <div className="mb-10  flex  flex-wrap gap-2 text-[14px] font-bold">
+        {reviewKeywords?.data?.data?.keywords?.map((keyword: Keyword) => {
+          const isSelected = selectedKeywords.some(
+            (selectedKeyword) =>
+              selectedKeyword.keywordId === keyword.keywordId,
+          );
 
-            const isSelected = selectedKeywords.some(
-              (selectedKeyword) =>
-                selectedKeyword.keywordId === keyword.keywordId,
-            );
-
-            return (
-              <button
-                className={`flex items-center justify-center row-${row} col-${col} h-[40px] cursor-pointer rounded-md ${
-                  isSelected
-                    ? 'bg-[#062139] text-white'
-                    : 'bg-gray-100 text-gray-500'
-                } px-2 py-1`}
-                key={keyword.keywordId}
-                onClick={() => handleKeywordClick(keyword)}>
-                {keyword.content}
-              </button>
-            );
-          },
-        )}
+          return (
+            <button
+              className={`h-[40px] cursor-pointer items-center justify-center rounded-[30px] ${
+                isSelected
+                  ? 'bg-[#062139] text-white'
+                  : 'bg-gray-100 text-gray-500'
+              } px-[14px] py-[8px]`}
+              key={keyword.keywordId}
+              onClick={() => handleKeywordClick(keyword)}>
+              {keyword.content}
+            </button>
+          );
+        })}
       </div>
     </>
   );

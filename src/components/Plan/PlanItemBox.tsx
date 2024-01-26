@@ -31,7 +31,6 @@ const PlanItemBox = ({
   if (!item || !paths) {
     return <div>Missing data</div>;
   }
-  console.log(paths);
   const { tripAuthority } = useGetTripsAuthority();
   const { tripId } = useContext(socketContext);
 
@@ -53,10 +52,19 @@ const PlanItemBox = ({
     }
   };
 
+  const formatTime = (totalMinutes: number) => {
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    if (hours === 0) {
+      return `${minutes}분`;
+    }
+    return `${hours}시간 ${minutes}분`;
+  };
+
   return (
     <>
       <div>
-        <div className="text-left text-sm font-semibold ">{day}</div>
+        <div className="text-left text-sm font-semibold">{day}</div>
         {item.map((item, index) => (
           <div key={item.tripItemId} className="flex">
             <div className="relative ml-[5px] mr-[17px] flex h-[87.5px] items-center">
@@ -68,17 +76,25 @@ const PlanItemBox = ({
               <SequenceIcon className="z-10" number={item.seqNum} />
             </div>
             <div className="flex w-full flex-col">
-              <div className="flex h-[87.5px]  rounded-lg border border-solid border-[#ededed] bg-white">
+              <div className="flex h-[88.5px] rounded-lg border border-solid border-[#ededed] bg-white">
                 <img
                   className="h-[87px] w-[93px] rounded-bl-lg rounded-tl-lg"
                   src={item.thumbnailUrl}
                   alt="img"
                 />
-                <div className="flex w-full flex-col p-[10px]">
-                  <div className="flex justify-between text-left text-[14px] font-medium text-black">
-                    {item.name.length > 19
-                      ? item.name.slice(0, 19) + '...'
+                <div className="flex h-[88px] w-full flex-col px-[10px] py-[8px]">
+                  <div className="text-left text-[14px] font-medium text-black">
+                    {item.name.length > 16
+                      ? item.name.slice(0, 16) + '...'
                       : item.name}
+                  </div>
+                  <div className="mb-[11px] mt-[4px] flex h-[16px] w-fit items-center justify-center rounded-[3px] bg-[#ededed] px-[4px] py-[8px] text-center text-[11px] text-black">
+                    <div className="flex h-[13px] items-center justify-center text-center">
+                      {item.category}
+                    </div>
+                  </div>
+                  <div className="flex justify-between text-sm font-bold text-black">
+                    {item.price.toLocaleString()} 원
                     {tripAuthority == 'WRITE' && (
                       <Alert
                         title={'비용을 입력해주세요'}
@@ -89,15 +105,15 @@ const PlanItemBox = ({
                         closeOnConfirm={true}
                         children={
                           <button>
-                            <PenIcon size={14} className="cursor-pointer" />
+                            <PenIcon size={14} />
                           </button>
                         }
                         content={
-                          <div className="mb-6 mt-8 flex w-[80%] items-center justify-between border-b-[1px] border-solid border-gray4">
+                          <div className="mb-6 mt-8 flex w-[95%] items-center justify-between border-b-[1px] border-solid border-gray4">
                             <div className="flex w-full items-center justify-between">
                               <input
                                 type="number"
-                                className="title3 text-gray6 placeholder:text-gray4 focus:outline-none"
+                                className="title3 w-full pl-[2px] text-gray6 placeholder:text-gray4 focus:outline-none"
                                 placeholder="금액"
                                 value={inputPrice}
                                 onChange={(e) => setInputPrice(e.target.value)}
@@ -117,12 +133,6 @@ const PlanItemBox = ({
                         }
                       />
                     )}
-                  </div>
-                  <div className="mt-[3px] flex h-fit w-fit items-center justify-center gap-2 rounded-[3px] bg-[#ededed] p-[4px] text-center text-[11px] text-black">
-                    {item.category}
-                  </div>
-                  <div className="mt-[15px] text-sm font-bold text-black">
-                    {item.price.toLocaleString()} 원
                   </div>
                 </div>
               </div>
@@ -148,9 +158,9 @@ const PlanItemBox = ({
                             ? '경로 정보가 없습니다.'
                             : `${(path.pathInfo.totalDistance / 1000).toFixed(
                                 2,
-                              )}km, ${
-                                path.pathInfo.totalTime
-                              }분, ${path.pathInfo.price.toLocaleString()}원`}
+                              )}km, ${formatTime(
+                                path.pathInfo.totalTime,
+                              )}, ${path.pathInfo.price.toLocaleString()}원`}
                         </div>
                       </div>
                     </div>

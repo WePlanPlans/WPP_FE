@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { TourKeywordInfo } from '@/@types/tours.types';
 
 const getMaxMinCounts = (reviewStats: TourKeywordInfo[]) => {
   const counts = reviewStats.map((item) => item.keywordCount);

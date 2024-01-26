@@ -64,19 +64,19 @@ const MyTripItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
                 alt="여행지 이미지"
               />
             </div>
-            <div className="ml-[10px] flex w-full flex-col items-start justify-between  ">
-              <div className="mt-[1px] ">
-                <div className="truncate text-[15px] text-base font-semibold text-stone-900">
+            <div className="ml-[10px] mt-[-2px] flex w-full flex-col items-start justify-between  ">
+              <div>
+                <div className="truncate text-[15px] text-base font-bold text-stone-900">
                   {tripName}
                 </div>
-                <div className="text-sm font-normal text-zinc-500">
+                <div className="text-[14px] font-normal text-gray5">
                   {startDate.replace(/-/g, '.')} -{' '}
                   {endDate.replace(/-/g, '.').split('2024.')}
                   {tripDuration === '0박 1일' ? null : ` (${tripDuration})`}
                 </div>
               </div>
 
-              <div className="mb-[5px] flex text-xs font-normal text-zinc-500">
+              <div className="flex pt-[2px] text-xs font-normal text-zinc-500">
                 <UserIcon size={13} fill="#888" color="none" />
                 <span>{numberOfTripMember}명과 공유중</span>
               </div>

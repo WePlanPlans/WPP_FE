@@ -5,7 +5,7 @@ import TripBudget from './TripBudget';
 import Tab from '@components/common/tab/Tab';
 import PlanItem from './PlanItem';
 import { socketContext } from '@hooks/useSocket';
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import {
   pubEnterMember,
   pubConnectMember,
@@ -20,6 +20,10 @@ import { visitDateState } from '@recoil/socket';
 import { useState } from 'react';
 import { getItem } from '@utils/localStorageFun';
 import PlanSchedule from './PlanSchedule';
+import PlanCursor from './PlanCursor';
+import PlanOtherCursor from './PlanOtherCursor';
+import ScrollTopButton from '@components/common/scrollTopButton/ScrollTopButton';
+import { isMobile } from 'react-device-detect';
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();
@@ -37,6 +41,8 @@ const PlanSectionTop = () => {
   const [, setVisitDate] = useRecoilState(visitDateState);
   const { startDate, endDate } = useGetTrips();
   const [isEnter, setIsEnter] = useState(false);
+
+  const cursorAreaRef = useRef<HTMLDivElement>(null);
 
   let DayArr: string[] = [];
   let DateArr: string[] = [];
@@ -67,21 +73,22 @@ const PlanSectionTop = () => {
     if (isEnter) {
       const accessToken = getItem('accessToken');
       if (accessToken) {
-        callBackPub(() => {
-          pubConnectMember({ token: accessToken || '' }, tripId);
-        });
+        pubConnectMember({ token: accessToken || '' }, tripId);
 
         return () => {
-          callBackPub(() =>
-            pubDisconnectMember({ token: accessToken || '' }, tripId),
-          );
+          pubDisconnectMember({ token: accessToken || '' }, tripId);
         };
       }
     }
   }, [isEnter]);
-
   return (
-    <div className="min-h-screen">
+    <div className="cursor-area min-h-screen" ref={cursorAreaRef}>
+      {!isMobile && (
+        <>
+          <PlanCursor props={cursorAreaRef} />
+        </>
+      )}
+      <PlanOtherCursor />
       <BackBox
         showBack={true}
         backHandler={() => {
@@ -101,6 +108,7 @@ const PlanSectionTop = () => {
           <PlanItem key={date} date={date} day={DayArr[index]} />
         ))}
       />
+      <ScrollTopButton />
     </div>
   );
 };

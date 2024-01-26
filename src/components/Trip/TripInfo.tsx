@@ -5,7 +5,6 @@ import TripSurveyMember from '@components/common/modal/children/TripSurveyMember
 import { Modal } from '@components/common/modal';
 import { useQuery } from '@tanstack/react-query';
 import { getTripsMembers } from '@api/trips';
-// import { ReactComponent as NullUser } from '@assets/images/NullUser.svg';
 import { DownIcon } from '@components/common/icons/Icons';
 import { useState } from 'react';
 import { UserIcon } from '@components/common/icons/Icons';
@@ -23,12 +22,11 @@ const ShareList = () => {
     enabled: !!tripId,
   });
   const members = tripsMembers?.data?.data?.tripMemberSimpleInfos;
-  console.log(tripsMembers);
   return (
     <>
       <hr className="my-3 border-solid border-gray2" />
       <div className="max-h-[115px] overflow-y-auto">
-        {members.map((member: any, index: number) => {
+        {members.map((member: TripMemeberInfo, index: number) => {
           return (
             <div
               className={`mb-2 flex cursor-pointer items-center text-gray5`}
@@ -47,7 +45,6 @@ const ShareList = () => {
                   }>
                   <UserIcon size={20} color="white" fill="white" />
                 </div>
-                // <NullUser className="h-[32px] w-[32px]" />
               )}
               <div className="ml-3">{member.nickname}</div>
             </div>
@@ -92,7 +89,7 @@ const TripInfo = () => {
       <div className="my-5">
         <div className="flex items-center justify-between">
           <div className="flex  space-x-[-17.5px]">
-            {members?.map((member: any, index: number) => (
+            {members?.map((member: TripMemeberInfo, index: number) => (
               <div key={index}>
                 {member.profileImageUrl &&
                 member.profileImageUrl !== 'http://asiduheimage.jpg' ? (
@@ -108,7 +105,6 @@ const TripInfo = () => {
                     }>
                     <UserIcon size={20} color="white" fill="white" />
                   </div>
-                  // <NullUser className="h-[32px] w-[32px] border-2 border-solid border-white" />
                 )}
               </div>
             ))}

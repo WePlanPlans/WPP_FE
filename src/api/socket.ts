@@ -61,6 +61,18 @@ export const subBudget = (
   });
 };
 
+// 커서 공유
+export const subCursor = (
+  tripId: string,
+  visitDate: string,
+  subCursorMessage: subCursorMessage,
+) => {
+  socketClient.subscribe(`/sub/${tripId}/cursor/${visitDate}`, (message) => {
+    const res = JSON.parse(message.body);
+    subCursorMessage(res);
+  });
+};
+
 // 소켓 전송
 // 여정 기본 정보 변경 이벤트 발생시
 export const pubInfo = (pubInfo: pubInfo, tripId: string) => {
@@ -101,6 +113,7 @@ export const pubUpdateTripItem = (
     destination: `/pub/trips/${tripId}/updateTripItemOrder`,
     body: JSON.stringify(pubUpdateTripItem),
   });
+  console.log('실행');
 };
 
 // 여행 날짜별 교통 수단 변경 이벤트 발생시 (01/16 업데이트)
@@ -112,6 +125,7 @@ export const pubUpdateTransportation = (
     destination: `/pub/trips/${tripId}/updateTransportation`,
     body: JSON.stringify(pubUpdateTransportation),
   });
+  console.log('펍실행');
 };
 
 // 여행 아이템 방문 날짜 변경 이벤트 발생시
@@ -185,5 +199,13 @@ export const pubUpdateBudget = (
   socketClient.publish({
     destination: `/pub/trips/${tripId}/updateBudget`,
     body: JSON.stringify(pubUpdateBudget),
+  });
+};
+
+// 커서공유
+export const pubCursor = (pubCursor: pubCursor, tripId: string) => {
+  socketClient.publish({
+    destination: `/pub/trips/${tripId}/cursor`,
+    body: JSON.stringify(pubCursor),
   });
 };

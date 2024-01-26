@@ -106,12 +106,11 @@ export const InputComment: React.FC<InputCommentProps> = () => {
   };
 
   return (
-    <div className="fixed bottom-0 mt-auto flex flex h-[64px] w-[412px] items-center justify-center border  border-solid border-[#EDEDED] bg-white ">
-      <div className="ml-4 mr-4 flex h-[40px] w-[375px] items-center  rounded-md border border-solid border-[#EDEDED]">
+    <div className="fixed bottom-0 flex h-[64px] w-full  max-w-[412px] items-center justify-center border border-solid border-[#EDEDED] bg-white">
+      <div className="ml-4 mr-4 flex h-[40px] w-full items-center  rounded-md border border-solid border-[#EDEDED]">
         <div className="pl-1 pr-0.5 text-sm font-bold text-[#29ddf6]">ㅣ</div>
         <div className="flex  w-full ">
           <input
-            // ref={inputRef}
             type="text"
             placeholder="댓글을 입력하세요"
             className=" w-full max-w-full text-sm placeholder-[#d7d7d7]  outline-none"
