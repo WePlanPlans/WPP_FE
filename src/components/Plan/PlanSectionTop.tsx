@@ -22,7 +22,7 @@ import { getItem } from '@utils/localStorageFun';
 import PlanSchedule from './PlanSchedule';
 import PlanCursor from './PlanCursor';
 import PlanOtherCursor from './PlanOtherCursor';
-
+import ScrollTopButton from '@components/common/scrollTopButton/ScrollTopButton';
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();
