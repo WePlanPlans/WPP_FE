@@ -23,6 +23,7 @@ import PlanSchedule from './PlanSchedule';
 import PlanCursor from './PlanCursor';
 import PlanOtherCursor from './PlanOtherCursor';
 import ScrollTopButton from '@components/common/scrollTopButton/ScrollTopButton';
+import { isMobile } from 'react-device-detect';
 
 const PlanSectionTop = () => {
   const navigate = useNavigate();
@@ -82,7 +83,11 @@ const PlanSectionTop = () => {
   }, [isEnter]);
   return (
     <div className="cursor-area min-h-screen" ref={cursorAreaRef}>
-      <PlanCursor props={cursorAreaRef} />
+      {!isMobile && (
+        <>
+          <PlanCursor props={cursorAreaRef} />
+        </>
+      )}
       <PlanOtherCursor />
       <BackBox
         showBack={true}
