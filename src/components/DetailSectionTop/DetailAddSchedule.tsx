@@ -193,7 +193,7 @@ const DetailAddSchedule = () => {
                                       key={index}
                                       className="flex w-[99px] items-start">
                                       <button
-                                        className={`relative flex h-10 flex-shrink-0 flex-grow-0 items-center justify-center gap-1 rounded-[168px] border-[1.25px] border-solid ${
+                                        className={`relative flex h-10 w-[99px] flex-shrink-0 flex-grow-0 items-center justify-center gap-1 rounded-[168px] border-[1.25px] border-solid ${
                                           index === selectedButton
                                             ? 'border-main2'
                                             : 'border-gray3'

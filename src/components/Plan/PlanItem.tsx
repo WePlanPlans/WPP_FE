@@ -46,14 +46,12 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
     tripId: string,
   ) => {
     if (transportation !== transpo) {
-      callBackPub(() =>
-        pubUpdateTransportation(
-          {
-            visitDate: date,
-            transportation: transportation,
-          },
-          tripId,
-        ),
+      pubUpdateTransportation(
+        {
+          visitDate: date,
+          transportation: transportation,
+        },
+        tripId,
       );
     }
   };
@@ -63,7 +61,6 @@ const PlanItem: React.FC<PlanItemProps> = ({ date, day }) => {
   return (
     <>
       {tripPath && <TripMap paths={tripPath.data?.paths || []} />}
-
       <div className="mb-[31px] mt-[31px] flex items-center justify-between">
         {tripAuthority !== 'WRITE' || isEdit ? (
           <div />

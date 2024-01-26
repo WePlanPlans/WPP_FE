@@ -97,12 +97,27 @@ export type subBudgetRes = {
   } | null;
 };
 
+export type subCursorRes = {
+  status: number;
+  message: string;
+  data: {
+    color: string;
+    tripId: string;
+    visitDate: string;
+    memberId: number;
+    name: string;
+    x: number;
+    y: number;
+  } | null;
+};
+
 export type SocketContextType = {
   tripInfo: subInfoRes | null;
   tripItem: subItemRes | null;
   tripPath: subPathRes | null;
   tripMember: subMemberRes | null;
   tripBudget: subBudgetRes | null;
+  tripCursor: subCursorRes | null;
   tripId: string;
   callBackPub: (callback: () => void) => void;
 };

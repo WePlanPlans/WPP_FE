@@ -8,14 +8,13 @@ import {
 } from 'react-beautiful-dnd';
 import { useState, useEffect } from 'react';
 import { pubUpdateTripItem, pubDeleteItem } from '@api/socket';
-import { useContext } from 'react';
-import { socketContext } from '@hooks/useSocket';
 import { pubUpdateTripItemReq } from '@/@types/service';
 import Alert from '@components/common/alert/Alert';
 import ToastPopUp from '@components/common/toastpopup/ToastPopUp';
 import PlanMoveItem from './PlanMoveItem';
 import { useRecoilState } from 'recoil';
 import { isEditState } from '@recoil/socket';
+import { debounce } from 'lodash';
 
 type PlanItemBoxProps = {
   item: TripItem[];
@@ -34,7 +33,6 @@ const PlanEditItemBox = ({
     return <div>Missing data</div>;
   }
 
-  const { callBackPub } = useContext(socketContext);
   const [, setIsEdit] = useRecoilState(isEditState);
   const [items, setItems] = useState(item);
   const [newData, setNewData] = useState<pubUpdateTripItemReq | null>(null);
@@ -63,17 +61,19 @@ const PlanEditItemBox = ({
     });
   };
 
+  const debouncedPubUpdateTripItem = debounce((newData, tripId) => {
+    pubUpdateTripItem(newData, tripId);
+  }, 1000);
+
   useEffect(() => {
     if (newData && tripId) {
-      callBackPub(() => pubUpdateTripItem(newData, tripId));
+      debouncedPubUpdateTripItem(newData, tripId);
     }
   }, [newData]);
 
   const handleConfirm = () => {
     if (tripId && visitDate && selectedItemId) {
-      callBackPub(() =>
-        pubDeleteItem({ tripId: tripId, visitDate: visitDate }, selectedItemId),
-      );
+      pubDeleteItem({ tripId: tripId, visitDate: visitDate }, selectedItemId);
     }
     setToastPopUp(() => ({
       isPopUp: true,
