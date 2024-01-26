@@ -30,7 +30,7 @@ const MyTripIngItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
           </span>
         </div>
         <div className="ml-[15px] flex max-w-[300px] flex-col items-start justify-between gap-[15px] ">
-          <div className="mt-[5px]">
+          <div className="mt-[3px]">
             <div className="w-56 truncate text-[15px] font-bold text-white ">
               {tripName}
             </div>
