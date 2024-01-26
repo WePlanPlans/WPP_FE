@@ -18,7 +18,7 @@ const App = () => {
           <SocketRouter />
         </BrowserRouter>
       </RecoilRoot>
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };
