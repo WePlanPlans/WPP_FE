@@ -1792,3 +1792,21 @@ export const GrayCalendarIcon: React.FC<IconProps> = ({}) => {
     </svg>
   );
 };
+
+export const AuthDropDownIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="21"
+      height="21"
+      viewBox="0 0 21 21"
+      fill="none">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M4.43696 7.66943C4.66915 7.41402 5.06443 7.39519 5.31984 7.62739L10.3994 12.2452L15.479 7.62739C15.7344 7.39519 16.1297 7.41402 16.3619 7.66943C16.5941 7.92484 16.5752 8.32012 16.3198 8.55231L10.3994 13.9345L4.479 8.55231C4.22359 8.32012 4.20476 7.92484 4.43696 7.66943Z"
+        fill="#888888"
+      />
+    </svg>
+  );
+};

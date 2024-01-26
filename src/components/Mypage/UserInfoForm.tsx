@@ -34,6 +34,8 @@ const UserInfoForm = () => {
     setValue('ageType', userInfo?.ageType);
   }, [userInfo]);
 
+  console.log(watch());
+
   const onInfoSubmit: SubmitHandler<any> = async (data) => {
     const { nickname, profileImageUrl, genderType, ageType } = data;
 
@@ -85,13 +87,15 @@ const UserInfoForm = () => {
             label="성별"
             options={genderArr}
             name={'genderType'}
-            register={register}
+            setValue={setValue}
+            value={watch('genderType')}
           />
           <AuthDropDown
             label="연령대"
             options={ageArr}
             name={'ageType'}
-            register={register}
+            setValue={setValue}
+            value={watch('ageType')}
           />
         </div>
       </div>

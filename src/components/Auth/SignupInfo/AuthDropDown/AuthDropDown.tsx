@@ -1,82 +1,48 @@
 import AuthDropDownOption from './AuthDropDownOption';
-import { UseFormRegister } from 'react-hook-form';
+import { UseFormSetValue } from 'react-hook-form';
+import * as Select from '@radix-ui/react-select';
+import { AuthDropDownIcon } from '@components/common/icons/Icons';
 
 interface Props {
   label: string;
   options: SelectOption[];
   name: string;
-  register: UseFormRegister<any>;
+  setValue: UseFormSetValue<any>;
+  value?: string;
 }
 
-const AuthDropDown = ({ label, options, name, register }: Props) => {
+const AuthDropDown = ({ label, options, name, setValue, value }: Props) => {
   return (
-    <div className="z-10 flex flex-col">
+    <div>
       <h2 className="body2 mb-2 text-main1">{label}</h2>
-      <select
-        {...register(name)}
-        className="h-12 w-full rounded-lg border border-solid border-gray3 px-2.5 py-2">
-        {options.map((option) => (
-          <AuthDropDownOption option={option} />
-        ))}
-      </select>
-    </div>
+      <Select.Root
+        value={value}
+        onValueChange={(e) => {
+          setValue(name, e);
+        }}>
+        <Select.Trigger className="data-[placeholder]:body5 relative flex h-12 w-full items-center justify-center rounded-lg border border-solid border-gray3 bg-white hover:bg-gray1 data-[state=open]:rounded-b-none data-[placeholder]:text-gray4">
+          <Select.Value placeholder={`${label}을 선택해주세요`} />
+          <Select.Icon className="absolute right-2.5">
+            <AuthDropDownIcon />
+          </Select.Icon>
+        </Select.Trigger>
 
-    // <div className="z-10 flex flex-col">
-    //   <h2 className="body2 mb-2 text-main1">{label}</h2>
-    //   <div
-    //     onClick={() => setIsShow(!isShow)}
-    //     className={`${
-    //       isShow ? 'h-48' : 'h-12'
-    //     } relative w-full overflow-hidden rounded-lg border border-solid border-gray3`}>
-    //     <AuthDropDownOption
-    //       clickHandler={() => {
-    //         setIsShow(!isShow);
-    //       }}
-    //       showDownIcon>
-    //       {isSelected}
-    //     </AuthDropDownOption>
-    //     {isShow && (
-    //       <ul className="absolute top-12 z-20 h-36 w-full overflow-auto rounded-b-lg bg-white">
-    //         {options.map((option) => (
-    //           <li className="h-12 ">
-    //             <AuthDropDownOption
-    //               clickHandler={() => {
-    //                 setIsSelected(option.value);
-    //                 setIsShow(!isShow);
-    //               }}>
-    //               {option.value}
-    //             </AuthDropDownOption>
-    //           </li>
-    //         ))}
-    //       </ul>
-    //     )}
-    //   </div>
-    // </div>
-    // <div className="w-full">
-    //   <Select.Root onValueChange={onSelectClick} {...register(name)}>
-    //     <h2 className="body2 mb-2 text-main1">{label}</h2>
-    //     <Select.Trigger className="data-[placeholder]:body5 relative flex h-12 w-full items-center justify-center rounded-lg border border-solid border-gray3 bg-white hover:bg-gray1 data-[state=open]:rounded-b-none data-[placeholder]:text-gray4">
-    //       <Select.Value className="body5 text-gray6" placeholder={text} />
-    //       <Select.Icon className="absolute right-[10px] top-4">
-    //         <DownIcon size={20} color="#888888" />
-    //       </Select.Icon>
-    //     </Select.Trigger>
-    //     <Select.Portal>
-    //       <Select.Content
-    //         position={'popper'}
-    //         collisionPadding={0}
-    //         className="h-36 overflow-hidden rounded-b-lg border-x border-b border-solid border-gray3 bg-white">
-    //         <Select.Viewport>
-    //           {options.map((option) => (
-    //             <AuthDropDownOption key={option.id} value={option.id}>
-    //               {option.value}
-    //             </AuthDropDownOption>
-    //           ))}
-    //         </Select.Viewport>
-    //       </Select.Content>
-    //     </Select.Portal>
-    //   </Select.Root>
-    // </div>
+        <Select.Portal>
+          <Select.Content
+            position={'popper'}
+            collisionPadding={0}
+            className="h-36 w-[var(--radix-select-trigger-width)] overflow-hidden rounded-b-lg border-x border-b border-solid border-gray3 bg-white">
+            <Select.Viewport>
+              {options.map((option) => (
+                <AuthDropDownOption key={option.id} id={option.id}>
+                  {option.value}
+                </AuthDropDownOption>
+              ))}
+            </Select.Viewport>
+          </Select.Content>
+        </Select.Portal>
+      </Select.Root>
+    </div>
   );
 };
 
