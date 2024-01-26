@@ -72,7 +72,7 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
 
   return (
     <div
-      className={`relative mb-[4px] cursor-pointer`}
+      className={`relative mb-[6px] flex max-h-[72px] cursor-pointer`}
       onClick={() => navigate(`/detail/${tourItemId}`)}>
       <div className="flex">
         <div>
@@ -83,13 +83,13 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
           />
         </div>
 
-        <div className="ml-[8px] flex flex-col items-start justify-between gap-[1px]">
-          <div className="max-w-[270px]">
-            <p className="truncate whitespace-nowrap  px-[2px] text-[16px] font-bold leading-normal text-black">
+        <div className="ml-[8px] flex max-h-[72px] flex-col items-start">
+          <div className="mt-[-5px] flex max-w-[230px] flex-col">
+            <p className="truncate whitespace-nowrap text-[16px] font-bold leading-normal text-black ">
               {title}
             </p>
 
-            <div className="flex items-center">
+            <div className="mb-[8.5px] mt-[-4px] flex  items-center">
               <div className="mr-[5px] flex items-center">
                 <div>
                   <StarIcon size={12.5} color="#FFEC3E" fill="#FFEC3E" />

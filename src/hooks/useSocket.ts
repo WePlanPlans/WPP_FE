@@ -5,6 +5,7 @@ import {
   subPath,
   subMember,
   subBudget,
+  subCursor,
 } from '@api/socket';
 import {
   subInfoRes,
@@ -12,6 +13,7 @@ import {
   subPathRes,
   subMemberRes,
   subBudgetRes,
+  subCursorRes,
   SocketContextType,
 } from '@/@types/service';
 import { createContext } from 'react';
@@ -26,6 +28,7 @@ export const socketContext = createContext<SocketContextType>({
   tripPath: null,
   tripMember: null,
   tripBudget: null,
+  tripCursor: null,
   tripId: '',
   callBackPub: () => {},
 });
@@ -40,6 +43,8 @@ export const useSocket = () => {
   const [tripPath, setTripPath] = useState<subPathRes | null>(null);
   const [tripMember, setTripMember] = useState<subMemberRes | null>(null);
   const [tripBudget, setTripBudget] = useState<subBudgetRes | null>(null);
+  const [tripCursor, setTripCursor] = useState<subCursorRes | null>(null);
+
   const [socketCallback, setSocketCallback] = useState<(() => void) | null>(
     null,
   );
@@ -80,6 +85,12 @@ export const useSocket = () => {
         }
       });
 
+      subCursor(tripId, visitDate, (res) => {
+        if (res) {
+          setTripCursor(res);
+        }
+      });
+
       if (socketCallback) {
         socketCallback();
       }
@@ -104,6 +115,7 @@ export const useSocket = () => {
     tripPath,
     tripMember,
     tripBudget,
+    tripCursor,
     tripId,
     callBackPub,
   };

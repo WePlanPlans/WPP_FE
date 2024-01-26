@@ -8,7 +8,7 @@ import { useContext, useState } from 'react';
 
 const TripBudget = () => {
   const { tripAuthority } = useGetTripsAuthority();
-  const { callBackPub, tripBudget, tripId } = useContext(socketContext);
+  const { tripBudget, tripId } = useContext(socketContext);
 
   const budget = tripBudget?.data;
 
@@ -28,13 +28,11 @@ const TripBudget = () => {
   const handleSetTargetBudget = (inputBudget: string) => {
     const newTargetBudget = parseInt(inputBudget, 10); // 문자열 숫자로 변환
     if (!isNaN(newTargetBudget) && newTargetBudget !== budget?.budget) {
-      callBackPub(() =>
-        pubUpdateBudget(
-          {
-            budget: newTargetBudget,
-          },
-          tripId || '',
-        ),
+      pubUpdateBudget(
+        {
+          budget: newTargetBudget,
+        },
+        tripId || '',
       );
       setInputBudget('');
     }

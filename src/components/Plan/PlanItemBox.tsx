@@ -64,7 +64,7 @@ const PlanItemBox = ({
   return (
     <>
       <div>
-        <div className="text-left text-sm font-semibold ">{day}</div>
+        <div className="text-left text-sm font-semibold">{day}</div>
         {item.map((item, index) => (
           <div key={item.tripItemId} className="flex">
             <div className="relative ml-[5px] mr-[17px] flex h-[87.5px] items-center">
@@ -76,22 +76,24 @@ const PlanItemBox = ({
               <SequenceIcon className="z-10" number={item.seqNum} />
             </div>
             <div className="flex w-full flex-col">
-              <div className="flex h-[87.5px] rounded-lg border border-solid border-[#ededed] bg-white">
+              <div className="flex h-[88.5px] rounded-lg border border-solid border-[#ededed] bg-white">
                 <img
                   className="h-[87px] w-[93px] rounded-bl-lg rounded-tl-lg"
                   src={item.thumbnailUrl}
                   alt="img"
                 />
-                <div className="flex w-full flex-col p-[10px]">
+                <div className="flex h-[88px] w-full flex-col px-[10px] py-[8px]">
                   <div className="text-left text-[14px] font-medium text-black">
                     {item.name.length > 19
                       ? item.name.slice(0, 19) + '...'
                       : item.name}
                   </div>
-                  <div className="mt-[3px] flex h-fit w-fit items-center justify-center gap-2 rounded-[3px] bg-[#ededed] p-[4px] text-center text-[11px] text-black">
-                    {item.category}
+                  <div className="mb-[11px] mt-[4px] flex h-[16px] w-fit items-center justify-center rounded-[3px] bg-[#ededed] px-[4px] py-[8px] text-center text-[11px] text-black">
+                    <div className="flex h-[13px] items-center justify-center text-center">
+                      {item.category}
+                    </div>
                   </div>
-                  <div className="mt-[15px] flex justify-between text-sm font-bold text-black">
+                  <div className="flex justify-between text-sm font-bold text-black">
                     {item.price.toLocaleString()} 원
                     {tripAuthority == 'WRITE' && (
                       <Alert
