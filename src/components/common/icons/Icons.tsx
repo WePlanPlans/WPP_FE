@@ -279,36 +279,19 @@ export const CheckIcon = ({
   );
 };
 
-interface LeftIconProps {
-  width?: number;
-  height?: number;
-  fill?: string;
-  onClick?: VoidFunction;
-  cursor?: string;
-}
-
-export const LeftIcon = ({
-  width = 8,
-  height = 15,
-  fill = '#1E1E1E',
-  onClick,
-  cursor = 'pointer',
-}: LeftIconProps) => {
+export const LeftIcon = () => {
   return (
     <svg
-      onClick={onClick}
-      cursor={cursor}
-      width={width}
-      height={height}
-      viewBox="0 0 8 15"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg">
+      xmlns="http://www.w3.org/2000/svg"
+      width="9"
+      height="16"
+      viewBox="0 0 9 16"
+      fill="none">
       <path
-        id="Left"
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M8.65547 0.743953C8.9713 1.02827 8.99457 1.51229 8.70746 1.82503L2.99737 8.04492L8.70746 14.2648C8.99457 14.5776 8.9713 15.0616 8.65547 15.3459C8.33964 15.6302 7.85086 15.6072 7.56375 15.2944L0.908447 8.04492L7.56375 0.795433C7.85087 0.482685 8.33965 0.459636 8.65547 0.743953Z"
-        fill={fill}
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M8.24116 1.13262C8.55699 1.41694 8.58027 1.90096 8.29315 2.21371L2.58306 8.43359L8.29315 14.6535C8.58026 14.9662 8.55699 15.4502 8.24116 15.7346C7.92534 16.0189 7.43656 15.9958 7.14944 15.6831L0.49414 8.43359L7.14944 1.1841C7.43656 0.871356 7.92534 0.848308 8.24116 1.13262Z"
+        fill="#1E1E1E"
       />
     </svg>
   );
