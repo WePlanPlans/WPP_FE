@@ -46,12 +46,12 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
           </div>
         </div>
 
-        <div className="ml-[8px] flex flex-col items-start justify-between gap-[15px]">
-          <div className=" max-w-[230px]">
-            <p className=" truncate whitespace-nowrap px-[2px] text-[16px] font-bold leading-normal text-black">
+        <div className="ml-[15px] flex flex-col items-start justify-between gap-[15px]">
+          <div className="max-w-[230px]">
+            <p className="truncate whitespace-nowrap text-[16px] font-bold leading-normal text-black">
               {title}
             </p>
-            <div className="ml-[3px] max-w-[260px]">
+            <div className="max-w-[260px]">
               <p className="truncate text-[14px] text-gray6">
                 {isMetroIncluded && tourAddress
                   ? (tourAddress.match(/(.*?[시군구])/)?.[0] || '') +
@@ -63,25 +63,25 @@ const WishItem: React.FC<WishItemProps> = ({ wishList }) => {
             </div>
           </div>
 
-          <div className="caption1 mb-[4px] ml-[3px] flex justify-center leading-normal text-gray4">
+          <div className="caption1 mb-[4px] flex h-[16px] items-center justify-center leading-normal text-gray4">
             <div className="mr-[5px] flex items-center">
-              <div className="">
-                <StarIcon size={12.5} color="#FFEC3E" fill="#FFEC3E" />
+              <div>
+                <StarIcon size={15} color="#FFEC3E" fill="#FFEC3E" />
               </div>
-              <div className="flex items-center pt-[1.5px]">
-                <span className="ml-1 mr-0.5 text-xs font-bold">
+              <div className="flex items-center">
+                <span className="ml-[2px] mr-0.5 text-[12px] font-bold">
                   {(Math.ceil(ratingAverage * 100) / 100).toFixed(1)}
                 </span>
-                <span className="text-xs">
+                <span className="text-[12px] font-normal ">
                   ({reviewCount ? reviewCount.toLocaleString() : reviewCount})
                 </span>
               </div>
             </div>
-            <div className="flex items-center justify-center ">
-              <div className="">
-                <HeartIcon size={14} color="#FF2167" fill="#FF2167" />
+            <div className="flex items-center justify-center">
+              <div>
+                <HeartIcon size={16} color="#FF2167" fill="#FF2167" />
               </div>
-              <span className="ml-1 mt-[0px] text-xs">
+              <span className="ml-[2px] text-[12px] font-normal">
                 {likedCount ? likedCount.toLocaleString() : likedCount}
               </span>
             </div>
