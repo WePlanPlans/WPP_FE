@@ -48,7 +48,7 @@ const LikedToursListBox: React.FC<LikedToursListProps> = ({
           {/* <Spinner /> */}
         </div>
       }>
-      <div className="no-scrollbar grid grid-cols-1 gap-[5px] overflow-y-scroll">
+      <div className="no-scrollbar mt-[8px] grid grid-cols-1 gap-[24px] overflow-y-scroll">
         {isLoading
           ? Array.from({ length: 10 }, (_, index) => (
               <ToursItemSkeleton key={index} />

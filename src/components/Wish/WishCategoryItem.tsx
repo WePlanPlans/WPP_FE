@@ -27,7 +27,7 @@ const WishCategoryItem: React.FC<WishCategoryItemProps> = ({
   return (
     <button
       onClick={handleCategoryClick}
-      className={`body4 mr-[8px] flex h-[32px] w-[58px] items-center justify-center whitespace-nowrap  rounded-[30px] border border-solid bg-[#28D8FF] px-[16px] py-[7px] leading-normal ${buttonStyle}`}>
+      className={`body4 mr-[5px] flex items-center justify-center whitespace-nowrap  rounded-[30px] border border-solid bg-[#28D8FF] px-[16px] py-[7px] leading-normal ${buttonStyle}`}>
       {category.name}
     </button>
   );

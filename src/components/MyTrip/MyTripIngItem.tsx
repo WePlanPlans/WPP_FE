@@ -24,7 +24,7 @@ const MyTripIngItem: React.FC<MyTripItemProps> = ({ myTripList }) => {
             alt="여행지 이미지"
           />
         </div>
-        <div className="absolute right-3 top-[20px] inline-flex h-[22px] w-[54px] items-center justify-center gap-[8px] rounded-2xl border border-solid border-cyan-400 bg-white px-[8px] py-[10px] pt-[10px]">
+        <div className="absolute right-3 top-[20px] inline-flex h-[24px] w-[54px] items-center justify-center gap-[8px] rounded-2xl border border-solid border-cyan-400 bg-white px-[8px] py-[10px] pt-[10px]">
           <span className="text-xs font-semibold text-cyan-400">
             {tripStatus}
           </span>
