@@ -75,17 +75,16 @@ const TripBudget = () => {
             {tripAuthority == 'WRITE' && (
               <Alert
                 title={'비용을 입력해주세요'}
-                message={''}
                 onConfirm={() => handleSetTargetBudget(inputBudget)}
                 onCancel={() => setInputBudget('')}
                 closeOnConfirm={true}
                 children={
                   <button className="text-gray3">
-                    <div className="flex flex-col items-start">
-                      <SettingIcons color="#D9D9D9" />
+                    <div className="flex flex-col items-start pt-[3px]">
+                      <SettingIcons color="#D9D9D9" size={15} />
                       {!budget?.budget && (
                         <div className="h-[31.2px] w-[141px]">
-                          <div className="relative left-[-58px] top-3 flex h-[27.16px] w-[141px] items-center justify-center gap-[0.8px] rounded-lg bg-[#062139] px-3 py-[7px]">
+                          <div className="relative left-[-62px] top-3 flex h-[27.16px] w-[141px] items-center justify-center gap-[0.8px] rounded-lg bg-[#062139] px-3 py-[7px]">
                             <div className="h-3.5 w-[129.36px]">
                               <span className="caption1 w-full whitespace-nowrap text-center text-white">
                                 목표 경비를 입력해보세요!
@@ -98,7 +97,7 @@ const TripBudget = () => {
                             viewBox="0 0 12 7"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
-                            className="relative left-[3px] top-[-21px]"
+                            className="relative left-[1px] top-[-21px]"
                             preserveAspectRatio="xMidYMid meet">
                             <path
                               d="M5.94048 0.136719L11.4521 6.20375L0.428827 6.20375L5.94048 0.136719Z"

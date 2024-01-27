@@ -55,11 +55,7 @@ const Nav = () => {
             onClick={() => navigate('/mytrip')}
             className="cursor-pointe w-[53.12px] flex-col items-center justify-center px-2">
             <div className="flex justify-center">
-              {isActive('/mytrip') ? (
-                <CalendarIcon2 size={24} />
-              ) : (
-                <CalendarIcon3 size={24} />
-              )}
+              {isActive('/mytrip') ? <CalendarIcon2 /> : <CalendarIcon3 />}
             </div>
             <p className="caption1 mt-[5px] text-center text-xs/[11px] font-normal text-gray7">
               여정

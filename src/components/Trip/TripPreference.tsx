@@ -89,7 +89,7 @@ const RatioBar = ({ value, total, color, label1, label2 }: RatioBarParams) => {
           <div className={`w-[65px] ${isZeroWeight} ${isZeroColor}`}>
             {label1}
           </div>
-          <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
+          <div className="flex h-[8px] w-[175px] rounded-full bg-gray2">
             <div style={{ width }} className={`rounded-full bg-${color}`}></div>
           </div>
           <div className="ml-auto text-gray6">{label2}</div>
@@ -97,7 +97,7 @@ const RatioBar = ({ value, total, color, label1, label2 }: RatioBarParams) => {
       ) : (
         <>
           <div className={`w-[65px] text-gray6`}>{label1}</div>
-          <div className="flex h-[10px] w-[175px] rounded-full bg-gray2">
+          <div className="flex h-[8px] w-[175px] rounded-full bg-gray2">
             <div
               style={{ width }}
               className={`ml-auto rounded-full bg-${color}`}></div>

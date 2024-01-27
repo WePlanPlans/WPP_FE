@@ -33,13 +33,13 @@ const Alert: FC<AlertProps> = ({
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 z-[120] h-[100%] bg-black opacity-70" />
       <Dialog.Content
-        className={`${
-          content && 'pb-[16px] pt-10'
+        className={`${content && 'pb-[16px] pt-10'} ${
+          !message && content && 'pt-5'
         } fixed left-[50%] top-[50%] z-[130] flex min-h-[192px] w-[309px] translate-x-[-50%] translate-y-[-50%] flex-col items-center justify-center rounded-2xl bg-white px-[14px] shadow-lg focus:outline-none`}>
         <Dialog.Description
           className={`${
             content ? 'w-full pl-2 text-left' : 'text-center text-[15px]'
-          } mt-[10px] font-bold leading-normal`}>
+          } mt-[10px] pb-[5px] font-bold leading-normal`}>
           <p
             className={` ${
               content && 'title3 text-left'

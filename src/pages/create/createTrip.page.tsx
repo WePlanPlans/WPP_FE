@@ -1,7 +1,7 @@
 import { ButtonPrimary } from '@components/common/button/Button';
 import BackHeader from '@components/common/header/BackHeader';
 import {
-  CalendarIcon,
+  CalendarIcon3,
   CloseIcon,
   CounterIcon,
   PlanIcon,
@@ -134,7 +134,7 @@ export const CreateTrip = () => {
       </InputField>
 
       <InputField
-        icon={CalendarIcon}
+        icon={CalendarIcon3}
         onClick={() => {
           setShowSelectDate(true);
         }}
