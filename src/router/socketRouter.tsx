@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom';
 import { useSocket, socketContext } from '@hooks/useSocket';
 import PlanTrip from '@pages/plan/planTrip.page';
 import { PlanAddPlace } from '@components/addToList/addToOurPlace/PlanAddPlace.page';
-import PlanPlaceSearch from '@pages/plan/planPlaceSearch.page';
 import Trip from '@pages/trip/trip.page';
 import MainLayout from './routerLayout';
 import Share from '@pages/share/share.page';
@@ -16,7 +15,6 @@ const SocketRoutes = () => {
       <Routes>
         <Route path="/" element={<PlanTrip />} />
         <Route path="/place" element={<PlanAddPlace />} />
-        <Route path="/place/search" element={<PlanPlaceSearch />} />
       </Routes>
     </socketContext.Provider>
   );
