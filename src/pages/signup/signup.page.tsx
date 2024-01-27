@@ -9,10 +9,12 @@ import {
 import { BackBox } from '@components/common';
 import SubmitBtn from '@components/common/button/SubmitBtn';
 import { CheckboxIcon } from '@components/common/icons/Icons';
+import { UserInfoState } from '@recoil/Auth.atom';
 import { setItem } from '@utils/localStorageFun';
 import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
 const Signup = () => {
   const {
@@ -39,6 +41,8 @@ const Signup = () => {
     }
   }, [password, trigger]);
 
+  const setUserInfo = useSetRecoilState(UserInfoState);
+
   const onSignupSubmit: SubmitHandler<SignupFormValue> = async (data) => {
     const { email, password } = data;
 
@@ -48,6 +52,14 @@ const Signup = () => {
         password,
       });
       if (res.status === 200) {
+        setUserInfo({
+          nickname: res.data.data.nickName!,
+          email: res.data.data.email!,
+          profileImageUrl: null,
+          ageType: null,
+          genderType: null,
+          survey: null,
+        });
         setItem('accessToken', res.data.data.tokenInfo.accessToken);
         navigate('/signup/success');
       }
