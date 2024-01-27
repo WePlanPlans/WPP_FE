@@ -98,14 +98,13 @@ const PlanItemBox = ({
                     {tripAuthority == 'WRITE' && (
                       <Alert
                         title={'비용을 입력해주세요'}
-                        message={''}
                         onConfirm={() =>
                           handlePrice(inputPrice, item.tripItemId)
                         }
                         closeOnConfirm={true}
                         children={
                           <button>
-                            <PenIcon size={14} />
+                            <PenIcon size={15.5} color="#888888" />
                           </button>
                         }
                         content={

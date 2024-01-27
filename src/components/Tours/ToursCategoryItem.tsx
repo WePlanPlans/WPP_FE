@@ -4,7 +4,7 @@ const ToursCategoryItem = ({
   onSelect,
 }: ToursCategoryItemProps) => {
   const buttonStyle = isSelected
-    ? 'bg-[#28D8FF] text-white font-bold'
+    ? 'bg-[#28D8FF] text-white font-bold border-[#28D8FF]'
     : 'bg-[#fff] text-[#888] border-[#ededed]';
 
   return (

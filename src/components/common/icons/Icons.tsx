@@ -59,7 +59,7 @@ export const CalendarIcon: React.FC<IconProps> = ({
   );
 };
 
-export const CalendarIcon2: React.FC<IconProps> = ({ size = 25 }) => {
+export const CalendarIcon2: React.FC<IconProps> = ({ size = 24 }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +134,7 @@ export const CalendarIcon2: React.FC<IconProps> = ({ size = 25 }) => {
 };
 
 export const CalendarIcon3: React.FC<IconProps> = ({
-  size = 25,
+  size = 24,
   color = 'black',
   fill = 'none',
   className,

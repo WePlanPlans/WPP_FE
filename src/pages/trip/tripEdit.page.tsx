@@ -2,7 +2,7 @@ import { putTrips } from '@api/trips';
 import { BackBox } from '@components/common';
 import { ButtonPrimary } from '@components/common/button/Button';
 import {
-  CalendarIcon,
+  CalendarIcon3,
   CloseIcon,
   CounterIcon,
   PlanIcon,
@@ -158,7 +158,7 @@ const TripEdit = () => {
       </InputField>
 
       <InputField
-        icon={CalendarIcon}
+        icon={CalendarIcon3}
         onClick={() => {
           setShowSelectDate(true);
         }}
