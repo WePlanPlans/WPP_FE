@@ -83,7 +83,7 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
           />
         </div>
 
-        <div className="ml-[8px] flex max-h-[72px] flex-col items-start">
+        <div className="ml-[16px] flex max-h-[72px] flex-col items-start">
           <div className="mt-[-5px] flex max-w-[230px] flex-col">
             <p className="truncate whitespace-nowrap text-[16px] font-bold leading-normal text-black ">
               {title}
@@ -105,7 +105,7 @@ const LikedToursListItem: React.FC<LikedToursListItemProps> = ({
                 </div>
               </div>
 
-              <div className="max-w-[200px] ">
+              <div className="max-w-[180px] ">
                 <p className="truncate text-[14px] text-gray4">
                   {tourAddress ? tourAddress : '주소를 제공하지 않고 있어요'}
                 </p>

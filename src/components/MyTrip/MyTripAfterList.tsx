@@ -19,16 +19,16 @@ const MyTripAfterList: React.FC<MyTripIngListProps> = ({ myTripsData }) => {
 
   if (sortedTrips.length > 0) {
     return (
-      <>
-        <div className="mb-[10px] mt-[30px]">
+      <div className="mt-[48px]">
+        <div className="mb-[16px]">
           <h1 className="text-[18px] font-bold text-gray7">지난 여행</h1>
         </div>
-        <div className="no-scrollbar grid grid-cols-1 gap-[5px] overflow-y-scroll">
+        <div className="no-scrollbar grid grid-cols-1 gap-[24px] overflow-y-scroll">
           {sortedTrips.map((myTripList: MyTripType) => (
             <MyTripItem key={uuidv4()} myTripList={myTripList} />
           ))}
         </div>
-      </>
+      </div>
     );
   } else {
     return null;

@@ -45,7 +45,7 @@ const WishList: React.FC<WishListProps> = ({
           <Spinner />
         </div>
       }>
-      <div className="no-scrollbar grid grid-cols-1 gap-[5px] overflow-y-scroll">
+      <div className="no-scrollbar grid grid-cols-1 gap-[16px] overflow-y-scroll pt-[10px]">
         {isLoading
           ? Array.from({ length: 10 }, (_, index) => (
               <ToursItemSkeleton key={index} />

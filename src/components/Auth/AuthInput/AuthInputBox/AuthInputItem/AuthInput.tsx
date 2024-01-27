@@ -33,7 +33,7 @@ const AuthInput = ({
   return (
     <div className="flex flex-col gap-2">
       <div>
-        <label htmlFor={id} className="body3 text-main1">
+        <label htmlFor={id} className="body2 text-main1">
           {label}
         </label>
         <span className="body5 text-main1">{subLabel}</span>

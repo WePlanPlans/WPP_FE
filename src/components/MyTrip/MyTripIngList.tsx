@@ -14,7 +14,7 @@ const MyTripIngList: React.FC<MyTripIngListProps> = ({ myTripsData }) => {
 
   return (
     <>
-      <div className="no-scrollbar grid grid-cols-1 gap-[5px] overflow-y-scroll ">
+      <div className="no-scrollbar mt-[8px] grid grid-cols-1 gap-[8px] overflow-y-scroll ">
         {myTripsData.map((myTripList: MyTripType) => (
           <MyTripIngItem key={uuidv4()} myTripList={myTripList} />
         ))}

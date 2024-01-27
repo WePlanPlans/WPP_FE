@@ -44,7 +44,7 @@ const CommentItem: React.FC<CommentItemProps> = (props: CommentItemProps) => {
   };
 
   return (
-    <div className="border-b border-solid border-gray-300 py-[13px]">
+    <div className="border-b border-solid border-gray2 py-[13px]">
       <div className=" flex items-center">
         <div className="mr-4">
           {!(
