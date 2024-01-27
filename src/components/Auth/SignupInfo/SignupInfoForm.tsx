@@ -78,13 +78,15 @@ const SignupInfoForm = () => {
             label="성별"
             options={genderArr}
             name={'genderType'}
-            register={register}
+            setValue={setValue}
+            value={watch('genderType')}
           />
           <AuthDropDown
             label="연령대"
             options={ageArr}
             name={'ageType'}
-            register={register}
+            setValue={setValue}
+            value={watch('ageType')}
           />
         </div>
       </div>

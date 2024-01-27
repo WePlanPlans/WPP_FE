@@ -1,25 +1,16 @@
-import SubmitBtn from '@components/common/button/SubmitBtn';
 import AuthSurveyOption from './AuthSurveyOption';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { putMemberSurvey } from '@api/member';
-import { useNavigate } from 'react-router-dom';
 import { surveyArr } from '@utils/survey.constants';
 import { useEffect } from 'react';
 import { UserInfoState } from '@recoil/Auth.atom';
 import { useRecoilState } from 'recoil';
+import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 
 interface Props {
-  path?: string;
+  register: UseFormRegister<Survey>;
+  setValue: UseFormSetValue<Survey>;
 }
 
-const AuthSurvey = ({ path }: Props) => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { isDirty, isValid },
-  } = useForm<Survey>();
-  const navigate = useNavigate();
+const AuthSurvey = ({ register, setValue }: Props) => {
   const [userInfo, _] = useRecoilState(UserInfoState);
   useEffect(() => {
     if (userInfo?.survey) {
@@ -33,29 +24,8 @@ const AuthSurvey = ({ path }: Props) => {
     }
   }, [userInfo]);
 
-  const onSaveSubmit: SubmitHandler<Survey> = async (data) => {
-    try {
-      const res = await putMemberSurvey({ survey: data });
-      if (res.data.status === 200) {
-        // setUserInfo((prevUserInfo) => {
-        //   const newPrevUserInfo = prevUserInfo!;
-        //   newPrevUserInfo.survey = data;
-        //   return newPrevUserInfo;
-        // });
-        if (path) {
-          navigate(path);
-        } else {
-          navigate(-1);
-        }
-      }
-    } catch (err) {
-      console.error(err);
-      alert('오류가 발생했습니다. 다시 시도해주세요');
-    }
-  };
-
   return (
-    <form className="mb-8" onSubmit={handleSubmit(onSaveSubmit)}>
+    <form className="mb-8">
       <div className="overflow-auto">
         {surveyArr.map((section) => (
           <fieldset key={section.id} className="mb-8 flex flex-col gap-4">
@@ -75,7 +45,6 @@ const AuthSurvey = ({ path }: Props) => {
           </fieldset>
         ))}
       </div>
-      <SubmitBtn isActive={isDirty && isValid}>완료</SubmitBtn>
     </form>
   );
 };

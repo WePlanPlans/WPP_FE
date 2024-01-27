@@ -8,6 +8,7 @@ interface Props {
   showSkip?: boolean;
   skipHandler?: VoidFunction;
   showSave?: boolean;
+  isSaveValid?: boolean;
   saveHandler?: VoidFunction;
   showShare?: boolean;
   shareHandler?: VoidFunction;
@@ -20,6 +21,7 @@ const BackBox = ({
   showSkip,
   skipHandler,
   showSave,
+  isSaveValid,
   saveHandler,
   showShare,
   shareHandler,
@@ -51,7 +53,8 @@ const BackBox = ({
       )}
       {showSave && (
         <button
-          className="headline2 absolute right-0 text-main2"
+          disabled={!isSaveValid}
+          className="headline2 absolute right-0 text-main2 disabled:cursor-not-allowed disabled:text-gray3"
           onClick={onSaveClick}>
           저장
         </button>

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const SignupSuccess = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex h-[93vh] flex-col justify-between">
+    <div className="flex h-[85vh] flex-col justify-between">
       <div className="mt-40 flex flex-col items-center">
         <div className="mb-6">
           <SuccessIcon />
