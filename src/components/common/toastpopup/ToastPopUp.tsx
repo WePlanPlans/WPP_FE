@@ -41,7 +41,7 @@ const ToastPopUp: React.FC<ToastPopUpProps> = ({ noun, verb }) => {
         transform: visible ? 'translate(-50%, 0)' : 'translate(-50%, -50%)',
         width: '335px', // 375 - 40(20 20)(패딩)
         height: '64px',
-        borderRadius: '1rem',
+        borderRadius: '8px',
         border: '1px solid #29DDF6',
         backgroundColor: '#F2FDFF',
         color: '#062139',

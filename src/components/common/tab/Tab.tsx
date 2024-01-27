@@ -16,10 +16,14 @@ const Tab = ({ lists, contents }: TabProps) => {
   };
 
   let isDayTab = false;
+  let isParticipationTab = false;
 
   lists.forEach((list) => {
     if (list.includes('DAY')) {
       isDayTab = true;
+    }
+    if (list.includes('참여')) {
+      isParticipationTab = true;
     }
   });
 
@@ -30,7 +34,9 @@ const Tab = ({ lists, contents }: TabProps) => {
       onValueChange={handleTabChange}>
       <Tabs.List
         className={`${
-          !isDayTab && 'justify-center'
+          isParticipationTab
+            ? 'gap-[8px]'
+            : !isDayTab && 'justify-center gap-[14.39px]'
         } border-b-1 no-scrollbar flex shrink-0 overflow-x-scroll`}
         aria-label="Manage your account">
         {lists.map((list, index) => {
@@ -38,7 +44,11 @@ const Tab = ({ lists, contents }: TabProps) => {
             <Tabs.Trigger
               key={index}
               className={`${
-                isDayTab ? 'caption1' : 'headline1 w-[136px]'
+                isParticipationTab
+                  ? 'headline2 w-[54px]'
+                  : isDayTab
+                    ? 'caption1'
+                    : 'headline1 w-[136px]'
               } flex min-w-[57px] cursor-pointer select-none items-center justify-center border-b-2 border-solid border-gray2 py-[8px] leading-none text-gray4 outline-none data-[state=active]:border-b-2 data-[state=active]:border-solid data-[state=active]:border-black data-[state=active]:text-black`}
               value={`tab${index}`}>
               {list}
