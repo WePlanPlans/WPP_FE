@@ -151,51 +151,41 @@ const Item: React.FC<ReviewInfoItemProps> = (props: ReviewInfoItemProps) => {
       <div className="flex items-center ">
         <div className="flex gap-2">
           {!showMoreKeywords &&
-            keywords.slice(0, 2).map((keyword, idx) => (
+            keywords.slice(0, 1).map((keyword, idx) => (
               <div
                 key={idx}
                 className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6">
                 {getEmoji(keyword.content)} {keyword.content}
               </div>
             ))}
-          {keywords.length > 2 && !showMoreKeywords && (
+          {keywords.length > 1 && !showMoreKeywords && (
             <div
               className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6"
               onClick={(e) => {
                 handleClickPlusButton(e);
               }}>
-              +{keywords.length - 2}
+              +{keywords.length - 1}
             </div>
           )}
         </div>
+
         <div>
-          {showMoreKeywords &&
-            Array.from({ length: Math.ceil(keywords.length / 2) }).map(
-              (_, lineIdx) => (
+          {showMoreKeywords && (
+            <div className="flex flex-wrap gap-2">
+              {keywords.map((keyword, idx) => (
                 <div
-                  key={lineIdx}
-                  className={`flex gap-2 ${
-                    lineIdx === Math.ceil(keywords.length / 2) - 1
-                      ? ''
-                      : ' mb-3'
-                  }`}>
-                  {keywords
-                    .slice(lineIdx * 2, lineIdx * 2 + 2)
-                    .map((keyword, idx) => (
-                      <div
-                        key={idx}
-                        className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6">
-                        {getEmoji(keyword.content)} {keyword.content}
-                      </div>
-                    ))}
+                  key={idx}
+                  className="rounded-md bg-gray1 px-2 py-1 text-xs text-gray6">
+                  {getEmoji(keyword.content)} {keyword.content}
                 </div>
-              ),
-            )}
+              ))}
+            </div>
+          )}
         </div>
 
-        <div className="ml-auto mr-2 flex ">
+        <div className="ml-auto mr-2 flex flex items-center ">
           <ChatIcon size={20} color="#5E5E5E" />
-          <div className="ml-1 text-gray5">{commentCount}</div>
+          <div className="ml-1.5 text-gray5">{commentCount}</div>
         </div>
       </div>
     </div>
