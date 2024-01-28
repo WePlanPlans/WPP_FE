@@ -116,8 +116,8 @@
       </a>
     </td>
     <td align="center" width="150px">
-      <a href="" target="_blank">
-        <img src="" alt="" />
+      <a href="https://github.com/jseo9732" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/79249376?v=4" alt="서지수 프로필" />
       </a>
     </td>
     <td align="center" width="150px">
@@ -146,25 +146,25 @@
     </td>
     <td align="center">
       <a href="" target="_blank">
-        홍길동<br />
+        노욱진<br />
+                팀원 (FE)
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/jseo9732" target="_blank">
+        서지수<br />
                 팀원 (FE)
       </a>
     </td>
     <td align="center">
       <a href="" target="_blank">
-        홍길동<br />
+        심정아<br />
                 팀원 (FE)
       </a>
     </td>
     <td align="center">
       <a href="" target="_blank">
-        홍길동<br />
-                팀원 (FE)
-      </a>
-    </td>
-    <td align="center">
-      <a href="" target="_blank">
-        홍길동<br />
+        이연수<br />
                 팀원 (FE)
       </a>
     </td>
@@ -181,10 +181,10 @@
 |  이름  |     역할     | <div align="center">개발 내용</div> |
 | :----: | :----------: | :---------------------------------- |
 | 어승준 | FE<br />팀장 | 이러쿵저러쿵                        |
-| 홍길동 | FE<br />팀원 | 이러쿵저러쿵                        |
-| 홍길동 | FE<br />팀원 | 이러쿵저러쿵                        |
-| 홍길동 | FE<br />팀원 | 이러쿵저러쿵                        |
-| 홍길동 | FE<br />팀원 | 이러쿵저러쿵                        |
+| 노욱진 | FE<br />팀원 | 이러쿵저러쿵                        |
+| 서지수 | FE<br />팀원 | 이메일,카카오 로그인 / 회원가입 / 마이페이지 / 여정 공유 페이지 |
+| 심정아 | FE<br />팀원 | 이러쿵저러쿵                        |
+| 이연수 | FE<br />팀원 | 이러쿵저러쿵                        |
 | 장호진 | FE<br />팀원 | 모킹서버, 실시간 여정 편집(소켓)                     |
 
 <div id="8"></div>
@@ -200,10 +200,10 @@
   | 이름   | 내용         |
   | :----- | :----------- |
   | 어승준 | 이러쿵저러쿵 |
-  | 홍길동 | 이러쿵저러쿵 |
-  | 홍길동 | 이러쿵저러쿵 |
-  | 홍길동 | 이러쿵저러쿵 |
-  | 홍길동 | 이러쿵저러쿵 |
+  | 노욱진 | 이러쿵저러쿵 |
+  | 서지수 | 이러쿵저러쿵 |
+  | 심정아 | 이러쿵저러쿵 |
+  | 이연수 | 이러쿵저러쿵 |
   | 장호진 | 이러쿵저러쿵 |
 
 <div id="9"></div>
