@@ -85,7 +85,7 @@
 
 ## 📌 아키텍처
 
-(추후 업로드)
+![아키텍처](image-1.png)
 
 <div id="5"></div>
 
@@ -132,7 +132,7 @@
     </td>
     <td align="center" width="150px">
       <a href="" target="_blank">
-        <img src="" alt="" />
+        <img src="https://avatars.githubusercontent.com/leHiHo" alt="장호진 프로필" />
       </a>
     </td>
    
@@ -169,8 +169,8 @@
       </a>
     </td>
     <td align="center">
-      <a href="" target="_blank">
-        홍길동<br />
+      <a href="https://github.com/LeHiHo" target="_blank">
+        장호진<br />
                 팀원 (FE)
       </a>
     </td>
@@ -185,7 +185,7 @@
 | 홍길동 | FE<br />팀원 | 이러쿵저러쿵                        |
 | 홍길동 | FE<br />팀원 | 이러쿵저러쿵                        |
 | 홍길동 | FE<br />팀원 | 이러쿵저러쿵                        |
-| 홍길동 | FE<br />팀원 | 이러쿵저러쿵                        |
+| 장호진 | FE<br />팀원 | 모킹서버, 실시간 여정 편집(소켓)                     |
 
 <div id="8"></div>
 
@@ -204,7 +204,7 @@
   | 홍길동 | 이러쿵저러쿵 |
   | 홍길동 | 이러쿵저러쿵 |
   | 홍길동 | 이러쿵저러쿵 |
-  | 홍길동 | 이러쿵저러쿵 |
+  | 장호진 | 이러쿵저러쿵 |
 
 <div id="9"></div>
 
