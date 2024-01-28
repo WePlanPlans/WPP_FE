@@ -1,6 +1,7 @@
 import { PlanColorIcon, RightIcon } from '@components/common/icons/Icons';
 import { useNavigate } from 'react-router-dom';
 import { getMember } from '@api/member';
+import { resetVisitDateAndTab } from '@utils/utils';
 
 const PlanTripButton = () => {
   const navigate = useNavigate();
@@ -15,6 +16,8 @@ const PlanTripButton = () => {
       console.error(err);
     }
   };
+
+  resetVisitDateAndTab();
 
   return (
     <button

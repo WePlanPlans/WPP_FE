@@ -13,8 +13,8 @@ import {
 } from '@api/socket';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { dayState, dateState } from '@recoil/plan';
-import { calculateDayAndDate } from '@utils/utils';
+import { dayState, dateState, isFirstLoadState } from '@recoil/plan';
+import { calculateDayAndDate, resetVisitDateAndTab } from '@utils/utils';
 import { useGetTrips } from '@hooks/useGetTrips';
 import { visitDateState } from '@recoil/socket';
 import { useState } from 'react';
@@ -39,6 +39,8 @@ const PlanSectionTop = () => {
     tripBudget,
   } = useContext(socketContext);
   const [, setVisitDate] = useRecoilState(visitDateState);
+  const [isFirstLoad, setIsFirstLoad] = useRecoilState(isFirstLoadState);
+
   const { startDate, endDate } = useGetTrips();
   const [isEnter, setIsEnter] = useState(false);
 
@@ -52,12 +54,13 @@ const PlanSectionTop = () => {
   }
 
   useEffect(() => {
-    if (startDate) {
+    if (isFirstLoad && startDate) {
       setVisitDate({ visitDate: startDate });
+      setIsFirstLoad(false);
     }
     setDay(DayArr);
     setDate(DateArr);
-  }, [startDate, endDate]);
+  }, [startDate, endDate, isFirstLoad]);
 
   useEffect(() => {
     callBackPub(() => pubEnterMember(tripId));
@@ -93,6 +96,7 @@ const PlanSectionTop = () => {
         showBack={true}
         backHandler={() => {
           navigate(-1);
+          resetVisitDateAndTab();
         }}
         showShare={true}
         shareHandler={() => {
