@@ -97,7 +97,7 @@ const PlanMoveItem: React.FC<PlanMoveItemProps> = ({
                             onClick={() => handleMoveItem(date[index])}
                             className="mb-[12px] flex h-[24px] items-center gap-[8px]">
                             <PaperIcon />
-                            <p className="mb-[5px] h-[18px] text-[15px] font-medium text-[#1e1e1e]">
+                            <p className="mb-[8px] h-[18px] text-[15px] font-medium text-[#1e1e1e]">
                               {day}
                             </p>
                           </button>
