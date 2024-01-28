@@ -95,9 +95,9 @@ const PlanMoveItem: React.FC<PlanMoveItemProps> = ({
                         <Dialog.Close asChild key={day}>
                           <button
                             onClick={() => handleMoveItem(date[index])}
-                            className="relative mb-[12px] flex flex-shrink-0 flex-grow-0 justify-start gap-2">
+                            className="mb-[12px] flex h-[24px] items-center gap-[8px]">
                             <PaperIcon />
-                            <p className="flex-shrink-0 flex-grow-0 text-left text-[15px] font-medium text-[#1e1e1e]">
+                            <p className="mb-[5px] h-[18px] text-[15px] font-medium text-[#1e1e1e]">
                               {day}
                             </p>
                           </button>

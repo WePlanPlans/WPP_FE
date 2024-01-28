@@ -143,7 +143,7 @@ const PlanEditItemBox = ({
                               </div>
                             </div>
                             <div className="flex justify-between text-sm font-bold text-black">
-                              {item.price} 원
+                              {item.price.toLocaleString()} 원
                             </div>
                           </div>
                         </div>
