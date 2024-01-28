@@ -7,8 +7,7 @@
 5. [**발표자료 및 영상**](#5)
 6. [**구글 애널리틱스 통계**](#6)
 7. [**팀 소개**](#7)
-8. [**트러블슈팅 및 회고**](#8)
-9. [**폴더 구조**](#9)
+8. [**폴더 구조**](#8)
 
 <div id="1"></div>
 
@@ -20,12 +19,9 @@
 
   - [**서비스 바로가기 Click !**](https://weplanplans.vercel.app/) 👈
 
-- **테스트 계정**
-  - 아이디 :
-  - 비밀번호 :
 - **깃허브 레포**
-  - [FE Github](https://github.com/FinalDoubleTen/TenTenFE)
-  - [BE Github](https://github.com/FinalDoubleTen/TenTenBe)
+  - [FE Github](https://github.com/WePlanPlans/WPP_FE)
+  - [BE Github](https://github.com/WePlanPlans/WPP_BE)
 
 <div id="2"></div>
 
@@ -91,13 +87,20 @@
 
 ## 📌 발표자료 및 영상
 
-(추후 업로드)
+https://drive.google.com/file/d/1TAltN9sjEYGAnMgwpinyRyZKm0VBx_8M/view?usp=sharing
 
 <div id="6"></div>
 
 ## 📌 구글 애널리틱스 통계
 
-(추후 업로드)
+- 사용자 속성 개요
+
+  ![image](https://github.com/WePlanPlans/WPP_FE/assets/39702832/1877f54a-b55e-4105-880d-c0c6461824ba)
+
+  ![image](https://github.com/WePlanPlans/WPP_FE/assets/39702832/9edddb87-2767-44dc-a707-ce59cf66e6c1)
+
+- 기술 세부정보
+  ![image](https://github.com/WePlanPlans/WPP_FE/assets/39702832/28569efe-b140-4a69-b150-97ae0c16e928)
 
 <div id="7"></div>
 
@@ -178,35 +181,16 @@
   </tr>
 </table>
 
-|  이름  |     역할     | <div align="center">개발 내용</div> |
-| :----: | :----------: | :---------------------------------- |
-| 어승준 | FE<br />팀장 | 이러쿵저러쿵                        |
-| 노욱진 | FE<br />팀원 | 이러쿵저러쿵                        |
+|  이름  |     역할     | <div align="center">개발 내용</div>                             |
+| :----: | :----------: | :-------------------------------------------------------------- |
+| 어승준 | FE<br />팀장 | 리뷰/댓글, 여행취향, 공유 및 접속중 유저                        |
+| 노욱진 | FE<br />팀원 | 이러쿵저러쿵                                                    |
 | 서지수 | FE<br />팀원 | 이메일,카카오 로그인 / 회원가입 / 마이페이지 / 여정 공유 페이지 |
-| 심정아 | FE<br />팀원 | 이러쿵저러쿵                        |
-| 이연수 | FE<br />팀원 | 이러쿵저러쿵                        |
-| 장호진 | FE<br />팀원 | 모킹서버, 실시간 여정 편집(소켓)                     |
+| 심정아 | FE<br />팀원 | 이러쿵저러쿵                                                    |
+| 이연수 | FE<br />팀원 | 이러쿵저러쿵                                                    |
+| 장호진 | FE<br />팀원 | 모킹서버, 실시간 여정 편집(소켓)                                |
 
 <div id="8"></div>
-
-## 📌 트러블슈팅 및 회고
-
-- ### 트러블 슈팅
-
-  - (추후 업로드)
-
-- ### 개인 역량 회고
-
-  | 이름   | 내용         |
-  | :----- | :----------- |
-  | 어승준 | 이러쿵저러쿵 |
-  | 노욱진 | 이러쿵저러쿵 |
-  | 서지수 | 이러쿵저러쿵 |
-  | 심정아 | 이러쿵저러쿵 |
-  | 이연수 | 이러쿵저러쿵 |
-  | 장호진 | 이러쿵저러쿵 |
-
-<div id="9"></div>
 
 ## 📌 폴더 구조
 
