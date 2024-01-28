@@ -1,6 +1,7 @@
 import * as Tabs from '@radix-ui/react-tabs';
-import { useRecoilState } from 'recoil';
-import { tapState } from '@recoil/plan';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { isFirstLoadState, tapState } from '@recoil/plan';
+import { useEffect } from 'react';
 
 interface TabProps {
   lists: string[];
@@ -8,12 +9,19 @@ interface TabProps {
 }
 
 const Tab = ({ lists, contents }: TabProps) => {
-  const [, setTapState] = useRecoilState(tapState);
-
+  const [tap, setTapState] = useRecoilState(tapState);
+  const isFirstLoad = useRecoilValue(isFirstLoadState);
   const handleTabChange = (value: string) => {
     const tabIndex = value.replace('tab', '');
     setTapState(tabIndex);
   };
+
+  useEffect(() => {
+    setTapState(tap);
+    if (isFirstLoad) {
+      setTapState('0');
+    }
+  }, [tap]);
 
   let isDayTab = false;
   let isParticipationTab = false;
@@ -30,7 +38,7 @@ const Tab = ({ lists, contents }: TabProps) => {
   return (
     <Tabs.Root
       className="flex w-full flex-col"
-      defaultValue="tab0"
+      defaultValue={tap ? `tab${tap}` : 'tab0'}
       onValueChange={handleTabChange}>
       <Tabs.List
         className={`${

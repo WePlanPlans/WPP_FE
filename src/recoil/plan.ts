@@ -14,3 +14,8 @@ export const tapState = atom<string>({
   key: 'tapState',
   default: '',
 });
+
+export const isFirstLoadState = atom({
+  key: 'isFirstLoadState',
+  default: true,
+});

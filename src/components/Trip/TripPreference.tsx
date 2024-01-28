@@ -173,7 +173,6 @@ const TripPreference: React.FC = () => {
 
   useEffect(() => {
     if (tripPreference) {
-      console.log('tripPreference', tripPreference);
       setA([
         tripPreference?.data?.data?.planningCount,
         tripPreference?.data?.data?.planningTotalCount,

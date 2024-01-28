@@ -1,3 +1,8 @@
+import { useGetTrips } from '@hooks/useGetTrips';
+import { isFirstLoadState, tapState } from '@recoil/plan';
+import { visitDateState } from '@recoil/socket';
+import { useSetRecoilState } from 'recoil';
+
 export const getEmoji = (content: string) => {
   const emojiMap: { [key: string]: string } = {
     깨끗해요: '🧼',
@@ -56,3 +61,16 @@ export function calculateDayAndDate(startDate: string, endDate: string) {
     SmallDayArr,
   };
 }
+
+export const resetVisitDateAndTab = () => {
+  const setVisitDate = useSetRecoilState(visitDateState);
+  const setIsFirstLoad = useSetRecoilState(isFirstLoadState);
+  const setTapState = useSetRecoilState(tapState);
+  const { startDate } = useGetTrips();
+
+  if (startDate) {
+    setVisitDate({ visitDate: startDate });
+  }
+  setIsFirstLoad(true);
+  setTapState('0');
+};
