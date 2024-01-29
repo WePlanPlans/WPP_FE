@@ -4,10 +4,9 @@
 2. [**기술 스택**](#2)
 3. [**주요 기능**](#3)
 4. [**아키텍처**](#4)
-5. [**발표자료 및 영상**](#5)
-6. [**구글 애널리틱스 통계**](#6)
-7. [**팀 소개**](#7)
-8. [**폴더 구조**](#8)
+5. [**구글 애널리틱스 통계**](#5)
+6. [**팀 소개**](#6)
+7. [**폴더 구조**](#7)
 
 <div id="1"></div>
 
@@ -15,13 +14,19 @@
 
 ![main](https://github.com/WePlanPlans/WPP_FE/assets/39702832/6b64523f-d3e9-4de2-b23b-a7bd35d0a4b8)
 
-- 여행 여정 공유 플랫폼 **WePlanPlans**입니다.<br/>
+- **소개**
+
+  - 실시간 공동 편집이 가능한 여행/여정 공유 플랫폼, **WePlanPlans**<br/>
 
   - [**서비스 바로가기 Click !**](https://weplanplans.vercel.app/) 👈
 
 - **깃허브 레포**
+
   - [FE Github](https://github.com/WePlanPlans/WPP_FE)
   - [BE Github](https://github.com/WePlanPlans/WPP_BE)
+
+- **발표자료 및 영상**
+  - [**PPT 바로가기 Click !**](https://drive.google.com/file/d/1TAltN9sjEYGAnMgwpinyRyZKm0VBx_8M/view?usp=sharing) 👈
 
 <div id="2"></div>
 
@@ -87,12 +92,6 @@
 
 <div id="5"></div>
 
-## 📌 발표자료 및 영상
-
-https://drive.google.com/file/d/1TAltN9sjEYGAnMgwpinyRyZKm0VBx_8M/view?usp=sharing
-
-<div id="6"></div>
-
 ## 📌 구글 애널리틱스 통계
 
 - 사용자 속성 개요
@@ -104,7 +103,7 @@ https://drive.google.com/file/d/1TAltN9sjEYGAnMgwpinyRyZKm0VBx_8M/view?usp=shari
 - 기술 세부정보
   ![image](https://github.com/WePlanPlans/WPP_FE/assets/39702832/28569efe-b140-4a69-b150-97ae0c16e928)
 
-<div id="7"></div>
+<div id="6"></div>
 
 ## 📌 팀 소개
 
@@ -192,7 +191,7 @@ https://drive.google.com/file/d/1TAltN9sjEYGAnMgwpinyRyZKm0VBx_8M/view?usp=shari
 | 심정아 | FE<br />팀원 | 검색페이지, 우리의 관심목록, 여정 장소 추가                |
 | 장호진 | FE<br />팀원 | 모킹서버, 실시간 여정 편집(소켓)                           |
 
-<div id="8"></div>
+<div id="7"></div>
 
 ## 📌 폴더 구조
 
@@ -523,5 +522,7 @@ tenten-frontend
 ```
 
 </details>
+
+---
 
 ### ✅ 개발 기간 : `5주 - 23.12.26 ~ 24.01.29`
