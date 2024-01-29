@@ -30,12 +30,13 @@
 ### Environment
 
 <div style="display: flex;">
+  <img src="https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220" />
+  <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white" />
   <img src="https://img.shields.io/badge/VSC-007ACC?style=for-the-badge&logo=visual studio&logoColor=white" />
   <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white" />
   <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white" />
   <img src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white" />
-  <img src="https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220" />
-  <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white" />
+   <img src="https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7" />
 </div>
 
 ### FrontEnd
@@ -43,10 +44,10 @@
 <div style="display: flex;">
  
   <img src="https://img.shields.io/badge/react-%2320232a?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
-  <img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-  <img src="https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white">
-  <img src="https://img.shields.io/badge/Recoil-oran?style=for-the-badge&logo=Recoil" />
   <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Recoil-oran?style=for-the-badge&logo=Recoil" />
+  <img src="https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white">
+  <img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" />
   <img src="https://img.shields.io/badge/stompjs-FFFF64.svg?&style=for-the-badge&logo=rsocket&logoColor=black">
    <img src="https://img.shields.io/badge/msw-7D00FF?style=for-the-badge&logo=Stellar&logoColor=white"/>
 </div>
@@ -55,10 +56,11 @@
 
 <div style="display: flex;">
   <img src="https://img.shields.io/badge/jira-0052CC?style=for-the-badge&logo=jira&logoColor=white" />
-  <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white" />
-  <img src="https://img.shields.io/badge/figma-%23F24E1E?style=for-the-badge&logo=figma&logoColor=white" />
+  <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white" />
   <img src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white" />
- <img src="https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7" />
+  <img src="https://img.shields.io/badge/figma-%23F24E1E?style=for-the-badge&logo=figma&logoColor=white" />
+  <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white" />
+
 </div>
 
 <div id="3"></div>
@@ -124,8 +126,8 @@ https://drive.google.com/file/d/1TAltN9sjEYGAnMgwpinyRyZKm0VBx_8M/view?usp=shari
       </a>
     </td>
     <td align="center" width="150px">
-      <a href="" target="_blank">
-        <img src="" alt="" />
+      <a href="https://github.com/joanShim" target="_blank">
+        <img src="https://github.com/WePlanPlans/WPP_FE/assets/39702832/69c7d4a4-1a50-48e8-a283-e6d05ccf22fb" alt="심정아 프로필" />
       </a>
     </td>
     <td align="center" width="150px">
@@ -160,7 +162,7 @@ https://drive.google.com/file/d/1TAltN9sjEYGAnMgwpinyRyZKm0VBx_8M/view?usp=shari
       </a>
     </td>
     <td align="center">
-      <a href="" target="_blank">
+      <a href="https://github.com/joanShim" target="_blank">
         심정아<br />
                 팀원 (FE)
       </a>
@@ -181,15 +183,14 @@ https://drive.google.com/file/d/1TAltN9sjEYGAnMgwpinyRyZKm0VBx_8M/view?usp=shari
   </tr>
 </table>
 
-
-|  이름  |     역할     | <div align="center">개발 내용</div>                             |
-| :----: | :----------: | :-------------------------------------------------------------- |
-| 어승준 | FE<br />팀장 | 리뷰/댓글, 여행취향, 공유 및 접속중 유저                        |
-| 노욱진 | FE<br />팀원 | 나의 관심 여행지 추가/삭제/조회, 우리의 여정 조회/삭제, 우리의 관심 여행지 조회/투표                                                    |
-| 서지수 | FE<br />팀원 | 이메일,카카오 로그인 / 회원가입 / 마이페이지 / 여정 공유 페이지 |
-| 이연수 | FE<br />팀원 | 인기여행지 / 실시간 여정 지도 및 경비 편집 (소켓)                       |
-| 심정아 | FE<br />팀원 | 검색페이지 / 우리의 관심 목록 / 여정 장소 추가                                                    |
-| 장호진 | FE<br />팀원 | 모킹서버, 실시간 여정 편집(소켓)                                |
+|  이름  |     역할     | <div align="center">개발 내용</div>                        |
+| :----: | :----------: | :--------------------------------------------------------- |
+| 어승준 | FE<br />팀장 | 리뷰/댓글, 나의 리뷰, 여행취향, 공유 및 접속중 유저        |
+| 노욱진 | FE<br />팀원 | 나의 관심목록, 여정 장소 조회/삭제, 우리의 관심목록        |
+| 서지수 | FE<br />팀원 | 이메일/카카오 로그인/회원가입, 마이페이지, 여정 공유페이지 |
+| 이연수 | FE<br />팀원 | 인기여행지, 실시간 여정 지도 및 경비 편집 (소켓)           |
+| 심정아 | FE<br />팀원 | 검색페이지, 우리의 관심목록, 여정 장소 추가                |
+| 장호진 | FE<br />팀원 | 모킹서버, 실시간 여정 편집(소켓)                           |
 
 <div id="8"></div>
 
