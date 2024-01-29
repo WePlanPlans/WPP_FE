@@ -129,8 +129,8 @@ https://drive.google.com/file/d/1TAltN9sjEYGAnMgwpinyRyZKm0VBx_8M/view?usp=shari
       </a>
     </td>
     <td align="center" width="150px">
-      <a href="" target="_blank">
-        <img src="" alt="" />
+      <a href="https://github.com/suehub" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/111065848?v=4" alt="이연수 프로필" />
       </a>
     </td>
     <td align="center" width="150px">
@@ -166,7 +166,7 @@ https://drive.google.com/file/d/1TAltN9sjEYGAnMgwpinyRyZKm0VBx_8M/view?usp=shari
       </a>
     </td>
     <td align="center">
-      <a href="" target="_blank">
+      <a href="https://github.com/suehub" target="_blank">
         이연수<br />
                 팀원 (FE)
       </a>
@@ -187,7 +187,7 @@ https://drive.google.com/file/d/1TAltN9sjEYGAnMgwpinyRyZKm0VBx_8M/view?usp=shari
 | 노욱진 | FE<br />팀원 | 이러쿵저러쿵                                                    |
 | 서지수 | FE<br />팀원 | 이메일,카카오 로그인 / 회원가입 / 마이페이지 / 여정 공유 페이지 |
 | 심정아 | FE<br />팀원 | 이러쿵저러쿵                                                    |
-| 이연수 | FE<br />팀원 | 이러쿵저러쿵                                                    |
+| 이연수 | FE<br />팀원 | 인기여행지 / 실시간 여정 지도 및 경비 편집 (소켓)                       |
 | 장호진 | FE<br />팀원 | 모킹서버, 실시간 여정 편집(소켓)                                |
 
 <div id="8"></div>
