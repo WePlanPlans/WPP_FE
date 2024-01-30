@@ -1,13 +1,21 @@
 import { getTripsjoin } from '@api/trips';
 import CopyBox from '@components/Share/CopyBox';
 import { BackBox } from '@components/common';
+import { useGetTrips } from '@hooks/useGetTrips';
+import { isFirstLoadState, tapState } from '@recoil/plan';
+import { visitDateState } from '@recoil/socket';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
 const Share = () => {
   const navigate = useNavigate();
   const [joinCode, setJoinCode] = useState<string | null>(null);
   const { id: tripId } = useParams();
+  const setVisitDate = useSetRecoilState(visitDateState);
+  const setIsFirstLoad = useSetRecoilState(isFirstLoadState);
+  const setTapState = useSetRecoilState(tapState);
+  const { startDate } = useGetTrips();
 
   useEffect(() => {
     const getTripCode = async () => {
@@ -34,6 +42,12 @@ const Share = () => {
         showBack
         backHandler={() => {
           navigate(-1);
+
+          if (startDate) {
+            setVisitDate({ visitDate: startDate });
+          }
+          setIsFirstLoad(true);
+          setTapState('0');
         }}>
         공유하기
       </BackBox>
