@@ -84,6 +84,7 @@ const PlanSectionTop = () => {
       }
     }
   }, [isEnter]);
+
   return (
     <div className="cursor-area min-h-screen" ref={cursorAreaRef}>
       {!isMobile && (
